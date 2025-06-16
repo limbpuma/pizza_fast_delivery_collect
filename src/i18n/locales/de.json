@@ -6,12 +6,14 @@
     "title": "Die beste Pizza.",
     "subtitle": "Direkt aus dem Ofen, direkt zu dir.",
     "cta": "Jetzt bestellen"
-  },
-  "user": {
+  },  "user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
     "namePlaceholder": "Dein vollständiger Name",
+    "postalCodePlaceholder": "PLZ (für Liefergebiet)",
     "continueButton": "Weiter",
-    "greeting": "Willkommen zurück, {{name}}!"
+    "greeting": "Willkommen zurück, {{name}}!",
+    "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
+    "deliveryZoneInfo": "Aktuelle Liefergebiete: 44149, 44147, 44227, 44225, 44137, 44135"
   },
   "menu": {
     "title": "Unsere Speisekarte",

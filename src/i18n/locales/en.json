@@ -6,12 +6,14 @@
     "title": "The best pizza.",
     "subtitle": "Straight out of the oven, straight to you.",
     "cta": "Start ordering"
-  },
-  "user": {
+  },  "user": {
     "welcome": "👋 Welcome! Please start by telling us your name:",
     "namePlaceholder": "Your full name",
+    "postalCodePlaceholder": "Postal code (for delivery area)",
     "continueButton": "Continue",
-    "greeting": "Welcome back, {{name}}!"
+    "greeting": "Welcome back, {{name}}!",
+    "deliveryError": "⚠️ Sorry, we don't deliver to your area yet. We're working to expand our delivery zone!",
+    "deliveryZoneInfo": "Current delivery areas: 44149, 44147, 44227, 44225, 44137, 44135"
   },
   "menu": {
     "title": "Our Menu",
