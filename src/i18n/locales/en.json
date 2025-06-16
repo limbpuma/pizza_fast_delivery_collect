@@ -1,12 +1,21 @@
 {
   "header": {
     "title": "Fast React Pizza Co."
-  },
-  "home": {
+  },  "home": {
     "title": "The best pizza.",
     "subtitle": "Straight out of the oven, straight to you.",
     "cta": "Start ordering"
-  },  "user": {
+  },
+  "features": {
+    "fast": "Fast delivery",
+    "fresh": "Fresh ingredients",
+    "quality": "Premium quality"
+  },
+  "stats": {
+    "minutes": "min delivery",
+    "zones": "delivery zones",
+    "service": "service"
+  },"user": {
     "welcome": "👋 Welcome! Please start by telling us your name:",
     "namePlaceholder": "Your full name",
     "postalCodePlaceholder": "Postal code (for delivery area)",

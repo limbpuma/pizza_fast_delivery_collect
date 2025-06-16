@@ -1,12 +1,21 @@
 {
   "header": {
     "title": "Campus Pizza Express"
-  },
-  "home": {
+  },  "home": {
     "title": "Die beste Pizza.",
     "subtitle": "Direkt aus dem Ofen, direkt zu dir.",
     "cta": "Jetzt bestellen"
-  },  "user": {
+  },
+  "features": {
+    "fast": "Schnelle Lieferung",
+    "fresh": "Frische Zutaten",
+    "quality": "Premium-Qualität"
+  },
+  "stats": {
+    "minutes": "Min Lieferung",
+    "zones": "Lieferzonen",
+    "service": "Service"
+  },"user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
     "namePlaceholder": "Dein vollständiger Name",
     "postalCodePlaceholder": "PLZ (für Liefergebiet)",
