@@ -1,8 +1,20 @@
 {
   "header": {
-    "title": "Fast React Pizza Co."
-  },
-  "home": {
+    "title":     "allergens": "Allergene:",
+    "nutritionalInfo": "Nährwertangaben",
+    "calories": "{{calories}} kcal",
+    "per100g": "pro 100g",
+    "perPizza": "pro Pizza",
+    "weight": "{{weight}}g",
+    "diameter": "⌀{{diameter}}cm",
+    "priceComparison": "{{price}}/100g",
+    "itemInfo": "Artikel Info",
+    "selectSize": "Größe wählen",
+    "availableSizes": "Verfügbare Größen",
+    "from": "ab",
+    "addToBasket": "In den Warenkorb",
+    "adding": "Hinzufügen...",Pizza Express"
+  },  "home": {
     "title": "Die beste Pizza.",
     "subtitle": "Direkt aus dem Ofen, direkt zu dir.",
     "cta": "Jetzt bestellen"
@@ -16,8 +28,7 @@
     "minutes": "Min Lieferung",
     "zones": "Lieferzonen",
     "service": "Service"
-  },
-  "user": {
+  },"user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
     "namePlaceholder": "Dein vollständiger Name",
     "postalCodePlaceholder": "PLZ (für Liefergebiet)",
@@ -25,35 +36,27 @@
     "greeting": "Willkommen zurück, {{name}}!",
     "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
     "deliveryZoneInfo": "Aktuelle Liefergebiete: 44149, 44147, 44227, 44225, 44137, 44135"
-  },
-  "menu": {
+  },  "menu": {
     "title": "Unsere Speisekarte",
     "soldOut": "Ausverkauft",
     "addToCart": "In den Warenkorb",
     "ingredients": "Zutaten:",
     "loading": "Lade Speisekarte...",
     "allergens": "Allergene:",
-    "nutritionalInfo": "Nährwertangaben",
+    "nutritionalInfo": "Nährwerte",
     "calories": "{{calories}} kcal",
     "per100g": "pro 100g",
     "perPizza": "pro Pizza",
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
     "priceComparison": "{{price}}/100g",
-    "itemInfo": "Artikel Info",
-    "selectSize": "Größe wählen",
-    "availableSizes": "Verfügbare Größen",
-    "from": "ab",
-    "addToBasket": "In den Warenkorb",
-    "adding": "Hinzufügen...",
     "categories": {
       "vegetarisch": "Vegetarisch",
       "vegan": "Vegan",
       "fleisch": "Mit Fleisch", 
       "meeresfrüchte": "Meeresfrüchte",
       "klassisch": "Klassisch"
-    },
-    "spicyLevel": "Schärfe: {{level}}/3",
+    },    "spicyLevel": "Schärfe: {{level}}/3",
     "popular": "Beliebt",
     "showNutrition": "Nährwerte anzeigen",
     "hideNutrition": "Nährwerte ausblenden",
@@ -61,8 +64,7 @@
     "carbs": "Kohlenhydrate: {{value}}g",
     "proteins": "Eiweiß: {{value}}g", 
     "salt": "Salz: {{value}}g",
-    "vatIncluded": "inkl. MwSt.",
-    "filters": {
+    "vatIncluded": "inkl. MwSt.",    "filters": {
       "title": "Menü filtern",
       "category": "Kategorie",
       "all": "Alle Pizzas",
@@ -85,8 +87,7 @@
     "clearButton": "Warenkorb leeren",
     "overview": "{{quantity}} Pizzas {{total}}",
     "openCart": "Warenkorb öffnen →"
-  },
-  "order": {
+  },  "order": {
     "title": "Bereit zu bestellen? Los geht's!",
     "firstName": "Vorname",
     "phone": "Telefonnummer",
@@ -114,15 +115,13 @@
       "button": "Suchen",
       "notFound": "Keine Bestellung mit ID {{orderId}} gefunden"
     }
-  },
-  "common": {
+  },  "common": {
     "loading": "Lädt...",
     "error": "Etwas ist schiefgegangen",
     "pizza": "Pizza",
     "pizzas": "Pizzas",
     "minutes": "{{count}} Minute",
-    "minutes_plural": "{{count}} Minuten",
-    "cancel": "Abbrechen"
+    "minutes_plural": "{{count}} Minuten"
   },
   "buttons": {
     "delete": "Löschen",

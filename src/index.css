@@ -2,87 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* German Pizza Card Styles */
-@layer components {
-  .pizza-card {
-    @apply transition-all duration-300 hover:shadow-lg;
-  }
-  
-  .pizza-card:hover {
-    @apply transform -translate-y-1;
-  }
-  
-  /* Responsive image sizes */
-  .pizza-card img {
-    @apply transition-all duration-300;
-  }
-  
-  /* Mobile optimizations */
-  @media (max-width: 640px) {
-    .pizza-card {
-      @apply p-3;
-    }
-    
-    .pizza-card .flex {
-      @apply flex-col;
-    }
-    
-    .pizza-card img {
-      @apply w-full h-48 mb-4;
-    }
-  }
-  
-  /* Tablet optimizations */
-  @media (min-width: 641px) and (max-width: 1023px) {
-    .pizza-card img {
-      @apply w-28 h-28;
-    }
-  }
-  
-  /* Desktop optimizations */
-  @media (min-width: 1024px) {
-    .pizza-card img {
-      @apply w-36 h-36;
-    }
-  }
-  
-  /* Nutritional info animations */
-  .nutritional-info [aria-expanded="true"] ~ div {
-    @apply animate-fadeIn;
-  }
-  
-  /* Allergen badges */
-  .allergens-display span {
-    @apply transition-all duration-200 hover:shadow-sm;
-  }
-  
-  /* Popular badge animation */
-  .pizza-card .bg-yellow-400 {
-    @apply animate-pulse;
-  }
-}
-
-/* Custom animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
-}
-
 @layer components {
   .input {
     @apply rounded-full border border-stone-200 px-4 py-2 text-sm transition-all 
     duration-300 focus:outline-none focus:ring focus:ring-yellow-400 md:px-6 md:py-3;
   }
+  
+  /* Modal Animations */
+  .modal-overlay {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  /* Compact Pizza Cards */
+  .pizza-card-compact {
+    @apply transition-all duration-200;
+  }
+  
+  .pizza-card-compact:hover {
+    @apply shadow-md border-orange-200;
+  }
+  
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
   /* https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
   .loader {
     width: 45px;
@@ -121,5 +68,34 @@
         50% 50%,
         100% 100%;
     }
+  }
+  
+  /* Modal animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes modalSlide {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .animate-modalSlide {
+    animation: modalSlide 0.3s ease-out;
   }
 }

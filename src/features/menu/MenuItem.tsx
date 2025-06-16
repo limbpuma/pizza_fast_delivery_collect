@@ -46,22 +46,21 @@ function MenuItem({ pizza }: MenuItemProps) {
     ? ingredients 
     : [];
 
-  return (
-    <li className="pizza-card bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 p-4 mb-4">
+  return (    <li className="pizza-card bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg hover:border-yellow-300 transition-all duration-300 p-4 mb-4 group">
       <div className="flex gap-4">
         {/* Pizza Image */}
         <div className="relative flex-shrink-0">
           <img
             src={imageUrl}
             alt={name}
-            className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-lg object-cover ${
+            className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-lg object-cover transition-transform duration-300 group-hover:scale-105 ${
               soldOut ? "opacity-50 grayscale" : ""
             }`}
             loading="lazy"
           />
           {/* Popular Badge */}
           {germanInfo?.isPopular && (
-            <span className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-sm">
+            <span className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-sm animate-pulse">
               {t('menu.popular')}
             </span>
           )}

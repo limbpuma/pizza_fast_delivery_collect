@@ -28,8 +28,7 @@
     "soldOut": "Sold out",
     "addToCart": "Add to cart",
     "ingredients": "Ingredients:",
-    "loading": "Loading menu...",
-    "allergens": "Allergens:",
+    "loading": "Loading menu...",    "allergens": "Allergens:",
     "nutritionalInfo": "Nutritional Information",
     "calories": "{{calories}} kcal",
     "per100g": "per 100g",
@@ -37,6 +36,12 @@
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
     "priceComparison": "{{price}}/100g",
+    "itemInfo": "Item Info",
+    "selectSize": "Select Size",
+    "availableSizes": "Available Sizes",
+    "from": "from",
+    "addToBasket": "Add to basket",
+    "adding": "Adding...",
     "categories": {
       "vegetarisch": "Vegetarian",
       "vegan": "Vegan", 
@@ -52,7 +57,17 @@
     "carbs": "Carbs: {{value}}g", 
     "proteins": "Proteins: {{value}}g",
     "salt": "Salt: {{value}}g",
-    "vatIncluded": "VAT included"
+    "vatIncluded": "VAT included",    "filters": {
+      "title": "Filter Menu",
+      "category": "Category",
+      "all": "All Pizzas",
+      "excludeAllergens": "Exclude Allergens",
+      "vegetarianOnly": "Vegetarian Only",
+      "veganOnly": "Vegan Only",
+      "results": "{{count}} pizzas found",
+      "noResults": "No pizzas found",
+      "adjustFilters": "Try adjusting your filters to see more options"
+    }
   },
   "cart": {
     "title": "Your cart, {{name}}",
@@ -99,7 +114,8 @@
     "pizza": "pizza",
     "pizzas": "pizzas",
     "minutes": "{{count}} minute",
-    "minutes_plural": "{{count}} minutes"
+    "minutes_plural": "{{count}} minutes",
+    "cancel": "Cancel"
   },
   "buttons": {
     "delete": "Delete",

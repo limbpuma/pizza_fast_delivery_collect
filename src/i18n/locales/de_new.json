@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "Fast React Pizza Co."
+    "title": "Campus Pizza Express"
   },
   "home": {
     "title": "Die beste Pizza.",
@@ -9,7 +9,7 @@
   },
   "features": {
     "fast": "Schnelle Lieferung",
-    "fresh": "Frische Zutaten",
+    "fresh": "Frische Zutaten", 
     "quality": "Premium-Qualität"
   },
   "stats": {
@@ -29,7 +29,7 @@
   "menu": {
     "title": "Unsere Speisekarte",
     "soldOut": "Ausverkauft",
-    "addToCart": "In den Warenkorb",
+    "addToCart": "Hinzufügen",
     "ingredients": "Zutaten:",
     "loading": "Lade Speisekarte...",
     "allergens": "Allergene:",
@@ -49,7 +49,7 @@
     "categories": {
       "vegetarisch": "Vegetarisch",
       "vegan": "Vegan",
-      "fleisch": "Mit Fleisch", 
+      "fleisch": "Mit Fleisch",
       "meeresfrüchte": "Meeresfrüchte",
       "klassisch": "Klassisch"
     },
@@ -59,7 +59,7 @@
     "hideNutrition": "Nährwerte ausblenden",
     "fats": "Fette: {{value}}g",
     "carbs": "Kohlenhydrate: {{value}}g",
-    "proteins": "Eiweiß: {{value}}g", 
+    "proteins": "Eiweiß: {{value}}g",
     "salt": "Salz: {{value}}g",
     "vatIncluded": "inkl. MwSt.",
     "filters": {
