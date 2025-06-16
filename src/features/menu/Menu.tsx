@@ -7,15 +7,19 @@ function Menu() {
   const { t } = useTranslation();
   const menu = useLoaderData() as any[];
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-center py-6 text-stone-800">
+    <div className="max-w-6xl mx-auto px-4 py-6">
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
         {t('menu.title')}
       </h2>
-      <ul className=" divide-y divide-stone-200 px-2">
-        {menu.map((pizza: any) => (
-          <MenuItem pizza={pizza} key={pizza.id} />
-        ))}
-      </ul>
+      
+      {/* Modern Grid Layout for Pizza Cards */}
+      <div className="menu-grid">
+        <ul className="space-y-6">
+          {menu.map((pizza: any) => (
+            <MenuItem pizza={pizza} key={pizza.id} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

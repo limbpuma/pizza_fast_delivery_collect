@@ -23,13 +23,36 @@
     "greeting": "Welcome back, {{name}}!",
     "deliveryError": "⚠️ Sorry, we don't deliver to your area yet. We're working to expand our delivery zone!",
     "deliveryZoneInfo": "Current delivery areas: 44149, 44147, 44227, 44225, 44137, 44135"
-  },
-  "menu": {
+  },  "menu": {
     "title": "Our Menu",
     "soldOut": "Sold out",
     "addToCart": "Add to cart",
     "ingredients": "Ingredients:",
-    "loading": "Loading menu..."
+    "loading": "Loading menu...",
+    "allergens": "Allergens:",
+    "nutritionalInfo": "Nutritional Information",
+    "calories": "{{calories}} kcal",
+    "per100g": "per 100g",
+    "perPizza": "per pizza",
+    "weight": "{{weight}}g",
+    "diameter": "⌀{{diameter}}cm",
+    "priceComparison": "{{price}}/100g",
+    "categories": {
+      "vegetarisch": "Vegetarian",
+      "vegan": "Vegan", 
+      "fleisch": "With Meat",
+      "meeresfrüchte": "Seafood",
+      "klassisch": "Classic"
+    },
+    "spicyLevel": "Spicy Level: {{level}}/3",
+    "popular": "Popular",
+    "showNutrition": "Show Nutrition",
+    "hideNutrition": "Hide Nutrition",
+    "fats": "Fats: {{value}}g",
+    "carbs": "Carbs: {{value}}g", 
+    "proteins": "Proteins: {{value}}g",
+    "salt": "Salt: {{value}}g",
+    "vatIncluded": "VAT included"
   },
   "cart": {
     "title": "Your cart, {{name}}",

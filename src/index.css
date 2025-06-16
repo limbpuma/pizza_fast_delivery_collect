@@ -2,6 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+/* German Pizza Card Styles */
+@layer components {
+  .pizza-card {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .pizza-card:hover {
+    @apply transform -translate-y-1;
+  }
+  
+  /* Responsive image sizes */
+  .pizza-card img {
+    @apply transition-all duration-300;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .pizza-card {
+      @apply p-3;
+    }
+    
+    .pizza-card .flex {
+      @apply flex-col;
+    }
+    
+    .pizza-card img {
+      @apply w-full h-48 mb-4;
+    }
+  }
+  
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1023px) {
+    .pizza-card img {
+      @apply w-28 h-28;
+    }
+  }
+  
+  /* Desktop optimizations */
+  @media (min-width: 1024px) {
+    .pizza-card img {
+      @apply w-36 h-36;
+    }
+  }
+  
+  /* Nutritional info animations */
+  .nutritional-info [aria-expanded="true"] ~ div {
+    @apply animate-fadeIn;
+  }
+  
+  /* Allergen badges */
+  .allergens-display span {
+    @apply transition-all duration-200 hover:shadow-sm;
+  }
+  
+  /* Popular badge animation */
+  .pizza-card .bg-yellow-400 {
+    @apply animate-pulse;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
 @layer components {
   .input {
     @apply rounded-full border border-stone-200 px-4 py-2 text-sm transition-all 
