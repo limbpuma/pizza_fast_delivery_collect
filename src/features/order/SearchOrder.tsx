@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function SearchOrder() {
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const navgiate = useNavigate();
 
@@ -15,7 +17,7 @@ function SearchOrder() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        placeholder="search order #"
+        placeholder={t('order.search.placeholder')}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="w-28 rounded-full bg-yellow-100 px-4 py-2 text-sm 

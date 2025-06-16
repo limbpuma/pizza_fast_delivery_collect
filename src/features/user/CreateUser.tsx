@@ -3,8 +3,10 @@ import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
 import { updateName } from "./userSlice";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function CreateUser() {
+  const { t } = useTranslation();
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,12 +22,12 @@ function CreateUser() {
   return (
     <form onSubmit={handleSubmit}>
       <p className="mb-4 text-sm text-stone-600 md:text-base">
-        👋 Welcome! Please start by telling us your name:
+        {t('user.welcome')}
       </p>
 
       <input
         type="text"
-        placeholder="Your full name"
+        placeholder={t('user.namePlaceholder')}
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         className="input mb-8 w-72"
@@ -33,7 +35,7 @@ function CreateUser() {
 
       {username !== "" && (
         <div>
-          <Button type="primary">Start ordering</Button>
+          <Button type="primary">{t('user.continueButton')}</Button>
         </div>
       )}
     </form>

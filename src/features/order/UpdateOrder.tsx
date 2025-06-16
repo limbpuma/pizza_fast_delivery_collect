@@ -1,11 +1,14 @@
 import { useFetcher } from "react-router-dom";
 import Button from "../../ui/Button";
 import { updateOrder } from "../../services/apiRestaurant";
+import { useTranslation } from 'react-i18next';
+
 function UpdateOrder() {
+  const { t } = useTranslation();
   const fetcher = useFetcher();
   return (
     <fetcher.Form method="PATCH" className="text-right">
-      <Button type="primary">make priority</Button>
+      <Button type="primary">{t('order.status.makePriority')}</Button>
     </fetcher.Form>
   );
 }
@@ -13,10 +16,8 @@ function UpdateOrder() {
 export default UpdateOrder;
 
 export async function action({
-  request,
   params,
 }: {
-  request: any;
   params: any;
 }) {
   const data = { priority: true };

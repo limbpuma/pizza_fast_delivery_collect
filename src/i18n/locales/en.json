@@ -1,0 +1,76 @@
+{
+  "header": {
+    "title": "Fast React Pizza Co."
+  },
+  "home": {
+    "title": "The best pizza.",
+    "subtitle": "Straight out of the oven, straight to you.",
+    "cta": "Start ordering"
+  },
+  "user": {
+    "welcome": "👋 Welcome! Please start by telling us your name:",
+    "namePlaceholder": "Your full name",
+    "continueButton": "Continue",
+    "greeting": "Welcome back, {{name}}!"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "soldOut": "Sold out",
+    "addToCart": "Add to cart",
+    "ingredients": "Ingredients:",
+    "loading": "Loading menu..."
+  },
+  "cart": {
+    "title": "Your cart, {{name}}",
+    "empty": {
+      "title": "Your cart is still empty. Start adding some pizzas :)",
+      "backToMenu": "← Back to menu"
+    },
+    "totalPrice": "Total pizza price: {{price}}",
+    "orderButton": "Order pizzas",
+    "clearButton": "Clear cart",
+    "overview": "{{quantity}} pizzas {{total}}",
+    "openCart": "Open cart →"
+  },  "order": {
+    "title": "Ready to order? Let's go!",
+    "firstName": "First Name",
+    "phone": "Phone number",
+    "address": "Address",
+    "priority": "Want to give your order priority?",
+    "priorityDescription": "It will cost 20% more, but your pizza will arrive sooner.",
+    "orderButton": "Order now from {{price}}",
+    "phoneError": "Please give us your correct phone number. We might need it to contact you.",
+    "addressError": "Please give us your correct address. We need it to deliver your pizza.",
+    "gpsButton": "Get position",
+    "gpsError": "There was a problem getting your position. Make sure to fill this field!",
+    "status": {
+      "status": "status",
+      "priority": "Priority",
+      "preparing": "Preparing",
+      "delivering": "Out for delivery", 
+      "delivered": "Delivered",
+      "estimatedDelivery": "Estimated delivery:",
+      "minutesRemaining": "Only {{minutes}} minutes left 😃",
+      "shouldHaveArrived": "Order should have arrived",
+      "makePriority": "Make priority"
+    },
+    "search": {
+      "placeholder": "Search order #",
+      "button": "Search",
+      "notFound": "No order found with ID {{orderId}}"
+    }
+  },  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "pizza": "pizza",
+    "pizzas": "pizzas",
+    "minutes": "{{count}} minute",
+    "minutes_plural": "{{count}} minutes"
+  },
+  "buttons": {
+    "delete": "Delete",
+    "update": "Update",
+    "add": "+",
+    "remove": "-"
+  }
+}

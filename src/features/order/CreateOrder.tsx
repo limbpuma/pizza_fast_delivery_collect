@@ -8,22 +8,18 @@ import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import store from "../../store";
 import { formatCurrency } from "../../utils/helpers";
-
-// https://uibakery.io/regex-library/phone-number
-const isValidPhone = (str: string) =>
-  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
-  );
+import { useTranslation } from 'react-i18next';
+import { isValidGermanPhone } from "../../utils/germanHelpers";
 
 function CreateOrder() {
-  const [withPriority, setWithPriority] = useState(false);
-  const {
+  const { t } = useTranslation();
+  const [withPriority, setWithPriority] = useState(false);  const {
     username,
     status: addressStatus,
     position,
     address,
     error: errorAddress,
-  } = useSelector((state) => state.user);
+  } = useSelector((state: any) => state.user);
 
   const isLoadingAddress = addressStatus === "loading";
 
@@ -33,7 +29,7 @@ function CreateOrder() {
 
   const isSubmitting = navgiation.state === "submitting";
 
-  const formErrors = useActionData();
+  const formErrors = useActionData() as { phone?: string } | undefined;
   const cartTotalPrice = useSelector(getTotalCartPrice);
   const priorityPrice = withPriority ? cartTotalPrice * 0.2 : 0;
 
@@ -43,36 +39,38 @@ function CreateOrder() {
 
   if (!cart.length) return <EmptyCart />;
 
-  return (
-    <div className="px-4 py-6">
-      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
+  return (    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">{t('order.title')}</h2>
 
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">First Name</label>
+          <label className="sm:basis-40">{t('order.firstName')}</label>
           <input
             type="text"
             name="customer"
             defaultValue={username}
             required
             className="input grow"
+            placeholder={t('user.namePlaceholder')}
           />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Phone number</label>
-          <div className="grow">
-            <input type="tel" name="phone" required className="input w-full" />
-            {formErrors?.phone && (
+          <label className="sm:basis-40">{t('order.phone')}</label>          <div className="grow">
+            <input 
+              type="tel" 
+              name="phone" 
+              required 
+              className="input w-full"
+              placeholder={t('order.phone')}
+            />            {formErrors?.phone && (
               <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
-                {formErrors.phone}
+                {t('order.phoneError')}
               </p>
             )}
           </div>
-        </div>
-
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center relative">
-          <label className="sm:basis-40">Address</label>
+        </div>        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center relative">
+          <label className="sm:basis-40">{t('order.address')}</label>
           <div className="grow">
             <input
               type="text"
@@ -81,6 +79,7 @@ function CreateOrder() {
               disabled={isLoadingAddress}
               defaultValue={address}
               className="input w-full"
+              placeholder={t('order.address')}
             />
             {addressStatus === "error" && (
               <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
@@ -89,8 +88,7 @@ function CreateOrder() {
             )}
           </div>
           <span className="absolute right-[3px] z-50 top-[3px] md:top-[5px] md:right-[5px]">
-            {!position.longtitude && !position.latitude && (
-              <Button
+            {!position.longtitude && !position.latitude && (              <Button
                 disabled={isLoadingAddress}
                 type="small"
                 onClick={(e) => {
@@ -98,7 +96,7 @@ function CreateOrder() {
                   dispatch(fetchAddress());
                 }}
               >
-                get position
+                {t('order.gpsButton')}
               </Button>
             )}
           </span>
@@ -110,15 +108,12 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            value={withPriority}
+            checked={withPriority}
             onChange={(e) => setWithPriority(e.target.checked)}
-          />
-          <label htmlFor="priority" className="font-medium">
-            Want to yo give your order priority?
+          />          <label htmlFor="priority" className="font-medium">
+            {t('order.priority')} <span className="text-sm text-gray-600">({t('order.priorityDescription')})</span>
           </label>
-        </div>
-
-        <div>
+        </div>        <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <input
             type="hidden"
@@ -128,11 +123,10 @@ function CreateOrder() {
                 ? `${position.longtitude},${position.latitude}`
                 : ""
             }
-          />
-          <Button type="primary" disabled={isSubmitting || isLoadingAddress}>
+          />          <Button type="primary" disabled={isSubmitting || isLoadingAddress}>
             {isSubmitting
-              ? "placing order..."
-              : `Order now from ${formatCurrency(totalPrice)}`}
+              ? t('common.loading')
+              : t('order.orderButton', { price: formatCurrency(totalPrice) })}
           </Button>
         </div>
       </Form>
@@ -140,22 +134,18 @@ function CreateOrder() {
   );
 }
 
-export async function action({ request }) {
+export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
 
   const data = Object.fromEntries(formData);
 
   const order = {
     ...data,
-    cart: JSON.parse(data.cart),
+    cart: JSON.parse(data.cart as string),
     priority: data.priority === "true",
-  };
-
-  const errors = {};
-
-  if (!isValidPhone(order.phone))
-    errors.phone =
-      "please give us your correct phone number. we might need it to cantact you";
+  } as any;  const errors: { phone?: string } = {};
+  if (!isValidGermanPhone(order.phone))
+    errors.phone = "INVALID_PHONE";
 
   if (Object.keys(errors).length > 0) return errors;
 

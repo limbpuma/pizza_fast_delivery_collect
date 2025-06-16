@@ -4,6 +4,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
 import UpdateItemQuantity from "../cart/UpdateItemQuantity";
+import { useTranslation } from 'react-i18next';
 
 interface MenuItemProps {
   pizza: {
@@ -17,6 +18,7 @@ interface MenuItemProps {
 }
 
 function MenuItem({ pizza }: MenuItemProps) {
+  const { t } = useTranslation();
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
@@ -47,12 +49,10 @@ function MenuItem({ pizza }: MenuItemProps) {
         <p className="text-sm capitalize italic text-stone-500">
           {ingredients.join(", ")}
         </p>
-        <div className="mt-auto flex items-center justify-between">
-          {!soldOut ? (
-            <p className="text-sm">{formatCurrency(unitPrice)}</p>
-          ) : (
+        <div className="mt-auto flex items-center justify-between">          {!soldOut ? (
+            <p className="text-sm">{formatCurrency(unitPrice)}</p>          ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
-              Sold out
+              {t('menu.soldOut')}
             </p>
           )}
           {isInCart && (
@@ -63,10 +63,9 @@ function MenuItem({ pizza }: MenuItemProps) {
               />
               <DeleteItem pizzaId={id} />
             </div>
-          )}
-          {!soldOut && !isInCart && (
+          )}          {!soldOut && !isInCart && (
             <Button type="small" onClick={handleOnaddItem}>
-              add to cart
+              {t('menu.addToCart')}
             </Button>
           )}
         </div>
