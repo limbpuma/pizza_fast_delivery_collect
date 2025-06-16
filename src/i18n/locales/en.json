@@ -38,10 +38,11 @@
     "priceComparison": "{{price}}/100g",
     "itemInfo": "Item Info",
     "selectSize": "Select Size",
-    "availableSizes": "Available Sizes",
-    "from": "from",
+    "availableSizes": "Available Sizes",    "from": "from",
     "addToBasket": "Add to basket",
     "adding": "Adding...",
+    "quickAdd": "Quick Add",
+    "addedToCart": "Added to cart!",
     "categories": {
       "vegetarisch": "Vegetarian",
       "vegan": "Vegan", 

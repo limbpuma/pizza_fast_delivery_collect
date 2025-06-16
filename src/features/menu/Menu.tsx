@@ -5,10 +5,16 @@ import MenuItemCompact from "./MenuItemCompact";
 import MenuFilters from "./MenuFilters";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo } from "../../data/germanPizzaInfo";
+import { mockNonPizzaItems } from "../../data/mockNonPizzaItems";
+import QuickAddDemo from "./QuickAddDemo";
 
 function Menu() {
   const { t } = useTranslation();
-  const menu = useLoaderData() as any[];
+  const originalMenu = useLoaderData() as any[];
+  
+  // Temporalmente agregar productos no-pizza para demostrar Quick Add
+  const enhancedMenu = [...originalMenu, ...mockNonPizzaItems];
+  const menu = enhancedMenu;
   const [filters, setFilters] = useState({
     category: 'all',
     allergens: [] as string[],
@@ -75,7 +81,8 @@ function Menu() {
             {t('menu.filters.adjustFilters')}
           </p>
         </div>
-      )}
+      )}      {/* Quick Add Demo Component */}
+      <QuickAddDemo menu={menu} />
     </div>
   );
 }

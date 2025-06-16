@@ -98,4 +98,39 @@
   .animate-modalSlide {
     animation: modalSlide 0.3s ease-out;
   }
+  
+  /* Quick Add animations */
+  @keyframes quickAddSuccess {
+    0% {
+      transform: scale(1);
+      background-color: #3b82f6; /* blue-500 */
+    }
+    50% {
+      transform: scale(1.2);
+      background-color: #10b981; /* green-500 */
+    }
+    100% {
+      transform: scale(1.1);
+      background-color: #10b981; /* green-500 */
+    }
+  }
+  
+  .animate-quickAddSuccess {
+    animation: quickAddSuccess 0.5s ease-out;
+  }
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  .animate-pulse-ring {
+    animation: pulse-ring 0.6s ease-out;
+  }
 }

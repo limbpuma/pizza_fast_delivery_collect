@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../utils/helpers';
-import { getCurrentQuantityById } from '../cart/cartSlice';
+import { getCurrentQuantityById, addItem } from '../cart/cartSlice';
 import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaInfo';
+import { getProductType, createQuickAddItem } from '../../utils/productHelpers';
 import PizzaDetailsModal from './PizzaDetailsModal';
 import PizzaSizeModal from './PizzaSizeModal';
 import UpdateItemQuantity from '../cart/UpdateItemQuantity';
@@ -15,17 +16,35 @@ interface MenuItemCompactProps {
 
 function MenuItemCompact({ pizza }: MenuItemCompactProps) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showSizeModal, setShowSizeModal] = useState(false);
+  const [isQuickAdding, setIsQuickAdding] = useState(false);
   
   const germanInfo = getGermanPizzaInfo(id);
   const isInCart = currentQuantity > 0;
   const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
+  
+  // Determine product type for smart add behavior
+  const productType = getProductType(pizza);
 
-  const handleAddClick = () => {
-    setShowSizeModal(true);
+  const handleAddClick = async () => {
+    if (productType.quickAddEnabled && !productType.needsSizeSelection) {
+      // Quick Add - directly add to cart without modal
+      setIsQuickAdding(true);
+      
+      const quickItem = createQuickAddItem(pizza);
+      dispatch(addItem(quickItem));
+      
+      // Brief feedback animation
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setIsQuickAdding(false);
+    } else {
+      // Traditional flow - open size selection modal
+      setShowSizeModal(true);
+    }
   };
 
   const handleDetailsClick = () => {
@@ -122,9 +141,7 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                       {t('menu.soldOut')}
                     </span>
                   )}
-                </div>
-
-                {/* Cart Controls or Add Button */}
+                </div>                {/* Cart Controls or Add Button */}
                 {isInCart ? (
                   <div className="flex items-center gap-2">
                     <UpdateItemQuantity
@@ -135,15 +152,58 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                   </div>
                 ) : (
                   !soldOut && (
-                    <button
-                      onClick={handleAddClick}
-                      className="w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-colors duration-200"
-                      aria-label={t('menu.addToCart')}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {/* Smart Add Button */}
+                      <button
+                        onClick={handleAddClick}
+                        disabled={isQuickAdding}
+                        className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+                          isQuickAdding 
+                            ? 'bg-green-500 scale-110' 
+                            : productType.quickAddEnabled 
+                              ? 'bg-blue-500 hover:bg-blue-600' 
+                              : 'bg-orange-500 hover:bg-orange-600'
+                        } text-white`}
+                        aria-label={
+                          productType.quickAddEnabled 
+                            ? t('menu.quickAdd', { default: 'Quick Add' })
+                            : t('menu.selectSize')
+                        }
+                        title={
+                          productType.quickAddEnabled 
+                            ? `Quick Add ${name}` 
+                            : `Select size for ${name}`
+                        }
+                      >
+                        {isQuickAdding ? (
+                          // Success checkmark animation
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : productType.quickAddEnabled ? (
+                          // Quick add icon (shopping cart)
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 2h0m2 6v0m0 0h10M7 13v8a2 2 0 002 2h6a2 2 0 002-2v-8m-10 0V9a2 2 0 012-2h6a2 2 0 012 2v4.01" />
+                          </svg>
+                        ) : (
+                          // Size selection icon (plus)
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                          </svg>
+                        )}
+                        
+                        {/* Quick add feedback pulse */}
+                        {isQuickAdding && (
+                          <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                        )}
+                      </button>                      
+                      {/* Product type badge for development */}
+                      {typeof window !== 'undefined' && window.location.hostname === 'localhost' && (
+                        <span className="text-xs text-gray-400 ml-1">
+                          {productType.quickAddEnabled ? '⚡' : '🍕'}
+                        </span>
+                      )}
+                    </div>
                   )
                 )}
               </div>
