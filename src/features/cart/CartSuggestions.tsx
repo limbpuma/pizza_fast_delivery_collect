@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useCartSuggestions from './hooks/useCartSuggestions';
 
 interface CartSuggestionsProps {
   cartItems: any[];
@@ -8,73 +9,51 @@ interface CartSuggestionsProps {
 function CartSuggestions({ cartItems }: CartSuggestionsProps) {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState<'seen' | 'forgot'>('seen');
+  
+  // Use the smart suggestions hook
+  const { haveYouSeen, didYouForget } = useCartSuggestions(cartItems);
 
-  // Mock suggestions data - will be replaced with real logic
-  const suggestionsData = {
-    seen: [
-      {
-        id: 'coca-cola',
-        name: 'Coca-Cola 1,0l',
-        description: 'Coca-Cola steht für einzigartigen Geschmack, Erfrischung und Momente voller Lebensfreude.',
-        price: 3.84,
-        image: '🥤'
-      },
-      {
-        id: 'stuffed-pizza-buns-gouda',
-        name: 'Stuffed Pizza Buns with Gouda (6 pieces)',
-        price: 6.00,
-        image: '🥖'
-      },
-      {
-        id: 'stuffed-pizza-buns-tuna',
-        name: 'Stuffed Pizza Buns with Tuna',
-        price: 6.50,
-        image: '🥖'
-      }
-    ],
-    forgot: [
-      {
-        id: 'red-bull',
-        name: 'Red Bull 0,25l',
-        price: 3.49,
-        image: '🏮'
-      }
-    ]
-  };
+  // Get current suggestions based on active section
+  const currentSuggestions = activeSection === 'seen' ? haveYouSeen : didYouForget;
 
-  const currentSuggestions = suggestionsData[activeSection];
-
-  if (currentSuggestions.length === 0) return null;
+  // Don't render if no suggestions
+  if (currentSuggestions.length === 0 && haveYouSeen.length === 0 && didYouForget.length === 0) {
+    return null;
+  }
 
   return (
     <div className="bg-blue-50 border-t border-blue-100">
       {/* Section Headers */}
       <div className="p-4 pb-0">
         <div className="flex space-x-1">
-          <button
-            onClick={() => setActiveSection('seen')}
-            className={`
-              px-3 py-2 text-sm font-medium rounded-lg transition-colors
-              ${activeSection === 'seen' 
-                ? 'bg-blue-600 text-white' 
-                : 'text-blue-600 hover:bg-blue-100'
-              }
-            `}
-          >
-            {t('cart.haveYouSeen', { default: 'Have you seen...' })}
-          </button>
-          <button
-            onClick={() => setActiveSection('forgot')}
-            className={`
-              px-3 py-2 text-sm font-medium rounded-lg transition-colors
-              ${activeSection === 'forgot' 
-                ? 'bg-blue-600 text-white' 
-                : 'text-blue-600 hover:bg-blue-100'
-              }
-            `}
-          >
-            {t('cart.didYouForget', { default: 'Did you forget?' })}
-          </button>
+          {haveYouSeen.length > 0 && (
+            <button
+              onClick={() => setActiveSection('seen')}
+              className={`
+                px-3 py-2 text-sm font-medium rounded-lg transition-colors
+                ${activeSection === 'seen' 
+                  ? 'bg-blue-600 text-white' 
+                  : 'text-blue-600 hover:bg-blue-100'
+                }
+              `}
+            >
+              {t('cart.haveYouSeen', { default: 'Have you seen...' })}
+            </button>
+          )}
+          {didYouForget.length > 0 && (
+            <button
+              onClick={() => setActiveSection('forgot')}
+              className={`
+                px-3 py-2 text-sm font-medium rounded-lg transition-colors
+                ${activeSection === 'forgot' 
+                  ? 'bg-blue-600 text-white' 
+                  : 'text-blue-600 hover:bg-blue-100'
+                }
+              `}
+            >
+              {t('cart.didYouForget', { default: 'Did you forget?' })}
+            </button>
+          )}
         </div>
       </div>
 
@@ -85,7 +64,9 @@ function CartSuggestions({ cartItems }: CartSuggestionsProps) {
             <div className="flex items-center justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{item.image}</span>
+                  <span className="text-2xl">
+                    {getSuggestionEmoji(item.category || 'other')}
+                  </span>
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900 text-sm">{item.name}</h4>
                     {item.description && (
@@ -101,7 +82,13 @@ function CartSuggestions({ cartItems }: CartSuggestionsProps) {
                 <span className="font-semibold text-gray-900">
                   {item.price.toFixed(2)} €
                 </span>
-                <button className="bg-orange-500 hover:bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors">
+                <button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                  onClick={() => {
+                    // TODO: Implement add to cart functionality
+                    console.log('Add to cart:', item);
+                  }}
+                >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
@@ -123,6 +110,18 @@ function CartSuggestions({ cartItems }: CartSuggestionsProps) {
       )}
     </div>
   );
+}
+
+function getSuggestionEmoji(category: string): string {
+  const emojis = {
+    beverage: '🥤',
+    appetizer: '🥖',
+    combo: '🍕',
+    dessert: '🍰',
+    other: '🍽️'
+  };
+  
+  return emojis[category as keyof typeof emojis] || emojis.other;
 }
 
 export default CartSuggestions;
