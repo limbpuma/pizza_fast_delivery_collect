@@ -114,99 +114,104 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
       showVegan: vegan
     });
   };
-
   const visibleCategoriesList = categories.slice(0, visibleCategories);
-  const hiddenCategories = categories.slice(visibleCategories);
-  const hasHiddenCategories = hiddenCategories.length > 0;
-
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-      {/* Mobile-first horizontal category scroll */}
-      <div className="relative">
-        {/* Left scroll button */}
-        {canScrollLeft && (
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-            aria-label="Scroll left"
-          >
-            <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        )}
-
-        {/* Category buttons container */}
-        <div 
-          ref={scrollContainerRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-4 scroll-smooth"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {visibleCategoriesList.map(category => (
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">      {/* Categories section with hamburger menu outside scroll */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Mobile-first horizontal category scroll - Responsive container */}
+        <div className="relative flex-1 min-w-0 overflow-hidden">
+          {/* Left scroll button */}
+          {canScrollLeft && (
             <button
-              key={category.value}
-              onClick={() => handleCategoryChange(category.value)}
-              className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                selectedCategory === category.value
-                  ? 'bg-yellow-400 text-yellow-900 shadow-md scale-105'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
-              }`}
+              onClick={() => scroll('left')}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              aria-label="Scroll left"
             >
-              {category.label}
+              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
-          ))}
-
-          {/* Hamburger menu button for hidden categories */}
-          {hasHiddenCategories && (
-            <div className="relative flex-shrink-0">
+          )}          {/* Category buttons container - Tailwind responsive */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-2 overflow-x-auto scrollbar-hide py-4 scroll-smooth
+                       px-2 sm:px-4 
+                       w-full 
+                       max-w-[calc(100vw-80px)] 
+                       sm:max-w-[calc(100vw-100px)] 
+                       md:max-w-[calc(100vw-120px)]"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none'
+            }}
+          >
+            {visibleCategoriesList.map(category => (
               <button
-                onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
-                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                  showHamburgerMenu
-                    ? 'bg-yellow-400 text-yellow-900'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                key={category.value}
+                onClick={() => handleCategoryChange(category.value)}
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  selectedCategory === category.value
+                    ? 'bg-yellow-400 text-yellow-900 shadow-md scale-105'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
                 }`}
               >
-                <span>{t('menu.filters.moreCategories')}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                {category.label}
               </button>
+            ))}
+          </div>
 
-              {/* Dropdown menu for hidden categories */}
-              {showHamburgerMenu && (
-                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-48">
-                  {hiddenCategories.map(category => (
-                    <button
-                      key={category.value}
-                      onClick={() => handleCategoryChange(category.value)}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg ${
-                        selectedCategory === category.value
-                          ? 'bg-yellow-50 text-yellow-900 font-medium'
-                          : 'text-gray-700'
-                      }`}
-                    >
-                      {category.label}
-                    </button>
-                  ))}
+          {/* Right scroll button */}
+          {canScrollRight && (
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              aria-label="Scroll right"
+            >
+              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+        </div>        {/* Hamburger menu button - OUTSIDE scroll, right side, ICON ONLY, Responsive */}
+        <div className="relative flex-shrink-0 pr-2 sm:pr-4">
+          <button
+            onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
+            className={`p-2 sm:p-3 rounded-full transition-all duration-200 shadow-sm ${
+              showHamburgerMenu
+                ? 'bg-orange-500 text-white shadow-md scale-105'
+                : 'bg-gray-100 text-gray-700 hover:bg-orange-500 hover:text-white hover:scale-105'
+            }`}
+            aria-label="Show all categories"
+          >
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          {/* Modal for ALL categories */}
+          {showHamburgerMenu && (
+            <div className="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-64 max-h-80 overflow-y-auto">
+              <div className="p-2">
+                <div className="text-xs font-medium text-gray-500 px-2 py-1 mb-1">
+                  {t('menu.filters.category')}
                 </div>
-              )}
+                {categories.map(category => (
+                  <button
+                    key={category.value}
+                    onClick={() => handleCategoryChange(category.value)}
+                    className={`w-full text-left px-3 py-2 text-sm transition-colors hover:bg-gray-50 rounded-md ${
+                      selectedCategory === category.value
+                        ? 'bg-yellow-50 text-yellow-900 font-medium border border-yellow-200'
+                        : 'text-gray-700'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
-
-        {/* Right scroll button */}
-        {canScrollRight && (
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-            aria-label="Scroll right"
-          >
-            <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        )}
       </div>
 
       {/* Toggle for additional filters */}
