@@ -2,34 +2,33 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../utils/helpers';
-import { getCurrentQuantityById, addItem, decreaseItemQuantity, deleteItem } from '../cart/cartSlice';
+import { getCurrentQuantityById, addItem, decreaseItemQuantity, deleteItem, decreaseAnyItemByPizzaId, getTotalQuantityByPizzaId } from '../cart/cartSlice';
 import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaInfo';
 import { getProductType, createQuickAddItem } from '../../utils/productHelpers';
 import PizzaDetailsModal from './PizzaDetailsModal';
 import PizzaSizeModal from './PizzaSizeModal';
-import UpdateItemQuantity from '../cart/UpdateItemQuantity';
-import DeleteItem from '../cart/DeleteItem';
 
 interface MenuItemCompactProps {
   pizza: any;
 }
 
-function MenuItemCompact({ pizza }: MenuItemCompactProps) {
-  const { t } = useTranslation();
+function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showSizeModal, setShowSizeModal] = useState(false);
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   
   const germanInfo = getGermanPizzaInfo(id);
-  const isInCart = currentQuantity > 0;
-  const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
+  const isInCart = currentQuantity > 0;  const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);
-  const handleAddClick = async () => {
+
+  // Use the new selector for total pizza quantity (all sizes combined)
+  const displayQuantity = productType.needsSizeSelection ? totalPizzaQuantity : currentQuantity;const handleAddClick = async () => {
     if (productType.quickAddEnabled && !productType.needsSizeSelection) {
       // Quick Add - always use addItem (it will increment if exists)
       setIsQuickAdding(true);
@@ -41,16 +40,21 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
       await new Promise(resolve => setTimeout(resolve, 300));
       setIsQuickAdding(false);
     } else {
-      // Traditional flow - open size selection modal
+      // Pizza products - always open size selection modal
+      // This allows adding different sizes or configurations
       setShowSizeModal(true);
     }
-  };
-
-  const handleDecrement = () => {
-    if (currentQuantity === 1) {
-      dispatch(deleteItem(id));
+  };  const handleDecrement = () => {
+    if (productType.quickAddEnabled) {
+      // Quick Add products - use regular decrement logic
+      if (currentQuantity === 1) {
+        dispatch(deleteItem(id));
+      } else {
+        dispatch(decreaseItemQuantity(id));
+      }
     } else {
-      dispatch(decreaseItemQuantity(id));
+      // Pizza products - use the new method to decrement any item with this pizzaId
+      dispatch(decreaseAnyItemByPizzaId(id));
     }
   };
 
@@ -150,19 +154,18 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                   )}
                 </div>                {/* Cart Controls or Add Button - Number inside button style */}
                 {!soldOut && (
-                  <div className="flex items-center gap-2">
-                    {/* Quick Add products with quantity in cart - show decrement button */}
-                    {isInCart && productType.quickAddEnabled && (
+                  <div className="flex items-center gap-2">                    {/* Products with quantity in cart - show decrement button (both Quick Add and Pizza) */}
+                    {((productType.quickAddEnabled && isInCart) || (!productType.quickAddEnabled && displayQuantity > 0)) && (
                       <button
                         onClick={handleDecrement}
                         className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${
-                          currentQuantity === 1 
+                          (productType.quickAddEnabled ? currentQuantity : displayQuantity) === 1 
                             ? 'bg-red-500 hover:bg-red-600' 
                             : 'bg-gray-400 hover:bg-gray-500'
                         } text-white`}
-                        title={currentQuantity === 1 ? t('buttons.delete') : t('buttons.remove')}
+                        title={(productType.quickAddEnabled ? currentQuantity : displayQuantity) === 1 ? t('buttons.delete') : t('buttons.remove')}
                       >
-                        {currentQuantity === 1 ? (
+                        {(productType.quickAddEnabled ? currentQuantity : displayQuantity) === 1 ? (
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
@@ -174,18 +177,7 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                       </button>
                     )}
 
-                    {/* Pizza products in cart - show traditional controls */}
-                    {isInCart && !productType.quickAddEnabled && (
-                      <>
-                        <UpdateItemQuantity
-                          pizzaId={id}
-                          currentQuantity={currentQuantity}
-                        />
-                        <DeleteItem pizzaId={id} />
-                      </>
-                    )}
-
-                    {/* Main Add Button - Shows + or quantity number inside */}
+                    {/* Main Add Button - Shows + or quantity number inside (for both Quick Add and Pizza) */}
                     <button
                       onClick={handleAddClick}
                       disabled={isQuickAdding}
@@ -200,11 +192,12 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                         productType.quickAddEnabled 
                           ? t('menu.quickAdd', { default: 'Quick Add' })
                           : t('menu.selectSize')
-                      }
-                      title={
+                      }                      title={
                         productType.quickAddEnabled 
                           ? `Quick Add ${name}` 
-                          : `Select size for ${name}`
+                          : (productType.quickAddEnabled ? isInCart : displayQuantity > 0)
+                            ? `Add another ${name}` 
+                            : `Select size for ${name}`
                       }
                     >
                       {isQuickAdding ? (
@@ -212,14 +205,11 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                      ) : productType.quickAddEnabled ? (
-                        // Show quantity number if in cart, + if not
-                        isInCart ? currentQuantity : '+'
                       ) : (
-                        // Size selection icon (plus) for pizzas
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
+                        // Show quantity number if in cart (for both types), + if not
+                        (productType.quickAddEnabled ? isInCart : displayQuantity > 0) 
+                          ? (productType.quickAddEnabled ? currentQuantity : displayQuantity)
+                          : '+'
                       )}
                       
                       {/* Quick add feedback pulse */}

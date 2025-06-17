@@ -20,12 +20,11 @@ function Cart() {
     <div className="px-4 py-3">
       <LinkButton to="/menu">&larr; {t('cart.empty.backToMenu')}</LinkButton>
 
-      <h2 className="mt-7 font-semibold text-xl">{t('cart.title', { name: username })}</h2>
-      <ul className="mt-3 divide-y divide-stone-200 border-b">
+      <h2 className="mt-7 font-semibold text-xl">{t('cart.title', { name: username })}</h2>      <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item: any) => (
-          <CartItem item={item} key={item.pizzaId} />
+          <CartItem item={item} key={`${item.pizzaId}-${item.size || 'default'}`} />
         ))}
-      </ul>      <div className="mt-6 space-x-2">
+      </ul><div className="mt-6 space-x-2">
         <Button to="/order/new" type="primary">
           {t('cart.orderButton')}
         </Button>
