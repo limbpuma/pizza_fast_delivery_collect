@@ -250,6 +250,17 @@ export function generateAdvancedSmartSuggestions(cartAnalysis: any): {
 } {
   const allSuggestions = generateDynamicSuggestions();
   
+  // Filter out items that are already in the cart
+  const cartItems = cartAnalysis.cartItems || [];
+  const cartProductIds = cartItems.map((item: any) => 
+    item.pizzaId?.toString() || item.id?.toString()
+  );
+  
+  const availableSuggestions = allSuggestions.filter(suggestion => 
+    !cartProductIds.includes(suggestion.id.toString()) &&
+    !cartProductIds.includes(suggestion.pizzaId?.toString())
+  );
+  
   // Convert cart analysis format
   const cartContext = {
     hasBeverage: cartAnalysis.hasBeverage || false,
@@ -259,12 +270,11 @@ export function generateAdvancedSmartSuggestions(cartAnalysis: any): {
     itemCount: cartAnalysis.itemCount || 0,
     totalValue: cartAnalysis.totalValue || 0
   };
-
-  // "Have you seen..." - Popular and trending items
-  const haveYouSeen = filterAdvancedSuggestions(allSuggestions, cartContext, 'seen');
+  // "Have you seen..." - Popular and trending items (using filtered suggestions)
+  const haveYouSeen = filterAdvancedSuggestions(availableSuggestions, cartContext, 'seen');
   
-  // "Did you forget..." - Context-aware complementary items
-  const didYouForget = filterAdvancedSuggestions(allSuggestions, cartContext, 'forgot');
+  // "Did you forget..." - Context-aware complementary items (using filtered suggestions)
+  const didYouForget = filterAdvancedSuggestions(availableSuggestions, cartContext, 'forgot');
 
   return {
     haveYouSeen: haveYouSeen.slice(0, 4),

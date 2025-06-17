@@ -73,7 +73,8 @@ function analyzeCartContent(cartItems: CartItem[]) {
     totalValue: 0,
     itemCount: cartItems ? cartItems.length : 0,
     isLunchTime: isCurrentlyLunchTime(),
-    isWeekend: isCurrentlyWeekend()
+    isWeekend: isCurrentlyWeekend(),
+    cartItems: cartItems || [] // Include cart items for filtering
   };
 
   if (cartItems && cartItems.length > 0) {
