@@ -42,13 +42,22 @@
     "addToBasket": "Add to basket",
     "adding": "Adding...",
     "quickAdd": "Quick Add",
-    "addedToCart": "Added to cart!",
-    "categories": {
+    "addedToCart": "Added to cart!",    "categories": {
       "vegetarisch": "Vegetarian",
       "vegan": "Vegan", 
       "fleisch": "With Meat",
       "meeresfrüchte": "Seafood",
-      "klassisch": "Classic"
+      "klassisch": "Classic",
+      "spezial": "Special",
+      "scharf": "Spicy",
+      "käse": "Cheese Lovers",
+      "premium": "Premium",
+      "regional": "Regional",
+      "süß": "Sweet",
+      "gesund": "Healthy",
+      "kinderfreundlich": "Kid-Friendly",
+      "glutenfrei": "Gluten-Free",
+      "lowcarb": "Low-Carb"
     },
     "spicyLevel": "Spicy Level: {{level}}/3",
     "popular": "Popular",
@@ -67,7 +76,10 @@
       "veganOnly": "Vegan Only",
       "results": "{{count}} pizzas found",
       "noResults": "No pizzas found",
-      "adjustFilters": "Try adjusting your filters to see more options"
+      "adjustFilters": "Try adjusting your filters to see more options",
+      "moreCategories": "More",
+      "showAllFilters": "Show all filters",
+      "hideFilters": "Hide filters"
     }
   },
   "cart": {

@@ -20,9 +20,8 @@ export interface GermanPizzaInfo {
   weight: number; // Peso en gramos
   diameter: number; // Diámetro en cm
   pricePerHundredGrams: number; // €/100g para comparación
-  
-  // Categorización alemana
-  category: 'vegetarisch' | 'vegan' | 'fleisch' | 'meeresfrüchte' | 'klassisch';
+    // Categorización alemana
+  category: 'vegetarisch' | 'vegan' | 'fleisch' | 'meeresfrüchte' | 'klassisch' | 'spezial' | 'scharf' | 'käse' | 'premium' | 'regional' | 'süß' | 'gesund' | 'kinderfreundlich' | 'glutenfrei' | 'lowcarb';
   spicyLevel?: 1 | 2 | 3; // Nivel de picante (opcional)
   isPopular?: boolean; // Pizza popular (para destacar)
 }
@@ -78,8 +77,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     pricePerHundredGrams: 4.29,
     category: 'fleisch',
     isPopular: true
-  },
-  4: { // Prosciutto e Rucola
+  },  4: { // Prosciutto e Rucola
     id: 4,
     nutritionalInfo: {
       calories: 310,
@@ -93,9 +91,8 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 360,
     diameter: 32,
     pricePerHundredGrams: 4.44,
-    category: 'fleisch'
-  },
-  5: { // Diavola
+    category: 'premium'
+  },  5: { // Diavola
     id: 5,
     nutritionalInfo: {
       calories: 320,
@@ -109,7 +106,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 340,
     diameter: 32,
     pricePerHundredGrams: 4.71,
-    category: 'fleisch',
+    category: 'scharf',
     spicyLevel: 2
   },
   6: { // Vegetale
@@ -178,8 +175,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     category: 'fleisch',
     spicyLevel: 1,
     isPopular: true
-  },
-  10: { // Hawaiian
+  },  10: { // Hawaiian
     id: 10,
     nutritionalInfo: {
       calories: 275,
@@ -193,9 +189,8 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 355,
     diameter: 32,
     pricePerHundredGrams: 4.23,
-    category: 'fleisch'
-  },
-  11: { // Spinach and Mushroom
+    category: 'kinderfreundlich'
+  },  11: { // Spinach and Mushroom
     id: 11,
     nutritionalInfo: {
       calories: 240,
@@ -209,7 +204,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 325,
     diameter: 32,
     pricePerHundredGrams: 4.62,
-    category: 'vegetarisch'
+    category: 'gesund'
   },
   12: { // Mediterranean
     id: 12,
@@ -220,14 +215,12 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
       carbs: 33.2,
       proteins: 12.9,
       salt: 2.1
-    },
-    allergens: ['Gluten', 'Milch'],
+    },    allergens: ['Gluten', 'Milch'],
     weight: 370,
     diameter: 32,
     pricePerHundredGrams: 4.32,
-    category: 'vegetarisch'
-  },
-  13: { // Greek
+    category: 'regional'
+  },  13: { // Greek
     id: 13,
     nutritionalInfo: {
       calories: 295,
@@ -241,7 +234,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 365,
     diameter: 32,
     pricePerHundredGrams: 4.38,
-    category: 'vegetarisch'
+    category: 'spezial'
   },
   14: { // Abruzzese
     id: 14,
@@ -274,8 +267,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     diameter: 32,
     pricePerHundredGrams: 4.27,
     category: 'fleisch'
-  },
-  16: { // Eggplant Parmesan
+  },  16: { // Eggplant Parmesan
     id: 16,
     nutritionalInfo: {
       calories: 255,
@@ -289,7 +281,7 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 340,
     diameter: 32,
     pricePerHundredGrams: 4.41,
-    category: 'vegetarisch'
+    category: 'käse'
   },
   17: { // Roasted Veggie
     id: 17,
