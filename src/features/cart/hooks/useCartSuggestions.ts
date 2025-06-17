@@ -23,16 +23,8 @@ interface SuggestionHookReturn {
 
 function useCartSuggestions(cartItems: CartItem[]): SuggestionHookReturn {
   const suggestions = useMemo(() => {
-    // Early return if no cart items
-    if (!cartItems || cartItems.length === 0) {
-      return {
-        haveYouSeen: [],
-        didYouForget: []
-      };
-    }
-
-    // Analyze cart content
-    const cartAnalysis = analyzeCartContent(cartItems);
+    // Analyze cart content (works with empty cart too)
+    const cartAnalysis = analyzeCartContent(cartItems || []);
     
     // Generate suggestions based on analysis
     const haveYouSeen = generatePopularSuggestions(cartAnalysis);
@@ -55,30 +47,32 @@ function analyzeCartContent(cartItems: CartItem[]) {
     hasAppetizer: false,
     hasDessert: false,
     totalValue: 0,
-    itemCount: cartItems.length,
+    itemCount: cartItems ? cartItems.length : 0,
     isLunchTime: isCurrentlyLunchTime(),
     isWeekend: isCurrentlyWeekend()
   };
 
-  cartItems.forEach(item => {
-    analysis.totalValue += item.totalPrice;
-    
-    // Simple category detection based on name
-    const itemName = item.name.toLowerCase();
-    
-    if (itemName.includes('pizza')) {
-      analysis.hasPizza = true;
-    }
-    if (itemName.includes('pasta') || itemName.includes('tortellini')) {
-      analysis.hasPasta = true;
-    }
-    if (itemName.includes('cola') || itemName.includes('beer') || itemName.includes('water')) {
-      analysis.hasBeverage = true;
-    }
-    if (itemName.includes('bread') || itemName.includes('buns')) {
-      analysis.hasAppetizer = true;
-    }
-  });
+  if (cartItems && cartItems.length > 0) {
+    cartItems.forEach(item => {
+      analysis.totalValue += item.totalPrice;
+      
+      // Simple category detection based on name
+      const itemName = item.name.toLowerCase();
+      
+      if (itemName.includes('pizza')) {
+        analysis.hasPizza = true;
+      }
+      if (itemName.includes('pasta') || itemName.includes('tortellini')) {
+        analysis.hasPasta = true;
+      }
+      if (itemName.includes('cola') || itemName.includes('beer') || itemName.includes('water')) {
+        analysis.hasBeverage = true;
+      }
+      if (itemName.includes('bread') || itemName.includes('buns')) {
+        analysis.hasAppetizer = true;
+      }
+    });
+  }
 
   return analysis;
 }
@@ -109,17 +103,23 @@ function generatePopularSuggestions(analysis: any): Product[] {
     }
   ];
 
-  // Add popular items if relevant
-  if (analysis.hasPizza && !analysis.hasBeverage) {
+  // If cart is empty, show all popular items
+  if (analysis.itemCount === 0) {
+    return popularItems;
+  }
+
+  // Show beverages if no beverage in cart
+  if (!analysis.hasBeverage) {
     suggestions.push(popularItems[0]); // Coca-Cola
   }
 
-  if (analysis.hasPizza && !analysis.hasAppetizer) {
+  // Show appetizers if no appetizer in cart
+  if (!analysis.hasAppetizer) {
     suggestions.push(popularItems[1]); // Pizza Buns
   }
 
-  // Weekend specials
-  if (analysis.isWeekend) {
+  // Weekend specials or additional suggestions
+  if (analysis.isWeekend || analysis.itemCount > 1) {
     suggestions.push(popularItems[2]); // Tuna buns
   }
 

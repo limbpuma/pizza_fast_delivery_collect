@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getCart } from './cartSlice';
-import CartHeader from './CartHeader';
-import CartItem from './CartItem';
-import CartSuggestions from './CartSuggestions';
-import CartSummary from './CartSummary';
+import CartHeader from './CartHeader.tsx';
+import CartItem from './CartItem.tsx';
+import CartSuggestions from './CartSuggestions.tsx';
+import CartSummary from './CartSummary.tsx';
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -41,9 +41,7 @@ function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           deliveryMode={deliveryMode}
           onDeliveryModeChange={setDeliveryMode}
           onClose={onClose}
-        />
-
-        {/* Content */}
+        />        {/* Content */}
         <div className="flex-1 overflow-y-auto">
           {/* Cart Items */}
           {cart.length > 0 ? (
@@ -59,23 +57,19 @@ function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex items-center justify-center p-8">
-              <div className="text-center text-gray-500">
-                <div className="text-6xl mb-4">🛒</div>
-                <h3 className="text-lg font-medium mb-2">
-                  {t('cart.empty.title')}
-                </h3>
-                <p className="text-sm">
-                  {t('cart.empty.description', { default: 'Your basket is empty. Add some delicious items!' })}
-                </p>
-              </div>
+            <div className="p-6 text-center text-gray-500">
+              <div className="text-4xl mb-3">🛒</div>
+              <h3 className="text-base font-medium mb-1">
+                {t('cart.empty.title')}
+              </h3>
+              <p className="text-sm">
+                {t('cart.empty.description', { default: 'Your basket is empty. Add some delicious items!' })}
+              </p>
             </div>
           )}
 
-          {/* Suggestions */}
-          {cart.length > 0 && (
-            <CartSuggestions cartItems={cart} />
-          )}
+          {/* Suggestions - Always show */}
+          <CartSuggestions cartItems={cart} />
         </div>
 
         {/* Summary and Checkout */}
