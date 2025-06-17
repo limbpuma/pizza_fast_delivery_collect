@@ -1,17 +1,41 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useCartSuggestions from './hooks/useCartSuggestions';
+import { useDispatch } from 'react-redux';
+import { useCartSuggestions } from './hooks/useCartSuggestions';
+import { addItem } from './cartSlice';
 
-interface CartSuggestionsProps {
-  cartItems: any[];
-}
-
-function CartSuggestions({ cartItems }: CartSuggestionsProps) {
+function CartSuggestions() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [activeSection, setActiveSection] = useState<'seen' | 'forgot'>('seen');
   
   // Use the smart suggestions hook
-  const { haveYouSeen, didYouForget } = useCartSuggestions(cartItems);
+  const { haveYouSeen, didYouForget } = useCartSuggestions();
+
+  // Handle adding suggestion to cart
+  const handleAddToCart = (item: any) => {
+    try {
+      // Convert the suggestion to a cart-compatible product
+      const cartProduct = {
+        id: item.id,
+        pizzaId: item.id, // Use id as pizzaId for cart compatibility
+        name: item.name,
+        quantity: 1,
+        unitPrice: item.price,
+        totalPrice: item.price,
+        size: 'standard', // Default size for suggestions
+        isQuickAdd: true,
+        source: 'cart-suggestions'
+      };
+      
+      // Add to cart using Redux
+      dispatch(addItem(cartProduct));
+      
+      console.log('✅ Added to cart:', item.name);
+    } catch (error) {
+      console.error('❌ Error adding to cart:', error);
+    }
+  };
 
   // Get current suggestions based on active section
   const currentSuggestions = activeSection === 'seen' ? haveYouSeen : didYouForget;
@@ -81,13 +105,9 @@ function CartSuggestions({ cartItems }: CartSuggestionsProps) {
               <div className="flex items-center gap-2 ml-3">
                 <span className="font-semibold text-gray-900">
                   {item.price.toFixed(2)} €
-                </span>
-                <button 
+                </span>                <button 
                   className="bg-orange-500 hover:bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-                  onClick={() => {
-                    // TODO: Implement add to cart functionality
-                    console.log('Add to cart:', item);
-                  }}
+                  onClick={() => handleAddToCart(item)}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
