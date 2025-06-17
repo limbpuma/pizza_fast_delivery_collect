@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getMenu } from "../../services/apiRestaurant";
 import MenuItemCompact from "./MenuItemCompact";
 import MenuFilters from "./MenuFilters";
+import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo } from "../../data/germanPizzaInfo";
 import { mockNonPizzaItems } from "../../data/mockNonPizzaItems";
@@ -48,41 +49,41 @@ function Menu() {
 
     return true;
   });
-
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        {t('menu.title')}
-      </h2>
+    <div>
+      {/* Restaurant Header with hero image and info */}
+      <RestaurantHeader />
       
-      {/* Sistema de Filtros */}
-      <MenuFilters onFilterChange={setFilters} />
-      
-      {/* Contador de resultados */}
-      <div className="mb-6 text-center text-gray-600">
-        {t('menu.filters.results', { count: filteredMenu.length })}
-      </div>
-        {/* Modern Grid Layout for Pizza Cards */}
-      <div className="menu-grid">
-        <ul className="space-y-4">
-          {filteredMenu.map((pizza: any) => (
-            <MenuItemCompact pizza={pizza} key={pizza.id} />
-          ))}
-        </ul>
-      </div>
-        {/* Mensaje si no hay resultados */}
-      {filteredMenu.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-6xl mb-4">🍕</div>
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">
-            {t('menu.filters.noResults')}
-          </h3>
-          <p className="text-gray-500">
-            {t('menu.filters.adjustFilters')}
-          </p>
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        {/* Sistema de Filtros */}
+        <MenuFilters onFilterChange={setFilters} />
+        
+        {/* Contador de resultados */}
+        <div className="mb-6 text-center text-gray-600">
+          {t('menu.filters.results', { count: filteredMenu.length })}
         </div>
-      )}      {/* Quick Add Demo Component */}
-      <QuickAddDemo menu={menu} />
+          {/* Modern Grid Layout for Pizza Cards */}
+        <div className="menu-grid">
+          <ul className="space-y-4">
+            {filteredMenu.map((pizza: any) => (
+              <MenuItemCompact pizza={pizza} key={pizza.id} />
+            ))}
+          </ul>
+        </div>
+          {/* Mensaje si no hay resultados */}
+        {filteredMenu.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🍕</div>
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              {t('menu.filters.noResults')}
+            </h3>
+            <p className="text-gray-500">
+              {t('menu.filters.adjustFilters')}
+            </p>
+          </div>
+        )}        {/* Quick Add Demo Component */}
+        <QuickAddDemo menu={menu} />
+      </div>
     </div>
   );
 }

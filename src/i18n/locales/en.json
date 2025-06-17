@@ -121,7 +121,31 @@
       "button": "Search",
       "notFound": "No order found with ID {{orderId}}"
     }
-  },  "common": {
+  },  "restaurant": {
+    "aboutUs": "About Us",
+    "minOrder": "Min. order",
+    "location": "Location",
+    "address": "Address",
+    "aboutTitle": "A little bit about us",
+    "aboutDescription": "Fresh and homemade dishes prepared with love! We use only the finest ingredients to create authentic pizzas that will transport you straight to Italy. Our family-owned restaurant has been serving the community for over 15 years.",
+    "deliveryTimes": "Delivery times",
+    "monday": "Monday",
+    "tuesday": "Tuesday", 
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "contact": "Contact",
+    "deliveryInfo": "Delivery Information",
+    "minOrderAmount": "Minimum order amount",
+    "deliveryFee": "Delivery fee",
+    "deliveryTime": "Delivery time",
+    "minutes": "minutes",
+    "paymentMethods": "Payment methods",
+    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"
+  },
+  "common": {
     "loading": "Loading...",
     "error": "Something went wrong",
     "pizza": "pizza",

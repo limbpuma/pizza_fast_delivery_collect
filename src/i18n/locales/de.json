@@ -127,6 +127,30 @@
       "notFound": "Keine Bestellung mit ID {{orderId}} gefunden"
     }
   },
+  "restaurant": {
+    "aboutUs": "Über uns",
+    "minOrder": "Min. Bestellung",
+    "location": "Standort",
+    "address": "Adresse", 
+    "aboutTitle": "Ein wenig über uns",
+    "aboutDescription": "Frische und hausgemachte Gerichte mit Liebe zubereitet! Wir verwenden nur die besten Zutaten, um authentische Pizzen zu kreieren, die Sie direkt nach Italien versetzen. Unser familiengeführtes Restaurant bedient die Gemeinde seit über 15 Jahren.",
+    "deliveryTimes": "Lieferzeiten",
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch", 
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag",
+    "contact": "Kontakt",
+    "deliveryInfo": "Lieferinformationen",
+    "minOrderAmount": "Mindestbestellwert",
+    "deliveryFee": "Liefergebühr",
+    "deliveryTime": "Lieferzeit",
+    "minutes": "Minuten",
+    "paymentMethods": "Zahlungsmethoden",
+    "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"
+  },
   "common": {
     "loading": "Lädt...",
     "error": "Etwas ist schiefgegangen",
