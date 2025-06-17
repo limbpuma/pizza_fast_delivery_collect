@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../utils/helpers';
-import { getCurrentQuantityById, addItem } from '../cart/cartSlice';
+import { getCurrentQuantityById, addItem, decreaseItemQuantity, deleteItem } from '../cart/cartSlice';
 import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaInfo';
 import { getProductType, createQuickAddItem } from '../../utils/productHelpers';
 import PizzaDetailsModal from './PizzaDetailsModal';
@@ -29,21 +29,28 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);
-
   const handleAddClick = async () => {
     if (productType.quickAddEnabled && !productType.needsSizeSelection) {
-      // Quick Add - directly add to cart without modal
+      // Quick Add - always use addItem (it will increment if exists)
       setIsQuickAdding(true);
       
       const quickItem = createQuickAddItem(pizza);
       dispatch(addItem(quickItem));
       
       // Brief feedback animation
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 300));
       setIsQuickAdding(false);
     } else {
       // Traditional flow - open size selection modal
       setShowSizeModal(true);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (currentQuantity === 1) {
+      dispatch(deleteItem(id));
+    } else {
+      dispatch(decreaseItemQuantity(id));
     }
   };
 
@@ -141,70 +148,93 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {
                       {t('menu.soldOut')}
                     </span>
                   )}
-                </div>                {/* Cart Controls or Add Button */}
-                {isInCart ? (
+                </div>                {/* Cart Controls or Add Button - Number inside button style */}
+                {!soldOut && (
                   <div className="flex items-center gap-2">
-                    <UpdateItemQuantity
-                      pizzaId={id}
-                      currentQuantity={currentQuantity}
-                    />
-                    <DeleteItem pizzaId={id} />
-                  </div>
-                ) : (
-                  !soldOut && (
-                    <div className="flex items-center gap-2">
-                      {/* Smart Add Button */}
+                    {/* Quick Add products with quantity in cart - show decrement button */}
+                    {isInCart && productType.quickAddEnabled && (
                       <button
-                        onClick={handleAddClick}
-                        disabled={isQuickAdding}
-                        className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-                          isQuickAdding 
-                            ? 'bg-green-500 scale-110' 
-                            : productType.quickAddEnabled 
-                              ? 'bg-blue-500 hover:bg-blue-600' 
-                              : 'bg-orange-500 hover:bg-orange-600'
+                        onClick={handleDecrement}
+                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${
+                          currentQuantity === 1 
+                            ? 'bg-red-500 hover:bg-red-600' 
+                            : 'bg-gray-400 hover:bg-gray-500'
                         } text-white`}
-                        aria-label={
-                          productType.quickAddEnabled 
-                            ? t('menu.quickAdd', { default: 'Quick Add' })
-                            : t('menu.selectSize')
-                        }
-                        title={
-                          productType.quickAddEnabled 
-                            ? `Quick Add ${name}` 
-                            : `Select size for ${name}`
-                        }
+                        title={currentQuantity === 1 ? t('buttons.delete') : t('buttons.remove')}
                       >
-                        {isQuickAdding ? (
-                          // Success checkmark animation
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        ) : productType.quickAddEnabled ? (
-                          // Quick add icon (shopping cart)
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m-2.4 2h0m2 6v0m0 0h10M7 13v8a2 2 0 002 2h6a2 2 0 002-2v-8m-10 0V9a2 2 0 012-2h6a2 2 0 012 2v4.01" />
+                        {currentQuantity === 1 ? (
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
                         ) : (
-                          // Size selection icon (plus)
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                           </svg>
                         )}
-                        
-                        {/* Quick add feedback pulse */}
-                        {isQuickAdding && (
-                          <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
-                        )}
-                      </button>                      
-                      {/* Product type badge for development */}
-                      {typeof window !== 'undefined' && window.location.hostname === 'localhost' && (
-                        <span className="text-xs text-gray-400 ml-1">
-                          {productType.quickAddEnabled ? '⚡' : '🍕'}
-                        </span>
+                      </button>
+                    )}
+
+                    {/* Pizza products in cart - show traditional controls */}
+                    {isInCart && !productType.quickAddEnabled && (
+                      <>
+                        <UpdateItemQuantity
+                          pizzaId={id}
+                          currentQuantity={currentQuantity}
+                        />
+                        <DeleteItem pizzaId={id} />
+                      </>
+                    )}
+
+                    {/* Main Add Button - Shows + or quantity number inside */}
+                    <button
+                      onClick={handleAddClick}
+                      disabled={isQuickAdding}
+                      className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 font-semibold text-sm ${
+                        isQuickAdding 
+                          ? 'bg-green-500 scale-110' 
+                          : productType.quickAddEnabled 
+                            ? 'bg-blue-500 hover:bg-blue-600' 
+                            : 'bg-orange-500 hover:bg-orange-600'
+                      } text-white`}
+                      aria-label={
+                        productType.quickAddEnabled 
+                          ? t('menu.quickAdd', { default: 'Quick Add' })
+                          : t('menu.selectSize')
+                      }
+                      title={
+                        productType.quickAddEnabled 
+                          ? `Quick Add ${name}` 
+                          : `Select size for ${name}`
+                      }
+                    >
+                      {isQuickAdding ? (
+                        // Success checkmark animation
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : productType.quickAddEnabled ? (
+                        // Show quantity number if in cart, + if not
+                        isInCart ? currentQuantity : '+'
+                      ) : (
+                        // Size selection icon (plus) for pizzas
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
                       )}
-                    </div>
-                  )
+                      
+                      {/* Quick add feedback pulse */}
+                      {isQuickAdding && (
+                        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                      )}
+                    </button>
+                    
+                    {/* Product type badge for development */}
+                    {typeof window !== 'undefined' && window.location.hostname === 'localhost' && (
+                      <span className="text-xs text-gray-400 ml-1">
+                        {productType.quickAddEnabled ? '⚡' : '🍕'}
+                      </span>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

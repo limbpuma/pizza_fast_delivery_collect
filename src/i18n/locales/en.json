@@ -117,11 +117,10 @@
     "minutes": "{{count}} minute",
     "minutes_plural": "{{count}} minutes",
     "cancel": "Cancel"
-  },
-  "buttons": {
+  },  "buttons": {
     "delete": "Delete",
     "update": "Update",
     "add": "+",
-    "remove": "-"
+    "remove": "Remove one"
   }
 }
