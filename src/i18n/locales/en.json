@@ -81,11 +81,24 @@
       "showAllFilters": "Show all filters",
       "hideFilters": "Hide filters"
     }
-  },
-  "cart": {
-    "title": "Your cart, {{name}}",
+  },  "cart": {
+    "title": "Basket",
+    "delivery": "Delivery",
+    "collection": "Collection", 
+    "estimatedTime": "{{minutes}} min",
+    "subtotal": "Subtotal",
+    "deliveryFee": "Delivery fee",
+    "serviceFee": "Service fee",
+    "total": "Total",
+    "checkout": "Checkout ({{total}})",
+    "haveYouSeen": "Have you seen...",
+    "didYouForget": "Did you forget?",
+    "addMore": "Add more",
+    "removeItem": "Remove item",
+    "paymentInfo": "Payment: Cash or Card on delivery",
     "empty": {
-      "title": "Your cart is still empty. Start adding some pizzas :)",
+      "title": "Your basket is empty",
+      "description": "Add some delicious items to get started!",
       "backToMenu": "← Back to menu"
     },
     "totalPrice": "Total pizza price: {{price}}",
@@ -93,7 +106,7 @@
     "clearButton": "Clear cart",
     "overview": "{{quantity}} pizzas {{total}}",
     "openCart": "Open cart →"
-  },  "order": {
+  },"order": {
     "title": "Ready to order? Let's go!",
     "firstName": "First Name",
     "phone": "Phone number",
@@ -143,7 +156,14 @@
     "deliveryTime": "Delivery time",
     "minutes": "minutes",
     "paymentMethods": "Payment methods",
-    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"
+    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "imprint": "Imprint",
+    "cookies": "Cookie Settings",
+    "allRights": "All rights reserved.",
+    "serviceArea": "Delivery service in Dortmund and surrounding areas"
   },
   "common": {
     "loading": "Loading...",

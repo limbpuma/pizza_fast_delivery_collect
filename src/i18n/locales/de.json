@@ -85,11 +85,24 @@
       "showAllFilters": "Alle Filter anzeigen",
       "hideFilters": "Filter ausblenden"
     }
-  },
-  "cart": {
-    "title": "Dein Warenkorb, {{name}}",
+  },  "cart": {
+    "title": "Warenkorb",
+    "delivery": "Lieferung", 
+    "collection": "Abholung",
+    "estimatedTime": "{{minutes}} Min",
+    "subtotal": "Zwischensumme",
+    "deliveryFee": "Liefergebühr",
+    "serviceFee": "Servicegebühr", 
+    "total": "Gesamt",
+    "checkout": "Zur Kasse ({{total}})",
+    "haveYouSeen": "Haben Sie gesehen...",
+    "didYouForget": "Haben Sie vergessen?",
+    "addMore": "Mehr hinzufügen",
+    "removeItem": "Artikel entfernen",
+    "paymentInfo": "Zahlung: Bar oder Karte bei Lieferung",
     "empty": {
-      "title": "Dein Warenkorb ist noch leer. Beginne damit, ein paar Pizzas hinzuzufügen :)",
+      "title": "Ihr Warenkorb ist leer",
+      "description": "Fügen Sie leckere Artikel hinzu, um zu beginnen!",
       "backToMenu": "← Zurück zur Speisekarte"
     },
     "totalPrice": "Gesamtpreis Pizza: {{price}}",
@@ -149,7 +162,14 @@
     "deliveryTime": "Lieferzeit",
     "minutes": "Minuten",
     "paymentMethods": "Zahlungsmethoden",
-    "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"
+    "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"  },
+  "footer": {
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "imprint": "Impressum", 
+    "cookies": "Cookie-Einstellungen",
+    "allRights": "Alle Rechte vorbehalten.",
+    "serviceArea": "Lieferservice in Dortmund und Umgebung"
   },
   "common": {
     "loading": "Lädt...",

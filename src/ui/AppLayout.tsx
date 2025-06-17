@@ -1,22 +1,42 @@
+import { useState } from "react";
 import { Outlet, useNavigation } from "react-router-dom";
 import CartOverview from "../features/cart/CartOverview";
+import CartSidebar from "../features/cart/CartSidebar";
+import CartToggle from "../features/cart/CartToggle";
 import Header from "./Header";
+import Footer from "./Footer";
 import Loader from "./Loader";
 
 function AppLayout() {
-  const navgiation = useNavigation();
+  const navigation = useNavigation();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const isLoading = navgiation.state === "loading";
+  const isLoading = navigation.state === "loading";
+
+  const handleOpenCart = () => setIsCartOpen(true);
+  const handleCloseCart = () => setIsCartOpen(false);
+
   return (
-    <div className="grid grid-rows-[auto_1fr_aut] h-screen">
+    <div className="min-h-screen flex flex-col">
       {isLoading && <Loader />}
+      
       <Header />
-      <div className="overflow-scroll">
+      
+      <div className="flex-1">
         <main className="max-w-3xl mx-auto">
           <Outlet />
         </main>
       </div>
+
+      {/* Legacy CartOverview - will be removed after testing */}
       <CartOverview />
+      
+      {/* New Cart System */}
+      <CartToggle onOpenCart={handleOpenCart} />
+      <CartSidebar isOpen={isCartOpen} onClose={handleCloseCart} />
+      
+      {/* EU Compliance Footer */}
+      <Footer />
     </div>
   );
 }
