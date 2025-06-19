@@ -201,7 +201,7 @@ ${formData.specialInstructions ? `📝 *Instrucciones:* ${formData.specialInstru
       const whatsappMessage = createWhatsAppMessage(orderNumber);
       
       // Restaurant WhatsApp number (replace with actual number)
-      const restaurantPhone = '+4917641234567'; // This should be the real restaurant number
+      const restaurantPhone = '+4917645754360'; // This should be the real restaurant number
       
       // Create WhatsApp URL
       const whatsappUrl = `https://wa.me/${restaurantPhone.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
