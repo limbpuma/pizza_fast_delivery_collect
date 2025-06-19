@@ -7,6 +7,8 @@ import Order, { loader as orderLoader } from "./features/order/Order";
 import CreateOrder, {
   action as CreateOrderAction,
 } from "./features/order/CreateOrder";
+import CheckoutForm from "./features/order/CheckoutForm";
+import OrderConfirmation from "./features/order/OrderConfirmation";
 import AppLayout from "./ui/AppLayout";
 import { action as updateOrderAction } from "./features/order/UpdateOrder";
 import Error from "./ui/Error";
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
         path: "/order/new",
         element: <CreateOrder />,
         action: CreateOrderAction,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutForm />,
+      },
+      {
+        path: "/order-confirmation",
+        element: <OrderConfirmation />,
       },
       {
         path: "/order/:orderId",

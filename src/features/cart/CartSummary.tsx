@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getTotalCartPrice } from './cartSlice';
 
 interface CartSummaryProps {
@@ -9,7 +10,17 @@ interface CartSummaryProps {
 
 function CartSummary({ deliveryMode, onCheckout }: CartSummaryProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const totalCartPrice = useSelector(getTotalCartPrice);
+
+  // Handle checkout navigation
+  const handleCheckout = () => {
+    // Close sidebar first
+    onCheckout();
+    
+    // Navigate to new checkout with delivery mode context
+    navigate('/checkout', { state: { deliveryMode } });
+  };
 
   // Calculate fees based on delivery mode
   const subtotal = totalCartPrice;
@@ -53,11 +64,9 @@ function CartSummary({ deliveryMode, onCheckout }: CartSummaryProps) {
             <span>{total.toFixed(2)} €</span>
           </div>
         </div>
-      </div>
-
-      {/* Checkout Button */}
+      </div>      {/* Checkout Button */}
       <button
-        onClick={onCheckout}
+        onClick={handleCheckout}
         className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-4 px-6 rounded-lg transition-colors"
       >
         {t('cart.checkout', { default: 'Checkout', total: total.toFixed(2) })} ({total.toFixed(2)} €)
