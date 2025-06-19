@@ -256,10 +256,45 @@ export function generateAdvancedSmartSuggestions(cartAnalysis: any): {
     item.pizzaId?.toString() || item.id?.toString()
   );
   
-  const availableSuggestions = allSuggestions.filter(suggestion => 
-    !cartProductIds.includes(suggestion.id.toString()) &&
-    !cartProductIds.includes(suggestion.pizzaId?.toString())
-  );
+  // TIRAMISU DEBUG: Log cart filtering process
+  console.log('🔍 TIRAMISU DEBUG: Cart filtering process:', {
+    cartItemsCount: cartItems.length,
+    cartItems: cartItems.map((item: any) => ({ name: item.name, id: item.id, pizzaId: item.pizzaId })),
+    cartProductIds: cartProductIds,
+    allSuggestionsCount: allSuggestions.length,
+    allSuggestionsNames: allSuggestions.map(s => s.name)
+  });
+  
+  const availableSuggestions = allSuggestions.filter(suggestion => {
+    const isFiltered = cartProductIds.includes(suggestion.id.toString()) ||
+                      cartProductIds.includes(suggestion.pizzaId?.toString());
+    
+    if (suggestion.name.toLowerCase().includes('tiramisu')) {
+      console.log('🍰 TIRAMISU DEBUG: Filtering check for Tiramisu:', {
+        suggestionId: suggestion.id,
+        suggestionPizzaId: suggestion.pizzaId,
+        cartProductIds: cartProductIds,
+        isFilteredById: cartProductIds.includes(suggestion.id.toString()),
+        isFilteredByPizzaId: cartProductIds.includes(suggestion.pizzaId?.toString()),
+        finalResult: isFiltered ? 'FILTERED OUT' : 'KEPT IN SUGGESTIONS'
+      });
+    }
+    
+    return !isFiltered;
+  });
+  
+  // TIRAMISU DEBUG: Log final filtering results
+  const tiramisuInOriginal = allSuggestions.some(s => s.name.toLowerCase().includes('tiramisu'));
+  const tiramisuInFiltered = availableSuggestions.some(s => s.name.toLowerCase().includes('tiramisu'));
+  
+  console.log('🎯 TIRAMISU DEBUG: Final filtering results:', {
+    originalCount: allSuggestions.length,
+    filteredCount: availableSuggestions.length,
+    itemsRemoved: allSuggestions.length - availableSuggestions.length,
+    tiramisuInOriginal,
+    tiramisuInFiltered,
+    tiramisuCorrectlyFiltered: tiramisuInOriginal && !tiramisuInFiltered
+  });
   
   // Convert cart analysis format
   const cartContext = {
@@ -367,7 +402,6 @@ export function convertDynamicSuggestionToProduct(suggestion: DynamicSuggestionP
       needsSizeSelection: false // Predefined size
     };
   }
-
   // For non-pizza items
   if (suggestion.source === 'mock-item') {
     // Use original mock item data
@@ -377,7 +411,8 @@ export function convertDynamicSuggestionToProduct(suggestion: DynamicSuggestionP
     if (mockItem) {
       return {
         ...mockItem,
-        // Override with suggestion data
+        // Keep the string ID to maintain consistency with filtering
+        id: suggestion.id, // Keep 'mock-102' instead of converting to 102
         name: suggestion.name,
         unitPrice: suggestion.price,
         category: suggestion.category,

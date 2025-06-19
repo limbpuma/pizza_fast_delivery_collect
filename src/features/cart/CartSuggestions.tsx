@@ -1,21 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useCartSuggestions } from './hooks/useCartSuggestions';
-import { addItem } from './cartSlice';
+import { addItem, getCart } from './cartSlice';
 
 function CartSuggestions() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const cart = useSelector(getCart);
   const [activeSection, setActiveSection] = useState<'seen' | 'forgot'>('seen');
+  const [forceUpdate, setForceUpdate] = useState(0);
   
   // Use the smart suggestions hook
   const { haveYouSeen, didYouForget } = useCartSuggestions();
-
+  
+  // TIRAMISU FIX: Force component re-render when cart changes
+  useEffect(() => {
+    console.log('🔄 CartSuggestions: Cart changed, forcing component update', {
+      cartLength: cart.length,
+      cartItems: cart.map((item: any) => item.name)
+    });
+    setForceUpdate(prev => prev + 1);
+  }, [cart]);
+  
+  // TIRAMISU DEBUG: Log component renders and suggestions
+  console.log('🔄 CartSuggestions component rendered (update #' + forceUpdate + '):', {
+    haveYouSeenCount: haveYouSeen.length,
+    didYouForgetCount: didYouForget.length,
+    haveYouSeenNames: haveYouSeen.map(s => s.name),
+    didYouForgetNames: didYouForget.map(s => s.name),
+    hasTiramisuInSeen: haveYouSeen.some(s => s.name.toLowerCase().includes('tiramisu')),
+    hasTiramisuInForgot: didYouForget.some(s => s.name.toLowerCase().includes('tiramisu'))
+  });
   // Handle adding suggestion to cart
   const handleAddToCart = (item: any) => {
     try {
-      // Convert the suggestion to a cart-compatible product
+      console.log('🛒 TIRAMISU DEBUG: Adding item to cart from suggestions:', {
+        itemName: item.name,
+        itemId: item.id,
+        isTiramisu: item.name.toLowerCase().includes('tiramisu')
+      });
+        // Convert the suggestion to a cart-compatible product
       const cartProduct = {
         id: item.id,
         pizzaId: item.id, // Use id as pizzaId for cart compatibility
@@ -28,10 +53,13 @@ function CartSuggestions() {
         source: 'cart-suggestions'
       };
       
+      console.log('🛒 TIRAMISU DEBUG: Cart product structure:', cartProduct);
+      
       // Add to cart using Redux
       dispatch(addItem(cartProduct));
       
-      console.log('✅ Added to cart:', item.name);
+      console.log('✅ TIRAMISU DEBUG: Item dispatched to Redux store:', item.name);
+      console.log('⏳ TIRAMISU DEBUG: Waiting for component re-render with updated suggestions...');
     } catch (error) {
       console.error('❌ Error adding to cart:', error);
     }
