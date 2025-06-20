@@ -327,11 +327,14 @@
     "contact": "Contact",
     "deliveryInfo": "Delivery Information",
     "minOrderAmount": "Minimum order amount",
-    "deliveryFee": "Delivery fee",
-    "deliveryTime": "Delivery time",
+    "deliveryFee": "Delivery fee",    "deliveryTime": "Delivery time",
     "minutes": "minutes",
     "paymentMethods": "Payment methods",
-    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"  },  "footer": {
+    "acceptedPayments": "Cash, Card, PayPal, Apple Pay",
+    "downloadMenu": "Download Menu",
+    "menuPdf": "Download PDF Menu",
+    "printable": "Printable version"
+  },"footer": {
     "description": "Authentic Italian pizza delivered fresh to your door. Made with the finest ingredients and traditional recipes.",
     "contact": "Contact",
     "phone": "Phone: +49 231 123 456",

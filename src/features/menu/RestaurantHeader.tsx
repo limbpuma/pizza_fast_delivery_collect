@@ -18,7 +18,7 @@ function RestaurantHeader({
   minOrderAmount = 12.00,
   deliveryFee = "0,99",
   deliveryTime = "25-40",
-  heroImage = "/images/restaurant-hero.svg"
+  heroImage = "/campus-restaurant/campus-image2.webp"
 }: RestaurantHeaderProps) {
   const { t } = useTranslation();
   const [showAboutModal, setShowAboutModal] = useState(false);
@@ -113,15 +113,52 @@ function RestaurantHeader({
               </svg>
               <span className="font-medium">{t('restaurant.aboutUs')}</span>
             </button>
-          </div>
+          </div>          {/* Promo banner and Menu Download */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Promo banner */}
+            <div className="bg-yellow-100 border border-yellow-300 rounded-lg px-4 py-3 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-600">🎉</span>
+                <span className="text-yellow-800 font-medium text-sm">
+                  5% Rabatt auf alle Familien-Pizzen
+                </span>
+              </div>
+            </div>
 
-          {/* Promo banner (if any) */}
-          <div className="bg-yellow-100 border border-yellow-300 rounded-lg px-4 py-3 inline-block">
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-600">🎉</span>
-              <span className="text-yellow-800 font-medium text-sm">
-                5% Rabatt auf alle Familien-Pizzen
-              </span>
+            {/* Menu Download Banner */}
+            <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg px-4 py-3 flex-1">
+              <div className="flex items-center gap-3">
+                {/* Restaurant Image */}
+                <div className="flex-shrink-0">
+                  <img
+                    src="/campus-restaurant/campus-image.webp"
+                    alt={restaurantName}
+                    className="w-12 h-12 rounded-lg object-cover border border-orange-200"
+                  />
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-orange-800 font-medium text-sm truncate">
+                    {t('restaurant.downloadMenu')}
+                  </p>
+                  <p className="text-orange-600 text-xs">
+                    {t('restaurant.printable')}
+                  </p>
+                </div>
+                
+                {/* Download Button */}
+                <a
+                  href="/campus-restaurant/menu-campus.pdf"
+                  download="Campus-Pizza-Menu.pdf"
+                  className="flex items-center gap-1 px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-medium rounded-md transition-colors duration-200 shadow-sm"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  PDF
+                </a>
+              </div>
             </div>
           </div>
         </div>

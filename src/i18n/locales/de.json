@@ -330,11 +330,14 @@
     "contact": "Kontakt",
     "deliveryInfo": "Lieferinformationen",
     "minOrderAmount": "Mindestbestellwert",
-    "deliveryFee": "Liefergebühr",
-    "deliveryTime": "Lieferzeit",
+    "deliveryFee": "Liefergebühr",    "deliveryTime": "Lieferzeit",
     "minutes": "Minuten",
     "paymentMethods": "Zahlungsmethoden",
-    "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"  },
+    "acceptedPayments": "Bar, Karte, PayPal, Apple Pay",
+    "downloadMenu": "Speisekarte herunterladen",
+    "menuPdf": "PDF Speisekarte herunterladen",
+    "printable": "Druckbare Version"
+  },
   "footer": {
     "description": "Authentische italienische Pizza frisch vor deine Tür geliefert. Hergestellt mit den besten Zutaten und traditionellen Rezepten.",
     "contact": "Kontakt",
