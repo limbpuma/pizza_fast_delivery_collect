@@ -1,27 +1,26 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Home from "./ui/Home";
-import Cart from "./features/cart/Cart";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Order, { loader as orderLoader } from "./features/order/Order";
-import CreateOrder, {
-  action as CreateOrderAction,
-} from "./features/order/CreateOrder";
+import CheckoutForm from "./features/order/CheckoutForm";
+import OrderConfirmation from "./features/order/OrderConfirmation";
+import RecentOrders from "./features/order/RecentOrders";
 import AppLayout from "./ui/AppLayout";
 import { action as updateOrderAction } from "./features/order/UpdateOrder";
 import Error from "./ui/Error";
+// Legal Pages
+import ImpressumPage from "./pages/legal/ImpressumPage";
+import DatenschutzPage from "./pages/legal/DatenschutzPage";
+import AGBPage from "./pages/legal/AGBPage";
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     errorElement: <Error />,
-    children: [
-      {
+    children: [      {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
       },
       {
         path: "/menu",
@@ -30,9 +29,39 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
-        path: "/order/new",
-        element: <CreateOrder />,
-        action: CreateOrderAction,
+        path: "/checkout",
+        element: <CheckoutForm />,
+      },
+      {
+        path: "/my-orders",
+        element: <RecentOrders />,
+      },      {
+        path: "/order-confirmation",
+        element: <OrderConfirmation />,
+      },
+      {
+        path: "/impressum",
+        element: <ImpressumPage />,
+      },
+      {
+        path: "/imprint",
+        element: <ImpressumPage />,
+      },
+      {
+        path: "/datenschutz",
+        element: <DatenschutzPage />,
+      },
+      {
+        path: "/privacy",
+        element: <DatenschutzPage />,
+      },
+      {
+        path: "/agb",
+        element: <AGBPage />,
+      },
+      {
+        path: "/terms",
+        element: <AGBPage />,
       },
       {
         path: "/order/:orderId",

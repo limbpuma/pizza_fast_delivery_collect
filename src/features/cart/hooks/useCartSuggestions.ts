@@ -1,4 +1,11 @@
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { getCart } from '../cartSlice';
+import { 
+  generateConsistentSuggestions, 
+  DynamicSuggestionProduct,
+  convertDynamicSuggestionToProduct
+} from '../../../utils/dynamicSuggestions';
 
 interface Product {
   id: string | number;
@@ -21,22 +28,39 @@ interface SuggestionHookReturn {
   didYouForget: Product[];
 }
 
-function useCartSuggestions(cartItems: CartItem[]): SuggestionHookReturn {
+// Updated hook using dynamic suggestions system
+export function useCartSuggestions(): SuggestionHookReturn & { cartAnalysis: any; isEmpty: boolean } {
+  const cart = useSelector(getCart);
+  
+  const cartAnalysis = useMemo(() => analyzeCartContent(cart), [cart]);
+  
   const suggestions = useMemo(() => {
-    // Analyze cart content (works with empty cart too)
-    const cartAnalysis = analyzeCartContent(cartItems || []);
+    // Use the new dynamic suggestions system
+    const dynamicSuggestions = generateConsistentSuggestions(cartAnalysis);
     
-    // Generate suggestions based on analysis
-    const haveYouSeen = generatePopularSuggestions(cartAnalysis);
-    const didYouForget = generateMissingSuggestions(cartAnalysis);
-
     return {
-      haveYouSeen,
-      didYouForget
+      haveYouSeen: dynamicSuggestions.haveYouSeen.map(convertDynamicSuggestionToCartProduct),
+      didYouForget: dynamicSuggestions.didYouForget.map(convertDynamicSuggestionToCartProduct)
     };
-  }, [cartItems]);
+  }, [cartAnalysis]);
 
-  return suggestions;
+  return {
+    ...suggestions,
+    cartAnalysis,
+    isEmpty: cart.length === 0
+  };
+}
+
+// Convert dynamic suggestion to cart product format
+function convertDynamicSuggestionToCartProduct(suggestion: DynamicSuggestionProduct): Product {
+  const converted = convertDynamicSuggestionToProduct(suggestion);
+  return {
+    id: converted.id,
+    name: converted.name,
+    price: converted.unitPrice || converted.price,
+    description: converted.description || suggestion.description,
+    category: suggestion.category
+  };
 }
 
 function analyzeCartContent(cartItems: CartItem[]) {
@@ -49,14 +73,15 @@ function analyzeCartContent(cartItems: CartItem[]) {
     totalValue: 0,
     itemCount: cartItems ? cartItems.length : 0,
     isLunchTime: isCurrentlyLunchTime(),
-    isWeekend: isCurrentlyWeekend()
+    isWeekend: isCurrentlyWeekend(),
+    cartItems: cartItems || [] // Include cart items for filtering
   };
 
   if (cartItems && cartItems.length > 0) {
     cartItems.forEach(item => {
       analysis.totalValue += item.totalPrice;
       
-      // Simple category detection based on name
+      // Enhanced category detection with more patterns
       const itemName = item.name.toLowerCase();
       
       if (itemName.includes('pizza')) {
@@ -65,100 +90,26 @@ function analyzeCartContent(cartItems: CartItem[]) {
       if (itemName.includes('pasta') || itemName.includes('tortellini')) {
         analysis.hasPasta = true;
       }
-      if (itemName.includes('cola') || itemName.includes('beer') || itemName.includes('water')) {
+      // Enhanced beverage detection
+      if (itemName.includes('cola') || itemName.includes('beer') || itemName.includes('water') ||
+          itemName.includes('juice') || itemName.includes('espresso') || 
+          itemName.includes('drink') || itemName.includes('beverage')) {
         analysis.hasBeverage = true;
       }
-      if (itemName.includes('bread') || itemName.includes('buns')) {
+      // Enhanced appetizer detection
+      if (itemName.includes('bread') || itemName.includes('buns') || itemName.includes('wings') ||
+          itemName.includes('salad') || itemName.includes('sticks') || itemName.includes('focaccia')) {
         analysis.hasAppetizer = true;
+      }
+      // Enhanced dessert detection
+      if (itemName.includes('tiramisu') || itemName.includes('ice cream') || itemName.includes('brownie') ||
+          itemName.includes('gelato') || itemName.includes('dessert')) {
+        analysis.hasDessert = true;
       }
     });
   }
 
   return analysis;
-}
-
-function generatePopularSuggestions(analysis: any): Product[] {
-  const suggestions: Product[] = [];
-  
-  // Popular items from mock data
-  const popularItems = [
-    {
-      id: 'coca-cola',
-      name: 'Coca-Cola 1,0l',
-      description: 'Coca-Cola steht für einzigartigen Geschmack, Erfrischung und Momente voller Lebensfreude.',
-      price: 3.84,
-      category: 'beverage'
-    },
-    {
-      id: 'stuffed-pizza-buns-gouda',
-      name: 'Stuffed Pizza Buns with Gouda (6 pieces)',
-      price: 6.00,
-      category: 'appetizer'
-    },
-    {
-      id: 'stuffed-pizza-buns-tuna',
-      name: 'Stuffed Pizza Buns with Tuna',
-      price: 6.50,
-      category: 'appetizer'
-    }
-  ];
-
-  // If cart is empty, show all popular items
-  if (analysis.itemCount === 0) {
-    return popularItems;
-  }
-
-  // Show beverages if no beverage in cart
-  if (!analysis.hasBeverage) {
-    suggestions.push(popularItems[0]); // Coca-Cola
-  }
-
-  // Show appetizers if no appetizer in cart
-  if (!analysis.hasAppetizer) {
-    suggestions.push(popularItems[1]); // Pizza Buns
-  }
-
-  // Weekend specials or additional suggestions
-  if (analysis.isWeekend || analysis.itemCount > 1) {
-    suggestions.push(popularItems[2]); // Tuna buns
-  }
-
-  return suggestions.slice(0, 3); // Limit to 3 suggestions
-}
-
-function generateMissingSuggestions(analysis: any): Product[] {
-  const suggestions: Product[] = [];
-
-  // Essential missing items
-  if ((analysis.hasPizza || analysis.hasPasta) && !analysis.hasBeverage) {
-    suggestions.push({
-      id: 'red-bull',
-      name: 'Red Bull 0,25l',
-      price: 3.49,
-      category: 'beverage'
-    });
-  }
-
-  if (analysis.hasPasta && !analysis.hasAppetizer) {
-    suggestions.push({
-      id: 'garlic-bread',
-      name: 'Garlic Bread',
-      price: 4.50,
-      category: 'appetizer'
-    });
-  }
-
-  // Value-based suggestions
-  if (analysis.totalValue < 15) {
-    suggestions.push({
-      id: 'family-combo',
-      name: 'Family Pizza Combo',
-      price: 24.99,
-      category: 'combo'
-    });
-  }
-
-  return suggestions.slice(0, 2); // Limit to 2 suggestions
 }
 
 function isCurrentlyLunchTime(): boolean {
@@ -171,4 +122,5 @@ function isCurrentlyWeekend(): boolean {
   return day === 0 || day === 6; // Sunday or Saturday
 }
 
+// Export the new hook as default for easy importing
 export default useCartSuggestions;

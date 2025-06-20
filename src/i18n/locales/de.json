@@ -1,11 +1,77 @@
-{
-  "header": {
+{  "header": {
     "title": "Fast React Pizza Co."
   },
-  "home": {
-    "title": "Die beste Pizza.",
-    "subtitle": "Direkt aus dem Ofen, direkt zu dir.",
-    "cta": "Jetzt bestellen"
+  "navigation": {
+    "myOrders": "Meine Bestellungen"
+  },  "home": {
+    "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
+    "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
+    "cta": "🍕 Jetzt bestellen",
+    "socialProof": {
+      "ordering": "{{count}} Leute bestellen gerade",
+      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)"
+    },
+    "deliveryTime": "⚡ Geliefert in {{minutes}} Min",
+    "howItWorks": {
+      "title": "So funktioniert's",
+      "step1": {
+        "title": "Details eingeben",
+        "description": "Name und PLZ zur Überprüfung der Lieferzone"
+      },
+      "step2": {
+        "title": "Pizza auswählen",
+        "description": "Durchstöbere unsere frische Speisekarte und wähle deine Favoriten"
+      },
+      "step3": {
+        "title": "Bestellen & Bezahlen",
+        "description": "Bestellung über WhatsApp abschließen. Bar oder Karte bezahlen."
+      },
+      "step4": {
+        "title": "Genießen!",
+        "description": "Heiße, frische Pizza in 15-30 Min vor deine Tür geliefert"
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "question1": {
+        "q": "Wie funktioniert die WhatsApp-Bestellung?",
+        "a": "Nach dem Hinzufügen von Artikeln zum Warenkorb erhältst du einen WhatsApp-Link mit deiner Bestellübersicht. Sende ihn an uns und wir bestätigen Lieferzeit und Zahlungsmethode."
+      },
+      "question2": {
+        "q": "Was sind die Liefergebiete?",
+        "a": "Wir liefern in 6 Zonen in Dortmund: 44149, 44147, 44227, 44225, 44137, 44135. Kostenlose Lieferung ab 12€"
+      },
+      "question3": {
+        "q": "Wie lange dauert die Lieferung?",
+        "a": "15-30 Minuten je nach Standort und Bestellgröße. Wir geben dir eine genaue Zeit bei der Bestellung."
+      },
+      "question4": {
+        "q": "Welche Zahlungsmethoden akzeptiert ihr?",
+        "a": "Barzahlung bei Lieferung oder Kartenzahlung. Du kannst deine bevorzugte Methode bei der Bestellung wählen."
+      }
+    },
+    "testimonials": {
+      "title": "Was unsere Kunden sagen",
+      "customer1": {
+        "text": "Fantastische Pizza und super schnelle Lieferung! Die WhatsApp-Bestellung ist so praktisch.",
+        "name": "Sarah M."
+      },
+      "customer2": {
+        "text": "Beste Pizza in Dortmund! Frische Zutaten und immer heiß geliefert.",
+        "name": "Mike L."
+      },
+      "customer3": {
+        "text": "Familie liebt die Vielfalt. Kostenlose Lieferung ist super!",
+        "name": "Anna M."
+      }
+    },
+    "trust": {
+      "badges": {
+        "customers": "{{count}}+ Zufriedene Kunden",
+        "secure": "Sichere Bestellung",
+        "fresh": "Frische-Garantie"
+      }
+    }
   },
   "features": {
     "fast": "Schnelle Lieferung",
@@ -19,8 +85,13 @@
   },
   "user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
-    "namePlaceholder": "Dein vollständiger Name",
-    "postalCodePlaceholder": "PLZ (für Liefergebiet)",
+    "subtitle": "Gib deine PLZ ein, um leckere Pizza zu bestellen! 🍕",
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "Dein Name oder 'Gast'",
+    "postalCodeLabel": "Postleitzahl *",
+    "postalCodePlaceholder": "z.B. 44149",
+    "deliveryAreas": "Wir liefern nach: 44149, 44147, 44227, 44225, 44137, 44135",
+    "startOrdering": "🍕 Bestellung starten",
     "continueButton": "Weiter",
     "greeting": "Willkommen zurück, {{name}}!",
     "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
@@ -45,8 +116,9 @@
     "availableSizes": "Verfügbare Größen",    "from": "ab",
     "addToBasket": "In den Warenkorb",
     "adding": "Hinzufügen...",
-    "quickAdd": "Schnell hinzufügen",
-    "addedToCart": "In Warenkorb gelegt!",    "categories": {
+    "quickAdd": "Schnell hinzufügen",    "addedToCart": "In Warenkorb gelegt!",
+    "productNumber": "(#{{number}})",
+    "categories": {
       "vegetarisch": "Vegetarisch",
       "vegan": "Vegan",
       "fleisch": "Mit Fleisch", 
@@ -107,9 +179,106 @@
     },
     "totalPrice": "Gesamtpreis Pizza: {{price}}",
     "orderButton": "Pizzas bestellen",
-    "clearButton": "Warenkorb leeren",
-    "overview": "{{quantity}} Pizzas {{total}}",
+    "clearButton": "Warenkorb leeren",    "overview": "{{quantity}} Pizzas {{total}}",
     "openCart": "Warenkorb öffnen →"
+  },  "checkout": {
+    "titleDelivery": "Bestellung - Lieferung",
+    "titleCollection": "Bestellung - Abholung",
+    "deliverySubtitle": "Vervollständigen Sie Ihre Lieferdetails",
+    "collectionSubtitle": "Vervollständigen Sie Ihre Abholdetails",
+    "orderSummary": "Bestellübersicht",
+    "customerInfo": "Kundendaten",
+    "deliveryAddress": "Lieferadresse",
+    "paymentMethod": "Zahlungsart",
+    "specialInstructions": "Besondere Hinweise",
+    "finalTotal": "Gesamtbetrag",
+    "placeOrder": "Bestellung via WhatsApp aufgeben",
+    "whatsappNote": "Ihre Bestellung wird über WhatsApp an unser Restaurant gesendet",
+    "name": "Vollständiger Name",
+    "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
+    "phone": "Telefonnummer",
+    "phonePlaceholder": "+49 xxx xxx xxxx",
+    "address": "Adresse und Nummer",
+    "street": "Straßenname",
+    "streetPlaceholder": "z.B. Musterstraße",
+    "houseNumber": "Hausnummer",
+    "houseNumberPlaceholder": "z.B. 123",
+    "postalCode": "Postleitzahl",
+    "postalCodePlaceholder": "z.B. 44149",
+    "city": "Stadt",
+    "cash": "Barzahlung",
+    "card": "Kartenzahlung",
+    "cashOnDelivery": "Barzahlung bei Lieferung",
+    "cashOnPickup": "Barzahlung bei Abholung",
+    "cardOnDelivery": "Kartenzahlung bei Lieferung",
+    "cardOnPickup": "Kartenzahlung bei Abholung",
+    "deliveryZones": "Liefergebiete:",
+    "subtotal": "Zwischensumme",
+    "deliveryFee": "Liefergebühr",
+    "serviceFee": "Servicegebühr",
+    "total": "Gesamt",
+    "specialInstructionsPlaceholder": "Klingeln, vor der Tür lassen, etc.",
+    "selectCountryCode": "Ländervorwahl auswählen",
+    "phoneHelper": "Geben Sie Ihre Telefonnummer ohne Ländervorwahl ein",
+    "errors": {
+      "nameRequired": "Name ist erforderlich",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein",
+      "streetRequired": "Straßenname ist erforderlich", 
+      "houseNumberRequired": "Hausnummer ist erforderlich",
+      "postalCodeRequired": "Postleitzahl ist erforderlich",
+      "postalCodeInvalid": "Bitte geben Sie eine gültige 5-stellige Postleitzahl ein",
+      "postalCodeNotInZone": "Entschuldigung, wir liefern nicht in diese Postleitzahl",
+      "submitError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    },    "whatsappMessage": {
+      "title": "Campus Pizza Express - Neue Bestellung",
+      "orderNumber": "Bestellung #{{orderNumber}}",
+      "phone": "Telefon: {{phone}}",
+      "customer": "Kunde:",
+      "address": "Lieferadresse:",
+      "products": "Produkte:",
+      "summary": "Zusammenfassung:",
+      "subtotal": "Zwischensumme: {{amount}}",
+      "delivery": "Lieferung: {{amount}}",
+      "service": "Service: {{amount}}",
+      "total": "Gesamt: {{amount}}",
+      "type": "Typ: {{type}}",
+      "payment": "Zahlung: {{method}}",
+      "deliveryType": "Lieferung nach Hause",
+      "collectionType": "Abholung im Geschäft",
+      "paymentCash": "Bargeld",
+      "paymentCard": "Karte",      "specialInstructions": "Besondere Hinweise: {{instructions}}"
+    }
+  },
+  "orderConfirmation": {
+    "title": "Bestellung erfolgreich aufgegeben!",
+    "subtitle": "Ihre Bestellung wurde über WhatsApp an unser Restaurant gesendet.",
+    "orderDetails": "Bestelldetails",
+    "orderNumber": "Bestellnummer:",
+    "type": "Art:",
+    "delivery": "Lieferung",
+    "collection": "Abholung",
+    "estimatedTime": "Geschätzte Zeit:",
+    "whatsappTitle": "WhatsApp-Bestätigung",
+    "whatsappText": "Unser Restaurant wird Ihre Bestellung bestätigen und Updates über WhatsApp senden. Bitte halten Sie Ihr Telefon bereit.",
+    "whatsNext": "Was passiert als Nächstes?",
+    "step1": "Unser Restaurant bestätigt Ihre Bestellung über WhatsApp",
+    "step2": "Wir beginnen mit der Zubereitung Ihres köstlichen Essens",
+    "step3Delivery": "Unser Fahrer liefert Ihre Bestellung an Ihre Adresse",
+    "step3Collection": "Wir benachrichtigen Sie, wenn Ihre Bestellung zur Abholung bereit ist",
+    "orderAgain": "Erneut bestellen",
+    "backHome": "Zurück zur Startseite",
+    "restaurantInfo": "Campus Pizza Express",
+    "restaurantAddress": "Musterstraße 123, 44149 Dortmund",
+    "restaurantPhone": "Tel: +49 231 123 4567",
+    "thankYou": "Vielen Dank für Ihre Bestellung!",
+    "orderReceived": "Bestellung erhalten",
+    "confirmationSent": "Bestätigung über WhatsApp gesendet",
+    "preparationTime": "Zubereitungszeit:",
+    "trackingInfo": "Sie können den Status Ihrer Bestellung über WhatsApp-Nachrichten von unserem Restaurant verfolgen.",
+    "contactUs": "Kontaktieren Sie uns",
+    "needHelp": "Benötigen Sie Hilfe bei Ihrer Bestellung?",
+    "whatsappSupport": "Schreiben Sie uns direkt über WhatsApp"
   },
   "order": {
     "title": "Bereit zu bestellen? Los geht's!",
@@ -164,25 +333,100 @@
     "paymentMethods": "Zahlungsmethoden",
     "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"  },
   "footer": {
+    "description": "Authentische italienische Pizza frisch vor deine Tür geliefert. Hergestellt mit den besten Zutaten und traditionellen Rezepten.",
+    "contact": "Kontakt",
+    "phone": "Telefon: +49 231 123 456",
+    "email": "E-Mail: info@campuspizza.de",
+    "address": "Adresse: Campus Straße 123, 44227 Dortmund",
+    "serviceArea": "Lieferservice in Dortmund und Umgebung",
+    "deliveryTime": "Durchschnittliche Lieferzeit: 25-35 Minuten",
+    "quickLinks": "Schnellzugriff",
     "privacy": "Datenschutz",
     "terms": "AGB",
-    "imprint": "Impressum", 
-    "cookies": "Cookie-Einstellungen",
-    "allRights": "Alle Rechte vorbehalten.",
-    "serviceArea": "Lieferservice in Dortmund und Umgebung"
-  },
-  "common": {
+    "imprint": "Impressum",
+    "allRights": "Alle Rechte vorbehalten."
+  },  "common": {
     "loading": "Lädt...",
     "error": "Etwas ist schiefgegangen",
     "pizza": "Pizza",
     "pizzas": "Pizzas",
     "minutes": "{{count}} Minute",
     "minutes_plural": "{{count}} Minuten",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "backToMenu": "Zurück zur Speisekarte",
+    "optional": "optional",
+    "processing": "Verarbeitung..."
   },  "buttons": {
     "delete": "Löschen",
     "update": "Aktualisieren",
     "add": "+",
     "remove": "Eins entfernen"
+  },  "orders": {
+    "title": "Meine letzten Bestellungen",
+    "close": "Schließen",
+    "deliveryMode": {
+      "delivery": "Lieferung",
+      "collection": "Abholung"
+    },
+    "paymentMethod": {
+      "cash": "Bargeld",
+      "card": "Karte"
+    },
+    "empty": {
+      "title": "Noch keine Bestellungen",
+      "description": "Ihre letzten Bestellungen werden hier angezeigt",
+      "action": "Jetzt bestellen"
+    },
+    "item": {
+      "orderNumber": "Bestellung #{{number}}",
+      "orderedOn": "Bestellt am {{date}}",
+      "total": "Gesamt: {{amount}}",
+      "items": "{{count}} Artikel",
+      "items_plural": "{{count}} Artikel",
+      "status": {
+        "pending": "Ausstehend",
+        "confirmed": "Bestätigt",
+        "preparing": "In Vorbereitung",
+        "delivered": "Geliefert",
+        "completed": "Abgeschlossen"
+      },
+      "actions": {
+        "viewDetails": "Details anzeigen",
+        "reorder": "Erneut bestellen"
+      }
+    },    "details": {
+      "title": "Bestelldetails",
+      "orderNumber": "Bestellnummer",
+      "orderInfo": "Bestellinformationen",
+      "date": "Datum",
+      "type": "Art",
+      "payment": "Zahlung",
+      "status": "Status",
+      "customer": "Kundeninformationen",
+      "address": "Lieferadresse",
+      "items": "Bestellte Artikel",
+      "instructions": "Besondere Anweisungen",
+      "close": "Schließen"
+    },
+    "stats": {
+      "totalSpent": "Gesamt ausgegeben: {{amount}}",
+      "ordersCount": "{{count}} Bestellung",
+      "ordersCount_plural": "{{count}} Bestellungen",
+      "favoriteProduct": "Meist bestellt: {{product}}",
+      "averageOrder": "Durchschnittliche Bestellung: {{amount}}"
+    },
+    "time": {
+      "minutesAgo": "vor {{count}}m",
+      "hoursAgo": "vor {{count}}h",
+      "yesterday": "Gestern",
+      "daysAgo": "vor {{count}}d"
+    },
+    "reorder": {
+      "success": "Artikel zum Warenkorb hinzugefügt!",
+      "confirmTitle": "Artikel erneut bestellen?",
+      "confirmMessage": "Dies wird Ihren aktuellen Warenkorb leeren und Artikel aus Bestellung #{{orderNumber}} hinzufügen. Fortfahren?",
+      "confirm": "Ja, erneut bestellen",
+      "cancel": "Abbrechen"
+    }
   }
 }

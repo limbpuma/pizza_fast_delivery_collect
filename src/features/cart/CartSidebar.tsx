@@ -66,10 +66,8 @@ function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                 {t('cart.empty.description', { default: 'Your basket is empty. Add some delicious items!' })}
               </p>
             </div>
-          )}
-
-          {/* Suggestions - Always show */}
-          <CartSuggestions cartItems={cart} />
+          )}          {/* Suggestions - Always show */}
+          <CartSuggestions />
         </div>
 
         {/* Summary and Checkout */}

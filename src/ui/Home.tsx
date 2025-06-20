@@ -38,9 +38,7 @@ function Home() {
             <span className="border-r-2 border-yellow-500 pr-1 animate-pulse">
               {t('home.subtitle')}
             </span>
-          </p>
-
-          {/* Fast Features - Icon + Text */}
+          </p>          {/* Fast Features - Icon + Text */}
           <div className="mb-8 flex justify-center gap-6 text-sm sm:text-base">
             <div className="flex items-center gap-2 text-green-600">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -60,13 +58,25 @@ function Home() {
               </svg>
               <span>{t('features.quality')}</span>
             </div>
+          </div>          {/* Social Proof Banner */}
+          <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm">
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">👥</span>
+                <span>{t('home.socialProof.ordering', { count: 12 })}</span>
+              </div>
+              <div className="w-px h-4 bg-gray-300"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">⭐</span>
+                <span>{t('home.socialProof.reviews', { rating: '4.8', count: 340 })}</span>
+              </div>
+            </div>
           </div>
 
           {/* User Input/CTA Section */}
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
             {username === "" ? (
-              <CreateUser />
-            ) : (
+              <CreateUser />            ) : (
               <div className="space-y-4">
                 <p className="text-gray-600">
                   {t('user.greeting', { name: username })}
@@ -75,12 +85,114 @@ function Home() {
                   <span className="flex items-center gap-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                    {t('home.cta')}
+                    </svg>                    <div className="flex flex-col items-start">
+                      <span>{t('home.cta')}</span>
+                      <span className="text-xs opacity-75">{t('home.deliveryTime', { minutes: 25 })}</span>
+                    </div>
                   </span>
                 </Button>
               </div>
-            )}
+            )}          </div>
+        </div>
+      </div>      {/* How It Works Section */}
+      <div className="bg-white py-12">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            🍕 {t('home.howItWorks.title')}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">👤</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{t('home.howItWorks.step1.title')}</h3>
+              <p className="text-sm text-gray-600">{t('home.howItWorks.step1.description')}</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">🍕</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{t('home.howItWorks.step2.title')}</h3>
+              <p className="text-sm text-gray-600">{t('home.howItWorks.step2.description')}</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">📱</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{t('home.howItWorks.step3.title')}</h3>
+              <p className="text-sm text-gray-600">{t('home.howItWorks.step3.description')}</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">🚚</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{t('home.howItWorks.step4.title')}</h3>
+              <p className="text-sm text-gray-600">{t('home.howItWorks.step4.description')}</p>
+            </div>
+          </div>
+        </div>
+      </div>      {/* FAQ Section */}
+      <div className="bg-gray-50 py-12">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            ❓ {t('home.faq.title')}
+          </h2>          <div className="space-y-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h3 className="font-semibold text-gray-900 mb-2">💳 {t('home.faq.question1.q')}</h3>
+              <p className="text-gray-700 text-sm">{t('home.faq.question1.a')}</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h3 className="font-semibold text-gray-900 mb-2">🚚 {t('home.faq.question2.q')}</h3>
+              <p className="text-gray-700 text-sm">{t('home.faq.question2.a')}</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h3 className="font-semibold text-gray-900 mb-2">⏰ {t('home.faq.question3.q')}</h3>
+              <p className="text-gray-700 text-sm">{t('home.faq.question3.a')}</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h3 className="font-semibold text-gray-900 mb-2">📱 {t('home.faq.question4.q')}</h3>
+              <p className="text-gray-700 text-sm">{t('home.faq.question4.a')}</p>
+            </div>
+          </div></div>
+      </div>
+
+      {/* Trust & Testimonials Section */}
+      <div className="bg-white py-8">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">            <div className="text-center p-4">
+              <div className="mb-3">
+                <span className="text-yellow-400 text-2xl">⭐⭐⭐⭐⭐</span>
+              </div>
+              <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer1.text')}"</p>
+              <p className="text-xs text-gray-500">- {t('home.testimonials.customer1.name')}</p>
+            </div>            <div className="text-center p-4">
+              <div className="mb-3">
+                <span className="text-yellow-400 text-2xl">⭐⭐⭐⭐⭐</span>
+              </div>
+              <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer2.text')}"</p>
+              <p className="text-xs text-gray-500">- {t('home.testimonials.customer2.name')}</p>
+            </div>            <div className="text-center p-4">
+              <div className="mb-3">
+                <span className="text-yellow-400 text-2xl">⭐⭐⭐⭐⭐</span>
+              </div>
+              <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer3.text')}"</p>
+              <p className="text-xs text-gray-500">- {t('home.testimonials.customer3.name')}</p>
+            </div>
+          </div>
+            {/* Trust Badges */}
+          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✅</span>
+              <span>{t('home.trust.badges.customers', { count: 340 })}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">🔒</span>
+              <span>{t('home.trust.badges.secure')}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-orange-500">🚚</span>
+              <span>{t('home.trust.badges.fresh')}</span>
+            </div>
           </div>
         </div>
       </div>

@@ -63,24 +63,23 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   };
 
   return (
-    <>
-      <div className="pizza-card-compact bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 p-4">
+    <>      <div className="pizza-card-compact bg-white rounded-lg border border-gray-200 hover:shadow-lg hover:border-orange-300 transition-all duration-200 p-4 group">
         <div className="flex gap-4">
           {/* Pizza Image */}
           <div className="flex-shrink-0 relative">
             <img
               src={imageUrl}
               alt={name}
-              className={`w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover ${
+              className={`w-24 h-24 sm:w-28 sm:h-28 rounded-lg object-cover transition-transform duration-200 group-hover:scale-105 ${
                 soldOut ? "opacity-50 grayscale" : ""
               }`}
               loading="lazy"
             />
             
-            {/* Popular Badge */}
+            {/* Enhanced Popular Badge */}
             {germanInfo?.isPopular && (
-              <span className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 text-xs font-bold px-1.5 py-0.5 rounded-full">
-                {t('menu.popular')}
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-lg animate-pulse">
+                🔥 Popular
               </span>
             )}
             
@@ -88,17 +87,24 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
             {germanInfo?.spicyLevel && (
               <div className="absolute bottom-1 left-1 flex">
                 {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
-                  <span key={i} className="text-red-500 text-xs">🌶️</span>
+                  <span key={i} className="text-red-500 text-sm">🌶️</span>
                 ))}
               </div>
             )}
+            
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <span className="text-white text-sm font-medium bg-orange-500 px-2 py-1 rounded">View Details</span>
+            </div>
           </div>
 
           {/* Pizza Info */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 min-w-0">            <div className="flex items-start justify-between mb-2">
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-gray-900 text-base leading-tight mb-1 truncate">
+                  <span className="text-sm text-gray-500 mr-1">
+                    {t('menu.productNumber', { number: id })}
+                  </span>
                   {name}
                 </h3>
                 
