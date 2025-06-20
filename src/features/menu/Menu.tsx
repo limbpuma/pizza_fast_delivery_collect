@@ -7,7 +7,6 @@ import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo } from "../../data/germanPizzaInfo";
 import { mockNonPizzaItems } from "../../data/mockNonPizzaItems";
-import QuickAddDemo from "./QuickAddDemo";
 
 function Menu() {
   const { t } = useTranslation();
@@ -76,13 +75,11 @@ function Menu() {
             <div className="text-6xl mb-4">🍕</div>
             <h3 className="text-xl font-semibold text-gray-700 mb-2">
               {t('menu.filters.noResults')}
-            </h3>
-            <p className="text-gray-500">
+            </h3>            <p className="text-gray-500">
               {t('menu.filters.adjustFilters')}
             </p>
           </div>
-        )}        {/* Quick Add Demo Component */}
-        <QuickAddDemo menu={menu} />
+        )}
       </div>
     </div>
   );
