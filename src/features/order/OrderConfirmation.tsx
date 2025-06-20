@@ -1,7 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import LinkButton from '../../ui/LinkButton';
+import { saveOrder } from '../../utils/orderCache';
 
 function OrderConfirmation() {
   const { t } = useTranslation();

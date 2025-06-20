@@ -9,6 +9,7 @@ import CreateOrder, {
 } from "./features/order/CreateOrder";
 import CheckoutForm from "./features/order/CheckoutForm";
 import OrderConfirmation from "./features/order/OrderConfirmation";
+import RecentOrders from "./features/order/RecentOrders";
 import AppLayout from "./ui/AppLayout";
 import { action as updateOrderAction } from "./features/order/UpdateOrder";
 import Error from "./ui/Error";
@@ -35,10 +36,13 @@ const router = createBrowserRouter([
         path: "/order/new",
         element: <CreateOrder />,
         action: CreateOrderAction,
-      },
-      {
+      },      {
         path: "/checkout",
         element: <CheckoutForm />,
+      },
+      {
+        path: "/my-orders",
+        element: <RecentOrders />,
       },
       {
         path: "/order-confirmation",

@@ -1,6 +1,8 @@
-{
-  "header": {
+{  "header": {
     "title": "Fast React Pizza Co."
+  },
+  "navigation": {
+    "myOrders": "Meine Bestellungen"
   },
   "home": {
     "title": "Die beste Pizza.",
@@ -45,9 +47,9 @@
     "availableSizes": "Verfügbare Größen",    "from": "ab",
     "addToBasket": "In den Warenkorb",
     "adding": "Hinzufügen...",
-    "quickAdd": "Schnell hinzufügen",
-    "addedToCart": "In Warenkorb gelegt!",
-    "productNumber": "(#{{number}})","categories": {
+    "quickAdd": "Schnell hinzufügen",    "addedToCart": "In Warenkorb gelegt!",
+    "productNumber": "(#{{number}})",
+    "categories": {
       "vegetarisch": "Vegetarisch",
       "vegan": "Vegan",
       "fleisch": "Mit Fleisch", 
@@ -278,10 +280,77 @@
     "backToMenu": "Zurück zur Speisekarte",
     "optional": "optional",
     "processing": "Verarbeitung..."
-  },"buttons": {
+  },  "buttons": {
     "delete": "Löschen",
     "update": "Aktualisieren",
     "add": "+",
     "remove": "Eins entfernen"
+  },  "orders": {
+    "title": "Meine letzten Bestellungen",
+    "close": "Schließen",
+    "deliveryMode": {
+      "delivery": "Lieferung",
+      "collection": "Abholung"
+    },
+    "paymentMethod": {
+      "cash": "Bargeld",
+      "card": "Karte"
+    },
+    "empty": {
+      "title": "Noch keine Bestellungen",
+      "description": "Ihre letzten Bestellungen werden hier angezeigt",
+      "action": "Jetzt bestellen"
+    },
+    "item": {
+      "orderNumber": "Bestellung #{{number}}",
+      "orderedOn": "Bestellt am {{date}}",
+      "total": "Gesamt: {{amount}}",
+      "items": "{{count}} Artikel",
+      "items_plural": "{{count}} Artikel",
+      "status": {
+        "pending": "Ausstehend",
+        "confirmed": "Bestätigt",
+        "preparing": "In Vorbereitung",
+        "delivered": "Geliefert",
+        "completed": "Abgeschlossen"
+      },
+      "actions": {
+        "viewDetails": "Details anzeigen",
+        "reorder": "Erneut bestellen"
+      }
+    },    "details": {
+      "title": "Bestelldetails",
+      "orderNumber": "Bestellnummer",
+      "orderInfo": "Bestellinformationen",
+      "date": "Datum",
+      "type": "Art",
+      "payment": "Zahlung",
+      "status": "Status",
+      "customer": "Kundeninformationen",
+      "address": "Lieferadresse",
+      "items": "Bestellte Artikel",
+      "instructions": "Besondere Anweisungen",
+      "close": "Schließen"
+    },
+    "stats": {
+      "totalSpent": "Gesamt ausgegeben: {{amount}}",
+      "ordersCount": "{{count}} Bestellung",
+      "ordersCount_plural": "{{count}} Bestellungen",
+      "favoriteProduct": "Meist bestellt: {{product}}",
+      "averageOrder": "Durchschnittliche Bestellung: {{amount}}"
+    },
+    "time": {
+      "minutesAgo": "vor {{count}}m",
+      "hoursAgo": "vor {{count}}h",
+      "yesterday": "Gestern",
+      "daysAgo": "vor {{count}}d"
+    },
+    "reorder": {
+      "success": "Artikel zum Warenkorb hinzugefügt!",
+      "confirmTitle": "Artikel erneut bestellen?",
+      "confirmMessage": "Dies wird Ihren aktuellen Warenkorb leeren und Artikel aus Bestellung #{{orderNumber}} hinzufügen. Fortfahren?",
+      "confirm": "Ja, erneut bestellen",
+      "cancel": "Abbrechen"
+    }
   }
 }

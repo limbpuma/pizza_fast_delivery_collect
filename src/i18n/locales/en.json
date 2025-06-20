@@ -1,7 +1,9 @@
-{
-  "header": {
+{  "header": {
     "title": "Fast React Pizza Co."
-  },  "home": {
+  },
+  "navigation": {
+    "myOrders": "My Orders"
+  },"home": {
     "title": "The best pizza.",
     "subtitle": "Straight out of the oven, straight to you.",
     "cta": "Start ordering"
@@ -35,15 +37,16 @@
     "perPizza": "per pizza",
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
-    "priceComparison": "{{price}}/100g",
-    "itemInfo": "Item Info",
+    "priceComparison": "{{price}}/100g",    "itemInfo": "Item Info",
     "selectSize": "Select Size",
-    "availableSizes": "Available Sizes",    "from": "from",
+    "availableSizes": "Available Sizes",
+    "from": "from",
     "addToBasket": "Add to basket",
     "adding": "Adding...",
     "quickAdd": "Quick Add",
     "addedToCart": "Added to cart!",
-    "productNumber": "(#{{number}})","categories": {
+    "productNumber": "(#{{number}})",
+    "categories": {
       "vegetarisch": "Vegetarian",
       "vegan": "Vegan", 
       "fleisch": "With Meat",
@@ -273,10 +276,77 @@
     "backToMenu": "Back to Menu",
     "optional": "optional",
     "processing": "Processing..."
-  },"buttons": {
+  },  "buttons": {
     "delete": "Delete",
     "update": "Update",
     "add": "+",
     "remove": "Remove one"
+  },  "orders": {
+    "title": "My Recent Orders",
+    "close": "Close",
+    "deliveryMode": {
+      "delivery": "Delivery",
+      "collection": "Collection"
+    },
+    "paymentMethod": {
+      "cash": "Cash",
+      "card": "Card"
+    },
+    "empty": {
+      "title": "No orders yet",
+      "description": "Your recent orders will appear here",
+      "action": "Start Shopping"
+    },
+    "item": {
+      "orderNumber": "Order #{{number}}",
+      "orderedOn": "Ordered {{date}}",
+      "total": "Total: {{amount}}",
+      "items": "{{count}} item",
+      "items_plural": "{{count}} items",
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "preparing": "Preparing",
+        "delivered": "Delivered",
+        "completed": "Completed"
+      },
+      "actions": {
+        "viewDetails": "View Details",
+        "reorder": "Order Again"
+      }
+    },    "details": {
+      "title": "Order Details",
+      "orderNumber": "Order Number",
+      "orderInfo": "Order Information",
+      "date": "Date",
+      "type": "Type",
+      "payment": "Payment",
+      "status": "Status",
+      "customer": "Customer Information",
+      "address": "Delivery Address",
+      "items": "Items Ordered",
+      "instructions": "Special Instructions",
+      "close": "Close"
+    },
+    "stats": {
+      "totalSpent": "Total Spent: {{amount}}",
+      "ordersCount": "{{count}} order",
+      "ordersCount_plural": "{{count}} orders",
+      "favoriteProduct": "Most Ordered: {{product}}",
+      "averageOrder": "Average Order: {{amount}}"
+    },
+    "time": {
+      "minutesAgo": "{{count}}m ago",
+      "hoursAgo": "{{count}}h ago",
+      "yesterday": "Yesterday",
+      "daysAgo": "{{count}}d ago"
+    },
+    "reorder": {
+      "success": "Items added to cart!",
+      "confirmTitle": "Reorder Items?",
+      "confirmMessage": "This will clear your current cart and add items from order #{{orderNumber}}. Continue?",
+      "confirm": "Yes, Reorder",
+      "cancel": "Cancel"
+    }
   }
 }

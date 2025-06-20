@@ -7,6 +7,7 @@ import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
 import { isValidInternationalPhone, isValidGermanPostalCode } from "../../utils/germanHelpers";
 import { isValidDeliveryZone } from "../../utils/deliveryZones";
+import { saveOrder } from "../../utils/orderCache";
 import LinkButton from "../../ui/LinkButton";
 import PhoneInput from "../../ui/PhoneInput";
 
@@ -172,9 +173,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
     try {
       // Generate order number
-      const orderNumber = generateOrderNumber();
-
-      // Save order to localStorage
+      const orderNumber = generateOrderNumber();      // Save order to cache
       const orderData = {
         orderNumber,
         timestamp: new Date().toISOString(),
@@ -186,7 +185,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           houseNumber: formData.houseNumber,
           postalCode: formData.postalCode,
           city: formData.city
-        } : null,
+        } : undefined,
         paymentMethod: formData.paymentMethod,
         specialInstructions: formData.specialInstructions,
         cart: cart,
@@ -198,10 +197,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         }
       };
 
-      // Save to localStorage
-      const existingOrders = JSON.parse(localStorage.getItem('campusPizzaOrders') || '[]');
-      existingOrders.push(orderData);
-      localStorage.setItem('campusPizzaOrders', JSON.stringify(existingOrders));
+      // Save to cache using proper utility
+      saveOrder(orderData);
 
       // Create WhatsApp message
       const whatsappMessage = createWhatsAppMessage(orderNumber);

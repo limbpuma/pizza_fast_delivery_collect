@@ -14,9 +14,13 @@ function Header() {
     >
       <Link to="/" className=" tracking-widest">
         {t('header.title')}
-      </Link>
-
-      <div className="flex items-center gap-4">
+      </Link>      <div className="flex items-center gap-4">
+        <Link 
+          to="/my-orders" 
+          className="text-stone-800 hover:text-stone-600 transition-colors text-sm font-medium tracking-wide"
+        >
+          {t('navigation.myOrders')}
+        </Link>
         <SearchOrder />
         <LanguageSwitcher />
         <Username />
