@@ -3,11 +3,75 @@
   },
   "navigation": {
     "myOrders": "Meine Bestellungen"
-  },
-  "home": {
-    "title": "Die beste Pizza.",
-    "subtitle": "Direkt aus dem Ofen, direkt zu dir.",
-    "cta": "Jetzt bestellen"
+  },  "home": {
+    "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
+    "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
+    "cta": "🍕 Jetzt bestellen",
+    "socialProof": {
+      "ordering": "{{count}} Leute bestellen gerade",
+      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)"
+    },
+    "deliveryTime": "⚡ Geliefert in {{minutes}} Min",
+    "howItWorks": {
+      "title": "So funktioniert's",
+      "step1": {
+        "title": "Details eingeben",
+        "description": "Name und PLZ zur Überprüfung der Lieferzone"
+      },
+      "step2": {
+        "title": "Pizza auswählen",
+        "description": "Durchstöbere unsere frische Speisekarte und wähle deine Favoriten"
+      },
+      "step3": {
+        "title": "Bestellen & Bezahlen",
+        "description": "Bestellung über WhatsApp abschließen. Bar oder Karte bezahlen."
+      },
+      "step4": {
+        "title": "Genießen!",
+        "description": "Heiße, frische Pizza in 15-30 Min vor deine Tür geliefert"
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "question1": {
+        "q": "Wie funktioniert die WhatsApp-Bestellung?",
+        "a": "Nach dem Hinzufügen von Artikeln zum Warenkorb erhältst du einen WhatsApp-Link mit deiner Bestellübersicht. Sende ihn an uns und wir bestätigen Lieferzeit und Zahlungsmethode."
+      },
+      "question2": {
+        "q": "Was sind die Liefergebiete?",
+        "a": "Wir liefern in 6 Zonen in Dortmund: 44149, 44147, 44227, 44225, 44137, 44135. Kostenlose Lieferung ab 12€"
+      },
+      "question3": {
+        "q": "Wie lange dauert die Lieferung?",
+        "a": "15-30 Minuten je nach Standort und Bestellgröße. Wir geben dir eine genaue Zeit bei der Bestellung."
+      },
+      "question4": {
+        "q": "Welche Zahlungsmethoden akzeptiert ihr?",
+        "a": "Barzahlung bei Lieferung oder Kartenzahlung. Du kannst deine bevorzugte Methode bei der Bestellung wählen."
+      }
+    },
+    "testimonials": {
+      "title": "Was unsere Kunden sagen",
+      "customer1": {
+        "text": "Fantastische Pizza und super schnelle Lieferung! Die WhatsApp-Bestellung ist so praktisch.",
+        "name": "Sarah M."
+      },
+      "customer2": {
+        "text": "Beste Pizza in Dortmund! Frische Zutaten und immer heiß geliefert.",
+        "name": "Mike L."
+      },
+      "customer3": {
+        "text": "Familie liebt die Vielfalt. Kostenlose Lieferung ist super!",
+        "name": "Anna M."
+      }
+    },
+    "trust": {
+      "badges": {
+        "customers": "{{count}}+ Zufriedene Kunden",
+        "secure": "Sichere Bestellung",
+        "fresh": "Frische-Garantie"
+      }
+    }
   },
   "features": {
     "fast": "Schnelle Lieferung",

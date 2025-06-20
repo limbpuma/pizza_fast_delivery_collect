@@ -3,10 +3,75 @@
   },  "navigation": {
     "myOrders": "My Orders",
     "menu": "Menu"
-  },"home": {
-    "title": "The best pizza.",
-    "subtitle": "Straight out of the oven, straight to you.",
-    "cta": "Start ordering"
+  },  "home": {
+    "title": "🍕 Fastest pizza delivery to your door!",
+    "subtitle": "Fresh pizzas in 15-30 minutes • Delivery to 6 zones in Dortmund",
+    "cta": "🍕 Order Now",
+    "socialProof": {
+      "ordering": "{{count}} people ordering right now",
+      "reviews": "{{rating}}★ ({{count}}+ reviews)"
+    },
+    "deliveryTime": "⚡ Delivered in {{minutes}} min",
+    "howItWorks": {
+      "title": "How it works",
+      "step1": {
+        "title": "Enter Details",
+        "description": "Name and postal code to check delivery zone"
+      },
+      "step2": {
+        "title": "Choose Pizza",
+        "description": "Browse our fresh menu and select your favorites"
+      },
+      "step3": {
+        "title": "Order & Pay",
+        "description": "Complete order via WhatsApp. Pay cash or card."
+      },
+      "step4": {
+        "title": "Enjoy!",
+        "description": "Hot, fresh pizza delivered to your door in 15-30 min"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "question1": {
+        "q": "How does WhatsApp ordering work?",
+        "a": "After adding items to cart, you'll get a WhatsApp link with your order summary. Send it to us and we'll confirm delivery time and payment method."
+      },
+      "question2": {
+        "q": "What are the delivery areas?",
+        "a": "We deliver to 6 zones in Dortmund: 44149, 44147, 44227, 44225, 44137, 44135. Free delivery on orders 12€+"
+      },
+      "question3": {
+        "q": "How long does delivery take?",
+        "a": "15-30 minutes depending on your location and order size. We'll give you an exact time when you place your order."
+      },
+      "question4": {
+        "q": "What payment methods do you accept?",
+        "a": "Cash on delivery or card payment. You can choose your preferred method when placing the order."
+      }
+    },
+    "testimonials": {
+      "title": "What our customers say",
+      "customer1": {
+        "text": "Amazing pizza and super fast delivery! The WhatsApp ordering is so convenient.",
+        "name": "Sarah M."
+      },
+      "customer2": {
+        "text": "Best pizza in Dortmund! Fresh ingredients and always hot when delivered.",
+        "name": "Mike L."
+      },
+      "customer3": {
+        "text": "Family loves the variety. Free delivery is awesome!",
+        "name": "Anna M."
+      }
+    },
+    "trust": {
+      "badges": {
+        "customers": "{{count}}+ Happy Customers",
+        "secure": "Secure Ordering",
+        "fresh": "Fresh Guarantee"
+      }
+    }
   },
   "features": {
     "fast": "Fast delivery",
