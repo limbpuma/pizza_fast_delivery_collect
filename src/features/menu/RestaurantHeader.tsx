@@ -196,19 +196,42 @@ function RestaurantHeader({
               <div className="mb-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-3">
                   {t('restaurant.location')}
-                </h3>
-                <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center border">
-                  <div className="text-center text-gray-600">
-                    <div className="text-4xl mb-2">🗺️</div>
-                    <p className="text-sm">
-                      Interactive map would be integrated here<br/>
-                      (Google Maps / OpenStreetMap)
-                    </p>
-                  </div>
+                </h3>                <div className="bg-gray-100 rounded-lg overflow-hidden border shadow-sm">
+                  {/* Google Maps Embed */}
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2360.866214663491!2d7.412926576469444!3d51.49926017181135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b919a92ab605d5%3A0xfaf398851fc5ea33!2sRestaurant%20Campus!5e1!3m2!1sen!2sde!4v1750446127784!5m2!1sen!2sde"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Restaurant CAMPUS Location"
+                    className="w-full h-75"
+                  />
                 </div>                <div className="mt-3 text-sm text-gray-600">
                   <p><strong>{t('restaurant.address')}:</strong></p>
                   <p>Knappenstraße 46</p>
                   <p>44149 Dortmund, Deutschland</p>
+                  
+                  {/* Get Directions Button */}
+                  <div className="mt-3">
+                    <a
+                      href="https://maps.app.goo.gl/jTLcQ6XSu4apoTb3A"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md transition-colors duration-200 shadow-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span>{t('restaurant.getDirections')}</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
 

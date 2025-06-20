@@ -331,8 +331,9 @@
     "acceptedPayments": "Cash, Card, PayPal, Apple Pay",    "downloadMenu": "Download Menu",
     "menuPdf": "Download PDF Menu",
     "printable": "Printable version",
-    "orderOnLieferando": "Order on Lieferando"
-  },  "footer": {
+    "orderOnLieferando": "Order on Lieferando",
+    "getDirections": "Get Directions"
+  },"footer": {
     "description": "Restaurant CAMPUS – The Pizza Professionals. Authentic Italian pizza delivered fresh to your door. Made with the finest ingredients and traditional recipes.",
     "contact": "Contact",
     "phone": "Phone: 0231 - 72 56 668",
