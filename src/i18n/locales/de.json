@@ -129,6 +129,7 @@
     "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
     "phone": "Telefonnummer",
     "phonePlaceholder": "+49 xxx xxx xxxx",
+    "address": "Adresse und Nummer",
     "street": "Straßenname",
     "streetPlaceholder": "z.B. Musterstraße",
     "houseNumber": "Hausnummer",
@@ -160,12 +161,12 @@
       "postalCodeInvalid": "Bitte geben Sie eine gültige 5-stellige Postleitzahl ein",
       "postalCodeNotInZone": "Entschuldigung, wir liefern nicht in diese Postleitzahl",
       "submitError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-    },
-    "whatsappMessage": {
+    },    "whatsappMessage": {
       "title": "Campus Pizza Express - Neue Bestellung",
       "orderNumber": "Bestellung #{{orderNumber}}",
       "phone": "Telefon: {{phone}}",
       "customer": "Kunde:",
+      "address": "Lieferadresse:",
       "products": "Produkte:",
       "summary": "Zusammenfassung:",
       "subtotal": "Zwischensumme: {{amount}}",

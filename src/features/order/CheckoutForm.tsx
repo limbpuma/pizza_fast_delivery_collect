@@ -120,11 +120,12 @@ function CheckoutForm() {
     
     const paymentMethodText = formData.paymentMethod === 'cash' 
       ? t('checkout.whatsappMessage.paymentCash')
-      : t('checkout.whatsappMessage.paymentCard');
-
-    let addressInfo = '';
+      : t('checkout.whatsappMessage.paymentCard');    let addressInfo = '';
     if (deliveryMode === 'delivery' && formData.address && formData.postalCode) {
-      addressInfo = `\n📍 ${t('checkout.whatsappMessage.address', { address: formData.address, postal: formData.postalCode, city: formData.city })}`;
+      // Format address for Google Maps - making it clickable
+      const fullAddress = `${formData.address}, ${formData.postalCode} ${formData.city}, Deutschland`;
+      const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(fullAddress)}`;
+      addressInfo = `\n📍 *${t('checkout.whatsappMessage.address')}*\n${fullAddress}\n🗺️ Google Maps: ${googleMapsUrl}`;
     }
 
     const specialInstructionsText = formData.specialInstructions?.trim() 
@@ -136,7 +137,7 @@ function CheckoutForm() {
 📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
 📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
 
-👤 *${t('checkout.whatsappMessage.customer', { customer: formData.customer })}*${addressInfo}
+👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}
 
 🛒 *${t('checkout.whatsappMessage.products')}*
 ${orderItems}
