@@ -121,11 +121,12 @@
     "specialInstructions": "Special Instructions",
     "finalTotal": "Final Total",
     "placeOrder": "Place Order via WhatsApp",
-    "whatsappNote": "Your order will be sent via WhatsApp to our restaurant",
-    "name": "Full Name",
+    "whatsappNote": "Your order will be sent via WhatsApp to our restaurant",    "name": "Full Name",
     "namePlaceholder": "Enter your full name",
     "phone": "Phone Number",
     "phonePlaceholder": "+49 xxx xxx xxxx",
+    "address": "Address",
+    "addressPlaceholder": "e.g. Musterstraße 123a",
     "street": "Street Name",
     "streetPlaceholder": "e.g. Main Street",
     "houseNumber": "House Number",
@@ -146,11 +147,11 @@
     "total": "Total",
     "specialInstructionsPlaceholder": "Ring doorbell, leave at door, etc.",
     "selectCountryCode": "Select country code",
-    "phoneHelper": "Enter your phone number without country code",
-    "errors": {
+    "phoneHelper": "Enter your phone number without country code",    "errors": {
       "nameRequired": "Name is required",
       "phoneRequired": "Phone number is required",
       "phoneInvalid": "Please enter a valid phone number",
+      "addressRequired": "Address is required",
       "streetRequired": "Street name is required", 
       "houseNumberRequired": "House number is required",
       "postalCodeRequired": "Postal code is required",
@@ -158,11 +159,11 @@
       "postalCodeNotInZone": "Sorry, we don't deliver to this postal code",
       "submitError": "An error occurred. Please try again."
     },
-    "whatsappMessage": {
-      "title": "Campus Pizza Express - New Order",
+    "whatsappMessage": {      "title": "Campus Pizza Express - New Order",
       "orderNumber": "Order #{{orderNumber}}",
       "phone": "Phone: {{phone}}",
-      "customer": "Customer:",
+      "customer": "Customer: {{customer}}",
+      "address": "Address: {{address}}, {{postal}} {{city}}",
       "products": "Products:",
       "summary": "Summary:",
       "subtotal": "Subtotal: {{amount}}",
@@ -174,7 +175,8 @@
       "deliveryType": "Home delivery",
       "collectionType": "Store pickup",
       "paymentCash": "Cash",
-      "paymentCard": "Card",      "specialInstructions": "Special instructions: {{instructions}}"
+      "paymentCard": "Card",
+      "specialInstructions": "Special instructions: {{instructions}}"
     }
   },
   "orderConfirmation": {

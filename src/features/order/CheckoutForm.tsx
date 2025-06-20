@@ -14,8 +14,7 @@ import PhoneInput from "../../ui/PhoneInput";
 interface FormData {
   customer: string;
   phone: string;
-  street?: string;
-  houseNumber?: string;
+  address?: string; // Combined street and house number
   postalCode?: string;
   city?: string;
   paymentMethod: 'cash' | 'card';
@@ -25,8 +24,7 @@ interface FormData {
 interface FormErrors {
   customer?: string;
   phone?: string;
-  street?: string;
-  houseNumber?: string;
+  address?: string; // Combined address field
   postalCode?: string;
 }
 
@@ -48,13 +46,11 @@ function CheckoutForm() {
   const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
   const maxServiceFee = 0.99;
   const finalServiceFee = Math.min(serviceFee, maxServiceFee);
-  const total = subtotal + deliveryFee + finalServiceFee;
-  // Form state
+  const total = subtotal + deliveryFee + finalServiceFee;  // Form state
   const [formData, setFormData] = useState<FormData>({
     customer: '',
     phone: '+49',
-    street: '',
-    houseNumber: '',
+    address: '',
     postalCode: '',
     city: 'Dortmund',
     paymentMethod: 'cash',
@@ -86,16 +82,10 @@ function CheckoutForm() {
       newErrors.phone = t('checkout.errors.phoneRequired', { default: 'Phone number is required' });
     } else if (!isValidInternationalPhone(formData.phone)) {
       newErrors.phone = t('checkout.errors.phoneInvalid', { default: 'Please enter a valid phone number' });
-    }
-
-    // Delivery-specific validation
+    }    // Delivery-specific validation
     if (deliveryMode === 'delivery') {
-      if (!formData.street?.trim()) {
-        newErrors.street = t('checkout.errors.streetRequired', { default: 'Street name is required' });
-      }
-
-      if (!formData.houseNumber?.trim()) {
-        newErrors.houseNumber = t('checkout.errors.houseNumberRequired', { default: 'House number is required' });
+      if (!formData.address?.trim()) {
+        newErrors.address = t('checkout.errors.addressRequired', { default: 'Address is required' });
       }
 
       if (!formData.postalCode?.trim()) {
@@ -124,17 +114,18 @@ function CheckoutForm() {
       `${item.quantity}x ${t('menu.productNumber', { number: item.pizzaId })} ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
     ).join('\n');
 
-    const customerInfo = deliveryMode === 'delivery' 
-      ? `${formData.customer}\n${formData.street} ${formData.houseNumber}\n${formData.postalCode} ${formData.city}`
-      : formData.customer;
-
     const deliveryTypeText = deliveryMode === 'delivery' 
       ? t('checkout.whatsappMessage.deliveryType')
       : t('checkout.whatsappMessage.collectionType');
-
+    
     const paymentMethodText = formData.paymentMethod === 'cash' 
       ? t('checkout.whatsappMessage.paymentCash')
       : t('checkout.whatsappMessage.paymentCard');
+
+    let addressInfo = '';
+    if (deliveryMode === 'delivery' && formData.address && formData.postalCode) {
+      addressInfo = `\n📍 ${t('checkout.whatsappMessage.address', { address: formData.address, postal: formData.postalCode, city: formData.city })}`;
+    }
 
     const specialInstructionsText = formData.specialInstructions?.trim() 
       ? `\n📝 ${t('checkout.whatsappMessage.specialInstructions', { instructions: formData.specialInstructions })}`
@@ -145,8 +136,7 @@ function CheckoutForm() {
 📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
 📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
 
-👤 *${t('checkout.whatsappMessage.customer')}*
-${customerInfo}
+👤 *${t('checkout.whatsappMessage.customer', { customer: formData.customer })}*${addressInfo}
 
 🛒 *${t('checkout.whatsappMessage.products')}*
 ${orderItems}
@@ -179,12 +169,11 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         timestamp: new Date().toISOString(),
         customer: formData.customer,
         phone: formData.phone,
-        deliveryMode,
-        address: deliveryMode === 'delivery' ? {
-          street: formData.street,
-          houseNumber: formData.houseNumber,
-          postalCode: formData.postalCode,
-          city: formData.city
+        deliveryMode,        address: deliveryMode === 'delivery' ? {
+          street: formData.address || '',
+          houseNumber: '',
+          postalCode: formData.postalCode || '',
+          city: formData.city || 'Dortmund'
         } : undefined,
         paymentMethod: formData.paymentMethod,
         specialInstructions: formData.specialInstructions,
@@ -373,43 +362,23 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </svg>
                 {t('checkout.deliveryAddress', { default: 'Delivery Address' })}
               </h3>
-              
-              <div className="space-y-4">
-                {/* Street */}
+                <div className="space-y-4">
+                {/* Address */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('checkout.street', { default: 'Street Name' })} *
+                    {t('checkout.address', { default: 'Address' })} *
                   </label>
                   <input
                     type="text"
-                    value={formData.street}
-                    onChange={(e) => handleInputChange('street', e.target.value)}
+                    value={formData.address}
+                    onChange={(e) => handleInputChange('address', e.target.value)}
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
-                      errors.street ? 'border-red-500' : 'border-gray-300'
+                      errors.address ? 'border-red-500' : 'border-gray-300'
                     }`}
-                    placeholder={t('checkout.streetPlaceholder', { default: 'e.g. Musterstraße' })}
+                    placeholder={t('checkout.addressPlaceholder', { default: 'e.g. Musterstraße 123a' })}
                   />
-                  {errors.street && (
-                    <p className="mt-1 text-sm text-red-600">{errors.street}</p>
-                  )}
-                </div>
-
-                {/* House Number */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('checkout.houseNumber', { default: 'House Number' })} *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.houseNumber}
-                    onChange={(e) => handleInputChange('houseNumber', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
-                      errors.houseNumber ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder={t('checkout.houseNumberPlaceholder', { default: 'e.g. 123a' })}
-                  />
-                  {errors.houseNumber && (
-                    <p className="mt-1 text-sm text-red-600">{errors.houseNumber}</p>
+                  {errors.address && (
+                    <p className="mt-1 text-sm text-red-600">{errors.address}</p>
                   )}
                 </div>
 

@@ -95,14 +95,12 @@ function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalProps) {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Delivery Address */}
+          </div>          {/* Delivery Address */}
           {order.deliveryMode === 'delivery' && order.address && (
             <div>
               <h3 className="font-medium text-gray-900 mb-2">{t('orders.details.address')}</h3>
               <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700">
-                {order.address.street} {order.address.houseNumber}<br />
+                {order.address.street}<br />
                 {order.address.postalCode} {order.address.city}
               </div>
             </div>
