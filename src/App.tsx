@@ -13,6 +13,11 @@ import RecentOrders from "./features/order/RecentOrders";
 import AppLayout from "./ui/AppLayout";
 import { action as updateOrderAction } from "./features/order/UpdateOrder";
 import Error from "./ui/Error";
+// Legal Pages
+import ImpressumPage from "./pages/legal/ImpressumPage";
+import DatenschutzPage from "./pages/legal/DatenschutzPage";
+import AGBPage from "./pages/legal/AGBPage";
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -43,10 +48,33 @@ const router = createBrowserRouter([
       {
         path: "/my-orders",
         element: <RecentOrders />,
-      },
-      {
+      },      {
         path: "/order-confirmation",
         element: <OrderConfirmation />,
+      },
+      {
+        path: "/impressum",
+        element: <ImpressumPage />,
+      },
+      {
+        path: "/imprint",
+        element: <ImpressumPage />,
+      },
+      {
+        path: "/datenschutz",
+        element: <DatenschutzPage />,
+      },
+      {
+        path: "/privacy",
+        element: <DatenschutzPage />,
+      },
+      {
+        path: "/agb",
+        element: <AGBPage />,
+      },
+      {
+        path: "/terms",
+        element: <AGBPage />,
       },
       {
         path: "/order/:orderId",

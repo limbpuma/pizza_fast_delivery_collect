@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   const { t } = useTranslation();
@@ -45,32 +46,25 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-orange-400">
               {t('footer.quickLinks', { default: 'Quick Links' })}
-            </h3>
-            <div className="space-y-2 text-sm">
-              <a 
-                href="/privacy" 
+            </h3>            <div className="space-y-2 text-sm">
+              <Link 
+                to="/datenschutz" 
                 className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
               >
-                {t('footer.privacy', { default: 'Privacy Policy' })}
-              </a>
-              <a 
-                href="/terms" 
+                {t('footer.privacy', { default: 'Datenschutz' })}
+              </Link>
+              <Link 
+                to="/agb" 
                 className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
               >
-                {t('footer.terms', { default: 'Terms & Conditions' })}
-              </a>
-              <a 
-                href="/imprint" 
+                {t('footer.terms', { default: 'AGB' })}
+              </Link>
+              <Link 
+                to="/impressum" 
                 className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
               >
-                {t('footer.imprint', { default: 'Imprint' })}
-              </a>
-              <a 
-                href="/cookies" 
-                className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
-              >
-                {t('footer.cookies', { default: 'Cookie Settings' })}
-              </a>
+                {t('footer.imprint', { default: 'Impressum' })}
+              </Link>
             </div>
           </div>
         </div>
