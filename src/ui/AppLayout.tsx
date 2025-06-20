@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Outlet, useNavigation } from "react-router-dom";
-import CartOverview from "../features/cart/CartOverview";
 import CartSidebar from "../features/cart/CartSidebar";
 import CartToggle from "../features/cart/CartToggle";
 import Header from "./Header";
@@ -25,12 +24,8 @@ function AppLayout() {
       <div className="flex-1">
         <main className="max-w-3xl mx-auto">
           <Outlet />
-        </main>
-      </div>
+        </main>      </div>
 
-      {/* Legacy CartOverview - will be removed after testing */}
-      <CartOverview />
-      
       {/* New Cart System */}
       <CartToggle onOpenCart={handleOpenCart} />
       <CartSidebar isOpen={isCartOpen} onClose={handleCloseCart} />

@@ -51,14 +51,13 @@ function RecentOrders() {
     try {
       // Clear current cart
       dispatch(clearCart());
-      
-      // Add items from the order
+        // Add items from the order
       showReorderConfirm.cart.forEach(item => {
         dispatch(addItem(item));
       });
 
-      // Navigate to cart with delivery mode from the order
-      navigate('/cart', {
+      // Navigate to checkout with delivery mode from the order
+      navigate('/checkout', {
         state: {
           deliveryMode: showReorderConfirm.deliveryMode,
           reorderFrom: showReorderConfirm.orderNumber
