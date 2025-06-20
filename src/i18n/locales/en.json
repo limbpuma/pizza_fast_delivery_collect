@@ -84,8 +84,13 @@
     "service": "service"
   },"user": {
     "welcome": "👋 Welcome! Please start by telling us your name:",
-    "namePlaceholder": "Your full name",
-    "postalCodePlaceholder": "Postal code (for delivery area)",
+    "subtitle": "Enter your postal code to start ordering delicious pizza! 🍕",
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "Your name or 'Guest'",
+    "postalCodeLabel": "Postal Code *",
+    "postalCodePlaceholder": "e.g. 44149",
+    "deliveryAreas": "We deliver to: 44149, 44147, 44227, 44225, 44137, 44135",
+    "startOrdering": "🍕 Start Ordering",
     "continueButton": "Continue",
     "greeting": "Welcome back, {{name}}!",
     "deliveryError": "⚠️ Sorry, we don't deliver to your area yet. We're working to expand our delivery zone!",
@@ -325,19 +330,18 @@
     "minutes": "minutes",
     "paymentMethods": "Payment methods",
     "acceptedPayments": "Cash, Card, PayPal, Apple Pay"  },  "footer": {
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "imprint": "Imprint",
-    "cookies": "Cookie Settings",
-    "allRights": "All rights reserved.",
-    "serviceArea": "Delivery service in Dortmund and surrounding areas",
     "description": "Authentic Italian pizza delivered fresh to your door. Made with the finest ingredients and traditional recipes.",
-    "deliveryTime": "Average delivery time: 25-35 minutes",
     "contact": "Contact",
     "phone": "Phone: +49 231 123 456",
-    "email": "Email: info@campuspizza.de",
+    "email": "Email: info@campuspizza.de", 
     "address": "Address: Campus Street 123, 44227 Dortmund",
-    "quickLinks": "Quick Links"
+    "serviceArea": "Delivery service in Dortmund and surrounding areas",
+    "deliveryTime": "Average delivery time: 25-35 minutes",
+    "quickLinks": "Quick Links",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions", 
+    "imprint": "Imprint",
+    "allRights": "All rights reserved."
   },"common": {
     "loading": "Loading...",
     "error": "Something went wrong",

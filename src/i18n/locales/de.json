@@ -85,8 +85,13 @@
   },
   "user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
-    "namePlaceholder": "Dein vollständiger Name",
-    "postalCodePlaceholder": "PLZ (für Liefergebiet)",
+    "subtitle": "Gib deine PLZ ein, um leckere Pizza zu bestellen! 🍕",
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "Dein Name oder 'Gast'",
+    "postalCodeLabel": "Postleitzahl *",
+    "postalCodePlaceholder": "z.B. 44149",
+    "deliveryAreas": "Wir liefern nach: 44149, 44147, 44227, 44225, 44137, 44135",
+    "startOrdering": "🍕 Bestellung starten",
     "continueButton": "Weiter",
     "greeting": "Willkommen zurück, {{name}}!",
     "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
@@ -327,12 +332,18 @@
     "paymentMethods": "Zahlungsmethoden",
     "acceptedPayments": "Bar, Karte, PayPal, Apple Pay"  },
   "footer": {
+    "description": "Authentische italienische Pizza frisch vor deine Tür geliefert. Hergestellt mit den besten Zutaten und traditionellen Rezepten.",
+    "contact": "Kontakt",
+    "phone": "Telefon: +49 231 123 456",
+    "email": "E-Mail: info@campuspizza.de",
+    "address": "Adresse: Campus Straße 123, 44227 Dortmund",
+    "serviceArea": "Lieferservice in Dortmund und Umgebung",
+    "deliveryTime": "Durchschnittliche Lieferzeit: 25-35 Minuten",
+    "quickLinks": "Schnellzugriff",
     "privacy": "Datenschutz",
     "terms": "AGB",
-    "imprint": "Impressum", 
-    "cookies": "Cookie-Einstellungen",
-    "allRights": "Alle Rechte vorbehalten.",
-    "serviceArea": "Lieferservice in Dortmund und Umgebung"
+    "imprint": "Impressum",
+    "allRights": "Alle Rechte vorbehalten."
   },  "common": {
     "loading": "Lädt...",
     "error": "Etwas ist schiefgegangen",

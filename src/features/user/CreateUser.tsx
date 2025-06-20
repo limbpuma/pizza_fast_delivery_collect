@@ -37,37 +37,34 @@ function CreateUser() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="text-center">
+    <form onSubmit={handleSubmit} className="space-y-6">      <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
           {t('user.welcome')}
         </h2>
         <p className="text-sm text-gray-600">
-          Enter your postal code to start ordering delicious pizza! 🍕
+          {t('user.subtitle')}
         </p>
       </div>
 
-      <div className="space-y-4">
-        <div>
+      <div className="space-y-4">        <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Name (optional)
+            {t('user.nameLabel')}
           </label>
           <input
             type="text"
-            placeholder="Your name or 'Guest'"
+            placeholder={t('user.namePlaceholder')}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
           />
         </div>
-        
-        <div>
+          <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Postal Code *
+            {t('user.postalCodeLabel')}
           </label>
           <input
             type="text"
-            placeholder="e.g. 44149"
+            placeholder={t('user.postalCodePlaceholder')}
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
@@ -76,7 +73,7 @@ function CreateUser() {
             required
           />
           <p className="mt-1 text-xs text-gray-500">
-            We deliver to: 44149, 44147, 44227, 44225, 44137, 44135
+            {t('user.deliveryAreas')}
           </p>
         </div>
       </div>
@@ -88,12 +85,10 @@ function CreateUser() {
             {t('user.deliveryZoneInfo')}
           </p>
         </div>
-      )}
-
-      <div className="text-center">
+      )}      <div className="text-center">
         <Button type="primary" disabled={!postalCode || !!deliveryError}>
           <span className="flex items-center gap-2">
-            <span>🍕 Start Ordering</span>
+            <span>{t('user.startOrdering')}</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
