@@ -7,7 +7,6 @@ import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
 import { isValidGermanPhone, isValidGermanPostalCode } from "../../utils/germanHelpers";
 import { isValidDeliveryZone } from "../../utils/deliveryZones";
-import Button from "../../ui/Button";
 import LinkButton from "../../ui/LinkButton";
 
 interface FormData {
@@ -233,273 +232,360 @@ ${formData.specialInstructions ? `📝 *Instrucciones:* ${formData.specialInstru
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="px-4 py-6 max-w-2xl mx-auto">
-      <div className="mb-4">
-        <LinkButton to="/menu">&larr; {t('common.backToMenu', { default: 'Back to Menu' })}</LinkButton>
-      </div>
-
-      <h2 className="mb-8 text-xl font-semibold">
-        {deliveryMode === 'delivery' 
-          ? t('checkout.titleDelivery', { default: 'Checkout - Delivery' })
-          : t('checkout.titleCollection', { default: 'Checkout - Collection' })
-        }
-      </h2>
-
-      {/* Order Summary */}
-      <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-        <h3 className="font-semibold text-blue-900 mb-3">
-          {t('checkout.orderSummary', { default: 'Order Summary' })}
-        </h3>
-        <div className="space-y-2">
-          {cart.map((item: any) => (
-            <div key={`${item.pizzaId}-${item.size}`} className="flex justify-between text-sm">
-              <span className="text-blue-800">
-                {item.quantity}x {item.name} 
-                {item.size && item.size !== 'standard' && ` (${item.size})`}
-              </span>
-              <span className="font-medium text-blue-900">{formatCurrency(item.totalPrice)}</span>
-            </div>
-          ))}
-          
-          {/* Pricing breakdown */}
-          <div className="border-t border-blue-300 pt-2 space-y-1">
-            <div className="flex justify-between text-sm text-blue-700">
-              <span>Subtotal:</span>
-              <span>{formatCurrency(subtotal)}</span>
-            </div>
-            {deliveryMode === 'delivery' && (
-              <div className="flex justify-between text-sm text-blue-700">
-                <span>Delivery fee:</span>
-                <span>{formatCurrency(deliveryFee)}</span>
-              </div>
-            )}
-            <div className="flex justify-between text-sm text-blue-700">
-              <span>Service fee (2.5%):</span>
-              <span>{formatCurrency(finalServiceFee)}</span>
-            </div>
-            <div className="flex justify-between font-semibold text-blue-900 border-t border-blue-300 pt-1">
-              <span>Total:</span>
-              <span>{formatCurrency(total)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Checkout Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Customer Information */}
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-semibold text-gray-900 mb-4">
-            {t('checkout.customerInfo', { default: 'Customer Information' })}
-          </h3>
-          
-          {/* Name */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.name', { default: 'Full Name' })} *
-            </label>
-            <input
-              type="text"
-              value={formData.customer}
-              onChange={(e) => handleInputChange('customer', e.target.value)}
-              className={`input w-full ${errors.customer ? 'border-red-500' : ''}`}
-              placeholder={t('checkout.namePlaceholder', { default: 'Enter your full name' })}
-            />
-            {errors.customer && (
-              <p className="mt-1 text-sm text-red-600">{errors.customer}</p>
-            )}
-          </div>
-
-          {/* Phone */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.phone', { default: 'Phone Number' })} *
-            </label>
-            <input
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => handleInputChange('phone', e.target.value)}
-              className={`input w-full ${errors.phone ? 'border-red-500' : ''}`}
-              placeholder={t('checkout.phonePlaceholder', { default: '+49 xxx xxx xxxx' })}
-            />
-            {errors.phone && (
-              <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
-            )}
-          </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="px-4 py-6 max-w-2xl mx-auto">
+        {/* Header */}
+        <div className="mb-6">
+          <LinkButton to="/menu">&larr; {t('common.backToMenu', { default: 'Back to Menu' })}</LinkButton>
         </div>
 
-        {/* Delivery Address (only for delivery) */}
-        {deliveryMode === 'delivery' && (
-          <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-            <h3 className="font-semibold text-yellow-900 mb-4">
-              {t('checkout.deliveryAddress', { default: 'Delivery Address' })}
-            </h3>
-            
-            {/* Street */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-yellow-800 mb-2">
-                {t('checkout.street', { default: 'Street Name' })} *
-              </label>
-              <input
-                type="text"
-                value={formData.street}
-                onChange={(e) => handleInputChange('street', e.target.value)}
-                className={`input w-full ${errors.street ? 'border-red-500' : ''}`}
-                placeholder={t('checkout.streetPlaceholder', { default: 'e.g. Musterstraße' })}
-              />
-              {errors.street && (
-                <p className="mt-1 text-sm text-red-600">{errors.street}</p>
-              )}
-            </div>
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            {deliveryMode === 'delivery' 
+              ? t('checkout.titleDelivery', { default: 'Checkout - Delivery' })
+              : t('checkout.titleCollection', { default: 'Checkout - Collection' })
+            }
+          </h1>
+          <p className="text-gray-600">
+            {deliveryMode === 'delivery' 
+              ? t('checkout.deliverySubtitle', { default: 'Complete your delivery details' })
+              : t('checkout.collectionSubtitle', { default: 'Complete your pickup details' })
+            }
+          </p>
+        </div>
 
-            {/* House Number */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-yellow-800 mb-2">
-                {t('checkout.houseNumber', { default: 'House Number' })} *
-              </label>
-              <input
-                type="text"
-                value={formData.houseNumber}
-                onChange={(e) => handleInputChange('houseNumber', e.target.value)}
-                className={`input w-full ${errors.houseNumber ? 'border-red-500' : ''}`}
-                placeholder={t('checkout.houseNumberPlaceholder', { default: 'e.g. 123a' })}
-              />
-              {errors.houseNumber && (
-                <p className="mt-1 text-sm text-red-600">{errors.houseNumber}</p>
-              )}
-            </div>
-
-            {/* Postal Code and City */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="block text-sm font-medium text-yellow-800 mb-2">
-                  {t('checkout.postalCode', { default: 'Postal Code' })} *
-                </label>
-                <input
-                  type="text"
-                  value={formData.postalCode}
-                  onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                  className={`input w-full ${errors.postalCode ? 'border-red-500' : ''}`}
-                  placeholder="44149"
-                  maxLength={5}
-                />
-                {errors.postalCode && (
-                  <p className="mt-1 text-sm text-red-600">{errors.postalCode}</p>
-                )}
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-yellow-800 mb-2">
-                  {t('checkout.city', { default: 'City' })}
-                </label>
-                <input
-                  type="text"
-                  value={formData.city}
-                  onChange={(e) => handleInputChange('city', e.target.value)}
-                  className="input w-full"
-                  readOnly
-                />
-              </div>
-            </div>
-
-            {/* Delivery zones info */}
-            <div className="text-sm text-yellow-700 bg-yellow-100 p-3 rounded">
-              <p className="font-medium mb-1">
-                {t('checkout.deliveryZones', { default: 'Delivery Zones:' })}
-              </p>
-              <p>44149, 44147, 44227, 44225, 44137, 44135</p>
-            </div>
-          </div>
-        )}
-
-        {/* Payment Method */}
-        <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-          <h3 className="font-semibold text-green-900 mb-4">
-            {t('checkout.paymentMethod', { default: 'Payment Method' })}
+        {/* Order Summary */}
+        <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            {t('checkout.orderSummary', { default: 'Order Summary' })}
           </h3>
           
           <div className="space-y-3">
-            <label className="flex items-center">
-              <input
-                type="radio"
-                value="cash"
-                checked={formData.paymentMethod === 'cash'}
-                onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                className="mr-3"
-              />
-              <span className="text-green-800">
-                {deliveryMode === 'delivery' 
-                  ? t('checkout.cashOnDelivery', { default: 'Cash on delivery' })
-                  : t('checkout.cashOnPickup', { default: 'Cash on pickup' })
-                }
-              </span>
-            </label>
-            
-            <label className="flex items-center">
-              <input
-                type="radio"
-                value="card"
-                checked={formData.paymentMethod === 'card'}
-                onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                className="mr-3"
-              />
-              <span className="text-green-800">
-                {deliveryMode === 'delivery' 
-                  ? t('checkout.cardOnDelivery', { default: 'Card on delivery' })
-                  : t('checkout.cardOnPickup', { default: 'Card on pickup' })
-                }
-              </span>
-            </label>
+            {cart.map((item: any) => (
+              <div key={`${item.pizzaId}-${item.size || 'default'}`} className="flex justify-between items-center py-2">
+                <div className="flex-1">
+                  <div className="font-medium text-gray-900">
+                    {item.quantity}× {item.name}
+                    {item.size && ` (${item.size})`}
+                  </div>
+                  {item.ingredients && item.ingredients.length > 0 && (
+                    <div className="text-sm text-gray-600">
+                      {item.ingredients.slice(0, 3).join(', ')}
+                      {item.ingredients.length > 3 && '...'}
+                    </div>
+                  )}
+                </div>
+                <div className="font-semibold text-gray-900">
+                  {formatCurrency(item.totalPrice)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-gray-200 mt-4 pt-4">
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">{t('checkout.subtotal', { default: 'Subtotal' })}</span>
+                <span className="font-medium">{formatCurrency(subtotal)}</span>
+              </div>
+              
+              {deliveryMode === 'delivery' && (
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">{t('checkout.deliveryFee', { default: 'Delivery fee' })}</span>
+                  <span className="font-medium">{formatCurrency(deliveryFee)}</span>
+                </div>
+              )}
+              
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">{t('checkout.serviceFee', { default: 'Service fee' })} (2.5%)</span>
+                <span className="font-medium">{formatCurrency(finalServiceFee)}</span>
+              </div>
+              
+              <div className="border-t border-gray-200 pt-2">
+                <div className="flex justify-between font-bold text-lg">
+                  <span className="text-gray-900">{t('checkout.total', { default: 'Total' })}</span>
+                  <span className="text-orange-600">{formatCurrency(total)}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Special Instructions */}
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-semibold text-gray-900 mb-4">
-            {t('checkout.specialInstructions', { default: 'Special Instructions' })} 
-            <span className="text-gray-500 font-normal"> ({t('common.optional', { default: 'optional' })})</span>
-          </h3>
-          
-          <textarea
-            value={formData.specialInstructions}
-            onChange={(e) => handleInputChange('specialInstructions', e.target.value)}
-            className="input w-full h-20 resize-none"
-            placeholder={t('checkout.specialInstructionsPlaceholder', { 
-              default: 'Ring doorbell, leave at door, etc.' 
-            })}
-            maxLength={200}
-          />
-          <p className="mt-1 text-xs text-gray-500">
-            {formData.specialInstructions?.length || 0}/200
-          </p>
-        </div>
+        {/* Customer Information Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              {t('checkout.customerInfo', { default: 'Customer Information' })}
+            </h3>
+            
+            <div className="space-y-4">
+              {/* Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t('checkout.name', { default: 'Full Name' })} *
+                </label>
+                <input
+                  type="text"
+                  value={formData.customer}
+                  onChange={(e) => handleInputChange('customer', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                    errors.customer ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder={t('checkout.namePlaceholder', { default: 'Enter your full name' })}
+                />
+                {errors.customer && (
+                  <p className="mt-1 text-sm text-red-600">{errors.customer}</p>
+                )}
+              </div>
 
-        {/* Submit Button */}
-        <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-orange-800 font-medium">
-                {t('checkout.finalTotal', { default: 'Final Total' })}
-              </span>
-              <span className="text-orange-900 font-bold text-lg">{formatCurrency(total)}</span>
+              {/* Phone */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t('checkout.phone', { default: 'Phone Number' })} *
+                </label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                    errors.phone ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  placeholder={t('checkout.phonePlaceholder', { default: '+49 xxx xxx xxxx' })}
+                />
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                )}
+              </div>
             </div>
-          </div>          <Button 
-            type="primary" 
-            disabled={isSubmitting}
-          >
-            {isSubmitting
-              ? t('common.processing', { default: 'Processing...' })
-              : t('checkout.placeOrder', { default: 'Place Order via WhatsApp' })
-            }
-          </Button>
+          </div>
 
-          <p className="mt-3 text-xs text-center text-orange-600">
-            {t('checkout.whatsappNote', { 
-              default: 'Your order will be sent via WhatsApp to our restaurant' 
-            })}
-          </p>
-        </div>
-      </form>
+          {/* Delivery Address (only for delivery) */}
+          {deliveryMode === 'delivery' && (
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {t('checkout.deliveryAddress', { default: 'Delivery Address' })}
+              </h3>
+              
+              <div className="space-y-4">
+                {/* Street */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('checkout.street', { default: 'Street Name' })} *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.street}
+                    onChange={(e) => handleInputChange('street', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                      errors.street ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder={t('checkout.streetPlaceholder', { default: 'e.g. Musterstraße' })}
+                  />
+                  {errors.street && (
+                    <p className="mt-1 text-sm text-red-600">{errors.street}</p>
+                  )}
+                </div>
+
+                {/* House Number */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('checkout.houseNumber', { default: 'House Number' })} *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.houseNumber}
+                    onChange={(e) => handleInputChange('houseNumber', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                      errors.houseNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder={t('checkout.houseNumberPlaceholder', { default: 'e.g. 123a' })}
+                  />
+                  {errors.houseNumber && (
+                    <p className="mt-1 text-sm text-red-600">{errors.houseNumber}</p>
+                  )}
+                </div>
+
+                {/* Postal Code and City */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('checkout.postalCode', { default: 'Postal Code' })} *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.postalCode}
+                      onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
+                        errors.postalCode ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="44149"
+                      maxLength={5}
+                    />
+                    {errors.postalCode && (
+                      <p className="mt-1 text-sm text-red-600">{errors.postalCode}</p>
+                    )}
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('checkout.city', { default: 'City' })}
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50"
+                      readOnly
+                    />
+                  </div>
+                </div>
+
+                {/* Delivery zones info */}
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-orange-800 mb-1">
+                        {t('checkout.deliveryZones', { default: 'Delivery Zones:' })}
+                      </p>
+                      <p className="text-sm text-orange-700">44149, 44147, 44227, 44225, 44137, 44135</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Payment Method */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              {t('checkout.paymentMethod', { default: 'Payment Method' })}
+            </h3>
+            
+            <div className="space-y-3">
+              <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                <input
+                  type="radio"
+                  value="cash"
+                  checked={formData.paymentMethod === 'cash'}
+                  onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+                  className="mr-3 text-orange-500 focus:ring-orange-500"
+                />
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span className="font-medium text-gray-900">
+                    {deliveryMode === 'delivery' 
+                      ? t('checkout.cashOnDelivery', { default: 'Cash on delivery' })
+                      : t('checkout.cashOnPickup', { default: 'Cash on pickup' })
+                    }
+                  </span>
+                </div>
+              </label>
+              
+              <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                <input
+                  type="radio"
+                  value="card"
+                  checked={formData.paymentMethod === 'card'}
+                  onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+                  className="mr-3 text-orange-500 focus:ring-orange-500"
+                />
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                  <span className="font-medium text-gray-900">
+                    {deliveryMode === 'delivery' 
+                      ? t('checkout.cardOnDelivery', { default: 'Card on delivery' })
+                      : t('checkout.cardOnPickup', { default: 'Card on pickup' })
+                    }
+                  </span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          {/* Special Instructions */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+              </svg>
+              {t('checkout.specialInstructions', { default: 'Special Instructions' })} 
+              <span className="text-gray-500 font-normal text-sm">({t('common.optional', { default: 'optional' })})</span>
+            </h3>
+            
+            <textarea
+              value={formData.specialInstructions}
+              onChange={(e) => handleInputChange('specialInstructions', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors resize-none"
+              rows={3}
+              placeholder={t('checkout.specialInstructionsPlaceholder', { 
+                default: 'Ring doorbell, leave at door, etc.' 
+              })}
+              maxLength={200}
+            />
+            <p className="mt-2 text-xs text-gray-500">
+              {formData.specialInstructions?.length || 0}/200
+            </p>
+          </div>
+
+          {/* Submit Button */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="mb-6">
+              <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
+                <span className="font-semibold text-orange-900">
+                  {t('checkout.finalTotal', { default: 'Final Total' })}
+                </span>
+                <span className="text-2xl font-bold text-orange-600">{formatCurrency(total)}</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-full transition-all duration-200 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  {t('common.processing', { default: 'Processing...' })}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  {t('checkout.placeOrder', { default: 'Place Order via WhatsApp' })}
+                </div>
+              )}
+            </button>
+
+            <p className="mt-4 text-xs text-center text-gray-500">
+              {t('checkout.whatsappNote', { 
+                default: 'Your order will be sent via WhatsApp to our restaurant' 
+              })}
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
