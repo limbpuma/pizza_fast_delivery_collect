@@ -1,8 +1,8 @@
 {  "header": {
     "title": "Fast React Pizza Co."
-  },
-  "navigation": {
-    "myOrders": "My Orders"
+  },  "navigation": {
+    "myOrders": "My Orders",
+    "menu": "Menu"
   },"home": {
     "title": "The best pizza.",
     "subtitle": "Straight out of the oven, straight to you.",
@@ -259,15 +259,21 @@
     "deliveryTime": "Delivery time",
     "minutes": "minutes",
     "paymentMethods": "Payment methods",
-    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"  },
-  "footer": {
+    "acceptedPayments": "Cash, Card, PayPal, Apple Pay"  },  "footer": {
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "imprint": "Imprint",
     "cookies": "Cookie Settings",
     "allRights": "All rights reserved.",
-    "serviceArea": "Delivery service in Dortmund and surrounding areas"
-  },  "common": {
+    "serviceArea": "Delivery service in Dortmund and surrounding areas",
+    "description": "Authentic Italian pizza delivered fresh to your door. Made with the finest ingredients and traditional recipes.",
+    "deliveryTime": "Average delivery time: 25-35 minutes",
+    "contact": "Contact",
+    "phone": "Phone: +49 231 123 456",
+    "email": "Email: info@campuspizza.de",
+    "address": "Address: Campus Street 123, 44227 Dortmund",
+    "quickLinks": "Quick Links"
+  },"common": {
     "loading": "Loading...",
     "error": "Something went wrong",
     "pizza": "pizza",
