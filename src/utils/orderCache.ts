@@ -1,5 +1,4 @@
 // Utilities for managing order cache in localStorage
-import { formatCurrency } from './helpers';
 
 export interface SavedOrder {
   orderNumber: string;
@@ -68,7 +67,19 @@ export const saveOrder = (order: SavedOrder): void => {
     // Check if order already exists (prevent duplicates)
     const orderExists = existingOrders.some(o => o.orderNumber === order.orderNumber);
     if (orderExists) {
-      console.log('Order already exists:', order.orderNumber);
+      console.log('🔄 Order already exists in cache:', order.orderNumber);
+      return;
+    }
+    
+    // Additional check: prevent orders with same timestamp within 1 second
+    const orderTime = new Date(order.timestamp).getTime();
+    const duplicateByTime = existingOrders.some(o => {
+      const existingTime = new Date(o.timestamp).getTime();
+      return Math.abs(orderTime - existingTime) < 1000; // Less than 1 second apart
+    });
+    
+    if (duplicateByTime) {
+      console.log('🔄 Duplicate order detected by timestamp, skipping save');
       return;
     }
     
@@ -79,9 +90,9 @@ export const saveOrder = (order: SavedOrder): void => {
     const limitedOrders = updatedOrders.slice(0, MAX_ORDERS);
     
     localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(limitedOrders));
-    console.log('Order saved to cache:', order.orderNumber);
+    console.log('✅ Order saved to cache:', order.orderNumber);
   } catch (error) {
-    console.error('Error saving order to cache:', error);
+    console.error('❌ Error saving order to cache:', error);
   }
 };
 

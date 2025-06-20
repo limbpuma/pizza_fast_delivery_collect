@@ -10,6 +10,7 @@ import { isValidDeliveryZone } from "../../utils/deliveryZones";
 import { saveOrder } from "../../utils/orderCache";
 import LinkButton from "../../ui/LinkButton";
 import PhoneInput from "../../ui/PhoneInput";
+import { useOrderSubmission } from "./hooks/useOrderSubmission";
 
 interface FormData {
   customer: string;
@@ -46,7 +47,10 @@ function CheckoutForm() {
   const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
   const maxServiceFee = 0.99;
   const finalServiceFee = Math.min(serviceFee, maxServiceFee);
-  const total = subtotal + deliveryFee + finalServiceFee;  // Form state
+  const total = subtotal + deliveryFee + finalServiceFee;
+
+  // Order submission protection
+  const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
   const [formData, setFormData] = useState<FormData>({
     customer: '',
     phone: '+49',
@@ -54,11 +58,9 @@ function CheckoutForm() {
     postalCode: '',
     city: 'Dortmund',
     paymentMethod: 'cash',
-    specialInstructions: ''
-  });
+    specialInstructions: ''  });
 
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Handle input changes
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -152,25 +154,29 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
 ---
 ⏰ ${t('common.processing')}`;
-  };
-
-  // Handle form submission
+  };  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) return;
 
-    setIsSubmitting(true);
+    // Use the submission protection hook
+    if (!startSubmission()) {
+      return; // Submission blocked
+    }
 
     try {
       // Generate order number
-      const orderNumber = generateOrderNumber();      // Save order to cache
+      const orderNumber = generateOrderNumber();
+
+      // Save order to cache first (to prevent duplicates)
       const orderData = {
         orderNumber,
         timestamp: new Date().toISOString(),
         customer: formData.customer,
         phone: formData.phone,
-        deliveryMode,        address: deliveryMode === 'delivery' ? {
+        deliveryMode,
+        address: deliveryMode === 'delivery' ? {
           street: formData.address || '',
           houseNumber: '',
           postalCode: formData.postalCode || '',
@@ -187,7 +193,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         }
       };
 
-      // Save to cache using proper utility
+      // Save to cache using proper utility (has duplicate protection)
       saveOrder(orderData);
 
       // Create WhatsApp message
@@ -199,8 +205,11 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
       // Create WhatsApp URL
       const whatsappUrl = `https://wa.me/${restaurantPhone.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
 
-      // Clear cart
+      // Clear cart BEFORE opening WhatsApp to prevent re-submission
       dispatch(clearCart());
+
+      // Add a small delay to ensure state is updated
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       // Open WhatsApp
       window.open(whatsappUrl, '_blank');
@@ -211,14 +220,15 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           orderNumber,
           deliveryMode,
           estimatedTime: deliveryMode === 'delivery' ? '30-45 min' : '15-20 min'
-        }
+        },
+        replace: true // Use replace to prevent back navigation issues
       });
 
     } catch (error) {
       console.error('Error submitting order:', error);
       alert(t('checkout.errors.submitError', { default: 'An error occurred. Please try again.' }));
     } finally {
-      setIsSubmitting(false);
+      endSubmission();
     }
   };
 
@@ -533,12 +543,19 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </span>
                 <span className="text-2xl font-bold text-orange-600">{formatCurrency(total)}</span>
               </div>
-            </div>
-
-            <button
+            </div>            <button
               type="submit"
               disabled={isSubmitting}
               className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-full transition-all duration-200 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:cursor-not-allowed"
+              onClick={(e) => {
+                // Additional protection against double clicks
+                if (isSubmitting) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('⚠️ Button click ignored - submission in progress');
+                  return;
+                }
+              }}
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center gap-2">
