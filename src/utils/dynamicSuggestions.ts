@@ -51,11 +51,10 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       });
     }
   });
-
-  // Add dynamic beverages that complement pizza
+  // Add dynamic beverages that complement pizza - using proper numeric IDs
   suggestions.push(
     {
-      id: 'beer-estrella-galicia',
+      id: '106',
       name: 'Beer Estrella Galicia 0,33l',
       price: 3.20,
       category: 'beverage',
@@ -65,7 +64,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Premium Spanish beer, perfect with pizza'
     },
     {
-      id: 'orange-juice-fresh',
+      id: '107',
       name: 'Fresh Orange Juice 0,5l',
       price: 3.90,
       category: 'beverage',
@@ -74,7 +73,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Freshly squeezed orange juice'
     },
     {
-      id: 'espresso-double',
+      id: '108',
       name: 'Double Espresso',
       price: 3.20,
       category: 'beverage',
@@ -104,11 +103,10 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       });
     }
   });
-
   // Add dynamic appetizers
   suggestions.push(
     {
-      id: 'stuffed-pizza-buns-gouda',
+      id: '109',
       name: 'Stuffed Pizza Buns with Gouda (6 pieces)',
       price: 6.00,
       category: 'appetizer',
@@ -118,7 +116,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Crispy buns filled with melted Gouda cheese'
     },
     {
-      id: 'buffalo-wings-6pc',
+      id: '110',
       name: 'Buffalo Wings (6 pieces)',
       price: 7.90,
       category: 'appetizer',
@@ -128,7 +126,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Spicy chicken wings with buffalo sauce'
     },
     {
-      id: 'mozzarella-sticks-6pc',
+      id: '111',
       name: 'Mozzarella Sticks (6 pieces)',
       price: 6.90,
       category: 'appetizer',
@@ -137,7 +135,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Crispy breaded mozzarella with marinara dip'
     },
     {
-      id: 'focaccia-rosemary',
+      id: '112',
       name: 'Rosemary Focaccia',
       price: 5.50,
       category: 'appetizer',
@@ -166,11 +164,10 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       });
     }
   });
-
   // Add dynamic desserts
   suggestions.push(
     {
-      id: 'gelato-3-scoops',
+      id: '113',
       name: 'Gelato (3 scoops)',
       price: 4.90,
       category: 'dessert',
@@ -179,7 +176,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
       description: 'Vanilla, chocolate & strawberry Italian gelato'
     },
     {
-      id: 'chocolate-brownie',
+      id: '114',
       name: 'Chocolate Brownie',
       price: 6.50,
       category: 'dessert',
@@ -197,9 +194,8 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
     if (germanInfo && germanInfo.isPopular) {
       // Calculate Normal size price using realistic pricing
       const basePrice = pizzaId === 1 ? 10.50 : 12.90; // Margherita vs Pepperoni
-      
-      suggestions.push({
-        id: `pizza-${pizzaId}-normal`,
+        suggestions.push({
+        id: pizzaId.toString(), // Use the actual pizza ID
         name: `Pizza ${pizzaId === 1 ? 'Margherita' : 'Pepperoni'} (Normal 32cm)`,
         price: basePrice,
         category: 'pizza',
@@ -332,7 +328,7 @@ function filterAdvancedSuggestions(
       .filter(product => 
         product.isPopular || 
         product.category === 'pizza' ||
-        ['beer-estrella-galicia', 'buffalo-wings-6pc', 'mock-102'].includes(product.id)
+        ['106', '110', 'mock-102'].includes(product.id)
       )
       .sort((a, b) => {
         // Prioritize popular items
@@ -366,7 +362,7 @@ function filterAdvancedSuggestions(
     // If empty cart, suggest variety starters
     if (cartContext.itemCount === 0) {
       suggestions.push(...products.filter(p => 
-        ['pizza-1-normal', 'mock-101', 'buffalo-wings-6pc'].includes(p.id)
+        ['1', 'mock-101', '110'].includes(p.id)
       ));
     }
     
