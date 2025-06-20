@@ -4,31 +4,86 @@
 
 ## Angaben gemäß § 5 TMG
 
-**Campus Pizza Express GmbH**  
-Campus Straße 123  
-44227 Dortmund  
+**Restaurant CAMPUS – Die Pizza-Profis**  
+Inhaber: Adel Mohammed  
+Knappenstraße 46  
+44149 Dortmund  
 Deutschland  
 
-## Vertreten durch:
-Geschäftsführer: Max Mustermann
-
 ## Kontakt:
-**Telefon:** +49 (0) 231 123 456  
-**E-Mail:** info@campuspizza.de  
-**Fax:** +49 (0) 231 123 457  
+**Telefon:** 0231 - 72 56 668  
+**WhatsApp Business:** 0231 - 72 56 668  
+**E-Mail:** info@restaurant-campus.de  
+**Website:** www.restaurant-campus.de  
 
-## Registereintrag:
-**Eintragung im Handelsregister:** Amtsgericht Dortmund  
-**Registernummer:** HRB 12345  
+## Geschäftsform:
+**Rechtsform:** Einzelunternehmen  
+**Inhaber:** Adel Mohammed  
 
 ## Umsatzsteuer-ID:
-**Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:** DE123456789
+**Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:**  
+DE [wird bei Gewerbeanmeldung ergänzt]
 
-## Wirtschafts-ID:
-**Wirtschafts-Identifikationsnummer:** 1234567890123
+## Gewerbeanmeldung:
+**Zuständige Behörde:** Stadt Dortmund - Gewerbeamt  
+**Gewerbeanmeldung:** [Nummer bei Anmeldung]  
 
-## Lebensmittelkontrolle:
-**Zuständige Lebensmittelkontrollbehörde:**  
+## Aufsichtsbehörde:
+**Lebensmittelüberwachung:**  
+Ordnungsamt Dortmund  
+Abteilung Lebensmittelüberwachung  
+Olpe 1  
+44135 Dortmund  
+
+**Gaststättenrecht:**  
+Stadt Dortmund  
+Ordnungsamt  
+44137 Dortmund  
+
+## Berufsbezeichnung und berufsrechtliche Regelungen:
+**Berufsbezeichnung:** Gastronom  
+**Verliehen in:** Deutschland  
+**Es gelten folgende berufsrechtliche Regelungen:**
+- Gaststättengesetz (GastG)
+- Lebensmittelhygiene-Verordnung (LMHV)
+- Lebensmittel- und Futtermittelgesetzbuch (LFGB)
+
+## Berufshaftpflichtversicherung:
+**Versicherungsgesellschaft:** [wird ergänzt]  
+**Geltungsraum der Versicherung:** Deutschland  
+
+## Streitschlichtung:
+**EU-Streitschlichtung:**  
+Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:  
+https://ec.europa.eu/consumers/odr/  
+Unsere E-Mail-Adresse finden Sie oben im Impressum.
+
+**Verbraucherstreitbeilegung/Universalschlichtungsstelle:**  
+Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+
+## Öffnungszeiten:
+**Täglich:** 11:00 - 21:30 Uhr  
+(Auch an Sonn- und Feiertagen)
+
+## Online-Services:
+**Website-Hosting:** Vercel (EU-Server)  
+**Bestellsystem:** WhatsApp Business API  
+**Lieferplattform:** Lieferando  
+
+## Technische Umsetzung:
+**Webentwicklung:** Campus Pizza Development Team  
+**Datenschutz:** DSGVO-konform auf EU-Servern  
+**SSL-Verschlüsselung:** Ja  
+
+## Haftungshinweis:
+Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+
+## Urheberrecht:
+Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+
+---
+
+**Hinweis:** Dieses Impressum wurde entsprechend den Anforderungen des deutschen Telemediengesetzes (TMG) erstellt und wird regelmäßig aktualisiert.
 Ordnungsamt der Stadt Dortmund  
 Olpe 1, 44122 Dortmund  
 

@@ -195,24 +195,53 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Quick Stats - Minimal and Fast */}
-      <div className="border-t border-gray-200 bg-gray-50 py-4">
+      </div>      {/* Performance Stats - Enhanced Design */}
+      <div className="bg-gradient-to-r from-orange-50 via-yellow-50 to-orange-50 border-t border-orange-200 py-8">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="flex justify-center gap-8 text-sm text-gray-600">
-            <div className="text-center">
-              <div className="font-bold text-yellow-600">15-30</div>
-              <div>{t('stats.minutes')}</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Delivery Time */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-orange-100 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-yellow-600 mb-1">15-30</div>
+              <div className="text-sm text-gray-600 font-medium">{t('stats.minutes')}</div>
+              <div className="text-xs text-gray-500 mt-1">⚡ {t('stats.guaranteed', { default: 'Guaranteed fast' })}</div>
             </div>
-            <div className="text-center">
-              <div className="font-bold text-green-600">6</div>
-              <div>{t('stats.zones')}</div>
+
+            {/* Delivery Zones */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-green-100 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">6</div>
+              <div className="text-sm text-gray-600 font-medium">{t('stats.zones')}</div>
+              <div className="text-xs text-gray-500 mt-1">🚚 {t('stats.coverage', { default: 'Dortmund coverage' })}</div>
             </div>
-            <div className="text-center">
-              <div className="font-bold text-blue-600">24/7</div>
-              <div>{t('stats.service')}</div>
+
+            {/* Service Availability */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-100 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold text-blue-600 mb-1">24/7</div>
+              <div className="text-sm text-gray-600 font-medium">{t('stats.service')}</div>
+              <div className="text-xs text-gray-500 mt-1">🍕 {t('stats.available', { default: 'Always available' })}</div>
             </div>
+          </div>
+
+          {/* Bottom CTA Bar */}
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              🏆 {t('stats.bottomCta', { default: 'Join 340+ satisfied customers in Dortmund' })}
+            </p>
           </div>
         </div>
       </div>
