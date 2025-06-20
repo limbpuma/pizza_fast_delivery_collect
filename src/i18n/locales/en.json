@@ -141,10 +141,12 @@
     "serviceFee": "Service fee",
     "total": "Total",
     "specialInstructionsPlaceholder": "Ring doorbell, leave at door, etc.",
+    "selectCountryCode": "Select country code",
+    "phoneHelper": "Enter your phone number without country code",
     "errors": {
       "nameRequired": "Name is required",
       "phoneRequired": "Phone number is required",
-      "phoneInvalid": "Please enter a valid German phone number",
+      "phoneInvalid": "Please enter a valid phone number",
       "streetRequired": "Street name is required", 
       "houseNumberRequired": "House number is required",
       "postalCodeRequired": "Postal code is required",

@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
-import { isValidGermanPhone, isValidGermanPostalCode } from "../../utils/germanHelpers";
+import { isValidInternationalPhone, isValidGermanPostalCode } from "../../utils/germanHelpers";
 import { isValidDeliveryZone } from "../../utils/deliveryZones";
 import LinkButton from "../../ui/LinkButton";
+import PhoneInput from "../../ui/PhoneInput";
 
 interface FormData {
   customer: string;
@@ -47,11 +48,10 @@ function CheckoutForm() {
   const maxServiceFee = 0.99;
   const finalServiceFee = Math.min(serviceFee, maxServiceFee);
   const total = subtotal + deliveryFee + finalServiceFee;
-
   // Form state
   const [formData, setFormData] = useState<FormData>({
     customer: '',
-    phone: '',
+    phone: '+49',
     street: '',
     houseNumber: '',
     postalCode: '',
@@ -80,13 +80,11 @@ function CheckoutForm() {
     // Name validation
     if (!formData.customer.trim()) {
       newErrors.customer = t('checkout.errors.nameRequired', { default: 'Name is required' });
-    }
-
-    // Phone validation
-    if (!formData.phone.trim()) {
+    }    // Phone validation
+    if (!formData.phone.trim() || formData.phone.trim() === '+49') {
       newErrors.phone = t('checkout.errors.phoneRequired', { default: 'Phone number is required' });
-    } else if (!isValidGermanPhone(formData.phone)) {
-      newErrors.phone = t('checkout.errors.phoneInvalid', { default: 'Please enter a valid German phone number' });
+    } else if (!isValidInternationalPhone(formData.phone)) {
+      newErrors.phone = t('checkout.errors.phoneInvalid', { default: 'Please enter a valid phone number' });
     }
 
     // Delivery-specific validation
@@ -352,25 +350,16 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 {errors.customer && (
                   <p className="mt-1 text-sm text-red-600">{errors.customer}</p>
                 )}
-              </div>
-
-              {/* Phone */}
+              </div>              {/* Phone */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {t('checkout.phone', { default: 'Phone Number' })} *
-                </label>
-                <input
-                  type="tel"
+                </label>                <PhoneInput
                   value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors ${
-                    errors.phone ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder={t('checkout.phonePlaceholder', { default: '+49 xxx xxx xxxx' })}
+                  onChange={(value: string) => handleInputChange('phone', value)}
+                  error={errors.phone}
+                  disabled={isSubmitting}
                 />
-                {errors.phone && (
-                  <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
-                )}
               </div>
             </div>
           </div>

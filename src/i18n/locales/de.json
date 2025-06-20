@@ -145,10 +145,12 @@
     "serviceFee": "Servicegebühr",
     "total": "Gesamt",
     "specialInstructionsPlaceholder": "Klingeln, vor der Tür lassen, etc.",
+    "selectCountryCode": "Ländervorwahl auswählen",
+    "phoneHelper": "Geben Sie Ihre Telefonnummer ohne Ländervorwahl ein",
     "errors": {
       "nameRequired": "Name ist erforderlich",
       "phoneRequired": "Telefonnummer ist erforderlich",
-      "phoneInvalid": "Bitte geben Sie eine gültige deutsche Telefonnummer ein",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein",
       "streetRequired": "Straßenname ist erforderlich", 
       "houseNumberRequired": "Hausnummer ist erforderlich",
       "postalCodeRequired": "Postleitzahl ist erforderlich",
