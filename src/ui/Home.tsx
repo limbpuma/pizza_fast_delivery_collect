@@ -38,9 +38,7 @@ function Home() {
             <span className="border-r-2 border-yellow-500 pr-1 animate-pulse">
               {t('home.subtitle')}
             </span>
-          </p>
-
-          {/* Fast Features - Icon + Text */}
+          </p>          {/* Fast Features - Icon + Text */}
           <div className="mb-8 flex justify-center gap-6 text-sm sm:text-base">
             <div className="flex items-center gap-2 text-green-600">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -62,11 +60,25 @@ function Home() {
             </div>
           </div>
 
+          {/* Social Proof Banner */}
+          <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm">
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">👥</span>
+                <span>12 people ordering right now</span>
+              </div>
+              <div className="w-px h-4 bg-gray-300"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">⭐</span>
+                <span>4.8★ (340+ reviews)</span>
+              </div>
+            </div>
+          </div>
+
           {/* User Input/CTA Section */}
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
             {username === "" ? (
-              <CreateUser />
-            ) : (
+              <CreateUser />            ) : (
               <div className="space-y-4">
                 <p className="text-gray-600">
                   {t('user.greeting', { name: username })}
@@ -76,7 +88,10 @@ function Home() {
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
-                    {t('home.cta')}
+                    <div className="flex flex-col items-start">
+                      <span>{t('home.cta')}</span>
+                      <span className="text-xs opacity-75">⚡ Delivered in 25 min</span>
+                    </div>
                   </span>
                 </Button>
               </div>

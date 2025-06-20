@@ -230,9 +230,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         {/* Header */}
         <div className="mb-6">
           <LinkButton to="/menu">&larr; {t('common.backToMenu', { default: 'Back to Menu' })}</LinkButton>
-        </div>
-
-        <div className="mb-8">
+        </div>        <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             {deliveryMode === 'delivery' 
               ? t('checkout.titleDelivery', { default: 'Checkout - Delivery' })
@@ -245,6 +243,17 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
               : t('checkout.collectionSubtitle', { default: 'Complete your pickup details' })
             }
           </p>
+        </div>
+
+        {/* Urgency Banner */}
+        <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-400 rounded-lg">
+          <div className="flex items-center gap-3">
+            <span className="text-red-500 text-lg">⏰</span>
+            <div>
+              <p className="font-semibold text-red-800">Limited Time: Kitchen closes in 3h 27min</p>
+              <p className="text-sm text-red-700">🔥 6 people ordering right now • Order now for guaranteed delivery</p>
+            </div>
+          </div>
         </div>
 
         {/* Order Summary */}

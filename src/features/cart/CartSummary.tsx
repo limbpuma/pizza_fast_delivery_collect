@@ -29,9 +29,28 @@ function CartSummary({ deliveryMode, onCheckout }: CartSummaryProps) {
   const maxServiceFee = 0.99;
   const finalServiceFee = Math.min(serviceFee, maxServiceFee);
   const total = subtotal + deliveryFee + finalServiceFee;
-
   return (
     <div className="bg-white border-t border-gray-200 p-4">
+      {/* Free Delivery Progress Bar */}
+      {deliveryMode === 'delivery' && (
+        <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-green-800">
+              {subtotal >= 12 ? '🎉 Free delivery unlocked!' : '🚚 Free delivery at 12€'}
+            </span>
+            <span className="text-xs text-green-600">
+              {subtotal >= 12 ? 'Saved 0.99€' : `${(12 - subtotal).toFixed(2)}€ to go`}
+            </span>
+          </div>
+          <div className="w-full bg-green-200 rounded-full h-2">
+            <div 
+              className="bg-green-500 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${Math.min((subtotal / 12) * 100, 100)}%` }}
+            ></div>
+          </div>
+        </div>
+      )}
+
       {/* Summary Details */}
       <div className="space-y-2 mb-4">
         <div className="flex justify-between text-sm">
@@ -64,19 +83,33 @@ function CartSummary({ deliveryMode, onCheckout }: CartSummaryProps) {
             <span>{total.toFixed(2)} €</span>
           </div>
         </div>
-      </div>      {/* Checkout Button */}
+      </div>      {/* Enhanced Checkout Button */}
       <button
         onClick={handleCheckout}
-        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-4 px-6 rounded-lg transition-colors"
+        className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] shadow-lg"
       >
-        {t('cart.checkout', { default: 'Checkout', total: total.toFixed(2) })} ({total.toFixed(2)} €)
+        <div className="flex items-center justify-center gap-2">
+          <span>🍕 Order Now - {total.toFixed(2)}€</span>
+        </div>
+        <div className="text-xs opacity-90 mt-1">
+          ⏱️ {deliveryMode === 'delivery' ? 'Delivered in 25-30 min' : 'Ready in 15-20 min'}
+        </div>
       </button>
 
-      {/* Payment Info */}
-      <div className="mt-3 text-center">
-        <p className="text-xs text-gray-500">
-          {t('cart.paymentInfo', { default: 'Payment: Cash or Card on delivery' })}
-        </p>
+      {/* Trust Signals */}
+      <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-500">
+        <div className="flex items-center gap-1">
+          <span>💰</span>
+          <span>Cash/Card</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span>📱</span>
+          <span>WhatsApp updates</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span>🔒</span>
+          <span>Secure</span>
+        </div>
       </div>
     </div>
   );
