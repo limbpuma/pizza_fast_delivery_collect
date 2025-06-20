@@ -77,11 +77,14 @@
     "fast": "Fast delivery",
     "fresh": "Fresh ingredients",
     "quality": "Premium quality"
-  },
-  "stats": {
+  },  "stats": {
     "minutes": "min delivery",
-    "zones": "delivery zones",
-    "service": "service"
+    "zones": "delivery zones", 
+    "service": "service",
+    "guaranteed": "Guaranteed fast",
+    "coverage": "Dortmund coverage",
+    "available": "Always available",
+    "bottomCta": "Join 340+ satisfied customers in Dortmund"
   },"user": {
     "welcome": "👋 Welcome! Please start by telling us your name:",
     "subtitle": "Enter your postal code to start ordering delicious pizza! 🍕",

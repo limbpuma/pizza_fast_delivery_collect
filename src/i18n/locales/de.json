@@ -77,11 +77,14 @@
     "fast": "Schnelle Lieferung",
     "fresh": "Frische Zutaten",
     "quality": "Premium-Qualität"
-  },
-  "stats": {
+  },  "stats": {
     "minutes": "Min Lieferung",
     "zones": "Lieferzonen",
-    "service": "Service"
+    "service": "Service",
+    "guaranteed": "Garantiert schnell",
+    "coverage": "Dortmund Abdeckung", 
+    "available": "Immer verfügbar",
+    "bottomCta": "Werde einer von 340+ zufriedenen Kunden in Dortmund"
   },
   "user": {
     "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
