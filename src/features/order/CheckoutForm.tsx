@@ -120,7 +120,6 @@ function CheckoutForm() {
     const random = Math.floor(Math.random() * 1000);
     return `CP${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
   };
-
   // Create WhatsApp message
   const createWhatsAppMessage = (orderNumber: string): string => {
     const orderItems = cart.map((item: any) => 
@@ -131,28 +130,39 @@ function CheckoutForm() {
       ? `${formData.customer}\n${formData.street} ${formData.houseNumber}\n${formData.postalCode} ${formData.city}`
       : formData.customer;
 
-    return `🍕 *Campus Pizza Express - Nueva Orden*
+    const deliveryTypeText = deliveryMode === 'delivery' 
+      ? t('checkout.whatsappMessage.deliveryType')
+      : t('checkout.whatsappMessage.collectionType');
 
-📋 *Orden #${orderNumber}*
-📞 *Teléfono:* ${formData.phone}
+    const paymentMethodText = formData.paymentMethod === 'cash' 
+      ? t('checkout.whatsappMessage.paymentCash')
+      : t('checkout.whatsappMessage.paymentCard');
 
-👤 *Cliente:*
+    const specialInstructionsText = formData.specialInstructions?.trim() 
+      ? `\n📝 ${t('checkout.whatsappMessage.specialInstructions', { instructions: formData.specialInstructions })}`
+      : '';
+
+    return `🍕 *${t('checkout.whatsappMessage.title')}*
+
+📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
+📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
+
+👤 *${t('checkout.whatsappMessage.customer')}*
 ${customerInfo}
 
-🛒 *Productos:*
+🛒 *${t('checkout.whatsappMessage.products')}*
 ${orderItems}
 
-💰 *Resumen:*
-Subtotal: ${formatCurrency(subtotal)}
-${deliveryMode === 'delivery' ? `Entrega: ${formatCurrency(deliveryFee)}\n` : ''}Servicio: ${formatCurrency(finalServiceFee)}
-*Total: ${formatCurrency(total)}*
+💰 *${t('checkout.whatsappMessage.summary')}*
+${t('checkout.whatsappMessage.subtotal', { amount: formatCurrency(subtotal) })}
+${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}${t('checkout.whatsappMessage.service', { amount: formatCurrency(finalServiceFee) })}
+*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
 
-🚀 *Tipo:* ${deliveryMode === 'delivery' ? 'Entrega a domicilio' : 'Recogida en tienda'}
-💳 *Pago:* ${formData.paymentMethod === 'cash' ? 'Efectivo' : 'Tarjeta'}
+🚀 *${t('checkout.whatsappMessage.type', { type: deliveryTypeText })}*
+💳 *${t('checkout.whatsappMessage.payment', { method: paymentMethodText })}*${specialInstructionsText}
 
-${formData.specialInstructions ? `📝 *Instrucciones:* ${formData.specialInstructions}` : ''}
-
-¡Gracias por tu pedido! 🙏`;
+---
+⏰ ${t('common.processing')}`;
   };
 
   // Handle form submission
