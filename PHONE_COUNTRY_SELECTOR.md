@@ -147,3 +147,46 @@ Los usuarios ahora pueden:
 5. **Ver placeholders apropiados** para cada formato nacional
 
 La funcionalidad mantiene la **UX moderna** y es **completamente internacional** mientras conserva la **simplicidad de uso** para usuarios alemanes que siguen teniendo +49 por defecto.
+
+### **🔧 Resolución de Problemas Técnicos**
+
+#### **❌ Problema Original: Bucle Infinito**
+```
+Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+```
+
+#### **✅ Solución Implementada**
+- **Problema**: useEffect con dependencias circulares (`value` → `onChange` → `value`)
+- **Solución**: Estado de inicialización con flag `isInitialized`
+- **Resultado**: Control preciso del flujo de datos sin bucles
+
+```tsx
+// ❌ Antes (causaba bucle infinito)
+useEffect(() => {
+  const fullPhone = phoneNumber ? `${countryCode} ${phoneNumber}` : countryCode;
+  if (fullPhone !== value) {
+    onChange(fullPhone); // Esto causaba el bucle
+  }
+}, [countryCode, phoneNumber, onChange, value]);
+
+// ✅ Después (controlado y estable)
+const [isInitialized, setIsInitialized] = useState(false);
+useEffect(() => {
+  if (!isInitialized) {
+    const { countryCode: initialCountryCode, number: initialNumber } = parsePhoneValue(value);
+    setCountryCode(initialCountryCode);
+    setPhoneNumber(initialNumber);
+    setIsInitialized(true);
+  }
+}, [value, isInitialized]);
+```
+
+### **📋 Testing Realizado**
+- ✅ Inicialización sin bucles infinitos
+- ✅ Cambio de código de país funcional  
+- ✅ Entrada de números sin errores
+- ✅ Validación por país correcta
+- ✅ Integración con checkout form
+- ✅ Traducciones EN/DE funcionando
+- ✅ Estados disabled/error manejados
+- ✅ Responsive design verificado
