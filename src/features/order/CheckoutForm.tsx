@@ -117,11 +117,10 @@ function CheckoutForm() {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 1000);
     return `CP${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
-  };
-  // Create WhatsApp message
+  };  // Create WhatsApp message
   const createWhatsAppMessage = (orderNumber: string): string => {
     const orderItems = cart.map((item: any) => 
-      `${item.quantity}x ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
+      `${item.quantity}x ${t('menu.productNumber', { number: item.pizzaId })} ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
     ).join('\n');
 
     const customerInfo = deliveryMode === 'delivery' 
@@ -271,13 +270,16 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             {t('checkout.orderSummary', { default: 'Order Summary' })}
           </h3>
           
-          <div className="space-y-3">
-            {cart.map((item: any) => (
+          <div className="space-y-3">            {cart.map((item: any) => (
               <div key={`${item.pizzaId}-${item.size || 'default'}`} className="flex justify-between items-center py-2">
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900">
-                    {item.quantity}× {item.name}
-                    {item.size && ` (${item.size})`}
+                <div className="flex-1">                  <div className="flex items-center justify-between">
+                    <div className="font-medium text-gray-900">
+                      <span className="text-sm text-gray-500 mr-1">
+                        {t('menu.productNumber', { number: item.pizzaId })}
+                      </span>
+                      {item.quantity}× {item.name}
+                      {item.size && ` (${item.size})`}
+                    </div>
                   </div>
                   {item.ingredients && item.ingredients.length > 0 && (
                     <div className="text-sm text-gray-600">

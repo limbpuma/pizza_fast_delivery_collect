@@ -46,7 +46,8 @@
     "addToBasket": "In den Warenkorb",
     "adding": "Hinzufügen...",
     "quickAdd": "Schnell hinzufügen",
-    "addedToCart": "In Warenkorb gelegt!",    "categories": {
+    "addedToCart": "In Warenkorb gelegt!",
+    "productNumber": "(#{{number}})","categories": {
       "vegetarisch": "Vegetarisch",
       "vegan": "Vegan",
       "fleisch": "Mit Fleisch", 

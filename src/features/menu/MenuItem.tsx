@@ -76,13 +76,17 @@ function MenuItem({ pizza }: MenuItemProps) {
 
         {/* Pizza Information */}
         <div className="flex-1 min-w-0">
-          <div className="flex flex-col h-full">
-            {/* Header with name and category */}
+          <div className="flex flex-col h-full">            {/* Header with name and category */}
             <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
+                {/* Product name with number at the beginning */}
                 <h3 className="text-lg font-semibold text-gray-900 leading-tight">
+                  <span className="text-sm font-medium text-gray-500 mr-2">
+                    {t('menu.productNumber', { number: id })}
+                  </span>
                   {name}
                 </h3>
+                
                 {germanInfo && (
                   <div className="flex items-center gap-2 mt-1">
                     <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${

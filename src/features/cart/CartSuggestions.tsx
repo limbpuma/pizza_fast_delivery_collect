@@ -118,9 +118,15 @@ function CartSuggestions() {
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">
                     {getSuggestionEmoji(item.category || 'other')}
-                  </span>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 text-sm">{item.name}</h4>
+                  </span>                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-medium text-gray-900 text-sm">
+                        <span className="text-xs text-gray-500 mr-1">
+                          {t('menu.productNumber', { number: item.id })}
+                        </span>
+                        {item.name}
+                      </h4>
+                    </div>
                     {item.description && (
                       <p className="text-xs text-gray-600 mt-1 line-clamp-2">
                         {item.description}

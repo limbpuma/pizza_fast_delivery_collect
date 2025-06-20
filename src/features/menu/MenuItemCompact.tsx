@@ -95,10 +95,12 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
           </div>
 
           {/* Pizza Info */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 min-w-0">            <div className="flex items-start justify-between mb-2">
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-gray-900 text-base leading-tight mb-1 truncate">
+                  <span className="text-sm text-gray-500 mr-1">
+                    {t('menu.productNumber', { number: id })}
+                  </span>
                   {name}
                 </h3>
                 
