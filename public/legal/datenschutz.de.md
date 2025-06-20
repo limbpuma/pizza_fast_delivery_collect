@@ -2,70 +2,137 @@
 
 **Stand: Juni 2025**
 
-## 1. Allgemeine Hinweise
+## 1. Verantwortlicher
 
-Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
+Verantwortlicher für die Datenverarbeitung auf dieser Website ist:
 
-## 2. Datenerfassung auf unserer Website
+**Restaurant CAMPUS – Die Pizza-Profis**  
+Adel Mohammed  
+Knappenstraße 46  
+44149 Dortmund  
+Deutschland
 
-### Wer ist verantwortlich für die Datenerfassung auf dieser Website?
+Telefon: 0231 - 72 56 668  
+E-Mail: datenschutz@restaurant-campus.de
 
-Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
+## 2. Allgemeine Hinweise zur Datenverarbeitung
 
-### Wie erfassen wir Ihre Daten?
+### 2.1 Umfang der Verarbeitung personenbezogener Daten
+Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist.
 
-Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder bei einer Bestellung angeben.
+### 2.2 Rechtsgrundlage für die Verarbeitung
+- Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)
+- Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)
+- Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen)
 
-Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).
+## 3. Hosting und Content Delivery Network (CDN)
 
-### Wofür nutzen wir Ihre Daten?
+### 3.1 Vercel (EU-Server)
+Diese Website wird auf Servern von Vercel gehostet. Die Server befinden sich in der Europäischen Union, wodurch eine DSGVO-konforme Datenverarbeitung gewährleistet ist.
 
-Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden oder zur Bearbeitung Ihrer Bestellungen.
-
-## 3. Ihre Rechte
-
-Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung, Sperrung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.
-
-Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
-
-## 4. Server-Log-Dateien
-
-Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
-
-- Browsertyp und Browserversion
-- verwendetes Betriebssystem
-- Referrer URL
-- Hostname des zugreifenden Rechners
-- Uhrzeit der Serveranfrage
+**Verarbeitete Daten:**
 - IP-Adresse
+- Datum und Uhrzeit des Zugriffs
+- Referrer-URL
+- User-Agent (Browser und Betriebssystem)
 
-Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+**Zweck:** Bereitstellung und Sicherheit der Website  
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen)  
+**Speicherdauer:** Maximal 30 Tage
 
-## 5. Bestelldaten
+## 4. Bestelldaten und WhatsApp-Integration
 
+### 4.1 Datenerhebung bei Bestellungen
 Für die Bearbeitung Ihrer Bestellungen erheben wir folgende Daten:
 
-- Name und Vorname
+**Pflichtangaben:**
+- Vor- und Nachname
 - Telefonnummer
-- Lieferadresse
-- E-Mail-Adresse (optional)
-- Zahlungsart
+- Lieferadresse (Straße, Hausnummer, PLZ, Ort)
+- Bestellinhalte und Sonderwünsche
 
-Diese Daten werden ausschließlich zur Bearbeitung Ihrer Bestellung verwendet und nach Abschluss der Transaktion gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
+**Optionale Angaben:**
+- E-Mail-Adresse
 
-## 6. WhatsApp Integration
+### 4.2 WhatsApp Business API
+Ihre Bestellungen werden über WhatsApp Business an unser Restaurant übermittelt.
 
-Für die Bestellabwicklung nutzen wir WhatsApp Business. Ihre Bestelldaten werden über WhatsApp an unser Restaurant übermittelt. Bitte beachten Sie die Datenschutzbestimmungen von WhatsApp.
+**Wichtiger Hinweis:** WhatsApp wird von Meta Platforms Ireland Limited betrieben. Durch die Nutzung von WhatsApp für Ihre Bestellung stimmen Sie der Datenübertragung an WhatsApp zu.
 
-## 7. Cookies
+**Übertragene Daten:**
+- Ihre Telefonnummer
+- Bestelldetails (Name, Adresse, Bestellinhalt)
+- Zeitstempel der Nachricht
 
-Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)  
+**Zweck:** Bestellabwicklung und Kommunikation  
+**Speicherdauer:** Bestelldaten werden nach Abschluss der Transaktion gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen
 
-## 8. Kontakt
+**Datenschutz bei WhatsApp:** 
+Weitere Informationen zum Datenschutz bei WhatsApp finden Sie unter: https://www.whatsapp.com/legal/privacy-policy
+
+## 5. Cookies und lokale Speicherung
+
+### 5.1 Cookies
+Unsere Website verwendet Cookies zur Verbesserung der Nutzererfahrung.
+
+**Technisch notwendige Cookies:**
+- Warenkorb-Status
+- Spracheinstellung
+- Session-Verwaltung
+
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO  
+**Speicherdauer:** Session oder maximal 30 Tage
+
+### 5.2 Local Storage
+Zur lokalen Speicherung Ihrer Einstellungen nutzen wir den Local Storage Ihres Browsers.
+
+## 6. Ihre Rechte als betroffene Person
+
+Sie haben folgende Rechte:
+
+### 6.1 Auskunftsrecht (Art. 15 DSGVO)
+Sie können Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten verlangen.
+
+### 6.2 Recht auf Berichtigung (Art. 16 DSGVO)
+Sie haben ein Recht auf unverzügliche Berichtigung unrichtiger Daten.
+
+### 6.3 Recht auf Löschung (Art. 17 DSGVO)
+Sie können die Löschung Ihrer personenbezogenen Daten verlangen.
+
+### 6.4 Recht auf Einschränkung (Art. 18 DSGVO)
+Sie können die Einschränkung der Verarbeitung Ihrer Daten verlangen.
+
+### 6.5 Recht auf Datenübertragbarkeit (Art. 20 DSGVO)
+Sie können eine Übertragung Ihrer Daten in einem strukturierten Format verlangen.
+
+### 6.6 Widerspruchsrecht (Art. 21 DSGVO)
+Sie können der Verarbeitung Ihrer Daten widersprechen.
+
+### 6.7 Beschwerderecht
+Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren.
+
+**Zuständige Aufsichtsbehörde:**  
+Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen  
+Postfach 20 04 44  
+40102 Düsseldorf  
+Website: https://www.ldi.nrw.de/
+
+## 7. Datensicherheit
+
+Wir verwenden geeignete technische und organisatorische Sicherheitsmaßnahmen, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, Verlust, Zerstörung oder Zugriff unberechtigter Personen zu schützen.
+
+## 8. Aktualität und Änderung dieser Datenschutzerklärung
+
+Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Juni 2025. Durch die Weiterentwicklung unserer Website können Änderungen an dieser Datenschutzerklärung erforderlich werden.
+
+## 9. Kontakt zum Datenschutz
 
 Bei Fragen zum Datenschutz wenden Sie sich bitte an:
 
-**Campus Pizza Express GmbH**  
-Campus Straße 123  
-44227 Dortmund  
-E-Mail: datenschutz@campuspizza.de
+**Restaurant CAMPUS – Die Pizza-Profis**  
+z.Hd. Datenschutzbeauftragter  
+Knappenstraße 46  
+44149 Dortmund  
+E-Mail: datenschutz@restaurant-campus.de  
+Telefon: 0231 - 72 56 668

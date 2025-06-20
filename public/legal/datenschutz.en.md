@@ -2,33 +2,140 @@
 
 **Last updated: June 2025**
 
-## 1. General Information
+## 1. Data Controller
 
-The following information provides a simple overview of what happens to your personal data when you visit our website. Personal data is any data that can be used to personally identify you. For detailed information on data protection, please refer to our privacy policy listed below this text.
+The data controller for this website is:
 
-## 2. Data Collection on Our Website
+**Restaurant CAMPUS – Die Pizza-Profis**  
+Adel Mohammed  
+Knappenstraße 46  
+44149 Dortmund  
+Germany
 
-### Who is responsible for data collection on this website?
+Phone: 0231 - 72 56 668  
+Email: privacy@restaurant-campus.de
 
-Data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this website.
+## 2. General Information on Data Processing
 
-### How do we collect your data?
+### 2.1 Scope of Personal Data Processing
+We generally only process personal data of our users to the extent necessary to provide a functional website and our content and services.
 
-Your data is collected in part by you providing it to us. This could be data that you enter in a contact form or when placing an order.
+### 2.2 Legal Basis for Processing
+- Art. 6 para. 1 lit. a GDPR (consent)
+- Art. 6 para. 1 lit. b GDPR (contract performance)
+- Art. 6 para. 1 lit. f GDPR (legitimate interests)
 
-Other data is automatically collected by our IT systems when you visit the website. This is mainly technical data (e.g. internet browser, operating system or time of page access).
+## 3. Hosting and Content Delivery Network (CDN)
 
-### What do we use your data for?
+### 3.1 Vercel (EU Servers)
+This website is hosted on Vercel servers. The servers are located in the European Union, ensuring GDPR-compliant data processing.
 
-Part of the data is collected to ensure error-free provision of the website. Other data may be used to analyze your user behavior or to process your orders.
+**Processed Data:**
+- IP address
+- Date and time of access
+- Referrer URL
+- User agent (browser and operating system)
 
-## 3. Your Rights
+**Purpose:** Provision and security of the website  
+**Legal basis:** Art. 6 para. 1 lit. f GDPR (legitimate interests)  
+**Storage duration:** Maximum 30 days
 
-You have the right to receive information about the origin, recipient and purpose of your stored personal data free of charge at any time. You also have the right to request the correction, blocking or deletion of this data. For this and other questions about data protection, you can contact us at any time at the address given in the imprint.
+## 4. Order Data and WhatsApp Integration
 
-Furthermore, you have the right to lodge a complaint with the competent supervisory authority.
+### 4.1 Data Collection for Orders
+To process your orders, we collect the following data:
 
-## 4. Server Log Files
+**Required Information:**
+- First and last name
+- Phone number
+- Delivery address (street, house number, postal code, city)
+- Order contents and special requests
+
+**Optional Information:**
+- Email address
+
+### 4.2 WhatsApp Business API
+Your orders are transmitted to our restaurant via WhatsApp Business.
+
+**Important Notice:** WhatsApp is operated by Meta Platforms Ireland Limited. By using WhatsApp for your order, you consent to data transmission to WhatsApp.
+
+**Transmitted Data:**
+- Your phone number
+- Order details (name, address, order content)
+- Message timestamp
+
+**Legal basis:** Art. 6 para. 1 lit. b GDPR (contract performance)  
+**Purpose:** Order processing and communication  
+**Storage duration:** Order data is deleted after completion of the transaction, unless legal retention obligations exist
+
+**WhatsApp Privacy:**  
+For more information on WhatsApp privacy, please visit: https://www.whatsapp.com/legal/privacy-policy
+
+## 5. Cookies and Local Storage
+
+### 5.1 Cookies
+Our website uses cookies to improve user experience.
+
+**Technically necessary cookies:**
+- Shopping cart status
+- Language settings
+- Session management
+
+**Legal basis:** Art. 6 para. 1 lit. f GDPR  
+**Storage duration:** Session or maximum 30 days
+
+### 5.2 Local Storage
+We use your browser's local storage to save your settings locally.
+
+## 6. Your Rights as a Data Subject
+
+You have the following rights:
+
+### 6.1 Right of Access (Art. 15 GDPR)
+You can request information about your personal data processed by us.
+
+### 6.2 Right to Rectification (Art. 16 GDPR)
+You have the right to immediate correction of incorrect data.
+
+### 6.3 Right to Erasure (Art. 17 GDPR)
+You can request the deletion of your personal data.
+
+### 6.4 Right to Restriction (Art. 18 GDPR)
+You can request restriction of the processing of your data.
+
+### 6.5 Right to Data Portability (Art. 20 GDPR)
+You can request transfer of your data in a structured format.
+
+### 6.6 Right to Object (Art. 21 GDPR)
+You can object to the processing of your data.
+
+### 6.7 Right to Complain
+You have the right to complain to a data protection supervisory authority.
+
+**Competent Supervisory Authority:**  
+State Commissioner for Data Protection and Freedom of Information North Rhine-Westphalia  
+P.O. Box 20 04 44  
+40102 Düsseldorf  
+Website: https://www.ldi.nrw.de/
+
+## 7. Data Security
+
+We use appropriate technical and organizational security measures to protect your data against accidental or intentional manipulation, loss, destruction, or access by unauthorized persons.
+
+## 8. Updates and Changes to this Privacy Policy
+
+This privacy policy is currently valid and dated June 2025. Due to the development of our website, changes to this privacy policy may become necessary.
+
+## 9. Contact for Data Protection
+
+For questions about data protection, please contact:
+
+**Restaurant CAMPUS – Die Pizza-Profis**  
+Attn: Data Protection Officer  
+Knappenstraße 46  
+44149 Dortmund  
+Email: privacy@restaurant-campus.de  
+Phone: 0231 - 72 56 668
 
 The provider of the pages automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These are:
 
