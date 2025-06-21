@@ -6,15 +6,12 @@ import MenuFilters from "./MenuFilters";
 import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo } from "../../data/germanPizzaInfo";
-import { mockNonPizzaItems } from "../../data/mockNonPizzaItems";
 
 function Menu() {
   const { t } = useTranslation();
-  const originalMenu = useLoaderData() as any[];
+  // MIGRATION: Now using real menu data only - no more mock data mixing
+  const menu = useLoaderData() as any[];
   
-  // Temporalmente agregar productos no-pizza para demostrar Quick Add
-  const enhancedMenu = [...originalMenu, ...mockNonPizzaItems];
-  const menu = enhancedMenu;
   const [filters, setFilters] = useState({
     category: 'all',
     allergens: [] as string[],

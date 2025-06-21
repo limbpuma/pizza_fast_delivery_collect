@@ -13,6 +13,8 @@ import Error from "./ui/Error";
 import ImpressumPage from "./pages/legal/ImpressumPage";
 import DatenschutzPage from "./pages/legal/DatenschutzPage";
 import AGBPage from "./pages/legal/AGBPage";
+// Test Pages
+import CartFlowTest from "./ui/CartFlowTest";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +29,18 @@ const router = createBrowserRouter([
         element: <Menu />,
         loader: menuLoader,
         errorElement: <Error />,
-      },
-      {
+      },      {
         path: "/checkout",
         element: <CheckoutForm />,
       },
       {
+        path: "/cart-test",
+        element: <CartFlowTest />,
+      },
+      {
         path: "/my-orders",
         element: <RecentOrders />,
-      },      {
+      },{
         path: "/order-confirmation",
         element: <OrderConfirmation />,
       },

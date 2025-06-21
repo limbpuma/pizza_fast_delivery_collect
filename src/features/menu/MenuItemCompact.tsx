@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../utils/helpers';
 import { getCurrentQuantityById, addItem, decreaseItemQuantity, deleteItem, decreaseAnyItemByPizzaId, getTotalQuantityByPizzaId } from '../cart/cartSlice';
 import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaInfo';
-import { getProductType, createQuickAddItem } from '../../utils/productHelpers';
+// MIGRATION: Use new product detection system with real menu data support
+import { getProductType, createQuickAddItem } from '../../utils/productDetection';
 import PizzaDetailsModal from './PizzaDetailsModal';
 import PizzaSizeModal from './PizzaSizeModal';
 

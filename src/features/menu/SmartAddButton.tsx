@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getCurrentQuantityById, addItem, increaseItemQuantity, decreaseItemQuantity, deleteItem } from '../cart/cartSlice';
-import { getProductType, createQuickAddItem } from '../../utils/productHelpers';
+// MIGRATION: Use new product detection system with real menu data support
+import { getProductType, createQuickAddItem } from '../../utils/productDetection';
 
 interface SmartAddButtonProps {
   pizza: any;
