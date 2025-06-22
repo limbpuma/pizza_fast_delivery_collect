@@ -39,7 +39,6 @@ interface Pizza {
   unitPrice: number;
   ingredients: string[];
   soldOut: boolean;
-  imageUrl: string;
 }
 
 export interface MenuItemProps {

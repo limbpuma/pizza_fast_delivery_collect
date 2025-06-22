@@ -27,15 +27,14 @@ const router = createBrowserRouter([
         element: <Menu />,
         loader: menuLoader,
         errorElement: <Error />,
-      },
-      {
+      },      {
         path: "/checkout",
         element: <CheckoutForm />,
       },
       {
         path: "/my-orders",
         element: <RecentOrders />,
-      },      {
+      },{
         path: "/order-confirmation",
         element: <OrderConfirmation />,
       },

@@ -1,13 +1,25 @@
+// Import the new real menu loader
+import { getMenu as getRealMenu } from './menuLoader';
+
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 export async function getMenu() {
-  const res = await fetch(`${API_URL}/menu`);
-
-  // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
-  if (!res.ok) throw Error("Failed getting menu");
-
-  const { data } = await res.json();
-  return data;
+  // MIGRATION: Use real Campus Restaurant menu data instead of external API
+  try {
+    console.log('🔄 Loading real Campus Restaurant menu...');
+    const realMenuData = await getRealMenu();
+    console.log('✅ Successfully loaded real menu with', realMenuData.length, 'items');
+    return realMenuData;
+  } catch (error) {
+    console.error('❌ Failed to load real menu data:', error);
+    
+    // Fallback to external API if real menu fails
+    console.log('🔄 Falling back to external API...');
+    const res = await fetch(`${API_URL}/menu`);
+    if (!res.ok) throw Error("Failed getting menu from both real data and external API");
+    const { data } = await res.json();
+    return data;
+  }
 }
 
 export async function getOrder(id: string) {

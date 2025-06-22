@@ -33,7 +33,7 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
 
   if (!pizza) return null;
 
-  const { id, name, unitPrice, ingredients, imageUrl } = pizza;
+  const { id, name, unitPrice, ingredients } = pizza;
   const germanInfo = getGermanPizzaInfo(id);
   
   const calculatePrice = (size: PizzaSize) => unitPrice * size.priceMultiplier;
@@ -71,14 +71,11 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={t('menu.selectSize')} size="md">
-      <div className="p-6">
-        {/* Pizza Preview */}
+      <div className="p-6">        {/* Pizza Preview */}
         <div className="flex items-center gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-          <img
-            src={imageUrl}
-            alt={name}
-            className="w-16 h-16 rounded-lg object-cover"
-          />
+          <div className="w-16 h-16 rounded-lg bg-orange-100 flex items-center justify-center">
+            <span className="text-2xl">🍕</span>
+          </div>
           <div>
             <h3 className="font-semibold text-gray-900">{name}</h3>
             <p className="text-sm text-gray-600 line-clamp-2">

@@ -382,12 +382,10 @@ export function convertDynamicSuggestionToProduct(suggestion: DynamicSuggestionP
     const germanInfo = getGermanPizzaInfo(suggestion.pizzaId);
     
     return {
-      id: suggestion.pizzaId,
-      name: suggestion.name,
+      id: suggestion.pizzaId,      name: suggestion.name,
       unitPrice: suggestion.price,
       ingredients: getDefaultIngredientsForPizza(suggestion.pizzaId),
       soldOut: false,
-      imageUrl: `https://images.unsplash.com/photo-pizza-${suggestion.pizzaId}?w=400`,
       // Additional pizza data
       size: suggestion.size || 'normal',
       diameter: suggestion.diameter || 32,
@@ -422,12 +420,10 @@ export function convertDynamicSuggestionToProduct(suggestion: DynamicSuggestionP
 
   // For dynamic items, create synthetic product
   return {
-    id: suggestion.id,
-    name: suggestion.name,
+    id: suggestion.id,    name: suggestion.name,
     unitPrice: suggestion.price,
     ingredients: [suggestion.description || suggestion.name],
     soldOut: false,
-    imageUrl: `https://images.unsplash.com/photo-${suggestion.category}?w=400`,
     category: suggestion.category,
     emoji: suggestion.emoji,
     description: suggestion.description,

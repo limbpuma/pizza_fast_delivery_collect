@@ -2,22 +2,30 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../../ui/Modal';
 import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaInfo';
 import AllergensDisplay from '../../ui/AllergensDisplay';
+import AdditivesDisplay from '../../ui/AdditivesDisplay';
 import NutritionalInfo from '../../ui/NutritionalInfo';
 import { formatCurrency } from '../../utils/helpers';
 
 interface PizzaDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  pizza: any;
+  pizza: {
+    id: number;
+    name: string;
+    unitPrice: number;
+    ingredients: string[];
+    allergens?: string[];
+    additives?: string[];
+    [key: string]: any;
+  };
   onAddToCart: () => void;
 }
 
 function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetailsModalProps) {
   const { t } = useTranslation();
+    if (!pizza) return null;
   
-  if (!pizza) return null;
-  
-  const { id, name, unitPrice, ingredients, imageUrl } = pizza;
+  const { id, name, unitPrice, ingredients, allergens, additives } = pizza;
   const germanInfo = getGermanPizzaInfo(id);
   const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
 
@@ -28,17 +36,8 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <div className="p-6">
-        {/* Pizza Image and Basic Info */}
-        <div className="flex flex-col md:flex-row gap-6 mb-6">
-          <div className="flex-shrink-0">
-            <img
-              src={imageUrl}
-              alt={name}
-              className="w-full md:w-48 h-48 rounded-lg object-cover"
-            />
-          </div>
-          
+      <div className="p-6">        {/* Pizza Basic Info */}
+        <div className="flex flex-col gap-6 mb-6">
           <div className="flex-1">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -112,12 +111,17 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
           <p className="text-gray-600 leading-relaxed">
             {ingredientsList.join(', ')}
           </p>
-        </div>
-
-        {/* Allergens */}
-        {germanInfo?.allergens && (
+        </div>        {/* Allergens */}
+        {allergens && allergens.length > 0 && (
           <div className="mb-6">
-            <AllergensDisplay allergens={germanInfo.allergens} />
+            <AllergensDisplay allergens={allergens} />
+          </div>
+        )}
+
+        {/* Additives */}
+        {additives && additives.length > 0 && (
+          <div className="mb-6">
+            <AdditivesDisplay additives={additives} />
           </div>
         )}
 

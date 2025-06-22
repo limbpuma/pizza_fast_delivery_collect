@@ -104,9 +104,9 @@
     "title": "Unsere Speisekarte",
     "soldOut": "Ausverkauft",
     "addToCart": "In den Warenkorb",
-    "ingredients": "Zutaten:",
-    "loading": "Lade Speisekarte...",
+    "ingredients": "Zutaten:",    "loading": "Lade Speisekarte...",
     "allergens": "Allergene:",
+    "additives": "Zusatzstoffe:",
     "nutritionalInfo": "Nährwertangaben",
     "calories": "{{calories}} kcal",
     "per100g": "pro 100g",
@@ -432,5 +432,1408 @@
       "confirm": "Ja, erneut bestellen",
       "cancel": "Abbrechen"
     }
-  }
+  },
+  
+  "zusatzstoffe_legende": {
+  "1": "mit Farbstoff",
+  "2": "mit Konservierungsstoff",
+  "3": "mit Antioxidationsmittel",
+  "4": "mit Geschmacksverstärker",
+  "5": "geschwärzt",
+  "6": "teilweise mit Phosphat, Benzoesäure & Sorbinsäure",
+  "7": "mit Süßungsmittel",
+  "8": "koffeinhaltig"
+},
+"allergene_legende": {
+  "C": "Soja",
+  "D": "Milch/Lactose",
+  "E": "Ei in jeglicher Form",
+  "F": "glutenhaltiges Getreide (Weizen / Hartweizengrieß)",
+  "G": "Sesamsamen",
+  "H": "alle Arten von Fisch",
+  "K": "Krebstiere",
+  "J": "geschwefelt",
+  "W": "Weichtiere",
+  "Er": "Erdnüsse",
+  "Sf": "Schalenfrüchte",
+  "Se": "Sellerie",  "Sn": "Senf"
+},
+  "menuData": [
+    {
+      "artikelNr": 1,
+      "artikel": "Mozzarellasticks",
+      "kategorie": "Snacks",
+      "beschreibung": "In zarter Butter-Knoblauchpanade mit Pommes & Salat",
+      "preis": "7,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 2,
+      "artikel": "Hähnchen Crossies",
+      "kategorie": "Snacks",
+      "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
+      "preis": "7,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["D","i","F"]
+    },
+    {
+      "artikelNr": 3,
+      "artikel": "Chicken Fingers Coconut",
+      "kategorie": "Snacks",
+      "beschreibung": "zarte Hähncheninnenfilets, ummantelt mit Panade und Kokosflocken, mit Pommes Frites",
+      "preis": "8,20 €",
+      "zusatzstoffe": [],
+      "alergene": ["S","F"]
+    },
+    {
+      "artikelNr": 4,
+      "artikel": "Chicken Wings",
+      "kategorie": "Snacks",
+      "beschreibung": "6 Stück mit Pommes & Salat",
+      "preis": "7,50 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    },
+    {
+      "artikelNr": 5,
+      "artikel": "Nachos",
+      "kategorie": "Snacks",
+      "beschreibung": "Überbacken mit Käse",
+      "preis": "5,00 €",
+      "zusatzstoffe": ["2"],
+      "alergene": ["D"]
+    },
+    {
+      "artikelNr": 6,
+      "artikel": "Ketchup, Mayonnaise",
+      "kategorie": "Snacks",
+      "beschreibung": "",
+      "preis": "0,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["E","S","N"]
+    },
+    {
+      "artikelNr": 7,
+      "artikel": "Kräuterbutter",
+      "kategorie": "Snacks",
+      "beschreibung": "",
+      "preis": "1,30 €",
+      "zusatzstoffe": [],
+      "alergene": ["D"]
+    },
+    {
+      "artikelNr": 8,
+      "artikel": "Saucen nach Wahl: Portion",
+      "kategorie": "Snacks",
+      "beschreibung": "Knoblauch, Chili, Tzatziki, Curry und Chunky Salsa",
+      "preis": "2,00 €",
+      "zusatzstoffe": [],
+      "alergene": ["D"]
+    },
+    {
+      "artikelNr": 9,
+      "artikel": "Fladenbrot mit Knoblauch",
+      "kategorie": "Fladenbrot",
+      "beschreibung": "wahlweise mit Knoblauch-, Chili- oder Currysauce",
+      "preis": "4,60 €",
+      "zusatzstoffe": [],
+      "alergene": ["F"]
+    },
+    {
+      "artikelNr": 10,
+      "artikel": "Pizzabrötchen",
+      "kategorie": "Fladenbrot",
+      "beschreibung": "8 Stück mit Kräuterbutter",
+      "preis": "2,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 11,
+      "artikel": "gefüllte pizzabrötchen",
+      "kategorie": "Fladenbrot",
+      "beschreibung": "mit Käse und einer Zutat nach Wahl: Salami, Thunfisch",
+      "preis": "5,00 €",
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","H"]
+    },
+    {
+      "artikelNr": 12,
+      "artikel": "Salami Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Salami, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["2", "3"], 
+      "alergene": ["D","F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 13,
+      "artikel": "Schinken Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Putenschinken, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["2", "3", "4"],
+      "alergene": ["D","F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 14,
+      "artikel": "Nizza Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Thunfisch, Zwiebeln, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 15,
+      "artikel": "Hähnchen Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Hähnchen, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 16,
+      "artikel": "Sucuk Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Sucuk, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 17,
+      "artikel": "Vegetarisches Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Mais, Champignons, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["1","2"],
+      "alergene": ["D","F","L","D","S","N"]
+    },
+    {
+      "artikelNr": 18,
+      "artikel": "Gyros Baguette",
+      "kategorie": "Baguettes",
+      "beschreibung": "Gyros, Tomaten, Käse, Gurken, Salat und Remoulade",
+      "preis": "6,50 €",
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","L","D","S","N"]
+    },
+    {
+      "artikelNr": 19,
+      "artikel": "Margherita",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,00 €",
+        "30cm": "7,00 €",
+        "40cm": "10,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 20,
+      "artikel": "Cipolla",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zwiebeln, Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,30 €",
+        "30cm": "7,50 €",
+        "40cm": "11,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 21,
+      "artikel": "Funghi",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Frische Champignons, Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,30 €",
+        "30cm": "7,50 €",
+        "40cm": "11,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 22,
+      "artikel": "Feta",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Schafskäse, Paprika, Oliven, Peperoni",
+      "preis": {
+        "24cm": "6,20 €",
+        "30cm": "8,00 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "5"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 23,
+      "artikel": "Peperoni",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Oliven, Paprika, Artischocken, Peperoni, Käse",
+      "preis": {
+        "24cm": "6,00 €",
+        "30cm": "8,00 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 24,
+      "artikel": "Verdura",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zucchini, Paprika, Broccoli, Zwiebeln",
+      "preis": {
+        "24cm": "6,00 €",
+        "30cm": "8,40 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 25,
+      "artikel": "Spinaci",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Spinat, Zwiebeln, Schafskäse, frische Champignons",
+      "preis": {
+        "24cm": "6,50 €",
+        "30cm": "8,40 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 26,
+      "artikel": "Zucchini",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zucchini, Paprika, Zwiebeln, Oliven",
+      "preis": {
+        "24cm": "7,00 €",
+        "30cm": "9,00 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "5"],
+      "alergene": ["D"]
+    },
+    {
+      "artikelNr": 27,
+      "artikel": "Roma",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Broccoli, Zwiebeln, Tomaten, Mais, Peperoni, Schafskäse",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 28,
+      "artikel": "Mozzarella",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Mozzarella, Tomatensauce, Tomaten, Basilikum",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 29,
+      "artikel": "Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 30,
+      "artikel": "Prosciutto",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 31,
+      "artikel": "Putenschinken Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Salami",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 32,
+      "artikel": "Frisch Champignons Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Frische Champignons, Salami",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 33,
+      "artikel": "Funghi e Prosciutto",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Frische Champignons, Salami, Putenschinken",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2","3", " 4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 34,
+      "artikel": "Paradiso",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Hackfleisch, Mais, Paprika, Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 35,
+      "artikel": "Speciale",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Putenschinken, Paprika",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "8,90 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 36,
+      "artikel": "Constanta",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Thunfisch, Paprika",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 37,
+      "artikel": "Crostatina",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hackfleisch, Paprika, Zwiebeln, Mais, Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3",  "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 38,
+      "artikel": "Inferno",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Paprika, Zwiebeln, Salami",
+      "preis": {
+        "24cm": "7,20 €",
+        "30cm": "9,20 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 39,
+      "artikel": "Fattoria",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Paprika, Broccoli, Zwiebeln, Salami",
+      "preis": {
+        "24cm": "7,30 €",
+        "30cm": "9,30 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 40,
+      "artikel": "Pollo",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hähnchenfleisch, Mais, Peperoni",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 41,
+      "artikel": "Campus",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken Zwiebeln, Hackfleisch,artischoken, fr.champipignons, oliven, paprika",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 42,
+      "artikel": "Calzone Schinken",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken",
+      "preis": {
+        
+        "30cm": "8,90 €"
+      },
+      "zusatzstoffe": [ "2","3","4 "],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 43,
+      "artikel": "Amalira",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hähnchenfleisch, Paprika, Broccoli, Zwiebeln, Sauce Hollandaise",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 44,
+      "artikel": "Calzone Gyros",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Gyros, Zwiebeln, Tomaten",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 45,
+      "artikel": "Diavolo Scharf",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 46,
+      "artikel": "Gyros",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putengyros",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "9,900 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 47,
+      "artikel": "Aspargo",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Spargel, Sauce Hollandaise",
+      "preis": {
+        "24cm": "6,50 €",
+        "30cm": "8,90 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 48,
+      "artikel": "Pizza Sucuk",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Sucuk",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "8,90 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 49,
+      "artikel": "Calzone Tonno",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Zwiebeln",
+      "preis": {
+        "24cm": "8,90 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 50,
+      "artikel": "Al Tonno",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Zwiebeln",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 51,
+      "artikel": "Di Mare",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "B", "D", "M", "G"]
+    },
+    {
+      "artikelNr": 52,
+      "artikel": "Tonno Spinat",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Spinat, Zwiebeln, Schafskäse",
+      "preis": {
+        "24cm": "7,20 €",
+        "30cm": "9,20 €",
+        "40cm": "15,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 53,
+      "artikel": "Gamberetti",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Garnelen, Knoblauch, frische Tomaten",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "B", "G"]
+    },
+    {
+      "artikelNr": 54,
+      "artikel": "Seelachs Pizza",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Seelachsfilet, Spinat, Zwiebeln, Sauce Hollandaise",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 55,
+      "artikel": "Salat Mista",
+      "kategorie": "Salate",
+      "beschreibung": "Gemischter Beilagensalat mit Tomaten, Gurken, Blattsalat",
+      "preis": "5,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 56,
+      "artikel": "Salat Tonno",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Thunfisch, Zwiebeln, Ei, Tomaten, Gurken",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "C", "D"]
+    },
+    {
+      "artikelNr": 57,
+      "artikel": "Salat mit Hähnchen",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Hähnchenstreifen, Gurken, Tomaten, Joghurtdressing",
+      "preis": "5,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 58,
+      "artikel": "Bauernsalat",
+      "kategorie": "Salate",
+      "beschreibung": "Schafskäse, Tomaten, Gurken, Zwiebeln, Oliven",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 59,
+      "artikel": "Salat Italia",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Mozzarella, frische Tomaten, Basilikum",
+      "preis": "8,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 60,
+      "artikel": "Salat Capricciosa",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Salami, Thunfisch, Käse, Ei",
+      "preis": "7,80 €",
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "C", "D", "G"]
+    },
+    {
+      "artikelNr": 61,
+      "artikel": "Salat Gyros",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Gyrosfleisch, Zwiebeln, Tomaten, Joghurtdressing",
+      "preis": "8,30 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 62,
+      "artikel": "Salat Hawaii",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Putenbrust, Ananas, Käse",
+      "preis": "7,90 €",
+      "zusatzstoffe": [],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 63,
+      "artikel": "Salat mit Sucuk",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Sucuk, Tomaten, Gurken, Zwiebeln, Joghurtdressing",
+      "preis": "8,30 €",
+      "zusatzstoffe": ["1", "2", "3", "4", "8"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 64,
+      "artikel": "Salat Vegetarisch",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat, Mais, Paprika, Oliven, Tomaten, Gurken",
+      "preis": "7,90 €",
+      "zusatzstoffe": [],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 65,
+      "artikel": "Salat Campus",
+      "kategorie": "Salate",
+      "beschreibung": "Blattsalat mit gegrilltem Hähnchen, Paprika, frischen Champignons und Joghurtdressing",
+      "preis": "9,00 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 66,
+      "artikel": "Brokkoli Auflauf",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Kartoffeln, Brokkoli, Sauce Hollandaise und Käse überbacken",
+      "preis": "7,00 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 67,
+      "artikel": "Kartoffel Gemüse Auflauf",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Zucchini, Brokkoli, Paprika, Tomaten, Sauce Hollandaise und Käse überbacken",
+      "preis": "8,40 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 68,
+      "artikel": "Spinat Auflauf",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Spinat, Kartoffeln, Schafskäse, Zwiebeln, Käse überbacken",
+      "preis": "8,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 69,
+      "artikel": "Vegetarische Reispfanne",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Gemüse der Saison, Sojasauce, Knoblauch und Reis",
+      "preis": "9,90 €",
+      "zusatzstoffe": [],
+      "alergene": ["F"]
+    },
+    {
+      "artikelNr": 70,
+      "artikel": "Vegetarische Gemüsepfanne",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Zucchini, Brokkoli, Paprika, Tomaten, frischen Champignons",
+      "preis": "8,90 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    },
+    {
+      "artikelNr": 71,
+      "artikel": "Vegetarische Pasta",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Spinat, Tomaten, Zwiebeln, Sahnesauce, Käse überbacken",
+      "preis": "8,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 72,
+      "artikel": "Gemüse Lasagne",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Zucchini, Tomaten, Paprika, Spinat, Käse",
+      "preis": "9,90 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 73,
+      "artikel": "Vegetarische Kartoffelpfanne",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Brokkoli, Spinat, Paprika, Zwiebeln, mit Käse überbacken",
+      "preis": "10,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 74,
+      "artikel": "Vegetarische Tagliatelle",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Spinat, Zucchini, Tomaten, Sahnesauce, Käse",
+      "preis": "10,90 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 75,
+      "artikel": "Kartoffelpfanne Spezial",
+      "kategorie": "Vegetarisch",
+      "beschreibung": "mit Spinat, Brokkoli, Sauce Hollandaise, Käse überbacken",
+      "preis": "10,40 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["G"]
+    },
+    {
+      "artikelNr": 76,
+      "artikel": "Knobi",
+      "kategorie": "Nudeln",
+      "beschreibung": "Nudeln mit Knoblauchsauce",
+      "preis": "9,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 77,
+      "artikel": "Figaro überbacken",
+      "kategorie": "Nudeln",
+      "beschreibung": "Nudeln mit Sauce Hollandaise und Käse überbacken",
+      "preis": "9,90 €",
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 78,
+      "artikel": "Spaghetti Auflauf",
+      "kategorie": "Nudeln",
+      "beschreibung": "Spaghetti mit Tomatensauce und Käse überbacken",
+      "preis": "9,00 €",
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 79,
+      "artikel": "Spaghetti",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Tomatensauce",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 80,
+      "artikel": "Spaghetti Bolognese",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Hackfleisch-Tomatensauce",
+      "preis": "7,50 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 81,
+      "artikel": "Spaghetti Carbonara",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Schinken, Ei und Sahnesauce",
+      "preis": "8,00 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A", "C", "G"]
+    },
+    {
+      "artikelNr": 82,
+      "artikel": "Tortellini Auflauf",
+      "kategorie": "Nudeln",
+      "beschreibung": "gefüllt, mit Käse überbacken",
+      "preis": "8,80 €",
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 83,
+      "artikel": "Tortellini a la Panna",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Schinken und Sahnesauce",
+      "preis": "9,30 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 84,
+      "artikel": "Tagliatelle Gorgonzola",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Gorgonzolasauce",
+      "preis": "9,30 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 85,
+      "artikel": "Rigatoni Gorgonzola",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Gorgonzolasauce",
+      "preis": "9,30 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 86,
+      "artikel": "Tagliatelle Carbonara",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Schinken, Ei und Sahnesauce",
+      "preis": "8,40 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A", "C", "G"]
+    },
+    {
+      "artikelNr": 87,
+      "artikel": "Tagliatelle Campus",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Hähnchenstreifen, Paprika, Tomaten, Sahnesauce",
+      "preis": "9,80 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 88,
+      "artikel": "Tagliatelle Cortefiorito",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Gemüse und Sahnesauce",
+      "preis": "9,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 89,
+      "artikel": "Tagliatelle Italia",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Mozzarella, Tomaten und Basilikum",
+      "preis": "8,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 90,
+      "artikel": "Lasagne Spinat überbacken",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Spinat und Käse",
+      "preis": "9,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 91,
+      "artikel": "Macaroni Spinat Auflauf",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Spinat und Käse überbacken",
+      "preis": "9,90 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 92,
+      "artikel": "Macaroni",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Tomatensauce",
+      "preis": "9,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 93,
+      "artikel": "Macaroni a la Calabrese",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Hackfleisch und scharfer Sauce",
+      "preis": "9,40 €",
+      "zusatzstoffe": ["4"],
+      "alergene": ["A"]
+    },
+    {
+      "artikelNr": 94,
+      "artikel": "Nudelpfanne überbacken",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Gemüse, Sahnesauce und Käse",
+      "preis": "9,40 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 95,
+      "artikel": "Nudel Spezial",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Hähnchen, Paprika, Sahnesauce und Käse überbacken",
+      "preis": "9,50 €",
+      "zusatzstoffe": [],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 96,
+      "artikel": "Pasta Broccoli überbacken",
+      "kategorie": "Nudeln",
+      "beschreibung": "mit Broccoli, Hollandaise, Käse",
+      "preis": "10,00 €",
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "G"]
+    },
+    {
+      "artikelNr": 98,
+      "artikel": "Calamaris",
+      "kategorie": "Fisch",
+      "beschreibung": "Tintenfischringe paniert, mit Beilage",
+      "preis": "11,50 €",
+      "zusatzstoffe": ["1", "4"],
+      "alergene": ["A", "D", "M"]
+    },
+    {
+      "artikelNr": 99,
+      "artikel": "Krabben Reispfanne überbacken",
+      "kategorie": "Fisch",
+      "beschreibung": "Krabben mit Gemüse, Sahnesauce und Käse überbacken, serviert mit Reis",
+      "preis": "11,90 €",
+      "zusatzstoffe": ["1", "4"],
+      "alergene": ["A", "B", "G"]
+    },
+    {
+      "artikelNr": 100,
+      "artikel": "Naturschnitzel",
+      "kategorie": "Schnitzel",
+      "beschreibung": "alle Schnitzel aus Putenfleisch mit Pommes & Salatbeilage",
+      "preis": "9.80 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 101,
+      "artikel": "Zigeunerschnitzel",
+      "kategorie": "Schnitzel",
+      "beschreibung": "mit Zigeunersauce",
+      "preis": "10.20 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 102,
+      "artikel": "Schnitzel Hawaii",
+      "kategorie": "Schnitzel",
+      "beschreibung": "mit Putenschinken²³⁴, Ananas und Käse überbacken",
+      "preis": "10.20 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": ["1", "2", "3", "4"]
+    },
+    {
+      "artikelNr": 103,
+      "artikel": "Pfefferschnitzel",
+      "kategorie": "Schnitzel",
+      "beschreibung": "mit grünen Pfeffer in leckerer Sauce",
+      "preis": "10.20 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 104,
+      "artikel": "Schnitzel Hollandaise",
+      "kategorie": "Schnitzel",
+      "beschreibung": "mit Spargel, Schinken²³⁴, Sauce Hollandaise und Käse überbacken",
+      "preis": "10.20 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": ["1", "2", "3", "4"]
+    },
+    {
+      "artikelNr": 105,
+      "artikel": "Chilli Eintopf",
+      "kategorie": "Fleisch",
+      "beschreibung": "mit Hackfleisch, Bohnen und 1 pizzabrötchen",
+      "preis": "10,20 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 106,
+      "artikel": "Chilli Eintopf",
+      "kategorie": "Fleisch",
+      "beschreibung": "mit Hackfleisch, Bohnen und 1 pizzabrötchen",
+      "preis": "9.80 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 107,
+      "artikel": "Gyros",
+      "kategorie": "Fleisch",
+      "beschreibung": "mit Pommes Frites, Tzatziki*, und Salat (Rindfleisch)",
+      "preis": "11.50 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["4"]
+    },
+    {
+      "artikelNr": 108,
+      "artikel": "Gyros 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "Peperoni, Zwiebeln, feta käse*, mit käse überbacken Pommes Frites, Salat, Tzatziki* oder Knoblauch Sauce",
+      "preis": "12.50 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["4"]
+    },
+    {
+      "artikelNr": 109,
+      "artikel": "Reispfanne Huhn 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "frische Champignons, Paprika, Bohnen mit Käse überbacken",
+      "preis": "12.50 €",
+      "alergene": ["G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 110,
+      "artikel": "Putenpfanne 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "Putenbrustfilet, Spezialsoße des Hauses, Zwiebeln, Champignons, und Käse, 1 Pizzabrötchen",
+      "preis": "12.90 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 111,
+      "artikel": "Geschnetzelte Putenbrust",
+      "kategorie": "Fleisch",
+      "beschreibung": "bunte Nudeln*, frische Champignons, Erbsen, Rahmsauce und Salat",
+      "preis": "12.40 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 112,
+      "artikel": "Puten Gyros",
+      "kategorie": "Fleisch",
+      "beschreibung": "mit Pommes oder Reis, Salat, Tzatziki* oder Knoblauch Sauce",
+      "preis": "12.40 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["4"]
+    },
+    {
+      "artikelNr": 113,
+      "artikel": "Silberne Hochzeit",
+      "kategorie": "Fleisch",
+      "beschreibung": "Bandnudeln*, Rindfleisch, Champignons, Macaroni*, Cognac sauce",
+      "preis": "12,40 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 114,
+      "artikel": "Arabische Pfanne 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "Reis, Banane, Hähn., Rosin., Paprika, Mandeln*, Ananas, Zwiebeln",
+      "preis": "12.40 €",
+      "alergene": ["G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 115,
+      "artikel": "Pilzpfanne Spezial 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "frische Champignons, Kartoffeln, Zwiebeln, Putenbrustfilet, Sahnesauce",
+      "preis": "12.40 €",
+      "alergene": ["G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 116,
+      "artikel": "Curryhuhn-Indisch-Art",
+      "kategorie": "Fleisch",
+      "beschreibung": "2 Hähnchenschnitzel*, Erbsen, Currysauce",
+      "preis": "12.90 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 117,
+      "artikel": "Hähnchen Mina",
+      "kategorie": "Fleisch",
+      "beschreibung": "Paprika, Champignons, Rahmsauce",
+      "preis": "12.00 €",
+      "alergene": ["G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 118,
+      "artikel": "Hähnchen im Feld",
+      "kategorie": "Fleisch",
+      "beschreibung": "2 Hähnchenschnitzel*, Kartoffeln, Gemüse, Champignonsauce",
+      "preis": "12.40 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 119,
+      "artikel": "Hähnchen Kebab* gegrillt",
+      "kategorie": "Fleisch",
+      "beschreibung": "mit Pommes, Knoblauchsauce",
+      "preis": "12.00 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["4"]
+    },
+    {
+      "artikelNr": 120,
+      "artikel": "Gemüsepfanne Spezial 'überbacken'",
+      "kategorie": "Fleisch",
+      "beschreibung": "Puten, Broccoli, Auberginen, Zucchini, Paprika, Zwiebeln, Champignons, Rahmsauce, Käse überbacken, 1 Pizzabrötchen",
+      "preis": "12.40 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["1", "4"]
+    },
+    {
+      "artikelNr": 121,
+      "artikel": "Fischstäbchen",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "mit Pommes Frites",
+      "preis": "7.00 €",
+      "alergene": ["A", "D", "G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 122,
+      "artikel": "Spaghetti",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "mit Tomatensauce",
+      "preis": "5.30 €",
+      "alergene": ["A"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 123,
+      "artikel": "Spaghetti Bolognese",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "mit Hackfleisch",
+      "preis": "5.30 €",
+      "alergene": ["A"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 124,
+      "artikel": "Tortellini",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "mit Sahnesauce",
+      "preis": "6.00 €",
+      "alergene": ["A", "C", "G"],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 125,
+      "artikel": "Donald Teller",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "mit Chicken Nuggets, Pommes Frites, Salat",
+      "preis": "7,50 €",
+      "alergene": ["A", "G"],
+      "zusatzstoffe": ["4"]
+    },
+    {
+      "artikelNr": 126,
+      "artikel": "Pommes Frites",
+      "kategorie": "Für die Kleinen",
+      "beschreibung": "Einfach Pommes Frites",
+      "preis": "4,00 €",
+      "alergene": [],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 127,
+      "artikel": "Mini Donuts",
+      "kategorie": "Desserts",
+      "beschreibung": "5 St. (3 Sorten)",
+      "preis": "6.00 €",
+      "alergene": [],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 128,
+      "artikel": "Eis 1500 ml",
+      "kategorie": "Desserts",
+      "beschreibung": "Schoko, Vanille, Zitrone",
+      "preis": "7.00 €",
+      "alergene": [],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 129,
+      "artikel": "Cola, Fanta, Sprite",
+      "kategorie": "Getränke",
+      "beschreibung": "0,33 Liter",
+      "preis": "3.00 €",
+      "alergene": [],
+      "zusatzstoffe": [1, 3]
+    },
+    {
+      "artikelNr": 130,
+      "artikel": "Cola Zero",
+      "kategorie": "Getränke",
+      "beschreibung": "0,33 Liter",
+      "preis": "3.00 €",
+      "alergene": [],
+      "zusatzstoffe": [1, 3]
+    },
+    {
+      "artikelNr": 131,
+      "artikel": "Mineralwasser",
+      "kategorie": "Getränke",
+      "beschreibung": "1 Liter",
+      "preis": "3.00 €",
+      "alergene": [],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 132,
+      "artikel": "Monster Energy",
+      "kategorie": "Getränke",
+      "beschreibung": "0,5 Liter",
+      "preis": "3.00 €",
+      "alergene": [],
+      "zusatzstoffe": [4]
+    },
+    {
+      "artikelNr": 133,
+      "artikel": "Durstlöscher",
+      "kategorie": "Getränke",
+      "beschreibung": "0,5 Liter – multivitamin, Pfirsich, Orange",
+      "preis": "2.00 €",
+      "alergene": [],
+      "zusatzstoffe": [9]
+    },
+    {
+      "artikelNr": 134,
+      "artikel": "Vitamalz (Malzbier)",
+      "kategorie": "Getränke",
+      "beschreibung": "0,33 Liter",
+      "preis": "2.00 €",
+      "alergene": [],
+      "zusatzstoffe": []
+    },
+    {
+      "artikelNr": 135,
+      "artikel": "Nudeltag",
+      "kategorie": "Tagesangebote",
+      "beschreibung": "Dienstag: alle Nudelgerichte",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    },
+    {
+      "artikelNr": 136,
+      "artikel": "Pizzatag",
+      "kategorie": "Tagesangebote",
+      "beschreibung": "Donnerstag: alle Pizzen (30 cm)",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    },
+    {
+      "artikelNr": 137,
+      "artikel": "Mittagsangebot",
+      "kategorie": "Tagesangebote",
+      "beschreibung": "Montag bis Freitag 11.00 Uhr bis 15.00 Uhr – alle Pizzen, Nudeln, Salate",
+      "preis": "7,00 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    },
+    {
+      "artikelNr": 138,
+      "artikel": "Fleischgerichte Angebot",
+      "kategorie": "Tagesangebote",
+      "beschreibung": "Montag bis Freitag – Fleischgerichte",
+      "preis": "9,00 €",
+      "zusatzstoffe": [],
+      "alergene": []
+    }
+
+  ]
 }
+

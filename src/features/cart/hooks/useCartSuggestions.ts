@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getCart } from '../cartSlice';
 import { 
-  generateConsistentSuggestions, 
-  DynamicSuggestionProduct,
-  convertDynamicSuggestionToProduct
-} from '../../../utils/dynamicSuggestions';
+  getCachedRealMenuSuggestions,
+  getSmartRealMenuSuggestions,
+  RealMenuSuggestion 
+} from '../../../utils/realMenuSuggestions';
 
 interface Product {
   id: string | number;
@@ -28,21 +28,60 @@ interface SuggestionHookReturn {
   didYouForget: Product[];
 }
 
-// Updated hook using dynamic suggestions system
+// Updated hook using real menu suggestions system
 export function useCartSuggestions(): SuggestionHookReturn & { cartAnalysis: any; isEmpty: boolean } {
   const cart = useSelector(getCart);
+  const [realSuggestions, setRealSuggestions] = useState<RealMenuSuggestion[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Load real menu suggestions
+  useEffect(() => {
+    let isMounted = true;
+    
+    const loadRealSuggestions = async () => {
+      try {
+        console.log('🔄 Loading real menu suggestions for cart...');
+        const suggestions = await getCachedRealMenuSuggestions();
+        
+        if (isMounted) {
+          setRealSuggestions(suggestions);
+          setIsLoading(false);
+          console.log(`✅ Loaded ${suggestions.length} real menu suggestions for cart`);
+        }
+      } catch (error) {
+        console.error('❌ Failed to load real menu suggestions:', error);
+        if (isMounted) {
+          setRealSuggestions([]);
+          setIsLoading(false);
+        }
+      }
+    };
+    
+    loadRealSuggestions();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   
   const cartAnalysis = useMemo(() => analyzeCartContent(cart), [cart]);
   
   const suggestions = useMemo(() => {
-    // Use the new dynamic suggestions system
-    const dynamicSuggestions = generateConsistentSuggestions(cartAnalysis);
+    if (isLoading || realSuggestions.length === 0) {
+      return {
+        haveYouSeen: [],
+        didYouForget: []
+      };
+    }
+    
+    // Use real menu suggestions with smart filtering
+    const smartSuggestions = getSmartRealMenuSuggestions(realSuggestions, cartAnalysis);
     
     return {
-      haveYouSeen: dynamicSuggestions.haveYouSeen.map(convertDynamicSuggestionToCartProduct),
-      didYouForget: dynamicSuggestions.didYouForget.map(convertDynamicSuggestionToCartProduct)
+      haveYouSeen: smartSuggestions.haveYouSeen.map(convertRealSuggestionToProduct),
+      didYouForget: smartSuggestions.didYouForget.map(convertRealSuggestionToProduct)
     };
-  }, [cartAnalysis]);
+  }, [realSuggestions, cartAnalysis, isLoading]);
 
   return {
     ...suggestions,
@@ -51,14 +90,13 @@ export function useCartSuggestions(): SuggestionHookReturn & { cartAnalysis: any
   };
 }
 
-// Convert dynamic suggestion to cart product format
-function convertDynamicSuggestionToCartProduct(suggestion: DynamicSuggestionProduct): Product {
-  const converted = convertDynamicSuggestionToProduct(suggestion);
+// Convert real menu suggestion to cart product format
+function convertRealSuggestionToProduct(suggestion: RealMenuSuggestion): Product {
   return {
-    id: converted.id,
-    name: converted.name,
-    price: converted.unitPrice || converted.price,
-    description: converted.description || suggestion.description,
+    id: suggestion.id,
+    name: suggestion.name,
+    price: suggestion.price,
+    description: suggestion.description,
     category: suggestion.category
   };
 }
@@ -81,29 +119,30 @@ function analyzeCartContent(cartItems: CartItem[]) {
     cartItems.forEach(item => {
       analysis.totalValue += item.totalPrice;
       
-      // Enhanced category detection with more patterns
+      // Enhanced category detection with German terms
       const itemName = item.name.toLowerCase();
       
       if (itemName.includes('pizza')) {
         analysis.hasPizza = true;
       }
-      if (itemName.includes('pasta') || itemName.includes('tortellini')) {
+      if (itemName.includes('pasta') || itemName.includes('nudeln') || itemName.includes('tortellini')) {
         analysis.hasPasta = true;
       }
-      // Enhanced beverage detection
-      if (itemName.includes('cola') || itemName.includes('beer') || itemName.includes('water') ||
-          itemName.includes('juice') || itemName.includes('espresso') || 
-          itemName.includes('drink') || itemName.includes('beverage')) {
+      // Enhanced beverage detection with German terms
+      if (itemName.includes('cola') || itemName.includes('bier') || itemName.includes('wasser') ||
+          itemName.includes('saft') || itemName.includes('espresso') || itemName.includes('getränk') ||
+          itemName.includes('drink') || itemName.includes('beverage') || itemName.includes('water')) {
         analysis.hasBeverage = true;
       }
-      // Enhanced appetizer detection
-      if (itemName.includes('bread') || itemName.includes('buns') || itemName.includes('wings') ||
-          itemName.includes('salad') || itemName.includes('sticks') || itemName.includes('focaccia')) {
+      // Enhanced appetizer detection with German terms
+      if (itemName.includes('brot') || itemName.includes('baguette') || itemName.includes('wings') ||
+          itemName.includes('salat') || itemName.includes('sticks') || itemName.includes('focaccia') ||
+          itemName.includes('nachos') || itemName.includes('crossies') || itemName.includes('snack')) {
         analysis.hasAppetizer = true;
       }
-      // Enhanced dessert detection
-      if (itemName.includes('tiramisu') || itemName.includes('ice cream') || itemName.includes('brownie') ||
-          itemName.includes('gelato') || itemName.includes('dessert')) {
+      // Enhanced dessert detection with German terms
+      if (itemName.includes('tiramisu') || itemName.includes('eis') || itemName.includes('brownie') ||
+          itemName.includes('gelato') || itemName.includes('dessert') || itemName.includes('nachtisch')) {
         analysis.hasDessert = true;
       }
     });
