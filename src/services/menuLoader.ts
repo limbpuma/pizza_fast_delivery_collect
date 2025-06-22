@@ -25,7 +25,6 @@ export interface ProcessedMenuItem {
   unitPrice: number;
   ingredients: string[];
   soldOut: boolean;
-  imageUrl: string;
   category?: string;
   description?: string;
   allergens?: string[];
@@ -100,11 +99,7 @@ function processMenuItem(item: RealMenuItem): ProcessedMenuItem {
     category: kategorie,
     ingredients: [beschreibung]
   };
-  
-  const productType = getProductType(mockProduct);
-  
-  // Generate placeholder image URL
-  const imageUrl = generateImageUrl(artikel, kategorie);
+    const productType = getProductType(mockProduct);
   
   return {
     id: artikelNr,
@@ -112,7 +107,6 @@ function processMenuItem(item: RealMenuItem): ProcessedMenuItem {
     unitPrice,
     ingredients: [beschreibung],
     soldOut: false,
-    imageUrl,
     category: kategorie,
     description: beschreibung,
     allergens: alergene,
@@ -128,37 +122,6 @@ function processMenuItem(item: RealMenuItem): ProcessedMenuItem {
  */
 function parseGermanPrice(priceStr: string): number {
   return parseFloat(priceStr.replace('€', '').replace(',', '.').trim());
-}
-
-/**
- * Generate placeholder image URL based on product name and category
- */
-function generateImageUrl(name: string, category: string): string {
-  const slug = name.toLowerCase()
-    .replace(/[äöüß]/g, (match) => ({
-      'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'
-    }[match] || match))
-    .replace(/[^a-z0-9]/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-  
-  // Use category-based placeholders
-  const categoryMap: { [key: string]: string } = {
-    'Snacks': 'appetizer',
-    'Getränke': 'beverage',
-    'Salate': 'salad',
-    'Desserts': 'dessert',
-    'Pizzen Vegetarisch': 'pizza',
-    'Pizzen mit Fleisch': 'pizza',
-    'Pizzen mit Fisch': 'pizza',
-    'Nudeln': 'pasta',
-    'Baguettes': 'sandwich',
-    'Fladenbrot': 'bread'
-  };
-  
-  const imageCategory = categoryMap[category] || 'food';
-  
-  return `https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&crop=center&auto=format&q=60&key=${imageCategory}-${slug}`;
 }
 
 /**

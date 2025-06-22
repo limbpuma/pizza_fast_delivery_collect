@@ -17,7 +17,7 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
   
   if (!pizza) return null;
   
-  const { id, name, unitPrice, ingredients, imageUrl } = pizza;
+  const { id, name, unitPrice, ingredients } = pizza;
   const germanInfo = getGermanPizzaInfo(id);
   const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
 
@@ -28,17 +28,8 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <div className="p-6">
-        {/* Pizza Image and Basic Info */}
-        <div className="flex flex-col md:flex-row gap-6 mb-6">
-          <div className="flex-shrink-0">
-            <img
-              src={imageUrl}
-              alt={name}
-              className="w-full md:w-48 h-48 rounded-lg object-cover"
-            />
-          </div>
-          
+      <div className="p-6">        {/* Pizza Basic Info */}
+        <div className="flex flex-col gap-6 mb-6">
           <div className="flex-1">
             <div className="flex items-start justify-between mb-4">
               <div>

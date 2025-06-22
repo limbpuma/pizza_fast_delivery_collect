@@ -15,7 +15,7 @@ interface MenuItemCompactProps {
 
 function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const { id, name, unitPrice, ingredients, soldOut } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -65,42 +65,38 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
 
   return (
     <>      <div className="pizza-card-compact bg-white rounded-lg border border-gray-200 hover:shadow-lg hover:border-orange-300 transition-all duration-200 p-4 group">
-        <div className="flex gap-4">
-          {/* Pizza Image */}
-          <div className="flex-shrink-0 relative">
-            <img
-              src={imageUrl}
-              alt={name}
-              className={`w-24 h-24 sm:w-28 sm:h-28 rounded-lg object-cover transition-transform duration-200 group-hover:scale-105 ${
-                soldOut ? "opacity-50 grayscale" : ""
-              }`}
-              loading="lazy"
-            />
-            
-            {/* Enhanced Popular Badge */}
-            {germanInfo?.isPopular && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-lg animate-pulse">
-                🔥 Popular
-              </span>
-            )}
-            
-            {/* Spicy Level */}
-            {germanInfo?.spicyLevel && (
-              <div className="absolute bottom-1 left-1 flex">
-                {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
-                  <span key={i} className="text-red-500 text-sm">🌶️</span>
-                ))}
-              </div>
-            )}
-            
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100">
-              <span className="text-white text-sm font-medium bg-orange-500 px-2 py-1 rounded">View Details</span>
+        <div className="flex flex-col gap-3">
+          {/* Popular and Spicy Level Badges */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {/* Enhanced Popular Badge */}
+              {germanInfo?.isPopular && (
+                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-lg animate-pulse">
+                  🔥 Popular
+                </span>
+              )}
+              
+              {/* Spicy Level */}
+              {germanInfo?.spicyLevel && (
+                <div className="flex">
+                  {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
+                    <span key={i} className="text-red-500 text-sm">🌶️</span>
+                  ))}
+                </div>
+              )}
             </div>
+            
+            {/* View Details Button */}
+            <button
+              onClick={handleDetailsClick}
+              className="text-orange-500 hover:text-orange-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            >
+              View Details
+            </button>
           </div>
 
           {/* Pizza Info */}
-          <div className="flex-1 min-w-0">            <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 min-w-0"><div className="flex items-start justify-between mb-2">
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-gray-900 text-base leading-tight mb-1 truncate">
                   <span className="text-sm text-gray-500 mr-1">

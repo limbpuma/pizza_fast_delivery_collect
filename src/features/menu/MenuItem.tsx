@@ -16,13 +16,12 @@ interface MenuItemProps {
     unitPrice: number;
     ingredients: string[]; // API devuelve array de strings
     soldOut: boolean;
-    imageUrl: string;
   };
 }
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { t } = useTranslation();
-  const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const { id, name, unitPrice, ingredients, soldOut } = pizza;
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   
@@ -47,31 +46,25 @@ function MenuItem({ pizza }: MenuItemProps) {
     : [];
 
   return (    <li className="pizza-card bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg hover:border-yellow-300 transition-all duration-300 p-4 mb-4 group">
-      <div className="flex gap-4">
-        {/* Pizza Image */}
-        <div className="relative flex-shrink-0">
-          <img
-            src={imageUrl}
-            alt={name}
-            className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-lg object-cover transition-transform duration-300 group-hover:scale-105 ${
-              soldOut ? "opacity-50 grayscale" : ""
-            }`}
-            loading="lazy"
-          />
-          {/* Popular Badge */}
-          {germanInfo?.isPopular && (
-            <span className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-sm animate-pulse">
-              {t('menu.popular')}
-            </span>
-          )}
-          {/* Spicy Level */}
-          {germanInfo?.spicyLevel && (
-            <div className="absolute bottom-2 left-2 flex">
-              {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
-                <span key={i} className="text-red-500 text-sm">🌶️</span>
-              ))}
-            </div>
-          )}
+      <div className="flex flex-col gap-4">
+        {/* Badges Row */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {/* Popular Badge */}
+            {germanInfo?.isPopular && (
+              <span className="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-sm animate-pulse">
+                {t('menu.popular')}
+              </span>
+            )}
+            {/* Spicy Level */}
+            {germanInfo?.spicyLevel && (
+              <div className="flex">
+                {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
+                  <span key={i} className="text-red-500 text-sm">🌶️</span>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Pizza Information */}
