@@ -79,9 +79,28 @@ Stand: Juni 2025
 
  
 ZUSATZSTOFFKENNZEICHNUNG:
-
-1-mit Farbstoff, 2-konservierungsstoff , 3-mit Antidoxidationsmittel, 4-mit Geschmacksverstärker, 5 -geschwärzt, 6- teilweise mit Phosphat BenzoeSäure & SorbinSäure , 7 -mit Süßungsmittel, 8 -koffeinhaltig
-
-ALLERGENE STOFFE :
-
-C = Soja , D = Milch / Lactose , E = Ei in jeglicher form , F = glutenhaltiges Getreide ( Weizen / Hartweizengrieß ) , G = Sesamsamen , H = alle Arten von fisch , K = Krebstiere , J = geschwefelt , W = Weichtiere , Er = Erdnüsse , Sf = Schlenfrüchte , Se = Sellerie , Sn = Senf 
+  
+  "zusatzstoffe_legende": {
+  "1": "mit Farbstoff",
+  "2": "mit Konservierungsstoff",
+  "3": "mit Antioxidationsmittel",
+  "4": "mit Geschmacksverstärker",
+  "5": "geschwärzt",
+  "6": "teilweise mit Phosphat, Benzoesäure & Sorbinsäure",
+  "7": "mit Süßungsmittel",
+  "8": "koffeinhaltig"
+},
+"allergene_legende": {
+  "C": "Soja",
+  "D": "Milch/Lactose",
+  "E": "Ei in jeglicher Form",
+  "F": "glutenhaltiges Getreide (Weizen / Hartweizengrieß)",
+  "G": "Sesamsamen",
+  "H": "alle Arten von Fisch",
+  "K": "Krebstiere",
+  "J": "geschwefelt",
+  "W": "Weichtiere",
+  "Er": "Erdnüsse",
+  "Sf": "Schalenfrüchte",
+  "Se": "Sellerie",  "Sn": "Senf"
+}

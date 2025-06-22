@@ -872,7 +872,7 @@
         "30cm": "8,60 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3",  "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -885,7 +885,7 @@
         "30cm": "9,20 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3", "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },    {
       "artikelNr": 39,
@@ -1019,9 +1019,8 @@
         "24cm": "8,90 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G", "H"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 50,
       "artikel": "Al Tonno",
       "kategorie": "Pizzen mit Fisch",
@@ -1032,9 +1031,8 @@
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 51,
       "artikel": "Di Mare",
       "kategorie": "Pizzen mit Fisch",
@@ -1045,9 +1043,8 @@
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "B", "D", "M", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K", "W"]
+    },    {
       "artikelNr": 52,
       "artikel": "Frutti di Mare",
       "kategorie": "Pizzen mit Fisch",
@@ -1058,9 +1055,8 @@
         "40cm": "15,00 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K", "W"]
+    },    {
       "artikelNr": 53,
       "artikel": "Gamberetti",
       "kategorie": "Pizzen mit Fisch",
@@ -1071,9 +1067,8 @@
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "B", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K"]
+    },    {
       "artikelNr": 54,
       "artikel": "Seelachs Pizza",
       "kategorie": "Pizzen mit Fisch",
@@ -1084,16 +1079,15 @@
         "40cm": "14,00 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 55,
       "artikel": "Salat Mista",
       "kategorie": "Salate",
       "beschreibung": "Gemischter Beilagensalat mit Tomaten, Gurken, Blattsalat",
       "preis": "5,50 €",
       "zusatzstoffe": [],
-      "alergene": ["A"]
+      "alergene": []
     },    {
       "artikelNr": 56,
       "artikel": "Salat Tonno",
@@ -1101,16 +1095,15 @@
       "beschreibung": "Blattsalat, Thunfisch, Zwiebeln, Ei, Tomaten, Gurken",
       "preis": "7,00 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "C", "D", "H"]
-    },
-    {
+      "alergene": ["E", "D", "H"]
+    },    {
       "artikelNr": 57,
       "artikel": "Salat mit Hähnchen",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Hähnchenstreifen, Gurken, Tomaten, Joghurtdressing",
       "preis": "5,50 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 58,
@@ -1129,24 +1122,22 @@
       "preis": "8,50 €",
       "zusatzstoffe": [],
       "alergene": ["G"]
-    },
-    {
+    },    {
       "artikelNr": 60,
       "artikel": "Salat Capricciosa",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Salami, Thunfisch, Käse, Ei",
       "preis": "7,80 €",
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "C", "D", "G"]
-    },
-    {
+      "alergene": ["E", "D", "G", "H"]
+    },    {
       "artikelNr": 61,
       "artikel": "Salat Gyros",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Gyrosfleisch, Zwiebeln, Tomaten, Joghurtdressing",
       "preis": "8,30 €",
       "zusatzstoffe": ["4"],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 62,
@@ -1156,33 +1147,30 @@
       "preis": "7,90 €",
       "zusatzstoffe": [],
       "alergene": ["G"]
-    },
-    {
+    },    {
       "artikelNr": 63,
       "artikel": "Salat mit Sucuk",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Sucuk, Tomaten, Gurken, Zwiebeln, Joghurtdressing",
       "preis": "8,30 €",
       "zusatzstoffe": ["1", "2", "3", "4", "8"],
-      "alergene": ["A", "G"]
-    },
-    {
+      "alergene": ["D", "G"]
+    },    {
       "artikelNr": 64,
       "artikel": "Salat Vegetarisch",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Mais, Paprika, Oliven, Tomaten, Gurken",
       "preis": "7,90 €",
       "zusatzstoffe": [],
-      "alergene": ["A"]
-    },
-    {
+      "alergene": []
+    },    {
       "artikelNr": 65,
       "artikel": "Salat Campus",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat mit gegrilltem Hähnchen, Paprika, frischen Champignons und Joghurtdressing",
       "preis": "9,00 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 66,
