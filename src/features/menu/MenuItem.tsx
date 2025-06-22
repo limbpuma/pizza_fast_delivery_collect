@@ -6,6 +6,7 @@ import DeleteItem from "../cart/DeleteItem";
 import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo, getCategoryInGerman } from "../../data/germanPizzaInfo";
+import { getProductType } from "../../utils/productDetection";
 import AllergensDisplay from "../../ui/AllergensDisplay";
 import AdditivesDisplay from "../../ui/AdditivesDisplay";
 import NutritionalInfo from "../../ui/NutritionalInfo";
@@ -29,14 +30,31 @@ interface MenuItemProps {
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { t } = useTranslation();
-  const { id, name, unitPrice, ingredients, soldOut, allergens, additives } = pizza;
+  const { id, name, unitPrice, ingredients, soldOut, allergens, additives, sizes } = pizza;
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   
   // Obtener información alemana
   const germanInfo = getGermanPizzaInfo(id);
   
+  // Determine product type for smart add behavior
+  const productType = getProductType(pizza);
+  
   const isInCart = currentQuantity > 0;
+
+  // Calculate display price for multi-size products
+  const getDisplayPrice = () => {
+    if (productType.needsSizeSelection && sizes) {
+      // For multi-size products, show the lowest price with "from" indicator
+      const priceValues = Object.values(sizes) as number[];
+      const lowestPrice = Math.min(...priceValues);
+      return { price: lowestPrice, isFromPrice: true };
+    }
+    // For single-size products, show the unit price
+    return { price: unitPrice, isFromPrice: false };
+  };
+
+  const { price: displayPrice, isFromPrice } = getDisplayPrice();
 
   function handleOnaddItem() {
     const newItem = {
@@ -151,10 +169,9 @@ function MenuItem({ pizza }: MenuItemProps) {
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   {!soldOut ? (
-                    <>
-                      <div className="flex items-baseline gap-2">
+                    <>                      <div className="flex items-baseline gap-2">
                         <span className="text-lg font-bold text-gray-900">
-                          {formatCurrency(unitPrice)}
+                          {isFromPrice ? t('menu.from') + ' ' : ''}{formatCurrency(displayPrice)}
                         </span>
                         <span className="text-xs text-gray-500">
                           {t('menu.vatIncluded')}
