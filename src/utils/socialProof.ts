@@ -211,34 +211,41 @@ export function getDynamicFeatures(): DynamicFeature[] {
 }
 
 /**
- * Get time-contextual trust badge text
+ * Get time-contextual trust badge text that respects restaurant status
  */
 export function getContextualTrustMessage(): {
   customers: string;
   timeContextKey: string;
   specialOfferKey?: string;
 } {
+  const restaurantStatus = getRestaurantStatus();
   const now = new Date();
   const hour = now.getHours();
   const isWeekendDay = isWeekend();
   
   let timeContextKey = "socialProof.timeContext.anytime";
   let specialOfferKey: string | undefined;
-  
-  // Time-based contextual messages
-  if (hour >= 11 && hour < 14) {
-    timeContextKey = "socialProof.timeContext.lunchBreak";
-    if (!isWeekendDay) {
-      specialOfferKey = "socialProof.specialOffers.businessLunch";
+
+  // Only show time-specific offers when restaurant is open
+  if (restaurantStatus.isOpen && restaurantStatus.status !== 'closing_soon') {
+    // Time-based contextual messages
+    if (hour >= 11 && hour < 14) {
+      timeContextKey = "socialProof.timeContext.lunchBreak";
+      if (!isWeekendDay) {
+        specialOfferKey = "socialProof.specialOffers.businessLunch";
+      }
+    } else if (hour >= 17 && hour < 21) {
+      timeContextKey = "socialProof.timeContext.dinnerTime";
+      if (isWeekendDay) {
+        specialOfferKey = "socialProof.specialOffers.weekendSpecial";
+      }
+    } else if (hour >= 21) {
+      timeContextKey = "socialProof.timeContext.lastChance";
+      specialOfferKey = "socialProof.specialOffers.lastCall";
     }
-  } else if (hour >= 17 && hour < 21) {
-    timeContextKey = "socialProof.timeContext.dinnerTime";
-    if (isWeekendDay) {
-      specialOfferKey = "socialProof.specialOffers.weekendSpecial";
-    }
-  } else if (hour >= 21) {
+  } else if (restaurantStatus.status === 'closing_soon') {
     timeContextKey = "socialProof.timeContext.lastChance";
-    specialOfferKey = "socialProof.specialOffers.lastCall";
+    // No special offers when closing soon to avoid pressure
   }
   
   const socialProof = getSocialProofData();

@@ -288,11 +288,17 @@ function OrderConfirmation() {
           <div className="text-center">
             <h3 className="font-semibold text-gray-900 mb-3">
               🎉 {t('orderConfirmation.thankYou', { default: 'Thank you for your order!' })}
-            </h3>
-            <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
+            </h3>            <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">👥</span>
-                <span>{t('home.socialProof.ordering', { count: socialProof.orderingCount })}</span>
+                <span>
+                  {socialProof.isRestaurantOpen && socialProof.orderingCount > 0 
+                    ? t('home.socialProof.ordering', { count: socialProof.orderingCount })
+                    : socialProof.isRestaurantOpen
+                      ? t('home.socialProof.viewing', { count: socialProof.viewingCount })
+                      : t('home.socialProof.viewingClosed', { count: socialProof.viewingCount })
+                  }
+                </span>
               </div>
               <div className="w-px h-4 bg-gray-300"></div>
               <div className="flex items-center gap-2">
