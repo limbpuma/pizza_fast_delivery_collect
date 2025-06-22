@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLoaderData } from 'react-router-dom';
+import { getCategoryOptions } from '../../utils/menuCategories';
 
 interface MenuFiltersProps {
   onFilterChange: (filters: {
@@ -12,6 +14,7 @@ interface MenuFiltersProps {
 
 function MenuFilters({ onFilterChange }: MenuFiltersProps) {
   const { t } = useTranslation();
+  const menu = useLoaderData() as any[];
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [excludedAllergens, setExcludedAllergens] = useState<string[]>([]);
   const [showVegetarian, setShowVegetarian] = useState(false);
@@ -23,37 +26,28 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const categories = [
-    { value: 'all', label: t('menu.filters.all') },
-    { value: 'vegetarisch', label: t('menu.categories.vegetarisch') },
-    { value: 'vegan', label: t('menu.categories.vegan') },
-    { value: 'fleisch', label: t('menu.categories.fleisch') },
-    { value: 'meeresfrüchte', label: t('menu.categories.meeresfrüchte') },
-    { value: 'klassisch', label: t('menu.categories.klassisch') },
-    { value: 'spezial', label: t('menu.categories.spezial') },
-    { value: 'scharf', label: t('menu.categories.scharf') },
-    { value: 'käse', label: t('menu.categories.käse') },
-    { value: 'premium', label: t('menu.categories.premium') },
-    { value: 'regional', label: t('menu.categories.regional') },
-    { value: 'süß', label: t('menu.categories.süß') },
-    { value: 'gesund', label: t('menu.categories.gesund') },
-    { value: 'kinderfreundlich', label: t('menu.categories.kinderfreundlich') },
-    { value: 'glutenfrei', label: t('menu.categories.glutenfrei') },
-    { value: 'lowcarb', label: t('menu.categories.lowcarb') }
-  ];
+
+  // Dynamic categories from real menu data
+  const categories = getCategoryOptions(menu, true);
 
   const commonAllergens = [
     'Gluten', 'Milch', 'Eier', 'Nüsse', 'Soja', 'Weizen'
-  ];
-
-  // Check if categories overflow and need hamburger menu
+  ];  // Check if categories overflow and need hamburger menu
   useEffect(() => {
     const checkOverflow = () => {
       const container = scrollContainerRef.current;
       if (container) {
-        const hasOverflow = container.scrollWidth > container.clientWidth;
-        if (hasOverflow && visibleCategories === categories.length) {
-          setVisibleCategories(4); // Show fewer on mobile
+        const screenWidth = window.innerWidth;
+        
+        // Responsive visibility based on screen size
+        if (screenWidth < 640) {
+          setVisibleCategories(3); // Very small mobile
+        } else if (screenWidth < 768) {
+          setVisibleCategories(4); // Mobile
+        } else if (screenWidth < 1024) {
+          setVisibleCategories(6); // Tablet
+        } else {
+          setVisibleCategories(8); // Desktop
         }
       }
     };
@@ -61,7 +55,7 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
     checkOverflow();
     window.addEventListener('resize', checkOverflow);
     return () => window.removeEventListener('resize', checkOverflow);
-  }, [categories.length, visibleCategories]);
+  }, [categories.length]);
 
   // Update scroll button visibility
   useEffect(() => {
@@ -79,13 +73,17 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
       return () => container.removeEventListener('scroll', updateScrollButtons);
     }
   }, []);
-
   const scroll = (direction: 'left' | 'right') => {
     const container = scrollContainerRef.current;
     if (container) {
-      const scrollAmount = container.clientWidth * 0.8;
-      container.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
+      const containerWidth = container.clientWidth;
+      const scrollAmount = containerWidth * 0.75; // Scroll 75% of container width
+      const targetScrollLeft = direction === 'left' 
+        ? Math.max(0, container.scrollLeft - scrollAmount)
+        : Math.min(container.scrollWidth - containerWidth, container.scrollLeft + scrollAmount);
+        
+      container.scrollTo({
+        left: targetScrollLeft,
         behavior: 'smooth'
       });
     }
@@ -105,41 +103,42 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
     setExcludedAllergens(newExcluded);
     updateFilters(selectedCategory, newExcluded, showVegetarian, showVegan);
   };
-
   const updateFilters = (category: string, allergens: string[], vegetarian: boolean, vegan: boolean) => {
-    onFilterChange({
+    const newFilters = {
       category,
       allergens,
       showVegetarian: vegetarian,
       showVegan: vegan
-    });
+    };
+    console.log('🔧 MenuFilters: Sending filter change:', newFilters);
+    onFilterChange(newFilters);
   };
   const visibleCategoriesList = categories.slice(0, visibleCategories);
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">      {/* Categories section with hamburger menu outside scroll */}
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Mobile-first horizontal category scroll - Responsive container */}
-        <div className="relative flex-1 min-w-0 overflow-hidden">
-          {/* Left scroll button */}
+        <div className="relative flex-1 min-w-0 overflow-hidden">          {/* Left scroll button - Enhanced design */}
           {canScrollLeft && (
             <button
               onClick={() => scroll('left')}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-20 
+                         bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-2.5 
+                         hover:bg-white hover:shadow-xl transition-all duration-200
+                         border border-gray-200 hover:border-orange-300"
               aria-label="Scroll left"
             >
               <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-          )}          {/* Category buttons container - Tailwind responsive */}
+          )}{/* Category buttons container - Enhanced responsive design */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-2 overflow-x-auto scrollbar-hide py-4 scroll-smooth
-                       px-2 sm:px-4 
-                       w-full 
-                       max-w-[calc(100vw-80px)] 
-                       sm:max-w-[calc(100vw-100px)] 
-                       md:max-w-[calc(100vw-120px)]"
+            className="flex gap-3 overflow-x-auto scrollbar-hide py-4 scroll-smooth
+                       px-3 sm:px-4 
+                       w-full
+                       snap-x snap-mandatory"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none'
@@ -149,65 +148,75 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
               <button
                 key={category.value}
                 onClick={() => handleCategoryChange(category.value)}
-                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap snap-start
+                  border-2 shadow-sm hover:shadow-md transform hover:scale-105 
+                  min-w-fit ${
                   selectedCategory === category.value
-                    ? 'bg-yellow-400 text-yellow-900 shadow-md scale-105'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
+                    ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white border-orange-500 shadow-lg scale-105'
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-orange-300 hover:bg-orange-50'
                 }`}
               >
                 {category.label}
               </button>
             ))}
-          </div>
-
-          {/* Right scroll button */}
+          </div>          {/* Right scroll button - Enhanced design */}
           {canScrollRight && (
             <button
               onClick={() => scroll('right')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-20 
+                         bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-2.5 
+                         hover:bg-white hover:shadow-xl transition-all duration-200
+                         border border-gray-200 hover:border-orange-300"
               aria-label="Scroll right"
             >
               <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           )}
-        </div>        {/* Hamburger menu button - OUTSIDE scroll, right side, ICON ONLY, Responsive */}
+        </div>        {/* Enhanced Hamburger menu button */}
         <div className="relative flex-shrink-0 pr-2 sm:pr-4">
           <button
             onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
-            className={`p-2 sm:p-3 rounded-full transition-all duration-200 shadow-sm ${
+            className={`p-3 rounded-full transition-all duration-300 shadow-lg border-2 ${
               showHamburgerMenu
-                ? 'bg-orange-500 text-white shadow-md scale-105'
-                : 'bg-gray-100 text-gray-700 hover:bg-orange-500 hover:text-white hover:scale-105'
+                ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white border-orange-500 shadow-xl scale-105'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-orange-300 hover:bg-orange-50 hover:scale-105'
             }`}
             aria-label="Show all categories"
           >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
 
-          {/* Modal for ALL categories */}
+          {/* Enhanced Modal for ALL categories */}
           {showHamburgerMenu && (
-            <div className="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-20 min-w-64 max-h-80 overflow-y-auto">
-              <div className="p-2">
-                <div className="text-xs font-medium text-gray-500 px-2 py-1 mb-1">
-                  {t('menu.filters.category')}
+            <div className="absolute top-full right-0 mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-30 min-w-72 max-h-96 overflow-hidden">
+              <div className="p-1">
+                <div className="sticky top-0 bg-gradient-to-r from-orange-50 to-red-50 text-orange-800 font-semibold text-sm px-4 py-3 border-b border-orange-100">
+                  📂 Alle Kategorien
                 </div>
-                {categories.map(category => (
-                  <button
-                    key={category.value}
-                    onClick={() => handleCategoryChange(category.value)}
-                    className={`w-full text-left px-3 py-2 text-sm transition-colors hover:bg-gray-50 rounded-md ${
-                      selectedCategory === category.value
-                        ? 'bg-yellow-50 text-yellow-900 font-medium border border-yellow-200'
-                        : 'text-gray-700'
-                    }`}
-                  >
-                    {category.label}
-                  </button>
-                ))}
+                <div className="max-h-80 overflow-y-auto scrollbar-hide">
+                  {categories.map(category => (
+                    <button
+                      key={category.value}
+                      onClick={() => handleCategoryChange(category.value)}
+                      className={`w-full text-left px-4 py-3 text-sm transition-all duration-200 hover:bg-gray-50 flex items-center gap-3 ${
+                        selectedCategory === category.value
+                          ? 'bg-gradient-to-r from-orange-50 to-red-50 text-orange-900 font-medium border-l-4 border-orange-500'
+                          : 'text-gray-700 hover:text-orange-700'
+                      }`}
+                    >
+                      <span className="flex-1">{category.label}</span>
+                      {selectedCategory === category.value && (
+                        <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           )}

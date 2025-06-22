@@ -5,11 +5,10 @@ import MenuItemCompact from "./MenuItemCompact";
 import MenuFilters from "./MenuFilters";
 import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
-import { getGermanPizzaInfo } from "../../data/germanPizzaInfo";
 
 function Menu() {
   const { t } = useTranslation();
-  // MIGRATION: Now using real menu data only - no more mock data mixing
+  // Using real menu data with category field (processed from kategorie)
   const menu = useLoaderData() as any[];
   
   const [filters, setFilters] = useState({
@@ -19,50 +18,60 @@ function Menu() {
     showVegan: false
   });
 
-  // Filtrar pizzas según los criterios seleccionados
-  const filteredMenu = menu.filter(pizza => {
-    const germanInfo = getGermanPizzaInfo(pizza.id);
-    
-    // Filtro por categoría
-    if (filters.category !== 'all' && germanInfo?.category !== filters.category) {
+  // Handle filter changes
+  const handleFilterChange = (newFilters: typeof filters) => {
+    setFilters(newFilters);
+  };  // Filter menu items according to selected criteria
+  const filteredMenu = menu.filter(item => {
+    // Category filter
+    if (filters.category !== 'all' && item.category !== filters.category) {
       return false;
-    }    // Filtro por alérgenos excluidos
-    if (filters.allergens.length > 0 && germanInfo?.allergens) {
+    }
+    
+    // Allergen exclusion filter
+    if (filters.allergens.length > 0 && item.allergens) {
       const hasExcludedAllergen = filters.allergens.some((allergen: string) => 
-        germanInfo.allergens.includes(allergen)
+        item.allergens.includes(allergen)
       );
       if (hasExcludedAllergen) return false;
     }
 
-    // Filtros rápidos vegetariano/vegano
-    if (filters.showVegetarian && germanInfo?.category !== 'vegetarisch' && germanInfo?.category !== 'vegan') {
+    // Quick filters for vegetarian/vegan
+    if (filters.showVegetarian && item.category !== 'Vegetarisch' && item.category !== 'Pizzen Vegetarisch') {
       return false;
     }
     
-    if (filters.showVegan && germanInfo?.category !== 'vegan') {
+    if (filters.showVegan && !item.category?.toLowerCase().includes('vegan')) {
       return false;
     }
 
     return true;
   });
+
+  // Debug: Log filtering results when category filter is active
+  if (filters.category !== 'all') {
+    console.log(`🔍 Filtering for category "${filters.category}":`, {
+      totalItems: menu.length,
+      filteredItems: filteredMenu.length,
+      sampleFilteredItems: filteredMenu.slice(0, 3).map(item => ({ name: item.name, category: item.category }))
+    });
+  }
+
   return (
     <div>
       {/* Restaurant Header with hero image and info */}
       <RestaurantHeader />
-      
-      <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Sistema de Filtros */}
-        <MenuFilters onFilterChange={setFilters} />
+        <MenuFilters onFilterChange={handleFilterChange} />
         
         {/* Contador de resultados */}
         <div className="mb-6 text-center text-gray-600">
           {t('menu.filters.results', { count: filteredMenu.length })}
-        </div>
-          {/* Modern Grid Layout for Pizza Cards */}
-        <div className="menu-grid">
+        </div>        {/* Modern Grid Layout for Menu Items */}        <div className="menu-grid">
           <ul className="space-y-4">
-            {filteredMenu.map((pizza: any) => (
-              <MenuItemCompact pizza={pizza} key={pizza.id} />
+            {filteredMenu.map((item: any) => (
+              <MenuItemCompact pizza={item} key={item.id} />
             ))}
           </ul>
         </div>
