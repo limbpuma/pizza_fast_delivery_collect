@@ -474,12 +474,11 @@
   "Sf": "Schalenfrüchte",
   "Se": "Sellerie",  "Sn": "Senf"
 },
-  "menuData": [
-    {
+  "menuData": [    {
       "artikelNr": 1,
       "artikel": "Mozzarellasticks",
       "kategorie": "Snacks",
-      "beschreibung": "In zarter Butter-Knoblauchpanade mit Pommes & Salat",
+      "beschreibung": "Cremige Mozzarellasticks in knuspriger Butter-Knoblauch-Panade, goldbraun frittiert und serviert mit hausgemachten Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
@@ -487,7 +486,7 @@
       "artikelNr": 2,
       "artikel": "Hähnchen Crossies",
       "kategorie": "Snacks",
-      "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
+      "beschreibung": "Zartes Hähnchenbrustfilet in knuspriger Panade, goldbraun frittiert und serviert mit hausgemachten Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
@@ -504,7 +503,7 @@
       "artikelNr": 4,
       "artikel": "Chicken Wings",
       "kategorie": "Snacks",
-      "beschreibung": "6 saftige Chicken Wings mit Pommes & Salat",
+      "beschreibung": "6 knusprig-saftige Chicken Wings, mariniert in hausgemachter Barbecue-Sauce, serviert mit goldenen Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["F"]
@@ -630,12 +629,11 @@
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 19,
       "artikel": "Margherita",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Tomatensauce, Käse",
+      "beschreibung": "Klassische hausgemachte Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,00 €",
         "30cm": "7,00 €",
@@ -656,12 +654,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 21,
       "artikel": "Funghi",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Frische Champignons, Tomatensauce, Käse",
+      "beschreibung": "Frische Champignons auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,30 €",
         "30cm": "7,50 €",
@@ -669,12 +666,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 22,
       "artikel": "Feta",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Schafskäse, Paprika, Oliven, Peperoni",
+      "beschreibung": "Cremiger griechischer Schafskäse mit bunten Paprika, würzigen Oliven und Peperoni auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,20 €",
         "30cm": "8,00 €",
@@ -682,12 +678,11 @@
       },
       "zusatzstoffe": ["1", "2", "5"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 23,
       "artikel": "Peperoni",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Oliven, Paprika, Artischocken, Peperoni, Käse",
+      "beschreibung": "Würzige Oliven, bunte Paprika, zarte Artischocken und scharfe Peperoni mit cremigem Käse auf hausgemachter Tomatensauce, im Steinofen gebacken",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,00 €",
@@ -695,12 +690,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 24,
       "artikel": "Verdura",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Zucchini, Paprika, Broccoli, Zwiebeln",
+      "beschreibung": "Frische Zucchini, knackige Paprika, zarter Broccoli und aromatische Zwiebeln auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,40 €",
@@ -708,12 +702,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 25,
       "artikel": "Spinaci",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Spinat, Zwiebeln, Schafskäse, frische Champignons",
+      "beschreibung": "Frischer Blattspinat mit aromatischen Zwiebeln, cremigem Schafskäse und frischen Champignons auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,40 €",
@@ -764,7 +757,7 @@
       "artikelNr": 29,
       "artikel": "Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami, Tomatensauce, Mozzarella",
+      "beschreibung": "Würzige italienische Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -776,7 +769,7 @@
       "artikelNr": 30,
       "artikel": "Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken, Tomatensauce, Mozzarella",
+      "beschreibung": "Zarter Putenschinken auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -784,12 +777,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 31,
       "artikel": "Putenschinken Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken, Salami",
+      "beschreibung": "Zarter Putenschinken und würzige Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -797,12 +789,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 32,
       "artikel": "Frisch Champignons Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami",
+      "beschreibung": "Frische Champignons und würzige Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -814,7 +805,7 @@
       "artikelNr": 33,
       "artikel": "Funghi e Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami, Putenschinken",
+      "beschreibung": "Frische Champignons mit würziger Salami und zartem Putenschinken auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -835,12 +826,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 35,
       "artikel": "Speciale",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami, Putenschinken, Paprika",
+      "beschreibung": "Würzige Salami und zarter Putenschinken mit bunter Paprika auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -972,11 +962,11 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },{
+    },    {
       "artikelNr": 46,
       "artikel": "Gyros",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putengyros",
+      "beschreibung": "Saftig mariniertes Putengyros mit griechischen Gewürzen, auf hausgemachter Tomatensauce mit cremigem Mozzarella im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "9,00 €",
@@ -984,12 +974,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 47,
       "artikel": "Aspargo",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Spargel, Sauce Hollandaise",
+      "beschreibung": "Zarter grüner Spargel mit cremiger Sauce Hollandaise auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,90 €",
@@ -997,12 +986,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 48,
       "artikel": "Pizza Sucuk",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Sucuk",
+      "beschreibung": "Würzige türkische Sucuk-Wurst mit rotem Paprika und Zwiebeln, auf hausgemachter Tomatensauce mit cremigem Mozzarella im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -1010,7 +998,7 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },    {
+    },{
       "artikelNr": 49,
       "artikel": "Calzone Tonno",
       "kategorie": "Pizzen mit Fisch",
@@ -1024,7 +1012,7 @@
       "artikelNr": 50,
       "artikel": "Al Tonno",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Zwiebeln",
+      "beschreibung": "Hochwertiger Thunfisch mit aromatischen Zwiebeln auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1036,7 +1024,7 @@
       "artikelNr": 51,
       "artikel": "Di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch",
+      "beschreibung": "Hochwertiger Meeresfrüchte-Mix mit aromatischen Zwiebeln und frischem Knoblauch auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1044,11 +1032,11 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D", "F", "H", "K", "W"]
-    },    {
+    },{
       "artikelNr": 52,
       "artikel": "Frutti di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Krabben, Calamaris, Zwiebeln, peperoni, knoblauch",
+      "beschreibung": "Frische Krabben und zarte Calamaris mit aromatischem Knoblauch, roten Zwiebeln und würzigen Peperoni auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "7,20 €",
         "30cm": "9,20 €",
@@ -1060,7 +1048,7 @@
       "artikelNr": 53,
       "artikel": "Gamberetti",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Garnelen, Knoblauch, frische Tomaten",
+      "beschreibung": "Saftige Garnelen mit aromatischem Knoblauch und frischen Tomaten auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1068,7 +1056,7 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D", "F", "H", "K"]
-    },    {
+    },{
       "artikelNr": 54,
       "artikel": "Seelachs Pizza",
       "kategorie": "Pizzen mit Fisch",
@@ -1288,12 +1276,11 @@
       "preis": "9,00 €",
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["A", "G"]
-    },
-    {
+    },    {
       "artikelNr": 79,
       "artikel": "Spaghetti",
       "kategorie": "Nudeln",
-      "beschreibung": "mit Tomatensauce",
+      "beschreibung": "Klassische Spaghetti mit hausgemachter, aromatischer Tomatensauce nach italienischer Art",
       "preis": "7,00 €",
       "zusatzstoffe": [],
       "alergene": ["A"]

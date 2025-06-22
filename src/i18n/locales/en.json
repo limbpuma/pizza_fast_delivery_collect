@@ -469,12 +469,11 @@
   "Sf": "Schalenfrüchte",
   "Se": "Sellerie",  "Sn": "Senf"
 },
-  "menuData": [
-    {
+  "menuData": [    {
       "artikelNr": 1,
       "artikel": "Mozzarellasticks",
       "kategorie": "Snacks",
-      "beschreibung": "In zarter Butter-Knoblauchpanade mit Pommes & Salat",
+      "beschreibung": "Creamy mozzarella sticks in crispy butter-garlic breading, golden fried and served with homemade french fries and fresh side salad",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
@@ -482,7 +481,7 @@
       "artikelNr": 2,
       "artikel": "Hähnchen Crossies",
       "kategorie": "Snacks",
-      "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
+      "beschreibung": "Tender chicken breast fillet in crispy breading, golden fried and served with homemade french fries and fresh side salad",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
@@ -498,9 +497,8 @@
     },
     {
       "artikelNr": 4,
-      "artikel": "Chicken Wings",
-      "kategorie": "Snacks",
-      "beschreibung": "6 Stück mit Pommes & Salat",
+      "artikel": "Chicken Wings",      "kategorie": "Snacks",
+      "beschreibung": "6 crispy-juicy chicken wings, marinated in homemade barbecue sauce, served with golden french fries and fresh side salad",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": []
@@ -629,12 +627,11 @@
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 19,
       "artikel": "Margherita",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Tomatensauce, Käse",
+      "beschreibung": "Classic homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "5,00 €",
         "30cm": "7,00 €",
@@ -655,12 +652,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 21,
       "artikel": "Funghi",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Frische Champignons, Tomatensauce, Käse",
+      "beschreibung": "Fresh mushrooms on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "5,30 €",
         "30cm": "7,50 €",
@@ -668,12 +664,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 22,
       "artikel": "Feta",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Schafskäse, Paprika, Oliven, Peperoni",
+      "beschreibung": "Creamy Greek feta cheese with colorful peppers, spicy olives and pepperoni on homemade tomato sauce with mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,20 €",
         "30cm": "8,00 €",
@@ -681,12 +676,11 @@
       },
       "zusatzstoffe": ["1", "2", "5"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 23,
       "artikel": "Peperoni",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Oliven, Paprika, Artischocken, Peperoni, Käse",
+      "beschreibung": "Spicy olives, colorful peppers, tender artichokes and hot pepperoni with creamy cheese on homemade tomato sauce, baked in stone oven",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,00 €",
@@ -694,12 +688,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 24,
       "artikel": "Verdura",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Zucchini, Paprika, Broccoli, Zwiebeln",
+      "beschreibung": "Fresh zucchini, crispy peppers, tender broccoli and aromatic onions on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,40 €",
@@ -707,12 +700,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 25,
       "artikel": "Spinaci",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Spinat, Zwiebeln, Schafskäse, frische Champignons",
+      "beschreibung": "Fresh leaf spinach with aromatic onions, creamy feta cheese and fresh mushrooms on homemade tomato sauce with mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,40 €",
@@ -759,12 +751,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 29,
       "artikel": "Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami",
+      "beschreibung": "Spicy Italian salami on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -772,12 +763,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 30,
       "artikel": "Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken",
+      "beschreibung": "Tender turkey ham on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -785,12 +775,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 31,
       "artikel": "Putenschinken Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken, Salami",
+      "beschreibung": "Tender turkey ham and spicy salami on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -798,12 +787,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 32,
       "artikel": "Frisch Champignons Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami",
+      "beschreibung": "Fresh mushrooms and spicy salami on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -811,12 +799,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 33,
       "artikel": "Funghi e Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami, Putenschinken",
+      "beschreibung": "Fresh mushrooms with spicy salami and tender turkey ham on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -837,12 +824,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 35,
       "artikel": "Speciale",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami, Putenschinken, Paprika",
+      "beschreibung": "Spicy salami and tender turkey ham with colorful peppers on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -989,12 +975,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 47,
       "artikel": "Aspargo",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Spargel, Sauce Hollandaise",
+      "beschreibung": "Tender green asparagus with creamy hollandaise sauce on homemade tomato sauce with mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,90 €",
@@ -1002,12 +987,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 48,
       "artikel": "Pizza Sucuk",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Sucuk",
+      "beschreibung": "Spicy Turkish sucuk sausage with red peppers and onions, on homemade tomato sauce with creamy mozzarella baked in stone oven",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -1015,7 +999,7 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },    {
+    },{
       "artikelNr": 49,
       "artikel": "Calzone Tonno",
       "kategorie": "Pizzen mit Fisch",
@@ -1029,7 +1013,7 @@
       "artikelNr": 50,
       "artikel": "Al Tonno",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Zwiebeln",
+      "beschreibung": "Premium tuna with aromatic onions on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1041,7 +1025,7 @@
       "artikelNr": 51,
       "artikel": "Di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch",
+      "beschreibung": "Premium seafood mix with aromatic onions and fresh garlic on homemade tomato sauce with mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1049,11 +1033,11 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D", "F", "H", "K", "W"]
-    },    {
+    },{
       "artikelNr": 52,
       "artikel": "Frutti di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch, frische Tomaten",
+      "beschreibung": "Fresh crab and tender calamari with aromatic garlic, red onions and spicy pepperoni on homemade tomato sauce with mozzarella, baked in stone oven",
       "preis": {
         "24cm": "7,20 €",
         "30cm": "9,20 €",
@@ -1065,7 +1049,7 @@
       "artikelNr": 53,
       "artikel": "Gamberetti",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Garnelen, Knoblauch, frische Tomaten",
+      "beschreibung": "Juicy shrimp with aromatic garlic and fresh tomatoes on homemade tomato sauce with creamy mozzarella, baked in stone oven",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
@@ -1073,7 +1057,7 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D", "F", "H", "K"]
-    },    {
+    },{
       "artikelNr": 54,
       "artikel": "Seelachs Pizza",
       "kategorie": "Pizzen mit Fisch",
@@ -1293,12 +1277,11 @@
       "preis": "9,00 €",
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["A", "G"]
-    },
-    {
+    },    {
       "artikelNr": 79,
       "artikel": "Spaghetti",
       "kategorie": "Nudeln",
-      "beschreibung": "mit Tomatensauce",
+      "beschreibung": "Classic spaghetti with homemade aromatic tomato sauce in Italian style",
       "preis": "7,00 €",
       "zusatzstoffe": [],
       "alergene": ["A"]
