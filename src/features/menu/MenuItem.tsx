@@ -34,8 +34,10 @@ function MenuItem({ pizza }: MenuItemProps) {
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   
-  // Obtener información alemana
-  const germanInfo = getGermanPizzaInfo(id);
+  // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
+  const germanInfo = pizza.kategorie?.includes('Pizza') || pizza.category?.includes('pizza')
+    ? getGermanPizzaInfo(id)
+    : null;
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);

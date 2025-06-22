@@ -567,15 +567,14 @@
       "preis": "5,00 €",
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","H"]
-    },
-    {
+    },    {
       "artikelNr": 12,
       "artikel": "Salami Baguette",
       "kategorie": "Baguettes",
       "beschreibung": "Salami, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["2", "3"], 
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 13,
@@ -584,7 +583,7 @@
       "beschreibung": "Putenschinken, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["2", "3", "4"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 14,
@@ -593,7 +592,7 @@
       "beschreibung": "Thunfisch, Zwiebeln, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F","H"]
     },
     {
       "artikelNr": 15,
@@ -602,7 +601,7 @@
       "beschreibung": "Hähnchen, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 16,
@@ -611,7 +610,7 @@
       "beschreibung": "Sucuk, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2", "3"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 17,
@@ -620,7 +619,7 @@
       "beschreibung": "Mais, Champignons, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1","2"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 18,
@@ -629,7 +628,7 @@
       "beschreibung": "Gyros, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["D","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 19,

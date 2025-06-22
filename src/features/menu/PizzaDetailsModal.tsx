@@ -5,6 +5,7 @@ import AllergensDisplay from '../../ui/AllergensDisplay';
 import AdditivesDisplay from '../../ui/AdditivesDisplay';
 import NutritionalInfo from '../../ui/NutritionalInfo';
 import { formatCurrency } from '../../utils/helpers';
+import { getProductType } from '../../utils/productDetection';
 
 interface PizzaDetailsModalProps {
   isOpen: boolean;
@@ -25,8 +26,29 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
   const { t } = useTranslation();
     if (!pizza) return null;
   
-  const { id, name, unitPrice, ingredients, allergens, additives } = pizza;
-  const germanInfo = getGermanPizzaInfo(id);
+  const { id, name, unitPrice, ingredients, allergens, additives, sizes } = pizza;
+  
+  // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
+  const germanInfo = pizza.kategorie?.includes('Pizza') || pizza.category?.includes('pizza') 
+    ? getGermanPizzaInfo(id) 
+    : null;
+  
+  // Determine product type for price display logic
+  const productType = getProductType(pizza);
+  
+  // Calculate display price for multi-size products
+  const getDisplayPrice = () => {
+    if (productType.needsSizeSelection && sizes) {
+      // For multi-size products, show the lowest price with "from" indicator
+      const priceValues = Object.values(sizes) as number[];
+      const lowestPrice = Math.min(...priceValues);
+      return { price: lowestPrice, isFromPrice: true };
+    }
+    // For single-size products, show the unit price
+    return { price: unitPrice, isFromPrice: false };
+  };
+
+  const { price: displayPrice, isFromPrice } = getDisplayPrice();
   const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
 
   const handleAddToCart = () => {
@@ -59,10 +81,14 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
                   </span>
                 )}
               </div>
-              
-              <div className="text-right">
+                <div className="text-right">
                 <div className="text-2xl font-bold text-gray-900 mb-1">
-                  {formatCurrency(unitPrice)}
+                  {isFromPrice && (
+                    <span className="text-sm font-normal text-gray-500 mr-1">
+                      {t('menu.from')}
+                    </span>
+                  )}
+                  {formatCurrency(displayPrice)}
                 </div>
                 <div className="text-sm text-gray-500">
                   {t('menu.vatIncluded')}
