@@ -1,0 +1,466 @@
+{
+      "artikelNr": 19,
+      "artikel": "Margherita",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,00 €",
+        "30cm": "7,00 €",
+        "40cm": "10,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 20,
+      "artikel": "Cipolla",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zwiebeln, Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,30 €",
+        "30cm": "7,50 €",
+        "40cm": "11,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 21,
+      "artikel": "Funghi",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Frische Champignons, Tomatensauce, Käse",
+      "preis": {
+        "24cm": "5,30 €",
+        "30cm": "7,50 €",
+        "40cm": "11,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 22,
+      "artikel": "Feta",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Schafskäse, Paprika, Oliven, Peperoni",
+      "preis": {
+        "24cm": "6,20 €",
+        "30cm": "8,00 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "5"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 23,
+      "artikel": "Peperoni",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Oliven, Paprika, Artischocken, Peperoni, Käse",
+      "preis": {
+        "24cm": "6,00 €",
+        "30cm": "8,00 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 24,
+      "artikel": "Verdura",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zucchini, Paprika, Broccoli, Zwiebeln",
+      "preis": {
+        "24cm": "6,00 €",
+        "30cm": "8,40 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 25,
+      "artikel": "Spinaci",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Spinat, Zwiebeln, Schafskäse, frische Champignons",
+      "preis": {
+        "24cm": "6,50 €",
+        "30cm": "8,40 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 26,
+      "artikel": "Zucchini",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Zucchini, Paprika, Zwiebeln, Oliven",
+      "preis": {
+        "24cm": "7,00 €",
+        "30cm": "9,00 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "5"],
+      "alergene": ["D"]
+    },
+    {
+      "artikelNr": 27,
+      "artikel": "Roma",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Broccoli, Zwiebeln, Tomaten, Mais, Peperoni, Schafskäse",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 28,
+      "artikel": "Mozzarella",
+      "kategorie": "Pizzen Vegetarisch",
+      "beschreibung": "Mozzarella, Tomatensauce, Tomaten, Basilikum",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 29,
+      "artikel": "Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 30,
+      "artikel": "Prosciutto",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "13,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 31,
+      "artikel": "Putenschinken Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Salami",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 32,
+      "artikel": "Frisch Champignons Salami",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Frische Champignons, Salami",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 33,
+      "artikel": "Funghi e Prosciutto",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Frische Champignons, Salami, Putenschinken",
+      "preis": {
+        "24cm": "6,40 €",
+        "30cm": "8,40 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2","3", " 4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 34,
+      "artikel": "Paradiso",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Hackfleisch, Mais, Paprika, Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 35,
+      "artikel": "Speciale",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Putenschinken, Paprika",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "8,90 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 36,
+      "artikel": "Constanta",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Salami, Thunfisch, Paprika",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 37,
+      "artikel": "Crostatina",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hackfleisch, Paprika, Zwiebeln, Mais, Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3",  "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 38,
+      "artikel": "Inferno",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Paprika, Zwiebeln, Salami",
+      "preis": {
+        "24cm": "7,20 €",
+        "30cm": "9,20 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 39,
+      "artikel": "Fattoria",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken, Paprika, Broccoli, Zwiebeln, Salami",
+      "preis": {
+        "24cm": "7,30 €",
+        "30cm": "9,30 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2","3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 40,
+      "artikel": "Pollo",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hähnchenfleisch, Mais, Peperoni",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,80 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 41,
+      "artikel": "Campus",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken Zwiebeln, Hackfleisch,artischoken, fr.champipignons, oliven, paprika",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 42,
+      "artikel": "Calzone Schinken",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putenschinken",
+      "preis": {
+        
+        "30cm": "8,90 €"
+      },
+      "zusatzstoffe": [ "2","3","4 "],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 43,
+      "artikel": "Amalira",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Hähnchenfleisch, Paprika, Broccoli, Zwiebeln, Sauce Hollandaise",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 44,
+      "artikel": "Calzone Gyros",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Gyros, Zwiebeln, Tomaten",
+      "preis": {
+        "24cm": "7,40 €",
+        "30cm": "9,40 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 45,
+      "artikel": "Diavolo Scharf",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Peperoni, Jalapenos",
+      "preis": {
+        "24cm": "6,60 €",
+        "30cm": "8,60 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 46,
+      "artikel": "Gyros",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Putengyros",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "9,900 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 47,
+      "artikel": "Aspargo",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Spargel, Sauce Hollandaise",
+      "preis": {
+        "24cm": "6,50 €",
+        "30cm": "8,90 €",
+        "40cm": "15,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "3", "4"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 48,
+      "artikel": "Pizza Sucuk",
+      "kategorie": "Pizzen mit Fleisch",
+      "beschreibung": "Sucuk",
+      "preis": {
+        "24cm": "6,90 €",
+        "30cm": "8,90 €",
+        "40cm": "16,00 €"
+      },
+      "zusatzstoffe": ["1", "2"],
+      "alergene": ["D","F"]
+    },
+    {
+      "artikelNr": 49,
+      "artikel": "Calzone Tonno",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Zwiebeln",
+      "preis": {
+        "24cm": "8,90 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 50,
+      "artikel": "Al Tonno",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Zwiebeln",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 51,
+      "artikel": "Di Mare",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "B", "D", "M", "G"]
+    },
+    {
+      "artikelNr": 52,
+      "artikel": "Tonno Spinat",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Thunfisch, Spinat, Zwiebeln, Schafskäse",
+      "preis": {
+        "24cm": "7,20 €",
+        "30cm": "9,20 €",
+        "40cm": "15,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    },
+    {
+      "artikelNr": 53,
+      "artikel": "Gamberetti",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Garnelen, Knoblauch, frische Tomaten",
+      "preis": {
+        "24cm": "6,80 €",
+        "30cm": "8,90 €",
+        "40cm": "14,50 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "B", "G"]
+    },
+    {
+      "artikelNr": 54,
+      "artikel": "Seelachs Pizza",
+      "kategorie": "Pizzen mit Fisch",
+      "beschreibung": "Seelachsfilet, Spinat, Zwiebeln, Sauce Hollandaise",
+      "preis": {
+        "24cm": "5,90 €",
+        "30cm": "7,90 €",
+        "40cm": "14,00 €"
+      },
+      "zusatzstoffe": ["1", "2", "4"],
+      "alergene": ["A", "D", "G"]
+    }
+}
