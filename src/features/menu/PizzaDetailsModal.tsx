@@ -25,13 +25,12 @@ interface PizzaDetailsModalProps {
 function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetailsModalProps) {
   const { t } = useTranslation();
     if (!pizza) return null;
-  
-  const { id, name, unitPrice, ingredients, allergens, additives, sizes } = pizza;
+    const { id, name, unitPrice, ingredients, allergens, additives, sizes } = pizza;
   
   // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
-  const germanInfo = pizza.kategorie?.includes('Pizza') || pizza.category?.includes('pizza') 
-    ? getGermanPizzaInfo(id) 
-    : null;
+  // Check if category contains 'Pizza' (case-insensitive) for better reliability
+  const isPizza = pizza.category?.toLowerCase().includes('pizza') || false;
+  const germanInfo = isPizza ? getGermanPizzaInfo(id) : null;
   
   // Determine product type for price display logic
   const productType = getProductType(pizza);

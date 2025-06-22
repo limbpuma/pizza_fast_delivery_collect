@@ -31,13 +31,12 @@ interface MenuItemProps {
 function MenuItem({ pizza }: MenuItemProps) {
   const { t } = useTranslation();
   const { id, name, unitPrice, ingredients, soldOut, allergens, additives, sizes } = pizza;
-  const dispatch = useDispatch();
-  const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const dispatch = useDispatch();  const currentQuantity = useSelector(getCurrentQuantityById(id));
   
   // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
-  const germanInfo = pizza.kategorie?.includes('Pizza') || pizza.category?.includes('pizza')
-    ? getGermanPizzaInfo(id)
-    : null;
+  // Check if category contains 'Pizza' (case-insensitive) for better reliability
+  const isPizza = pizza.category?.toLowerCase().includes('pizza') || false;
+  const germanInfo = isPizza ? getGermanPizzaInfo(id) : null;
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);

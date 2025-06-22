@@ -17,16 +17,15 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, sizes } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
-  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));  const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [showSizeModal, setShowSizeModal] = useState(false);
+  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));  const [showDetailsModal, setShowDetailsModal] = useState(false);  const [showSizeModal, setShowSizeModal] = useState(false);
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   
   // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
-  const germanInfo = pizza.kategorie?.includes('Pizza') || pizza.category?.includes('pizza')
-    ? getGermanPizzaInfo(id)
-    : null;
+  // Check if category contains 'Pizza' (case-insensitive) for better reliability
+  const isPizza = pizza.category?.toLowerCase().includes('pizza') || false;
+  const germanInfo = isPizza ? getGermanPizzaInfo(id) : null;
   
-  const isInCart = currentQuantity > 0;  const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
+  const isInCart = currentQuantity > 0;const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);
