@@ -242,8 +242,7 @@ function Home() {
             <p className="text-sm text-gray-600">
               🏆 {t('stats.bottomCta', { default: 'Join 340+ satisfied customers in Dortmund' })}
             </p>
-          </div>
-        </div>
+          </div>        </div>
       </div>
     </div>
   );

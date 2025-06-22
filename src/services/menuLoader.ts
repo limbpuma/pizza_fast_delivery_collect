@@ -5,9 +5,9 @@
 
 import { getProductType } from '../utils/productDetection';
 
-// Import real menu data
-import menuDE from '../i18n/locales/menu-de.json';
-import menuEN from '../i18n/locales/menu-en.json';
+// Import real menu data from main translation files
+import deTranslations from '../i18n/locales/de.json';
+import enTranslations from '../i18n/locales/en.json';
 
 export interface RealMenuItem {
   artikelNr: number;
@@ -17,6 +17,11 @@ export interface RealMenuItem {
   preis: string | { [size: string]: string };
   zusatzstoffe: string[];
   alergene: string[];
+}
+
+export interface TranslationsWithMenu {
+  menuData: RealMenuItem[];
+  [key: string]: any;
 }
 
 export interface ProcessedMenuItem {
@@ -37,13 +42,12 @@ export interface ProcessedMenuItem {
 /**
  * Load and process real menu data
  */
-export async function getMenu(language: 'de' | 'en' = 'de'): Promise<ProcessedMenuItem[]> {
-  try {
+export async function getMenu(language: 'de' | 'en' = 'de'): Promise<ProcessedMenuItem[]> {  try {
     console.log(`🔄 Loading real Campus Restaurant menu (${language})...`);
     
     // Select appropriate menu based on language
-    const menuData = language === 'de' ? menuDE : menuEN;
-    const menuItems = menuData.menu as RealMenuItem[];
+    const translations = language === 'de' ? deTranslations : enTranslations;
+    const menuItems = (translations as TranslationsWithMenu).menuData;
     
     console.log(`📋 Processing ${menuItems.length} menu items...`);
     
@@ -100,7 +104,6 @@ function processMenuItem(item: RealMenuItem): ProcessedMenuItem {
     ingredients: [beschreibung]
   };
     const productType = getProductType(mockProduct);
-  
   return {
     id: artikelNr,
     name: artikel,
@@ -128,8 +131,8 @@ function parseGermanPrice(priceStr: string): number {
  * Get all unique categories from the menu
  */
 export function getMenuCategories(language: 'de' | 'en' = 'de'): string[] {
-  const menuData = language === 'de' ? menuDE : menuEN;
-  const menuItems = menuData.menu as RealMenuItem[];
+  const translations = language === 'de' ? deTranslations : enTranslations;
+  const menuItems = (translations as TranslationsWithMenu).menuData;
   
   const categories = [...new Set(menuItems.map(item => item.kategorie))];
   return categories.sort();
@@ -139,8 +142,8 @@ export function getMenuCategories(language: 'de' | 'en' = 'de'): string[] {
  * Get menu statistics
  */
 export function getMenuStats(language: 'de' | 'en' = 'de') {
-  const menuData = language === 'de' ? menuDE : menuEN;
-  const menuItems = menuData.menu as RealMenuItem[];
+  const translations = language === 'de' ? deTranslations : enTranslations;
+  const menuItems = (translations as TranslationsWithMenu).menuData;
   
   const categories = getMenuCategories(language);
   const quickAddItems = menuItems.filter(item => typeof item.preis === 'string');

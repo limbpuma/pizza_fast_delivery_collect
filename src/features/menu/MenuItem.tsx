@@ -7,6 +7,7 @@ import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 import { useTranslation } from 'react-i18next';
 import { getGermanPizzaInfo, getCategoryInGerman } from "../../data/germanPizzaInfo";
 import AllergensDisplay from "../../ui/AllergensDisplay";
+import AdditivesDisplay from "../../ui/AdditivesDisplay";
 import NutritionalInfo from "../../ui/NutritionalInfo";
 
 interface MenuItemProps {
@@ -16,12 +17,19 @@ interface MenuItemProps {
     unitPrice: number;
     ingredients: string[]; // API devuelve array de strings
     soldOut: boolean;
+    allergens?: string[]; // Alérgenos desde JSON
+    additives?: string[]; // Aditivos desde JSON
+    category?: string;
+    description?: string;
+    sizes?: { [size: string]: number };
+    needsSizeSelection?: boolean;
+    quickAddEnabled?: boolean;
   };
 }
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { t } = useTranslation();
-  const { id, name, unitPrice, ingredients, soldOut } = pizza;
+  const { id, name, unitPrice, ingredients, soldOut, allergens, additives } = pizza;
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   
@@ -102,12 +110,17 @@ function MenuItem({ pizza }: MenuItemProps) {
                 <span className="font-medium">{t('menu.ingredients')}</span>{' '}
                 {ingredientsList.join(', ')}
               </p>
-            </div>
-
-            {/* Allergens */}
-            {germanInfo?.allergens && (
+            </div>            {/* Allergens */}
+            {allergens && allergens.length > 0 && (
               <div className="mb-3">
-                <AllergensDisplay allergens={germanInfo.allergens} compact />
+                <AllergensDisplay allergens={allergens} compact />
+              </div>
+            )}
+
+            {/* Additives */}
+            {additives && additives.length > 0 && (
+              <div className="mb-3">
+                <AdditivesDisplay additives={additives} compact />
               </div>
             )}
 
