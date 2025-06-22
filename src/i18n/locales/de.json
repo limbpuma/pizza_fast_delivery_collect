@@ -79,12 +79,42 @@
         "fresh": "Frische-Garantie"
       }
     }
-  },
-  "features": {
+  },  "features": {
     "fast": "Schnelle Lieferung",
     "fresh": "Frische Zutaten",
     "quality": "Premium-Qualität"
-  },  "stats": {
+  },
+  "dynamicFeatures": {
+    "fastDelivery": "Blitzschnelle Lieferung",
+    "freshQuality": "Ofenfrische Qualität", 
+    "guaranteed": "Garantiert lecker",
+    "freeDelivery": "Kostenlose Lieferung",
+    "masterChef": "Meisterliche Zubereitung",
+    "easyOrder": "Einfache Bestellung",
+    "bestPizza": "Beste Pizza Dortmunds",
+    "satisfaction": "100% Zufriedenheit"
+  },
+  "socialProof": {
+    "urgencyMessages": {
+      "recentOrders": "{{count}} Bestellungen in den letzten 10 Minuten",
+      "highDemand": "Sehr gefragt heute!",
+      "popularTime": "Beliebte Zeiten - schnell bestellen",
+      "viewers": "{{count}} Kunden schauen gerade diese Seite an"
+    },
+    "timeContext": {
+      "lunchBreak": "Perfekt zur Mittagspause",
+      "dinnerTime": "Ideal für das Abendessen", 
+      "lastChance": "Noch schnell bestellen",
+      "anytime": "Jederzeit verfügbar"
+    },
+    "specialOffers": {
+      "businessLunch": "Business-Lunch verfügbar",
+      "weekendSpecial": "Wochenend-Special aktiv",
+      "lastCall": "Letzte Chance heute"
+    },
+    "recentOrder": "Letzte Bestellung: {{time}}",
+    "increasedDemand": "Erhöhtes Aufkommen"
+  },"stats": {
     "minutes": "Min Lieferung",
     "zones": "Lieferzonen",
     "service": "Service",

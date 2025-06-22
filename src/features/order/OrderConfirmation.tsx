@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import LinkButton from '../../ui/LinkButton';
+import { useSocialProof } from '../../hooks/useSocialProof';
 
 function OrderConfirmation() {
   const { t } = useTranslation();
@@ -10,6 +11,9 @@ function OrderConfirmation() {
 
   // Get order data from navigation state
   const { orderNumber, deliveryMode, estimatedTime } = location.state || {};
+  
+  // Social proof for positive reinforcement
+  const { socialProof } = useSocialProof();
 
   // Redirect if no order data
   useEffect(() => {
@@ -276,6 +280,29 @@ function OrderConfirmation() {
                 {t('orderConfirmation.whatsappSupport', { default: 'WhatsApp us directly' })}
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Social Proof - Positive Reinforcement */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="text-center">
+            <h3 className="font-semibold text-gray-900 mb-3">
+              🎉 {t('orderConfirmation.thankYou', { default: 'Thank you for your order!' })}
+            </h3>
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">👥</span>
+                <span>{t('home.socialProof.ordering', { count: socialProof.orderingCount })}</span>
+              </div>
+              <div className="w-px h-4 bg-gray-300"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">⭐</span>
+                <span>{t('home.socialProof.reviews', { rating: socialProof.rating, count: socialProof.reviewCount })}</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
+            </p>
           </div>
         </div>
       </div>

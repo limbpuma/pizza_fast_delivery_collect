@@ -2,10 +2,14 @@ import { useSelector } from "react-redux";
 import CreateUser from "../features/user/CreateUser";
 import Button from "./Button";
 import { useTranslation } from 'react-i18next';
+import { useSocialProof } from '../hooks/useSocialProof';
+import DynamicFeatures from './DynamicFeatures';
+import SocialProofDemo from './SocialProofDemo';
 
 function Home() {
   const { t } = useTranslation();
   const username = useSelector((state: any) => state.user.username);
+  const { socialProof, features, trustMessage, deliveryTime, isLoading } = useSocialProof();
 
   return (
     <div className="min-h-[calc(100vh-200px)] flex flex-col">
@@ -38,39 +42,48 @@ function Home() {
             <span className="border-r-2 border-yellow-500 pr-1 animate-pulse">
               {t('home.subtitle')}
             </span>
-          </p>          {/* Fast Features - Icon + Text */}
-          <div className="mb-8 flex justify-center gap-6 text-sm sm:text-base">
-            <div className="flex items-center gap-2 text-green-600">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-              </svg>
-              <span>{t('features.fast')}</span>
-            </div>
-            <div className="flex items-center gap-2 text-blue-600">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/>
-              </svg>
-              <span>{t('features.fresh')}</span>
-            </div>
-            <div className="flex items-center gap-2 text-purple-600">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              <span>{t('features.quality')}</span>
-            </div>
-          </div>          {/* Social Proof Banner */}
-          <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm">
+          </p>          {/* Fast Features - Dynamic Icons + Text */}
+          <DynamicFeatures features={features} className="mb-8" />{/* Social Proof Banner - Dynamic */}
+          <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm relative">
+            {/* Loading indicator */}
+            {isLoading && (
+              <div className="absolute top-2 right-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              </div>
+            )}
+            
             <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">👥</span>
-                <span>{t('home.socialProof.ordering', { count: 12 })}</span>
+                <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+                  {t('home.socialProof.ordering', { count: socialProof.orderingCount })}
+                </span>
               </div>
               <div className="w-px h-4 bg-gray-300"></div>
               <div className="flex items-center gap-2">
                 <span className="text-yellow-500">⭐</span>
-                <span>{t('home.socialProof.reviews', { rating: '4.8', count: 340 })}</span>
+                <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+                  {t('home.socialProof.reviews', { rating: socialProof.rating, count: socialProof.reviewCount })}
+                </span>
               </div>
+            </div>            {/* Recent order indicator */}
+            <div className="mt-2 text-center">
+              <span className="text-xs text-gray-500">
+                📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
+              </span>
             </div>
+            
+            {/* Urgency message */}
+            {socialProof.urgencyMessage && (
+              <div className="mt-2 text-center">
+                <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
+                  🔥 {socialProof.urgencyMessage.count 
+                    ? t(socialProof.urgencyMessage.key, { count: socialProof.urgencyMessage.count })
+                    : t(socialProof.urgencyMessage.key)
+                  }
+                </span>
+              </div>
+            )}
           </div>
 
           {/* User Input/CTA Section */}
@@ -87,7 +100,13 @@ function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>                    <div className="flex flex-col items-start">
                       <span>{t('home.cta')}</span>
-                      <span className="text-xs opacity-75">{t('home.deliveryTime', { minutes: 25 })}</span>
+                      <span className={`text-xs opacity-75 transition-all duration-300 ${
+                        deliveryTime.urgency === 'high' ? 'text-orange-600' : 
+                        deliveryTime.urgency === 'medium' ? 'text-yellow-600' : 
+                        'text-gray-500'
+                      }`}>
+                        ⚡ {deliveryTime.message}
+                      </span>
                     </div>
                   </span>
                 </Button>
@@ -178,37 +197,54 @@ function Home() {
               <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer3.text')}"</p>
               <p className="text-xs text-gray-500">- {t('home.testimonials.customer3.name')}</p>
             </div>
-          </div>
-            {/* Trust Badges */}
+          </div>            {/* Trust Badges - Dynamic */}
           <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="text-green-500">✅</span>
-              <span>{t('home.trust.badges.customers', { count: 340 })}</span>
+              <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+                {trustMessage.customers}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-blue-500">🔒</span>
               <span>{t('home.trust.badges.secure')}</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </div>            <div className="flex items-center gap-2">
               <span className="text-orange-500">🚚</span>
-              <span>{t('home.trust.badges.fresh')}</span>
+              <span>{t(trustMessage.timeContextKey)}</span>
             </div>
           </div>
+          
+          {/* Special offer banner */}
+          {trustMessage.specialOfferKey && (
+            <div className="mt-4 text-center">
+              <span className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium animate-pulse">
+                🎉 {t(trustMessage.specialOfferKey)}
+              </span>
+            </div>
+          )}
         </div>
       </div>      {/* Performance Stats - Enhanced Design */}
       <div className="bg-gradient-to-r from-orange-50 via-yellow-50 to-orange-50 border-t border-orange-200 py-8">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Delivery Time */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">            {/* Delivery Time - Dynamic */}
             <div className="bg-white rounded-xl p-6 shadow-sm border border-orange-100 hover:shadow-md transition-shadow text-center">
               <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <div className="text-2xl font-bold text-yellow-600 mb-1">15-30</div>
-              <div className="text-sm text-gray-600 font-medium">{t('stats.minutes')}</div>
-              <div className="text-xs text-gray-500 mt-1">⚡ {t('stats.guaranteed', { default: 'Guaranteed fast' })}</div>
+              <div className={`text-2xl font-bold mb-1 transition-all duration-300 ${
+                deliveryTime.urgency === 'high' ? 'text-orange-600' : 
+                deliveryTime.urgency === 'medium' ? 'text-yellow-600' : 
+                'text-yellow-600'
+              }`}>
+                {deliveryTime.estimatedMinutes}
+              </div>
+              <div className="text-sm text-gray-600 font-medium">{t('stats.minutes')}</div>              <div className={`text-xs mt-1 ${
+                deliveryTime.urgency === 'high' ? 'text-orange-500' : 'text-gray-500'
+              }`}>
+                ⚡ {deliveryTime.urgency === 'high' ? t('socialProof.increasedDemand') : t('stats.guaranteed', { default: 'Guaranteed fast' })}
+              </div>
             </div>
 
             {/* Delivery Zones */}
@@ -235,15 +271,20 @@ function Home() {
               <div className="text-sm text-gray-600 font-medium">{t('stats.service')}</div>
               <div className="text-xs text-gray-500 mt-1">🍕 {t('stats.available', { default: 'Always available' })}</div>
             </div>
-          </div>
-
-          {/* Bottom CTA Bar */}
+          </div>          {/* Bottom CTA Bar - Dynamic */}
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              🏆 {t('stats.bottomCta', { default: 'Join 340+ satisfied customers in Dortmund' })}
-            </p>
-          </div>        </div>
+              🏆 {trustMessage.customers} in Dortmund
+            </p>            {socialProof.recentOrderTime && (
+              <p className="text-xs text-gray-500 mt-1">
+                📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
+              </p>
+            )}
+          </div></div>
       </div>
+      
+      {/* Demo Component for Testing */}
+      <SocialProofDemo />
     </div>
   );
 }

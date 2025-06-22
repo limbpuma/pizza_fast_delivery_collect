@@ -79,12 +79,42 @@
         "fresh": "Fresh Guarantee"
       }
     }
-  },
-  "features": {
+  },  "features": {
     "fast": "Fast delivery",
     "fresh": "Fresh ingredients",
     "quality": "Premium quality"
-  },  "stats": {
+  },
+  "dynamicFeatures": {
+    "fastDelivery": "Lightning Fast Delivery",
+    "freshQuality": "Oven-Fresh Quality", 
+    "guaranteed": "Guaranteed Delicious",
+    "freeDelivery": "Free Delivery",
+    "masterChef": "Master Chef Preparation",
+    "easyOrder": "Easy Ordering",
+    "bestPizza": "Best Pizza in Dortmund",
+    "satisfaction": "100% Satisfaction"
+  },
+  "socialProof": {
+    "urgencyMessages": {
+      "recentOrders": "{{count}} orders in the last 10 minutes",
+      "highDemand": "Very popular today!",
+      "popularTime": "Popular times - order quickly",
+      "viewers": "{{count}} customers viewing this page right now"
+    },
+    "timeContext": {
+      "lunchBreak": "Perfect for lunch break",
+      "dinnerTime": "Ideal for dinner", 
+      "lastChance": "Order quickly",
+      "anytime": "Available anytime"
+    },
+    "specialOffers": {
+      "businessLunch": "Business lunch available",
+      "weekendSpecial": "Weekend special active",
+      "lastCall": "Last chance today"
+    },
+    "recentOrder": "Last order: {{time}}",
+    "increasedDemand": "High demand"
+  },"stats": {
     "minutes": "min delivery",
     "zones": "delivery zones", 
     "service": "service",
