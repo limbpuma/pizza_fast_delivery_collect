@@ -42,12 +42,17 @@ function PizzaDetailsModal({ isOpen, onClose, pizza, onAddToCart }: PizzaDetails
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{name}</h3>
-                {germanInfo && (
-                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
+                {germanInfo && (                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
                     germanInfo.category === 'vegan' ? 'bg-green-100 text-green-700' :
                     germanInfo.category === 'vegetarisch' ? 'bg-green-50 text-green-600' :
                     germanInfo.category === 'fleisch' ? 'bg-red-50 text-red-600' :
                     germanInfo.category === 'meeresfrüchte' ? 'bg-blue-50 text-blue-600' :
+                    germanInfo.category === 'klassisch' ? 'bg-yellow-50 text-yellow-700' :
+                    germanInfo.category === 'spezial' ? 'bg-purple-50 text-purple-600' :
+                    germanInfo.category === 'scharf' ? 'bg-red-100 text-red-700' :
+                    germanInfo.category === 'käse' ? 'bg-orange-50 text-orange-600' :
+                    germanInfo.category === 'premium' ? 'bg-amber-50 text-amber-700' :
+                    germanInfo.category === 'gesund' ? 'bg-emerald-50 text-emerald-600' :
                     'bg-gray-50 text-gray-600'
                   }`}>
                     {getCategoryInGerman(germanInfo.category)}

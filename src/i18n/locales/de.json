@@ -483,15 +483,14 @@
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 2,
       "artikel": "Hähnchen Crossies",
       "kategorie": "Snacks",
       "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
-      "alergene": ["D","i","F"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 3,
@@ -501,15 +500,14 @@
       "preis": "8,20 €",
       "zusatzstoffe": [],
       "alergene": ["S","F"]
-    },
-    {
+    },    {
       "artikelNr": 4,
       "artikel": "Chicken Wings",
       "kategorie": "Snacks",
-      "beschreibung": "6 Stück mit Pommes & Salat",
+      "beschreibung": "6 saftige Chicken Wings mit Pommes & Salat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
-      "alergene": []
+      "alergene": ["F"]
     },
     {
       "artikelNr": 5,
@@ -519,15 +517,14 @@
       "preis": "5,00 €",
       "zusatzstoffe": ["2"],
       "alergene": ["D"]
-    },
-    {
+    },    {
       "artikelNr": 6,
       "artikel": "Ketchup, Mayonnaise",
       "kategorie": "Snacks",
       "beschreibung": "",
       "preis": "0,50 €",
       "zusatzstoffe": [],
-      "alergene": ["E","S","N"]
+      "alergene": ["E"]
     },
     {
       "artikelNr": 7,
@@ -537,15 +534,14 @@
       "preis": "1,30 €",
       "zusatzstoffe": [],
       "alergene": ["D"]
-    },
-    {
+    },    {
       "artikelNr": 8,
       "artikel": "Saucen nach Wahl: Portion",
       "kategorie": "Snacks",
       "beschreibung": "Knoblauch, Chili, Tzatziki, Curry und Chunky Salsa",
       "preis": "2,00 €",
       "zusatzstoffe": [],
-      "alergene": ["D"]
+      "alergene": ["D", "A"]
     },
     {
       "artikelNr": 9,
@@ -766,12 +762,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 29,
       "artikel": "Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami",
+      "beschreibung": "Salami, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -779,12 +774,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 30,
       "artikel": "Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken",
+      "beschreibung": "Putenschinken, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -818,8 +812,7 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 33,
       "artikel": "Funghi e Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
@@ -829,7 +822,7 @@
         "30cm": "8,40 €",
         "40cm": "14,00 €"
       },
-      "zusatzstoffe": ["1", "2","3", " 4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -896,8 +889,7 @@
       },
       "zusatzstoffe": ["1", "2","3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 39,
       "artikel": "Fattoria",
       "kategorie": "Pizzen mit Fleisch",
@@ -907,7 +899,7 @@
         "30cm": "9,30 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3", "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -922,12 +914,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 41,
       "artikel": "Campus",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken Zwiebeln, Hackfleisch,artischoken, fr.champipignons, oliven, paprika",
+      "beschreibung": "Putenschinken, Zwiebeln, Hackfleisch, Artischocken, frische Champignons, Oliven, Paprika",
       "preis": {
         "24cm": "7,40 €",
         "30cm": "9,40 €",
@@ -935,17 +926,15 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 42,
       "artikel": "Calzone Schinken",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken",
+      "beschreibung": "Putenschinken, Mozzarella, Tomatensauce",
       "preis": {
-        
         "30cm": "8,90 €"
       },
-      "zusatzstoffe": [ "2","3","4 "],
+      "zusatzstoffe": ["2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -973,12 +962,11 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 45,
       "artikel": "Diavolo Scharf",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Peperoni, Jalapenos",
+      "beschreibung": "Salami, Peperoni, Jalapenos, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "6,60 €",
         "30cm": "8,60 €",
@@ -986,15 +974,14 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 46,
       "artikel": "Gyros",
       "kategorie": "Pizzen mit Fleisch",
       "beschreibung": "Putengyros",
       "preis": {
         "24cm": "6,90 €",
-        "30cm": "9,900 €",
+        "30cm": "9,00 €",
         "40cm": "16,00 €"
       },
       "zusatzstoffe": ["1", "2"],
@@ -1025,17 +1012,16 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 49,
       "artikel": "Calzone Tonno",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Zwiebeln",
+      "beschreibung": "Thunfisch, Zwiebeln, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "8,90 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
+      "alergene": ["A", "D", "G", "H"]
     },
     {
       "artikelNr": 50,
@@ -1110,15 +1096,14 @@
       "preis": "5,50 €",
       "zusatzstoffe": [],
       "alergene": ["A"]
-    },
-    {
+    },    {
       "artikelNr": 56,
       "artikel": "Salat Tonno",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Thunfisch, Zwiebeln, Ei, Tomaten, Gurken",
       "preis": "7,00 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "C", "D"]
+      "alergene": ["A", "C", "D", "H"]
     },
     {
       "artikelNr": 57,

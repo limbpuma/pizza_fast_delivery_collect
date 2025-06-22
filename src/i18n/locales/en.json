@@ -478,15 +478,14 @@
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 2,
       "artikel": "Hähnchen Crossies",
       "kategorie": "Snacks",
       "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
-      "alergene": ["D","i","F"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 3,
@@ -917,12 +916,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 41,
       "artikel": "Campus",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken Zwiebeln, Hackfleisch,artischoken, fr.champipignons, oliven, paprika",
+      "beschreibung": "Putenschinken, Zwiebeln, Hackfleisch, Artischocken, frische Champignons, Oliven, Paprika",
       "preis": {
         "24cm": "7,40 €",
         "30cm": "9,40 €",
@@ -981,15 +979,14 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 46,
       "artikel": "Gyros",
       "kategorie": "Pizzen mit Fleisch",
       "beschreibung": "Putengyros",
       "preis": {
         "24cm": "6,90 €",
-        "30cm": "9,900 €",
+        "30cm": "9,00 €",
         "40cm": "16,00 €"
       },
       "zusatzstoffe": ["1", "2"],
