@@ -13,10 +13,12 @@
   },"home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
     "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
-    "cta": "🍕 Jetzt bestellen",
-    "socialProof": {
+    "cta": "🍕 Jetzt bestellen",    "socialProof": {
       "ordering": "{{count}} Leute bestellen gerade",
-      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)"
+      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)",
+      "viewing": "{{count}} schauen sich die Speisekarte an",
+      "orderingClosed": "Niemand bestellt gerade (Restaurant geschlossen)",
+      "viewingClosed": "{{count}} schauen sich die Speisekarte an"
     },
     "deliveryTime": "⚡ Geliefert in {{minutes}} Min",
     "howItWorks": {

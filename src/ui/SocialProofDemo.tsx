@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getSocialProofData, getDynamicFeatures, getContextualTrustMessage, getDynamicDeliveryTime } from '../utils/socialProof';
 
@@ -43,10 +43,15 @@ export function SocialProofDemo() {
           {demoMode ? 'Live' : 'Start'}
         </button>
       </div>
-      
-      <div className="space-y-2 text-xs">
+        <div className="space-y-2 text-xs">
+        <div>
+          <strong>Restaurant:</strong> {data.socialProof.isRestaurantOpen ? '🟢 Open' : '🔴 Closed'}
+        </div>
         <div>
           <strong>Ordering:</strong> {data.socialProof.orderingCount} people
+        </div>
+        <div>
+          <strong>Viewing:</strong> {data.socialProof.viewingCount} people
         </div>
         <div>
           <strong>Rating:</strong> {data.socialProof.rating}★ ({data.socialProof.reviewCount}+)

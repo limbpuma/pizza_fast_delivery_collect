@@ -13,10 +13,12 @@
   },  "home": {
     "title": "🍕 Fastest pizza delivery to your door!",
     "subtitle": "Fresh pizzas in 15-30 minutes • Delivery to 6 zones in Dortmund",
-    "cta": "🍕 Order Now",
-    "socialProof": {
+    "cta": "🍕 Order Now",    "socialProof": {
       "ordering": "{{count}} people ordering right now",
-      "reviews": "{{rating}}★ ({{count}}+ reviews)"
+      "reviews": "{{rating}}★ ({{count}}+ reviews)",
+      "viewing": "{{count}} people viewing menu",
+      "orderingClosed": "Nobody ordering right now (restaurant closed)",
+      "viewingClosed": "{{count}} people viewing menu"
     },
     "deliveryTime": "⚡ Delivered in {{minutes}} min",
     "howItWorks": {

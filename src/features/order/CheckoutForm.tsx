@@ -263,12 +263,16 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         <RestaurantStatusBanner />
         
         {/* Additional Social Proof Banner */}
-        <div className="mb-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+        <div className="mb-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-4 shadow-sm">          <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
             <div className="flex items-center gap-2">
               <span className="text-green-500">👥</span>
               <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
-                {t('home.socialProof.ordering', { count: socialProof.orderingCount })}
+                {socialProof.isRestaurantOpen && socialProof.orderingCount > 0 
+                  ? t('home.socialProof.ordering', { count: socialProof.orderingCount })
+                  : socialProof.isRestaurantOpen
+                    ? t('home.socialProof.viewing', { count: socialProof.viewingCount })
+                    : t('home.socialProof.viewingClosed', { count: socialProof.viewingCount })
+                }
               </span>
             </div>
             <div className="w-px h-4 bg-gray-300"></div>

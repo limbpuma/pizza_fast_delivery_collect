@@ -1,7 +1,9 @@
 /**
  * Dynamic Social Proof System for Campus Pizza
- * Generates realistic and engaging social proof data
+ * Generates realistic and engaging social proof data based on restaurant status
  */
+
+import { getRestaurantStatus, RestaurantStatus } from './restaurantHours';
 
 export interface SocialProofData {
   orderingCount: number;
@@ -13,6 +15,8 @@ export interface SocialProofData {
     key: string;
     count?: number;
   };
+  isRestaurantOpen: boolean;
+  restaurantStatus: RestaurantStatus;
 }
 
 export interface DynamicFeature {
@@ -102,9 +106,32 @@ function getRandomInRange(base: number, range: number): number {
 }
 
 /**
- * Get dynamic social proof data
+ * Get dynamic social proof data that respects restaurant status
  */
 export function getSocialProofData(): SocialProofData {
+  const restaurantStatus = getRestaurantStatus();
+  const isRestaurantOpen = restaurantStatus.isOpen;
+  
+  // When restaurant is closed, show different social proof
+  if (!isRestaurantOpen) {
+    // Generate static but realistic numbers for closed hours
+    const rating = (SOCIAL_PROOF_CONFIG.rating.base + Math.random() * SOCIAL_PROOF_CONFIG.rating.variance).toFixed(1);
+    const daysSinceStart = Math.floor((Date.now() - new Date('2024-01-01').getTime()) / (1000 * 60 * 60 * 24));
+    const reviewCount = SOCIAL_PROOF_CONFIG.reviews.base + (daysSinceStart * SOCIAL_PROOF_CONFIG.reviews.dailyGrowth);
+    
+    return {
+      orderingCount: 0, // Nobody ordering when closed
+      viewingCount: getRandomInRange(2, 5), // Some people still viewing menu
+      rating,
+      reviewCount: Math.round(reviewCount),
+      recentOrderTime: "vor 2h", // Last order was hours ago
+      urgencyMessage: undefined, // No urgency when closed
+      isRestaurantOpen: false,
+      restaurantStatus,
+    };
+  }
+
+  // Restaurant is open - generate dynamic social proof
   const peakBonus = isPeakHour();
   const weekendBonus = isWeekend();
   
@@ -138,9 +165,10 @@ export function getSocialProofData(): SocialProofData {
   // Generate recent order time
   const recentMinutes = Math.floor(Math.random() * 15) + 1; // 1-15 minutes ago
   const recentOrderTime = `vor ${recentMinutes} Min`;
-  // Generate urgency message (30% chance)
+  
+  // Generate urgency message (30% chance when open, none when closing soon)
   let urgencyMessage: { key: string; count?: number } | undefined;
-  if (Math.random() < 0.3) {
+  if (restaurantStatus.status !== 'closing_soon' && Math.random() < 0.3) {
     const messageTemplate = URGENCY_MESSAGES[Math.floor(Math.random() * URGENCY_MESSAGES.length)];
     if (messageTemplate.countRange) {
       const count = Math.floor(Math.random() * (messageTemplate.countRange[1] - messageTemplate.countRange[0] + 1)) + messageTemplate.countRange[0];
@@ -157,6 +185,8 @@ export function getSocialProofData(): SocialProofData {
     reviewCount: Math.round(reviewCount),
     recentOrderTime,
     urgencyMessage,
+    isRestaurantOpen: true,
+    restaurantStatus,
   };
 }
 
@@ -221,13 +251,25 @@ export function getContextualTrustMessage(): {
 }
 
 /**
- * Generate delivery time estimate based on current conditions
+ * Generate delivery time estimate based on current conditions and restaurant status
  */
 export function getDynamicDeliveryTime(): {
   estimatedMinutes: number;
   message: string;
   urgency: 'low' | 'medium' | 'high';
 } {
+  const restaurantStatus = getRestaurantStatus();
+  
+  // If restaurant is closed, return closed-state delivery info
+  if (!restaurantStatus.isOpen) {
+    const hoursUntilOpen = Math.ceil(restaurantStatus.timeUntilOpening / 60);
+    return {
+      estimatedMinutes: restaurantStatus.timeUntilOpening + 25, // Opening time + delivery time
+      message: `Geschlossen (öffnet in ${hoursUntilOpen}h)`,
+      urgency: 'low',
+    };
+  }
+
   const peakBonus = isPeakHour();
   const weekendBonus = isWeekend();
   
@@ -244,6 +286,11 @@ export function getDynamicDeliveryTime(): {
     urgency = 'high';
   }
   
+  // If closing soon, add urgency
+  if (restaurantStatus.status === 'closing_soon') {
+    urgency = 'high';
+  }
+  
   // Add some randomness (-5 to +10 minutes)
   const variance = Math.floor(Math.random() * 16) - 5;
   const estimatedMinutes = Math.max(15, Math.min(45, baseTime + variance));
@@ -251,7 +298,13 @@ export function getDynamicDeliveryTime(): {
   let message = `ca. ${estimatedMinutes} Min`;
   
   if (urgency === 'high') {
-    message = `${estimatedMinutes}-${estimatedMinutes + 10} Min (erhöhtes Aufkommen)`;
+    if (restaurantStatus.status === 'closing_soon') {
+      const closingHours = Math.floor(restaurantStatus.timeUntilClosing / 60);
+      const closingMinutes = restaurantStatus.timeUntilClosing % 60;
+      message = `${estimatedMinutes} Min (schließt in ${closingHours}h ${closingMinutes}min)`;
+    } else {
+      message = `${estimatedMinutes}-${estimatedMinutes + 10} Min (erhöhtes Aufkommen)`;
+    }
   } else if (urgency === 'medium') {
     message = `${estimatedMinutes}-${estimatedMinutes + 5} Min`;
   }

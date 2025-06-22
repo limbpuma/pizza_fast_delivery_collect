@@ -50,13 +50,16 @@ function Home() {
               <div className="absolute top-2 right-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
               </div>
-            )}
-            
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+            )}            <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">👥</span>
                 <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
-                  {t('home.socialProof.ordering', { count: socialProof.orderingCount })}
+                  {socialProof.isRestaurantOpen && socialProof.orderingCount > 0 
+                    ? t('home.socialProof.ordering', { count: socialProof.orderingCount })
+                    : socialProof.isRestaurantOpen
+                      ? t('home.socialProof.viewing', { count: socialProof.viewingCount })
+                      : t('home.socialProof.viewingClosed', { count: socialProof.viewingCount })
+                  }
                 </span>
               </div>
               <div className="w-px h-4 bg-gray-300"></div>
@@ -66,7 +69,7 @@ function Home() {
                   {t('home.socialProof.reviews', { rating: socialProof.rating, count: socialProof.reviewCount })}
                 </span>
               </div>
-            </div>            {/* Recent order indicator */}
+            </div>{/* Recent order indicator */}
             <div className="mt-2 text-center">
               <span className="text-xs text-gray-500">
                 📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
