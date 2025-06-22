@@ -66,34 +66,7 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   return (
     <>      <div className="pizza-card-compact bg-white rounded-lg border border-gray-200 hover:shadow-lg hover:border-orange-300 transition-all duration-200 p-4 group">
         <div className="flex flex-col gap-3">
-          {/* Popular and Spicy Level Badges */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {/* Enhanced Popular Badge */}
-              {germanInfo?.isPopular && (
-                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-lg animate-pulse">
-                  🔥 Popular
-                </span>
-              )}
-              
-              {/* Spicy Level */}
-              {germanInfo?.spicyLevel && (
-                <div className="flex">
-                  {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
-                    <span key={i} className="text-red-500 text-sm">🌶️</span>
-                  ))}
-                </div>
-              )}
-            </div>
-            
-            {/* View Details Button */}
-            <button
-              onClick={handleDetailsClick}
-              className="text-orange-500 hover:text-orange-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            >
-              View Details
-            </button>
-          </div>
+          
 
           {/* Pizza Info */}
           <div className="flex-1 min-w-0"><div className="flex items-start justify-between mb-2">
@@ -103,8 +76,32 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
                     {t('menu.productNumber', { number: id })}
                   </span>
                   {name}
+
                 </h3>
+
                 
+                <div className="flex items-center gap-2 mb-1">
+                {/* Popular Badge */} {/* Popular and Spicy Level Badges */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+               {/* Enhanced Popular Badge */}
+                {germanInfo?.isPopular && (
+                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-lg animate-pulse">
+                  🔥 Popular
+                </span>
+                )}
+                            {/* Spicy Level */}
+                {germanInfo?.spicyLevel && (
+                <div className="flex">
+                  {Array.from({ length: germanInfo.spicyLevel }, (_, i) => (
+                    <span key={i} className="text-red-500 text-sm">🌶️</span>
+                  ))}
+                </div>
+                )}
+                </div>
+                </div>
+
+
                 {/* Category Badge */}
                 {germanInfo && (
                   <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
@@ -117,6 +114,9 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
                     {getCategoryInGerman(germanInfo.category)}
                   </span>
                 )}
+
+              </div>
+
               </div>
             </div>
 
