@@ -4,7 +4,7 @@ import Button from "./Button";
 import { useTranslation } from 'react-i18next';
 import { useSocialProof } from '../hooks/useSocialProof';
 import DynamicFeatures from './DynamicFeatures';
-import SocialProofDemo from './SocialProofDemo';
+// import SocialProofDemo from './SocialProofDemo'; // DISABLED
 
 function Home() {
   const { t } = useTranslation();
@@ -283,11 +283,10 @@ function Home() {
                 📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
               </p>
             )}
-          </div></div>
-      </div>
+          </div></div>      </div>
       
-      {/* Demo Component for Testing */}
-      <SocialProofDemo />
+      {/* Demo Component for Testing - DISABLED */}
+      {/* <SocialProofDemo /> */}
     </div>
   );
 }
