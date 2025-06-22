@@ -1,9 +1,16 @@
-{  "header": {
-    "title": "Campus Pizza Dortmund"
+{  
+  "shared": {
+    "orderDetails": "Bestelldetails",
+    "orderNumber": "Bestellnummer",
+    "customerInfo": "Kundeninformationen",
+    "orderInfo": "Bestellinformationen"
   },
-  "navigation": {
-    "myOrders": "Meine Bestellungen"
-  },  "home": {
+  "header": {
+    "title": "Campus Pizza Dortmund"
+  },  "navigation": {
+    "myOrders": "Meine Bestellungen",
+    "menu": "Menü"
+  },"home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
     "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
     "cta": "🍕 Jetzt bestellen",
@@ -103,7 +110,7 @@
   "menu": {
     "title": "Unsere Speisekarte",
     "soldOut": "Ausverkauft",
-    "addToCart": "In den Warenkorb",
+    "addToCart": "In den Warenkorb legen",
     "ingredients": "Zutaten:",    "loading": "Lade Speisekarte...",
     "allergens": "Allergene:",
     "additives": "Zusatzstoffe:",
@@ -114,12 +121,21 @@
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
     "priceComparison": "{{price}}/100g",
-    "itemInfo": "Artikel Info",
-    "selectSize": "Größe wählen",
-    "availableSizes": "Verfügbare Größen",    "from": "ab",
+    "itemInfo": "Artikel Info",    "selectSize": "Größe wählen",
+    "availableSizes": "Verfügbare Größen",
+    "sizeOptions": {
+      "small": "Klein (Ø 26cm)",
+      "medium": "Mittel (Ø 30cm)",
+      "large": "Groß (Ø 33cm)",
+      "family": "Familie (Ø 40cm)"
+    },
+    "from": "ab",
+    "selectOptions": "Optionen auswählen",
+    "configureProduct": "Produkt konfigurieren",
     "addToBasket": "In den Warenkorb",
     "adding": "Hinzufügen...",
-    "quickAdd": "Schnell hinzufügen",    "addedToCart": "In Warenkorb gelegt!",
+    "quickAdd": "Schnell hinzufügen",
+    "addedToCart": "✅ Erfolgreich hinzugefügt!",
     "productNumber": "(#{{number}})",
     "categories": {
       "vegetarisch": "Vegetarisch",

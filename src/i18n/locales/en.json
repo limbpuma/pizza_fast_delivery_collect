@@ -1,4 +1,11 @@
-{  "header": {
+{  
+  "shared": {
+    "orderDetails": "Order Details",
+    "orderNumber": "Order Number",
+    "customerInfo": "Customer Information",
+    "orderInfo": "Order Information"
+  },
+  "header": {
     "title": "Campus Pizza Dortmund"
   },  "navigation": {
     "myOrders": "My Orders",
@@ -110,14 +117,20 @@
     "perPizza": "per pizza",
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
-    "priceComparison": "{{price}}/100g",    "itemInfo": "Item Info",
-    "selectSize": "Select Size",
-    "availableSizes": "Available Sizes",
+    "priceComparison": "{{price}}/100g",    "itemInfo": "Item Info",    "selectSize": "Select Size",
+    "availableSizes": "Available Sizes",    "sizeOptions": {
+      "small": "Small (Ø 26cm)",
+      "medium": "Medium (Ø 30cm)",
+      "large": "Large (Ø 33cm)",
+      "family": "Family (Ø 40cm)"
+    },
+    "selectOptions": "Select Options",
+    "configureProduct": "Configure Product",
     "from": "from",
     "addToBasket": "Add to basket",
     "adding": "Adding...",
     "quickAdd": "Quick Add",
-    "addedToCart": "Added to cart!",
+    "addedToCart": "✅ Successfully added!",
     "productNumber": "(#{{number}})",
     "categories": {
       "vegetarisch": "Vegetarian",
@@ -159,7 +172,7 @@
       "hideFilters": "Hide filters"
     }
   },  "cart": {
-    "title": "Basket",
+    "title": "Cart",
     "delivery": "Delivery",
     "collection": "Collection", 
     "estimatedTime": "{{minutes}} min",
@@ -174,15 +187,16 @@
     "removeItem": "Remove item",
     "paymentInfo": "Payment: Cash or Card on delivery",
     "empty": {
-      "title": "Your basket is empty",
+      "title": "Your cart is empty",
       "description": "Add some delicious items to get started!",
       "backToMenu": "← Back to menu"
     },
     "totalPrice": "Total pizza price: {{price}}",
     "orderButton": "Order pizzas",
-    "clearButton": "Clear cart",    "overview": "{{quantity}} pizzas {{total}}",
+    "clearButton": "Clear cart",
+    "overview": "{{quantity}} pizzas {{total}}",
     "openCart": "Open cart →"
-  },  "checkout": {
+  },"checkout": {
     "titleDelivery": "Checkout - Delivery",
     "titleCollection": "Checkout - Collection",
     "deliverySubtitle": "Complete your delivery details",
