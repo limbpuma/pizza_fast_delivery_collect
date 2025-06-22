@@ -16,9 +16,9 @@ i18n
       },
       de: {
         translation: deTranslations
-      }
-    },
-    fallbackLng: 'en',
+      }    },
+    fallbackLng: 'de',
+    lng: 'de', // Set German as the default language
     debug: false,
     
     interpolation: {
