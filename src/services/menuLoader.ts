@@ -95,15 +95,27 @@ function processMenuItem(item: RealMenuItem): ProcessedMenuItem {
     // Single-size product (quick add)
     unitPrice = parseGermanPrice(preis as string);
   }
-  
-  // Create product type detection info
+    // Create product type detection info
   const mockProduct = {
     id: artikelNr,
     name: artikel,
     category: kategorie,
+    kategorie: kategorie,
+    preis: preis,
     ingredients: [beschreibung]
-  };
-    const productType = getProductType(mockProduct);
+  };    const productType = getProductType(mockProduct);
+  
+  // Debug log for pizza products
+  if (artikelNr >= 19 && artikelNr <= 25) {
+    console.log(`🔧 PROCESSED ${artikelNr} - ${artikel}:`, {
+      isMultiSize,
+      unitPrice,
+      sizes,
+      needsSizeSelection: productType.needsSizeSelection,
+      quickAddEnabled: productType.quickAddEnabled
+    });
+  }
+
   return {
     id: artikelNr,
     name: artikel,

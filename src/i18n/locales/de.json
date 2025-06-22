@@ -203,7 +203,7 @@
     "phonePlaceholder": "+49 xxx xxx xxxx",
     "address": "Adresse und Nummer",
     "street": "Straßenname",
-    "streetPlaceholder": "z.B. Musterstraße",
+    "addressPlaceholder": "z.B. Musterstraße",
     "houseNumber": "Hausnummer",
     "houseNumberPlaceholder": "z.B. 123",
     "postalCode": "Postleitzahl",

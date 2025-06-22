@@ -15,7 +15,7 @@ interface MenuItemCompactProps {
 
 function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { id, name, unitPrice, ingredients, soldOut } = pizza;
+  const { id, name, unitPrice, ingredients, soldOut, sizes } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -29,7 +29,30 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   const productType = getProductType(pizza);
 
   // Use the new selector for total pizza quantity (all sizes combined)
-  const displayQuantity = productType.needsSizeSelection ? totalPizzaQuantity : currentQuantity;const handleAddClick = async () => {
+  const displayQuantity = productType.needsSizeSelection ? totalPizzaQuantity : currentQuantity;  // Calculate display price for multi-size products
+  const getDisplayPrice = () => {
+    if (productType.needsSizeSelection && sizes) {
+      // For multi-size products, show the lowest price with "from" indicator
+      const priceValues = Object.values(sizes) as number[];
+      const lowestPrice = Math.min(...priceValues);
+      console.log(`🍕 MULTI-SIZE: ${name} - sizes:`, sizes, 'lowest:', lowestPrice);
+      return { price: lowestPrice, isFromPrice: true };
+    }
+    // For single-size products, show the unit price
+    console.log(`⚡ SINGLE-SIZE: ${name} - unitPrice:`, unitPrice);
+    return { price: unitPrice, isFromPrice: false };
+  };
+
+  const { price: displayPrice, isFromPrice } = getDisplayPrice();
+  
+  // Debug logs
+  console.log(`📊 ${name} (ID: ${id}):`, {
+    productType,
+    sizes,
+    unitPrice,
+    displayPrice,
+    isFromPrice
+  });const handleAddClick = async () => {
     if (productType.quickAddEnabled && !productType.needsSizeSelection) {
       // Quick Add - always use addItem (it will increment if exists)
       setIsQuickAdding(true);
@@ -135,12 +158,11 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
               </button>
 
               <div className="flex items-center gap-3">
-                {/* Price */}
-                <div className="text-right">
+                {/* Price */}                <div className="text-right">
                   {!soldOut ? (
                     <>
                       <div className="font-bold text-gray-900">
-                        {t('menu.from')} {formatCurrency(unitPrice)}
+                        {isFromPrice ? t('menu.from') + ' ' : ''}{formatCurrency(displayPrice)}
                       </div>
                       {germanInfo && (
                         <div className="text-xs text-gray-500">

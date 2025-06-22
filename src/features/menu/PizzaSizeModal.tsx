@@ -14,40 +14,80 @@ interface PizzaSizeModalProps {
 
 interface PizzaSize {
   size: string;
-  diameter: number;
-  priceMultiplier: number;
+  diameter: string;
+  price: number;
   label: string;
 }
-
-const PIZZA_SIZES: PizzaSize[] = [
-  { size: 'small', diameter: 26, priceMultiplier: 0.8, label: 'Klein (26cm)' },
-  { size: 'medium', diameter: 32, priceMultiplier: 1.0, label: 'Normal (32cm)' },
-  { size: 'large', diameter: 40, priceMultiplier: 1.4, label: 'Groß (40cm)' },
-];
 
 function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [selectedSize, setSelectedSize] = useState<PizzaSize>(PIZZA_SIZES[1]); // Default to medium
+  const [selectedSize, setSelectedSize] = useState<PizzaSize | null>(null);
   const [isAdding, setIsAdding] = useState(false);
 
   if (!pizza) return null;
 
-  const { id, name, unitPrice, ingredients } = pizza;
+  const { id, name, unitPrice, ingredients, sizes } = pizza;
   const germanInfo = getGermanPizzaInfo(id);
   
-  const calculatePrice = (size: PizzaSize) => unitPrice * size.priceMultiplier;
+  // Create size options from real menu data
+  const createSizeOptions = (): PizzaSize[] => {
+    if (!sizes || typeof sizes !== 'object') {
+      // Fallback for products without multiple sizes
+      return [{
+        size: 'standard',
+        diameter: 'Standard',
+        price: unitPrice,
+        label: 'Standard'
+      }];
+    }
+
+    // Map real menu sizes to pizza options
+    const sizeMapping: Record<string, string> = {
+      '24cm': 'Klein (24cm)',
+      '30cm': 'Normal (30cm)', 
+      '40cm': 'Groß (40cm)'
+    };
+
+    return Object.entries(sizes).map(([diameter, price]) => ({
+      size: diameter.replace('cm', ''),
+      diameter,
+      price: price as number,
+      label: sizeMapping[diameter] || `${diameter}`
+    }));
+  };
+  const availableSizes = createSizeOptions();
+  
+  // Debug log for development
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    console.log('🍕 PizzaSizeModal Debug:', {
+      pizzaName: name,
+      sizes: sizes,
+      availableSizes: availableSizes,
+      selectedSize: selectedSize
+    });
+  }
+  
+  // Set default selection to medium size if available, otherwise first option
+  if (!selectedSize && availableSizes.length > 0) {
+    const defaultSize = availableSizes.find(s => s.diameter === '30cm') || availableSizes[0];
+    setSelectedSize(defaultSize);
+  }
+
   const calculateWeight = (size: PizzaSize) => {
     if (!germanInfo) return null;
     const baseWeight = germanInfo.weight;
-    const areaMultiplier = Math.pow(size.diameter / 32, 2); // Area scales with diameter squared
+    const baseDiameter = 32;
+    const currentDiameter = parseInt(size.diameter.replace('cm', '')) || baseDiameter;
+    const areaMultiplier = Math.pow(currentDiameter / baseDiameter, 2);
     return Math.round(baseWeight * areaMultiplier);
   };
-
   const handleAddToCart = async () => {
+    if (!selectedSize) return;
+    
     setIsAdding(true);
     
-    const finalPrice = calculatePrice(selectedSize);
+    const finalPrice = selectedSize.price;
     const sizeName = `${name} (${selectedSize.label})`;
     
     const newItem = {
@@ -82,16 +122,14 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
               {Array.isArray(ingredients) ? ingredients.join(', ') : ''}
             </p>
           </div>
-        </div>
-
-        {/* Size Options */}
+        </div>        {/* Size Options */}
         <div className="space-y-3 mb-6">
           <h4 className="font-semibold text-gray-900 mb-3">{t('menu.availableSizes')}</h4>
           
-          {PIZZA_SIZES.map((size) => {
-            const price = calculatePrice(size);
+          {availableSizes.map((size: PizzaSize) => {
+            const price = size.price;
             const weight = calculateWeight(size);
-            const isSelected = selectedSize.size === size.size;
+            const isSelected = selectedSize?.size === size.size;
             
             return (
               <button
@@ -137,24 +175,24 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
               </button>
             );
           })}
-        </div>
-
-        {/* Selected Size Summary */}
-        <div className="bg-gray-50 rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="font-medium text-gray-900">
-                {name} ({selectedSize.label})
+        </div>        {/* Selected Size Summary */}
+        {selectedSize && (
+          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="font-medium text-gray-900">
+                  {name} ({selectedSize.label})
+                </div>
+                <div className="text-sm text-gray-600">
+                  {calculateWeight(selectedSize)}g • ⌀{selectedSize.diameter}
+                </div>
               </div>
-              <div className="text-sm text-gray-600">
-                {calculateWeight(selectedSize)}g • ⌀{selectedSize.diameter}cm
+              <div className="text-xl font-bold text-gray-900">
+                {formatCurrency(selectedSize.price)}
               </div>
-            </div>
-            <div className="text-xl font-bold text-gray-900">
-              {formatCurrency(calculatePrice(selectedSize))}
             </div>
           </div>
-        </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex gap-3">
