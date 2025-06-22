@@ -61,9 +61,10 @@ function Menu() {
     <div>
       {/* Restaurant Header with hero image and info */}
       <RestaurantHeader />
+      {/* Sistema de Filtros */}
+        <MenuFilters onFilterChange={handleFilterChange}/>
         <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Sistema de Filtros */}
-        <MenuFilters onFilterChange={handleFilterChange} />
+        
         
         {/* Contador de resultados */}
         <div className="mb-6 text-center text-gray-600">

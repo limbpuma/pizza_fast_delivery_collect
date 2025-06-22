@@ -18,46 +18,20 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [excludedAllergens, setExcludedAllergens] = useState<string[]>([]);
   const [showVegetarian, setShowVegetarian] = useState(false);
-  const [showVegan, setShowVegan] = useState(false);
-  const [showAllFilters, setShowAllFilters] = useState(false);
+  const [showVegan, setShowVegan] = useState(false);  const [showAllFilters, setShowAllFilters] = useState(false);
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
-  const [visibleCategories, setVisibleCategories] = useState<number>(6);
   
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-
   // Dynamic categories from real menu data
   const categories = getCategoryOptions(menu, true);
 
   const commonAllergens = [
     'Gluten', 'Milch', 'Eier', 'Nüsse', 'Soja', 'Weizen'
-  ];  // Check if categories overflow and need hamburger menu
-  useEffect(() => {
-    const checkOverflow = () => {
-      const container = scrollContainerRef.current;
-      if (container) {
-        const screenWidth = window.innerWidth;
-        
-        // Responsive visibility based on screen size
-        if (screenWidth < 640) {
-          setVisibleCategories(3); // Very small mobile
-        } else if (screenWidth < 768) {
-          setVisibleCategories(4); // Mobile
-        } else if (screenWidth < 1024) {
-          setVisibleCategories(6); // Tablet
-        } else {
-          setVisibleCategories(8); // Desktop
-        }
-      }
-    };
+  ];
 
-    checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => window.removeEventListener('resize', checkOverflow);
-  }, [categories.length]);
-
-  // Update scroll button visibility
+  // Update scroll button visibility based on content overflow
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
@@ -102,8 +76,7 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
     
     setExcludedAllergens(newExcluded);
     updateFilters(selectedCategory, newExcluded, showVegetarian, showVegan);
-  };
-  const updateFilters = (category: string, allergens: string[], vegetarian: boolean, vegan: boolean) => {
+  };  const updateFilters = (category: string, allergens: string[], vegetarian: boolean, vegan: boolean) => {
     const newFilters = {
       category,
       allergens,
@@ -113,9 +86,11 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
     console.log('🔧 MenuFilters: Sending filter change:', newFilters);
     onFilterChange(newFilters);
   };
-  const visibleCategoriesList = categories.slice(0, visibleCategories);
+  
+  // Show ALL categories in scroll (like hamburger menu) instead of limiting them
+  const visibleCategoriesList = categories; // Changed from categories.slice(0, visibleCategories)
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">      {/* Categories section with hamburger menu outside scroll */}
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mt-2">      {/* Categories section with hamburger menu outside scroll */}
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Mobile-first horizontal category scroll - Responsive container */}
         <div className="relative flex-1 min-w-0 overflow-hidden">          {/* Left scroll button - Enhanced design */}
