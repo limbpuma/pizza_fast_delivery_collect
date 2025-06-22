@@ -335,7 +335,12 @@
     "opensIn": "Öffnet in {{hours}}h {{minutes}}min",
     "dailyHours": "Täglich",
     "kitchenClosesIn": "Begrenzte Zeit: Küche schließt in {{hours}}h {{minutes}}min",
-    "kitchenClosingSoon": "⚠️ DRINGEND: Küche schließt in {{hours}}h {{minutes}}min","aboutTitle": "Über Restaurant CAMPUS",
+    "kitchenClosingSoon": "⚠️ DRINGEND: Küche schließt in {{hours}}h {{minutes}}min",
+    "specialOffers": {
+      "weekendDeal": "🎉 Wochenend-Special: {{offer}}",
+      "lunchSpecial": "🥗 Mittagsangebot: {{offer}}",
+      "dinnerRush": "🔥 Abendspecial: {{offer}}"
+    },"aboutTitle": "Über Restaurant CAMPUS",
     "aboutDescription": "Willkommen bei Restaurant CAMPUS – Die Pizza-Profis! Seit Jahren verwöhnen wir unsere Gäste mit authentischen italienischen Pizzen, die mit frischen Zutaten und traditionellen Rezepten zubereitet werden. Unser Team aus erfahrenen Pizza-Profis sorgt dafür, dass jede Pizza perfekt gebacken wird. Besuchen Sie uns in der Knappenstraße 46 in Dortmund oder bestellen Sie bequem zu sich nach Hause!",
     "deliveryTimes": "Lieferzeiten",
     "monday": "Montag",
