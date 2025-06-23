@@ -189,8 +189,9 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
     weight: 355,
     diameter: 32,
     pricePerHundredGrams: 4.23,
-    category: 'kinderfreundlich'
-  },  11: { // Spinach and Mushroom
+    category: 'klassisch',
+    isPopular: true
+  },11: { // Spinach and Mushroom
     id: 11,
     nutritionalInfo: {
       calories: 240,
@@ -214,13 +215,12 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
       fats: 10.5,
       carbs: 33.2,
       proteins: 12.9,
-      salt: 2.1
-    },    allergens: ['Gluten', 'Milch'],
+      salt: 2.1    },    allergens: ['Gluten', 'Milch'],
     weight: 370,
     diameter: 32,
     pricePerHundredGrams: 4.32,
-    category: 'regional'
-  },  13: { // Greek
+    category: 'gesund'
+  },13: { // Greek
     id: 13,
     nutritionalInfo: {
       calories: 295,
@@ -261,13 +261,12 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
       carbs: 28.7,
       proteins: 19.4,
       salt: 2.1
-    },
-    allergens: ['Gluten', 'Milch', 'Nüsse'],
+    },    allergens: ['Gluten', 'Milch', 'Nüsse'],
     weight: 375,
     diameter: 32,
     pricePerHundredGrams: 4.27,
-    category: 'fleisch'
-  },  16: { // Eggplant Parmesan
+    category: 'premium'
+  },16: { // Eggplant Parmesan
     id: 16,
     nutritionalInfo: {
       calories: 255,
@@ -308,12 +307,47 @@ export const germanPizzaDatabase: Record<number, GermanPizzaInfo> = {
       carbs: 35.8,
       proteins: 12.4,
       salt: 1.4
-    },
-    allergens: ['Gluten', 'Milch', 'Soja'],
+    },    allergens: ['Gluten', 'Milch', 'Soja'],
     weight: 330,
     diameter: 32,
     pricePerHundredGrams: 4.55,
     category: 'vegan'
+  },
+  // Pizza Campus - Especialidad de la casa
+  41: {
+    id: 41,
+    nutritionalInfo: {
+      calories: 340,
+      caloriesPerPizza: 1020,
+      fats: 15.8,
+      carbs: 32.5,
+      proteins: 18.2,
+      salt: 2.6
+    },
+    allergens: ['Gluten', 'Milch'],
+    weight: 420,
+    diameter: 32,
+    pricePerHundredGrams: 4.29,
+    category: 'spezial',
+    isPopular: true
+  },
+  // Diavolo Scharf - Pizza picante
+  45: {
+    id: 45,
+    nutritionalInfo: {
+      calories: 335,
+      caloriesPerPizza: 1005,
+      fats: 16.2,
+      carbs: 30.8,
+      proteins: 17.5,
+      salt: 2.8
+    },
+    allergens: ['Gluten', 'Milch'],
+    weight: 380,
+    diameter: 32,
+    pricePerHundredGrams: 4.47,
+    category: 'scharf',
+    spicyLevel: 3
   }
 };
 
@@ -329,7 +363,17 @@ export function getCategoryInGerman(category: string): string {
     'vegan': 'Vegan',
     'fleisch': 'Mit Fleisch',
     'meeresfrüchte': 'Meeresfrüchte',
-    'klassisch': 'Klassisch'
+    'klassisch': 'Klassisch',
+    'spezial': 'Spezialität',
+    'scharf': 'Scharf',
+    'käse': 'Käse-Spezial',
+    'premium': 'Premium',
+    'regional': 'Regional',
+    'süß': 'Süß',
+    'gesund': 'Gesund',
+    'kinderfreundlich': 'Kinderfreundlich',
+    'glutenfrei': 'Glutenfrei',
+    'lowcarb': 'Low Carb'
   };
   return categories[category as keyof typeof categories] || category;
 }

@@ -17,13 +17,15 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, sizes } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
-  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));
-  const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [showSizeModal, setShowSizeModal] = useState(false);
+  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));  const [showDetailsModal, setShowDetailsModal] = useState(false);  const [showSizeModal, setShowSizeModal] = useState(false);
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   
-  const germanInfo = getGermanPizzaInfo(id);
-  const isInCart = currentQuantity > 0;  const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
+  // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
+  // Check if category contains 'Pizza' (case-insensitive) for better reliability
+  const isPizza = pizza.category?.toLowerCase().includes('pizza') || false;
+  const germanInfo = isPizza ? getGermanPizzaInfo(id) : null;
+  
+  const isInCart = currentQuantity > 0;const ingredientsList = Array.isArray(ingredients) ? ingredients : [];
   
   // Determine product type for smart add behavior
   const productType = getProductType(pizza);
@@ -122,16 +124,19 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
                 </div>
                 )}
                 </div>
-                </div>
-
-
-                {/* Category Badge */}
+                </div>                {/* Category Badge */}
                 {germanInfo && (
                   <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                     germanInfo.category === 'vegan' ? 'bg-green-100 text-green-700' :
                     germanInfo.category === 'vegetarisch' ? 'bg-green-50 text-green-600' :
                     germanInfo.category === 'fleisch' ? 'bg-red-50 text-red-600' :
                     germanInfo.category === 'meeresfrüchte' ? 'bg-blue-50 text-blue-600' :
+                    germanInfo.category === 'klassisch' ? 'bg-yellow-50 text-yellow-700' :
+                    germanInfo.category === 'spezial' ? 'bg-purple-50 text-purple-600' :
+                    germanInfo.category === 'scharf' ? 'bg-red-100 text-red-700' :
+                    germanInfo.category === 'käse' ? 'bg-orange-50 text-orange-600' :
+                    germanInfo.category === 'premium' ? 'bg-amber-50 text-amber-700' :
+                    germanInfo.category === 'gesund' ? 'bg-emerald-50 text-emerald-600' :
                     'bg-gray-50 text-gray-600'
                   }`}>
                     {getCategoryInGerman(germanInfo.category)}

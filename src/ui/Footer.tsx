@@ -1,8 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useCookieConsent } from '../hooks/useCookieConsent';
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { showBannerManually } = useCookieConsent();
+
+  const handleCookieSettings = () => {
+    showBannerManually();
+  };
 
   return (
     <footer className="bg-gray-900 text-white mt-auto">
@@ -58,13 +64,18 @@ function Footer() {
                 className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
               >
                 {t('footer.terms', { default: 'AGB' })}
-              </Link>
-              <Link 
+              </Link>              <Link 
                 to="/impressum" 
                 className="text-gray-300 hover:text-orange-400 transition-colors duration-200 block"
               >
-                {t('footer.imprint', { default: 'Impressum' })}
-              </Link>
+                {t('footer.imprint', { default: 'Impressum' })}              </Link>
+              <button
+                onClick={handleCookieSettings}
+                className="text-gray-300 hover:text-orange-400 transition-colors duration-200 text-sm block"
+                type="button"
+              >
+                🍪 {i18n.language === 'de' ? 'Cookie-Einstellungen' : 'Cookie Settings'}
+              </button>
             </div>
           </div>
         </div>

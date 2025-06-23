@@ -11,6 +11,8 @@ import { saveOrder } from "../../utils/orderCache";
 import LinkButton from "../../ui/LinkButton";
 import PhoneInput from "../../ui/PhoneInput";
 import { useOrderSubmission } from "./hooks/useOrderSubmission";
+import { useSocialProof } from "../../hooks/useSocialProof";
+import RestaurantStatusBanner from "../../ui/RestaurantStatusBanner";
 
 interface FormData {
   customer: string;
@@ -40,6 +42,9 @@ function CheckoutForm() {
   
   const cart = useSelector(getCart);
   const cartTotalPrice = useSelector(getTotalCartPrice);
+
+  // Social proof hook for dynamic content
+  const { socialProof, isLoading } = useSocialProof();
 
   // Calculate fees
   const subtotal = cartTotalPrice;
@@ -254,17 +259,49 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
               : t('checkout.collectionSubtitle', { default: 'Complete your pickup details' })
             }
           </p>
-        </div>
-
-        {/* Urgency Banner */}
-        <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-400 rounded-lg">
-          <div className="flex items-center gap-3">
-            <span className="text-red-500 text-lg">⏰</span>
-            <div>
-              <p className="font-semibold text-red-800">Limited Time: Kitchen closes in 3h 27min</p>
-              <p className="text-sm text-red-700">🔥 6 people ordering right now • Order now for guaranteed delivery</p>
+        </div>        {/* Dynamic Restaurant Status & Social Proof */}
+        <RestaurantStatusBanner />
+        
+        {/* Additional Social Proof Banner */}
+        <div className="mb-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-4 shadow-sm">          <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">👥</span>
+              <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+                {socialProof.isRestaurantOpen && socialProof.orderingCount > 0 
+                  ? t('home.socialProof.ordering', { count: socialProof.orderingCount })
+                  : socialProof.isRestaurantOpen
+                    ? t('home.socialProof.viewing', { count: socialProof.viewingCount })
+                    : t('home.socialProof.viewingClosed', { count: socialProof.viewingCount })
+                }
+              </span>
+            </div>
+            <div className="w-px h-4 bg-gray-300"></div>
+            <div className="flex items-center gap-2">
+              <span className="text-yellow-500">⭐</span>
+              <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
+                {t('home.socialProof.reviews', { rating: socialProof.rating, count: socialProof.reviewCount })}
+              </span>
             </div>
           </div>
+          
+          {/* Recent order indicator */}
+          <div className="mt-2 text-center">
+            <span className="text-xs text-gray-500">
+              📍 {t('socialProof.recentOrder', { time: socialProof.recentOrderTime })}
+            </span>
+          </div>
+          
+          {/* Urgency message */}
+          {socialProof.urgencyMessage && (
+            <div className="mt-2 text-center">
+              <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
+                🔥 {socialProof.urgencyMessage.count 
+                  ? t(socialProof.urgencyMessage.key, { count: socialProof.urgencyMessage.count })
+                  : t(socialProof.urgencyMessage.key)
+                }
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Order Summary */}

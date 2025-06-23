@@ -1,15 +1,57 @@
-{  "header": {
+{  
+  "shared": {
+    "orderDetails": "Bestelldetails",
+    "orderNumber": "Bestellnummer",
+    "customerInfo": "Kundeninformationen",
+    "orderInfo": "Bestellinformationen"
+  },  "header": {
     "title": "Campus Pizza Dortmund"
   },
-  "navigation": {
-    "myOrders": "Meine Bestellungen"
-  },  "home": {
+  "cookies": {
+    "banner": {
+      "title": "🍪 Diese Website speichert Daten lokal",
+      "message": "Wir verwenden lokale Speicherung für Warenkorb und Einstellungen. Essentielle Speicherung ist für Grundfunktionen erforderlich, funktionale Speicherung verbessert Ihre Erfahrung.",
+      "acceptAll": "Alle akzeptieren",
+      "acceptEssential": "Nur essenzielle",
+      "customize": "Einstellungen anpassen",
+      "policyLink": "Mehr in unserer Datenschutzerklärung"
+    },
+    "preferences": {
+      "title": "Cookie-Einstellungen",
+      "description": "Wählen Sie, welche Kategorien von Cookies Sie zulassen möchten:",
+      "essential": {
+        "title": "Essentielle Cookies",
+        "description": "Erforderlich für Grundfunktionen wie Warenkorb, Session-Verwaltung und Spracheinstellungen. Diese können nicht deaktiviert werden.",
+        "items": "Warenkorb-Status, Session-Sicherheit, Spracherkennung"
+      },
+      "functional": {
+        "title": "Funktionale Cookies",
+        "description": "Verbessern Ihre Benutzererfahrung durch Speicherung von Bestellhistorie und Benutzerpräferenzen (7-30 Tage).",
+        "items": "Bestellhistorie, Warenkorb-Persistierung, Lieferpräferenzen"
+      },
+      "save": "Einstellungen speichern",
+      "cancel": "Abbrechen"
+    },
+    "button": {
+      "openSettings": "Cookie-Einstellungen"
+    }
+  },
+  "common": {
+    "required": "Erforderlich",
+    "enabled": "Aktiviert",
+    "disabled": "Deaktiviert"
+  },"navigation": {
+    "myOrders": "Meine Bestellungen",
+    "menu": "Menü"
+  },"home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
     "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
-    "cta": "🍕 Jetzt bestellen",
-    "socialProof": {
+    "cta": "🍕 Jetzt bestellen",    "socialProof": {
       "ordering": "{{count}} Leute bestellen gerade",
-      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)"
+      "reviews": "{{rating}}★ ({{count}}+ Bewertungen)",
+      "viewing": "{{count}} schauen sich die Speisekarte an",
+      "orderingClosed": "Niemand bestellt gerade (Restaurant geschlossen)",
+      "viewingClosed": "{{count}} schauen sich die Speisekarte an"
     },
     "deliveryTime": "⚡ Geliefert in {{minutes}} Min",
     "howItWorks": {
@@ -72,12 +114,42 @@
         "fresh": "Frische-Garantie"
       }
     }
-  },
-  "features": {
+  },  "features": {
     "fast": "Schnelle Lieferung",
     "fresh": "Frische Zutaten",
     "quality": "Premium-Qualität"
-  },  "stats": {
+  },
+  "dynamicFeatures": {
+    "fastDelivery": "Blitzschnelle Lieferung",
+    "freshQuality": "Ofenfrische Qualität", 
+    "guaranteed": "Garantiert lecker",
+    "freeDelivery": "Kostenlose Lieferung",
+    "masterChef": "Meisterliche Zubereitung",
+    "easyOrder": "Einfache Bestellung",
+    "bestPizza": "Beste Pizza Dortmunds",
+    "satisfaction": "100% Zufriedenheit"
+  },
+  "socialProof": {
+    "urgencyMessages": {
+      "recentOrders": "{{count}} Bestellungen in den letzten 10 Minuten",
+      "highDemand": "Sehr gefragt heute!",
+      "popularTime": "Beliebte Zeiten - schnell bestellen",
+      "viewers": "{{count}} Kunden schauen gerade diese Seite an"
+    },
+    "timeContext": {
+      "lunchBreak": "Perfekt zur Mittagspause",
+      "dinnerTime": "Ideal für das Abendessen", 
+      "lastChance": "Noch schnell bestellen",
+      "anytime": "Jederzeit verfügbar"
+    },
+    "specialOffers": {
+      "businessLunch": "Business-Lunch verfügbar",
+      "weekendSpecial": "Wochenend-Special aktiv",
+      "lastCall": "Letzte Chance heute"
+    },
+    "recentOrder": "Letzte Bestellung: {{time}}",
+    "increasedDemand": "Erhöhtes Aufkommen"
+  },"stats": {
     "minutes": "Min Lieferung",
     "zones": "Lieferzonen",
     "service": "Service",
@@ -103,7 +175,7 @@
   "menu": {
     "title": "Unsere Speisekarte",
     "soldOut": "Ausverkauft",
-    "addToCart": "In den Warenkorb",
+    "addToCart": "In den Warenkorb legen",
     "ingredients": "Zutaten:",    "loading": "Lade Speisekarte...",
     "allergens": "Allergene:",
     "additives": "Zusatzstoffe:",
@@ -114,12 +186,21 @@
     "weight": "{{weight}}g",
     "diameter": "⌀{{diameter}}cm",
     "priceComparison": "{{price}}/100g",
-    "itemInfo": "Artikel Info",
-    "selectSize": "Größe wählen",
-    "availableSizes": "Verfügbare Größen",    "from": "ab",
+    "itemInfo": "Artikel Info",    "selectSize": "Größe wählen",
+    "availableSizes": "Verfügbare Größen",
+    "sizeOptions": {
+      "small": "Klein (Ø 26cm)",
+      "medium": "Mittel (Ø 30cm)",
+      "large": "Groß (Ø 33cm)",
+      "family": "Familie (Ø 40cm)"
+    },
+    "from": "ab",
+    "selectOptions": "Optionen auswählen",
+    "configureProduct": "Produkt konfigurieren",
     "addToBasket": "In den Warenkorb",
     "adding": "Hinzufügen...",
-    "quickAdd": "Schnell hinzufügen",    "addedToCart": "In Warenkorb gelegt!",
+    "quickAdd": "Schnell hinzufügen",
+    "addedToCart": "✅ Erfolgreich hinzugefügt!",
     "productNumber": "(#{{number}})",
     "categories": {
       "vegetarisch": "Vegetarisch",
@@ -310,12 +391,21 @@
       "button": "Suchen",
       "notFound": "Keine Bestellung mit ID {{orderId}} gefunden"
     }
-  },
-  "restaurant": {
+  },  "restaurant": {
     "aboutUs": "Über uns",
     "minOrder": "Min. Bestellung",
     "location": "Standort",
-    "address": "Adresse",    "aboutTitle": "Über Restaurant CAMPUS",
+    "address": "Adresse",
+    "closed": "Restaurant Geschlossen",
+    "opensIn": "Öffnet in {{hours}}h {{minutes}}min",
+    "dailyHours": "Täglich",
+    "kitchenClosesIn": "Begrenzte Zeit: Küche schließt in {{hours}}h {{minutes}}min",
+    "kitchenClosingSoon": "⚠️ DRINGEND: Küche schließt in {{hours}}h {{minutes}}min",
+    "specialOffers": {
+      "weekendDeal": "🎉 Wochenend-Special: {{offer}}",
+      "lunchSpecial": "🥗 Mittagsangebot: {{offer}}",
+      "dinnerRush": "🔥 Abendspecial: {{offer}}"
+    },"aboutTitle": "Über Restaurant CAMPUS",
     "aboutDescription": "Willkommen bei Restaurant CAMPUS – Die Pizza-Profis! Seit Jahren verwöhnen wir unsere Gäste mit authentischen italienischen Pizzen, die mit frischen Zutaten und traditionellen Rezepten zubereitet werden. Unser Team aus erfahrenen Pizza-Profis sorgt dafür, dass jede Pizza perfekt gebacken wird. Besuchen Sie uns in der Knappenstraße 46 in Dortmund oder bestellen Sie bequem zu sich nach Hause!",
     "deliveryTimes": "Lieferzeiten",
     "monday": "Montag",
@@ -458,24 +548,22 @@
   "Sf": "Schalenfrüchte",
   "Se": "Sellerie",  "Sn": "Senf"
 },
-  "menuData": [
-    {
+  "menuData": [    {
       "artikelNr": 1,
       "artikel": "Mozzarellasticks",
       "kategorie": "Snacks",
-      "beschreibung": "In zarter Butter-Knoblauchpanade mit Pommes & Salat",
+      "beschreibung": "Cremige Mozzarellasticks in knuspriger Butter-Knoblauch-Panade, goldbraun frittiert und serviert mit hausgemachten Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 2,
       "artikel": "Hähnchen Crossies",
       "kategorie": "Snacks",
-      "beschreibung": "Hähnchenbrustfilet, paniert mit Pommes & Salat",
+      "beschreibung": "Zartes Hähnchenbrustfilet in knuspriger Panade, goldbraun frittiert und serviert mit hausgemachten Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
-      "alergene": ["D","i","F"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 3,
@@ -485,15 +573,14 @@
       "preis": "8,20 €",
       "zusatzstoffe": [],
       "alergene": ["S","F"]
-    },
-    {
+    },    {
       "artikelNr": 4,
       "artikel": "Chicken Wings",
       "kategorie": "Snacks",
-      "beschreibung": "6 Stück mit Pommes & Salat",
+      "beschreibung": "6 knusprig-saftige Chicken Wings, mariniert in hausgemachter Barbecue-Sauce, serviert mit goldenen Pommes Frites und frischem Beilagensalat",
       "preis": "7,50 €",
       "zusatzstoffe": [],
-      "alergene": []
+      "alergene": ["F"]
     },
     {
       "artikelNr": 5,
@@ -503,15 +590,14 @@
       "preis": "5,00 €",
       "zusatzstoffe": ["2"],
       "alergene": ["D"]
-    },
-    {
+    },    {
       "artikelNr": 6,
       "artikel": "Ketchup, Mayonnaise",
       "kategorie": "Snacks",
       "beschreibung": "",
       "preis": "0,50 €",
       "zusatzstoffe": [],
-      "alergene": ["E","S","N"]
+      "alergene": ["E"]
     },
     {
       "artikelNr": 7,
@@ -521,15 +607,14 @@
       "preis": "1,30 €",
       "zusatzstoffe": [],
       "alergene": ["D"]
-    },
-    {
+    },    {
       "artikelNr": 8,
       "artikel": "Saucen nach Wahl: Portion",
       "kategorie": "Snacks",
       "beschreibung": "Knoblauch, Chili, Tzatziki, Curry und Chunky Salsa",
       "preis": "2,00 €",
       "zusatzstoffe": [],
-      "alergene": ["D"]
+      "alergene": ["D", "A"]
     },
     {
       "artikelNr": 9,
@@ -557,15 +642,14 @@
       "preis": "5,00 €",
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","H"]
-    },
-    {
+    },    {
       "artikelNr": 12,
       "artikel": "Salami Baguette",
       "kategorie": "Baguettes",
       "beschreibung": "Salami, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["2", "3"], 
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 13,
@@ -574,7 +658,7 @@
       "beschreibung": "Putenschinken, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["2", "3", "4"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 14,
@@ -583,7 +667,7 @@
       "beschreibung": "Thunfisch, Zwiebeln, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F","H"]
     },
     {
       "artikelNr": 15,
@@ -592,7 +676,7 @@
       "beschreibung": "Hähnchen, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 16,
@@ -601,7 +685,7 @@
       "beschreibung": "Sucuk, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2", "3"],
-      "alergene": ["D","F","L","D","S","N"]
+      "alergene": ["D","F"]
     },
     {
       "artikelNr": 17,
@@ -610,22 +694,20 @@
       "beschreibung": "Mais, Champignons, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1","2"],
-      "alergene": ["D","F","L","D","S","N"]
-    },
-    {
+      "alergene": ["D","F"]
+    },    {
       "artikelNr": 18,
       "artikel": "Gyros Baguette",
       "kategorie": "Baguettes",
       "beschreibung": "Gyros, Tomaten, Käse, Gurken, Salat und Remoulade",
       "preis": "6,50 €",
       "zusatzstoffe": ["1", "2"],
-      "alergene": ["D","L","D","S","N"]
-    },
-    {
+      "alergene": ["D","F"]
+    },    {
       "artikelNr": 19,
       "artikel": "Margherita",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Tomatensauce, Käse",
+      "beschreibung": "Klassische hausgemachte Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,00 €",
         "30cm": "7,00 €",
@@ -646,12 +728,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 21,
       "artikel": "Funghi",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Frische Champignons, Tomatensauce, Käse",
+      "beschreibung": "Frische Champignons auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,30 €",
         "30cm": "7,50 €",
@@ -659,12 +740,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 22,
       "artikel": "Feta",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Schafskäse, Paprika, Oliven, Peperoni",
+      "beschreibung": "Cremiger griechischer Schafskäse mit bunten Paprika, würzigen Oliven und Peperoni auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,20 €",
         "30cm": "8,00 €",
@@ -672,12 +752,11 @@
       },
       "zusatzstoffe": ["1", "2", "5"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 23,
       "artikel": "Peperoni",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Oliven, Paprika, Artischocken, Peperoni, Käse",
+      "beschreibung": "Würzige Oliven, bunte Paprika, zarte Artischocken und scharfe Peperoni mit cremigem Käse auf hausgemachter Tomatensauce, im Steinofen gebacken",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,00 €",
@@ -685,12 +764,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 24,
       "artikel": "Verdura",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Zucchini, Paprika, Broccoli, Zwiebeln",
+      "beschreibung": "Frische Zucchini, knackige Paprika, zarter Broccoli und aromatische Zwiebeln auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,00 €",
         "30cm": "8,40 €",
@@ -698,12 +776,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 25,
       "artikel": "Spinaci",
       "kategorie": "Pizzen Vegetarisch",
-      "beschreibung": "Spinat, Zwiebeln, Schafskäse, frische Champignons",
+      "beschreibung": "Frischer Blattspinat mit aromatischen Zwiebeln, cremigem Schafskäse und frischen Champignons auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,40 €",
@@ -750,12 +827,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 29,
       "artikel": "Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami",
+      "beschreibung": "Würzige italienische Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -763,12 +839,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 30,
       "artikel": "Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken",
+      "beschreibung": "Zarter Putenschinken auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "5,90 €",
         "30cm": "7,90 €",
@@ -776,12 +851,11 @@
       },
       "zusatzstoffe": ["1", "2", "3"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 31,
       "artikel": "Putenschinken Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken, Salami",
+      "beschreibung": "Zarter Putenschinken und würzige Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -789,12 +863,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 32,
       "artikel": "Frisch Champignons Salami",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami",
+      "beschreibung": "Frische Champignons und würzige Salami auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
@@ -802,18 +875,17 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 33,
       "artikel": "Funghi e Prosciutto",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Frische Champignons, Salami, Putenschinken",
+      "beschreibung": "Frische Champignons mit würziger Salami und zartem Putenschinken auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,40 €",
         "30cm": "8,40 €",
         "40cm": "14,00 €"
       },
-      "zusatzstoffe": ["1", "2","3", " 4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -828,12 +900,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 35,
       "artikel": "Speciale",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Salami, Putenschinken, Paprika",
+      "beschreibung": "Würzige Salami und zarter Putenschinken mit bunter Paprika auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -865,7 +936,7 @@
         "30cm": "8,60 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3",  "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -878,10 +949,9 @@
         "30cm": "9,20 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3", "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 39,
       "artikel": "Fattoria",
       "kategorie": "Pizzen mit Fleisch",
@@ -891,7 +961,7 @@
         "30cm": "9,30 €",
         "40cm": "15,50 €"
       },
-      "zusatzstoffe": ["1", "2","3", "4"],
+      "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -906,12 +976,11 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 41,
       "artikel": "Campus",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken Zwiebeln, Hackfleisch,artischoken, fr.champipignons, oliven, paprika",
+      "beschreibung": "Putenschinken, Zwiebeln, Hackfleisch, Artischocken, frische Champignons, Oliven, Paprika",
       "preis": {
         "24cm": "7,40 €",
         "30cm": "9,40 €",
@@ -919,17 +988,15 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 42,
       "artikel": "Calzone Schinken",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putenschinken",
+      "beschreibung": "Putenschinken, Mozzarella, Tomatensauce",
       "preis": {
-        
         "30cm": "8,90 €"
       },
-      "zusatzstoffe": [ "2","3","4 "],
+      "zusatzstoffe": ["2", "3", "4"],
       "alergene": ["D","F"]
     },
     {
@@ -957,12 +1024,11 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 45,
       "artikel": "Diavolo Scharf",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Peperoni, Jalapenos",
+      "beschreibung": "Salami, Peperoni, Jalapenos, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "6,60 €",
         "30cm": "8,60 €",
@@ -970,25 +1036,23 @@
       },
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 46,
       "artikel": "Gyros",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Putengyros",
+      "beschreibung": "Saftig mariniertes Putengyros mit griechischen Gewürzen, auf hausgemachter Tomatensauce mit cremigem Mozzarella im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
-        "30cm": "9,900 €",
+        "30cm": "9,00 €",
         "40cm": "16,00 €"
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },    {
       "artikelNr": 47,
       "artikel": "Aspargo",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Spargel, Sauce Hollandaise",
+      "beschreibung": "Zarter grüner Spargel mit cremiger Sauce Hollandaise auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,50 €",
         "30cm": "8,90 €",
@@ -996,12 +1060,11 @@
       },
       "zusatzstoffe": ["1", "2", "3", "4"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 48,
       "artikel": "Pizza Sucuk",
       "kategorie": "Pizzen mit Fleisch",
-      "beschreibung": "Sucuk",
+      "beschreibung": "Würzige türkische Sucuk-Wurst mit rotem Paprika und Zwiebeln, auf hausgemachter Tomatensauce mit cremigem Mozzarella im Steinofen gebacken",
       "preis": {
         "24cm": "6,90 €",
         "30cm": "8,90 €",
@@ -1009,71 +1072,65 @@
       },
       "zusatzstoffe": ["1", "2"],
       "alergene": ["D","F"]
-    },
-    {
+    },{
       "artikelNr": 49,
       "artikel": "Calzone Tonno",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Zwiebeln",
+      "beschreibung": "Thunfisch, Zwiebeln, Tomatensauce, Mozzarella",
       "preis": {
         "24cm": "8,90 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 50,
       "artikel": "Al Tonno",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Zwiebeln",
+      "beschreibung": "Hochwertiger Thunfisch mit aromatischen Zwiebeln auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 51,
       "artikel": "Di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Meeresfrüchte-Mix, Zwiebeln, Knoblauch",
+      "beschreibung": "Hochwertiger Meeresfrüchte-Mix mit aromatischen Zwiebeln und frischem Knoblauch auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "B", "D", "M", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K", "W"]
+    },{
       "artikelNr": 52,
-      "artikel": "Tonno Spinat",
+      "artikel": "Frutti di Mare",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Thunfisch, Spinat, Zwiebeln, Schafskäse",
+      "beschreibung": "Frische Krabben und zarte Calamaris mit aromatischem Knoblauch, roten Zwiebeln und würzigen Peperoni auf hausgemachter Tomatensauce mit Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "7,20 €",
         "30cm": "9,20 €",
         "40cm": "15,00 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K", "W"]
+    },    {
       "artikelNr": 53,
       "artikel": "Gamberetti",
       "kategorie": "Pizzen mit Fisch",
-      "beschreibung": "Garnelen, Knoblauch, frische Tomaten",
+      "beschreibung": "Saftige Garnelen mit aromatischem Knoblauch und frischen Tomaten auf hausgemachter Tomatensauce mit cremigem Mozzarella, im Steinofen gebacken",
       "preis": {
         "24cm": "6,80 €",
         "30cm": "8,90 €",
         "40cm": "14,50 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "B", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H", "K"]
+    },{
       "artikelNr": 54,
       "artikel": "Seelachs Pizza",
       "kategorie": "Pizzen mit Fisch",
@@ -1084,34 +1141,31 @@
         "40cm": "14,00 €"
       },
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "D", "G"]
-    },
-    {
+      "alergene": ["D", "F", "H"]
+    },    {
       "artikelNr": 55,
       "artikel": "Salat Mista",
       "kategorie": "Salate",
       "beschreibung": "Gemischter Beilagensalat mit Tomaten, Gurken, Blattsalat",
       "preis": "5,50 €",
       "zusatzstoffe": [],
-      "alergene": ["A"]
-    },
-    {
+      "alergene": []
+    },    {
       "artikelNr": 56,
       "artikel": "Salat Tonno",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Thunfisch, Zwiebeln, Ei, Tomaten, Gurken",
       "preis": "7,00 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "C", "D"]
-    },
-    {
+      "alergene": ["E", "D", "H"]
+    },    {
       "artikelNr": 57,
       "artikel": "Salat mit Hähnchen",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Hähnchenstreifen, Gurken, Tomaten, Joghurtdressing",
       "preis": "5,50 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 58,
@@ -1130,24 +1184,22 @@
       "preis": "8,50 €",
       "zusatzstoffe": [],
       "alergene": ["G"]
-    },
-    {
+    },    {
       "artikelNr": 60,
       "artikel": "Salat Capricciosa",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Salami, Thunfisch, Käse, Ei",
       "preis": "7,80 €",
       "zusatzstoffe": ["1", "2", "4"],
-      "alergene": ["A", "C", "D", "G"]
-    },
-    {
+      "alergene": ["E", "D", "G", "H"]
+    },    {
       "artikelNr": 61,
       "artikel": "Salat Gyros",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Gyrosfleisch, Zwiebeln, Tomaten, Joghurtdressing",
       "preis": "8,30 €",
       "zusatzstoffe": ["4"],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 62,
@@ -1157,33 +1209,30 @@
       "preis": "7,90 €",
       "zusatzstoffe": [],
       "alergene": ["G"]
-    },
-    {
+    },    {
       "artikelNr": 63,
       "artikel": "Salat mit Sucuk",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Sucuk, Tomaten, Gurken, Zwiebeln, Joghurtdressing",
       "preis": "8,30 €",
       "zusatzstoffe": ["1", "2", "3", "4", "8"],
-      "alergene": ["A", "G"]
-    },
-    {
+      "alergene": ["D", "G"]
+    },    {
       "artikelNr": 64,
       "artikel": "Salat Vegetarisch",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat, Mais, Paprika, Oliven, Tomaten, Gurken",
       "preis": "7,90 €",
       "zusatzstoffe": [],
-      "alergene": ["A"]
-    },
-    {
+      "alergene": []
+    },    {
       "artikelNr": 65,
       "artikel": "Salat Campus",
       "kategorie": "Salate",
       "beschreibung": "Blattsalat mit gegrilltem Hähnchen, Paprika, frischen Champignons und Joghurtdressing",
       "preis": "9,00 €",
       "zusatzstoffe": [],
-      "alergene": ["A", "G"]
+      "alergene": ["D", "G"]
     },
     {
       "artikelNr": 66,
@@ -1301,12 +1350,11 @@
       "preis": "9,00 €",
       "zusatzstoffe": ["1", "2", "4"],
       "alergene": ["A", "G"]
-    },
-    {
+    },    {
       "artikelNr": 79,
       "artikel": "Spaghetti",
       "kategorie": "Nudeln",
-      "beschreibung": "mit Tomatensauce",
+      "beschreibung": "Klassische Spaghetti mit hausgemachter, aromatischer Tomatensauce nach italienischer Art",
       "preis": "7,00 €",
       "zusatzstoffe": [],
       "alergene": ["A"]
