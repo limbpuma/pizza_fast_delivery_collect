@@ -5,6 +5,7 @@ import CartToggle from "../features/cart/CartToggle";
 import Header from "./Header";
 import Footer from "./Footer";
 import Loader from "./Loader";
+import CookieBanner from "./CookieBanner";
 
 function AppLayout() {
   const navigation = useNavigation();
@@ -29,9 +30,11 @@ function AppLayout() {
       {/* New Cart System */}
       <CartToggle onOpenCart={handleOpenCart} />
       <CartSidebar isOpen={isCartOpen} onClose={handleCloseCart} />
-      
-      {/* EU Compliance Footer */}
+        {/* EU Compliance Footer */}
       <Footer />
+      
+      {/* TTDSG § 25 Compliant Cookie Banner */}
+      <CookieBanner />
     </div>
   );
 }

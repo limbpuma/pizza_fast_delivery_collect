@@ -4,10 +4,43 @@
     "orderNumber": "Bestellnummer",
     "customerInfo": "Kundeninformationen",
     "orderInfo": "Bestellinformationen"
-  },
-  "header": {
+  },  "header": {
     "title": "Campus Pizza Dortmund"
-  },  "navigation": {
+  },
+  "cookies": {
+    "banner": {
+      "title": "🍪 Diese Website speichert Daten lokal",
+      "message": "Wir verwenden lokale Speicherung für Warenkorb und Einstellungen. Essentielle Speicherung ist für Grundfunktionen erforderlich, funktionale Speicherung verbessert Ihre Erfahrung.",
+      "acceptAll": "Alle akzeptieren",
+      "acceptEssential": "Nur essenzielle",
+      "customize": "Einstellungen anpassen",
+      "policyLink": "Mehr in unserer Datenschutzerklärung"
+    },
+    "preferences": {
+      "title": "Cookie-Einstellungen",
+      "description": "Wählen Sie, welche Kategorien von Cookies Sie zulassen möchten:",
+      "essential": {
+        "title": "Essentielle Cookies",
+        "description": "Erforderlich für Grundfunktionen wie Warenkorb, Session-Verwaltung und Spracheinstellungen. Diese können nicht deaktiviert werden.",
+        "items": "Warenkorb-Status, Session-Sicherheit, Spracherkennung"
+      },
+      "functional": {
+        "title": "Funktionale Cookies",
+        "description": "Verbessern Ihre Benutzererfahrung durch Speicherung von Bestellhistorie und Benutzerpräferenzen (7-30 Tage).",
+        "items": "Bestellhistorie, Warenkorb-Persistierung, Lieferpräferenzen"
+      },
+      "save": "Einstellungen speichern",
+      "cancel": "Abbrechen"
+    },
+    "button": {
+      "openSettings": "Cookie-Einstellungen"
+    }
+  },
+  "common": {
+    "required": "Erforderlich",
+    "enabled": "Aktiviert",
+    "disabled": "Deaktiviert"
+  },"navigation": {
     "myOrders": "Meine Bestellungen",
     "menu": "Menü"
   },"home": {
