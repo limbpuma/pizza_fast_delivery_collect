@@ -19,58 +19,105 @@ We reserve the right to reject orders, particularly in case of:
 - Delivery outside our delivery area
 - Unavailability of ordered items
 
-## 3. Prices and Payment Terms
+### 2.3 WhatsApp Orders
+**Important Notice:** When ordering via WhatsApp, your data is transmitted through the WhatsApp Business API. By ordering via WhatsApp, you consent to data transmission to WhatsApp (Meta Platforms Ireland Limited).
 
-### 3.1 Prices
+**WhatsApp Order Process:**
+1. You send us your order via WhatsApp
+2. We confirm your order and total price
+3. You confirm the order
+4. We begin preparation
+
+## 3. Website Usage and Cookies
+
+### 3.1 Website Usage
+By using our website, you agree to the following terms:
+
+### 3.2 Cookie Consent under TTDSG
+In accordance with § 25 TTDSG (German Telecommunications-Telemedia Data Protection Act), we obtain your explicit consent for the use of non-essential cookies:
+
+**Essential Cookies:**
+- Are required for basic website functions
+- Are set without your consent (Art. 6 para. 1 lit. f GDPR)
+- Include: shopping cart management, session security, language detection
+
+**Functional Cookies:**
+- Improve your user experience
+- Require your explicit consent (§ 25 TTDSG)
+- Include: order history, advanced cart functions, user preferences
+
+### 3.3 Your Rights Regarding Cookies
+- **Consent:** You can agree to all, none, or only specific cookies
+- **Withdrawal:** You can withdraw your consent at any time via cookie settings
+- **Control:** You have complete control over your stored data
+
+### 3.4 Technical Requirements
+For optimal use of our website, you need:
+- A modern web browser with JavaScript enabled
+- Internet connection
+- Acceptance of essential cookies for order functions
+
+### 3.5 Usage Restrictions
+It is prohibited to:
+- Use the website for unlawful purposes
+- Transmit harmful software or viruses
+- Copy data or content without authorization
+- Interfere with website functionality
+
+## 4. Prices and Payment Terms
+
+### 4.1 Prices
 - All prices include statutory VAT
 - Delivery costs apply additionally (see price list)
 - Price changes are reserved
 
-### 3.2 Payment
+### 4.2 Payment
 - Cash payment upon delivery or pickup
 - Card payment upon delivery or pickup
 - Payment is due upon receipt of goods
 
-## 4. Delivery
+## 5. Delivery
 
-### 4.1 Delivery Area
+### 5.1 Delivery Area
 We deliver to the following postal code areas:
 - 44149, 44147, 44227, 44225, 44137, 44135
 
-### 4.2 Delivery Times
+### 5.2 Delivery Times
 - Standard delivery time: 25-35 minutes
 - The stated times are guidelines
 - Times may extend during high order volume
 
-### 4.3 Minimum Order Value
+### 5.3 Minimum Order Value
 The minimum order value for deliveries is EUR 15.00.
 
-## 5. Retention of Title
+## 6. Retention of Title
 
 The delivered goods remain our property until full payment.
 
-## 6. Warranty
+## 7. Warranty
 
-### 6.1 Defects
+### 7.1 Defects
 - Complaints must be reported immediately, at the latest upon delivery
 - We reserve the right to replace defective goods through re-delivery or refund
 
-### 6.2 Limitation of Liability
+### 7.2 Limitation of Liability
 Liability for slight negligence is excluded, except for damages from injury to life, body or health.
 
-## 7. Right of Withdrawal
+## 8. Data Protection and Cookie Policy
 
-### 7.1 Exclusion of Right of Withdrawal
-The right of withdrawal is excluded for:
-- Delivery of goods that may spoil quickly
-- Delivery of goods made to customer specifications
+### 8.1 Privacy Policy
+The processing of your personal data is governed by our Privacy Policy, which you can view at `/legal/datenschutz.en.md`.
 
-### 7.2 Cancellation
-Order cancellation is only possible before preparation begins.
+### 8.2 Cookie Policy
+By using our website, you agree to the use of cookies in accordance with our Cookie Policy. Detailed information can be found in our Privacy Policy.
 
-## 8. Data Protection
+### 8.3 Consent and Withdrawal
+- You can withdraw your consent to the use of non-essential cookies at any time
+- Withdrawal is done via the cookie settings on our website
+- Essential cookies remain necessary for basic website functions
 
-The collection and use of your personal data is carried out in accordance with our privacy policy.
+### 8.4 Data Processing for Orders
+For orders, we process your data exclusively for contract fulfillment. For more details, see our Privacy Policy Section 4 "Order Data and WhatsApp Integration".
 
 ## 9. Dispute Resolution
 

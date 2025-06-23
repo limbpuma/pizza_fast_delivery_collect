@@ -73,19 +73,78 @@ Weitere Informationen zum Datenschutz bei WhatsApp finden Sie unter: https://www
 
 ## 5. Cookies und lokale Speicherung
 
-### 5.1 Cookies
-Unsere Website verwendet Cookies zur Verbesserung der Nutzererfahrung.
+Diese Website verwendet verschiedene Arten von Cookies und lokaler Speicherung. Gemäß § 25 TTDSG (Telekommunikation-Telemedien-Datenschutz-Gesetz) holen wir Ihre Einwilligung für alle nicht-essentiellen Cookies ein.
 
-**Technisch notwendige Cookies:**
-- Warenkorb-Status
-- Spracheinstellung
-- Session-Verwaltung
+### 5.1 Cookie-Kategorien
 
-**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO  
-**Speicherdauer:** Session oder maximal 30 Tage
+#### **🟢 Essenzielle Cookies (Keine Einwilligung erforderlich)**
+Diese Cookies sind für die Grundfunktionen der Website unbedingt erforderlich:
 
-### 5.2 Local Storage
-Zur lokalen Speicherung Ihrer Einstellungen nutzen wir den Local Storage Ihres Browsers.
+**Zweck:** Grundlegende Website-Funktionalität  
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen)  
+**Speicherdauer:** Session oder bis zu 24 Stunden
+
+- **`campus_pizza_session`** - Session-Verwaltung und CSRF-Schutz
+- **`campus_pizza_cart_essential`** - Warenkorb-Basisfunktionalität
+- **`i18next_language`** - Spracheinstellung (automatische Erkennung)
+
+#### **🟡 Funktionale Cookies (Einwilligung erforderlich)**
+Diese Cookies verbessern Ihre Benutzererfahrung, sind aber nicht unbedingt erforderlich:
+
+**Zweck:** Verbesserte Benutzererfahrung und Komfort  
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. a DSGVO (Einwilligung nach § 25 TTDSG)  
+**Speicherdauer:** 7 Tage bis 30 Tage
+
+- **`campus_pizza_cart_v2`** - Erweiterte Warenkorb-Persistierung (24h/7 Tage)
+- **`campusPizzaOrders`** - Bestellhistorie-Cache (30 Tage TTL)
+- **`campus_pizza_preferences`** - Benutzereinstellungen und Lieferpräferenzen
+- **`campus_pizza_language_override`** - Manuelle Sprachauswahl
+
+### 5.2 Cookie-Verwaltung
+
+#### **Ihre Einwilligung**
+Beim ersten Besuch unserer Website erscheint ein Cookie-Banner, über das Sie:
+- Alle Cookies akzeptieren können
+- Nur essenzielle Cookies zulassen können
+- Individuelle Einstellungen vornehmen können
+
+#### **Einwilligung widerrufen**
+Sie können Ihre Einwilligung jederzeit widerrufen:
+- Über den "Cookie-Einstellungen" Link im Footer
+- Durch Löschen der Cookies in Ihren Browser-Einstellungen
+- Durch erneuten Besuch dieser Website (Banner erscheint wieder)
+
+#### **Cookies ablehnen**
+Sie können Cookies in Ihren Browser-Einstellungen vollständig deaktivieren. Beachten Sie, dass dadurch die Funktionalität unserer Website eingeschränkt werden kann.
+
+### 5.3 Local Storage und technische Details
+
+**Was ist Local Storage?**
+Local Storage ist eine Technologie, die es Websites ermöglicht, Daten lokal in Ihrem Browser zu speichern. Anders als Cookies werden diese Daten nicht automatisch an den Server übertragen.
+
+**Verwendung bei uns:**
+- Warenkorb-Daten für nahtloses Einkaufserlebnis
+- Spracheinstellungen für Mehrsprachigkeit
+- Bestellhistorie für Ihren Komfort (bei Einwilligung)
+
+**Datenschutz:**
+- Alle Daten bleiben in Ihrem Browser
+- Keine Übertragung an Dritte
+- Automatische Löschung nach definierten Zeiträumen
+- Sie haben vollständige Kontrolle über die Daten
+
+### 5.4 Drittanbieter-Services (Ohne Cookies)
+
+**BigDataCloud Geocoding API**
+- **Zweck:** Adresserkennung für Liefergebiete
+- **Datenübertragung:** Nur bei aktiver Nutzung (Standortabfrage)
+- **Cookies:** Keine gesetzt
+- **Datenschutz:** https://www.bigdatacloud.com/privacy-policy
+
+**Google Maps Integration**
+- **Zweck:** Anzeige von Lieferadressen (nur URLs, kein eingebetteter Service)
+- **Cookies:** Keine gesetzt durch unsere Integration
+- **Datenschutz:** Keine direkte Datenübertragung an Google
 
 ## 6. Ihre Rechte als betroffene Person
 

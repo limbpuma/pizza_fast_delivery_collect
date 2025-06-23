@@ -73,19 +73,78 @@ For more information on WhatsApp privacy, please visit: https://www.whatsapp.com
 
 ## 5. Cookies and Local Storage
 
-### 5.1 Cookies
-Our website uses cookies to improve user experience.
+This website uses various types of cookies and local storage. In accordance with § 25 TTDSG (German Telecommunications-Telemedia Data Protection Act), we obtain your consent for all non-essential cookies.
 
-**Technically necessary cookies:**
-- Shopping cart status
-- Language settings
-- Session management
+### 5.1 Cookie Categories
 
-**Legal basis:** Art. 6 para. 1 lit. f GDPR  
-**Storage duration:** Session or maximum 30 days
+#### **🟢 Essential Cookies (No consent required)**
+These cookies are absolutely necessary for the basic functions of the website:
 
-### 5.2 Local Storage
-We use your browser's local storage to save your settings locally.
+**Purpose:** Basic website functionality  
+**Legal basis:** Art. 6 para. 1 lit. f GDPR (legitimate interests)  
+**Storage duration:** Session or up to 24 hours
+
+- **`campus_pizza_session`** - Session management and CSRF protection
+- **`campus_pizza_cart_essential`** - Shopping cart basic functionality
+- **`i18next_language`** - Language setting (automatic detection)
+
+#### **🟡 Functional Cookies (Consent required)**
+These cookies improve your user experience but are not strictly necessary:
+
+**Purpose:** Enhanced user experience and convenience  
+**Legal basis:** Art. 6 para. 1 lit. a GDPR (consent according to § 25 TTDSG)  
+**Storage duration:** 7 days to 30 days
+
+- **`campus_pizza_cart_v2`** - Extended shopping cart persistence (24h/7 days)
+- **`campusPizzaOrders`** - Order history cache (30 days TTL)
+- **`campus_pizza_preferences`** - User settings and delivery preferences
+- **`campus_pizza_language_override`** - Manual language selection
+
+### 5.2 Cookie Management
+
+#### **Your Consent**
+When you first visit our website, a cookie banner will appear that allows you to:
+- Accept all cookies
+- Allow only essential cookies
+- Make individual settings
+
+#### **Withdraw Consent**
+You can withdraw your consent at any time:
+- Via the "Cookie Settings" link in the footer
+- By deleting cookies in your browser settings
+- By revisiting this website (banner will appear again)
+
+#### **Reject Cookies**
+You can completely disable cookies in your browser settings. Please note that this may limit the functionality of our website.
+
+### 5.3 Local Storage and Technical Details
+
+**What is Local Storage?**
+Local Storage is a technology that allows websites to store data locally in your browser. Unlike cookies, this data is not automatically transmitted to the server.
+
+**Our Usage:**
+- Shopping cart data for seamless shopping experience
+- Language settings for multilingual support
+- Order history for your convenience (with consent)
+
+**Privacy Protection:**
+- All data remains in your browser
+- No transmission to third parties
+- Automatic deletion after defined periods
+- You have complete control over the data
+
+### 5.4 Third-Party Services (Without Cookies)
+
+**BigDataCloud Geocoding API**
+- **Purpose:** Address recognition for delivery areas
+- **Data transmission:** Only during active use (location queries)
+- **Cookies:** None set
+- **Privacy:** https://www.bigdatacloud.com/privacy-policy
+
+**Google Maps Integration**
+- **Purpose:** Display of delivery addresses (URLs only, no embedded service)
+- **Cookies:** None set by our integration
+- **Privacy:** No direct data transmission to Google
 
 ## 6. Your Rights as a Data Subject
 

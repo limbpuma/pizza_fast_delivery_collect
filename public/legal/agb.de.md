@@ -134,29 +134,45 @@ Die Erhebung und Verwendung Ihrer personenbezogenen Daten erfolgt entsprechend u
 
 Die gelieferte Ware bleibt bis zur vollständigen Bezahlung unser Eigentum.
 
-## 10. Streitbeilegung
+## 10. Datenschutz und Cookie-Richtlinie
 
-### 10.1 Anwendbares Recht
+### 10.1 Datenschutzerklärung
+Für die Verarbeitung Ihrer personenbezogenen Daten gilt unsere Datenschutzerklärung, die Sie unter `/legal/datenschutz.de.md` einsehen können.
+
+### 10.2 Cookie-Richtlinie
+Mit der Nutzung unserer Website stimmen Sie der Verwendung von Cookies gemäß unserer Cookie-Richtlinie zu. Detaillierte Informationen finden Sie in unserer Datenschutzerklärung.
+
+### 10.3 Einwilligung und Widerruf
+- Sie können Ihre Einwilligung zur Verwendung nicht-essentieller Cookies jederzeit widerrufen
+- Der Widerruf erfolgt über die Cookie-Einstellungen auf unserer Website
+- Essentielle Cookies bleiben für die Grundfunktionen der Website erforderlich
+
+### 10.4 Datenverarbeitung bei Bestellungen
+Bei Bestellungen verarbeiten wir Ihre Daten ausschließlich zur Vertragserfüllung. Weitere Details finden Sie in unserer Datenschutzerklärung Abschnitt 4 "Bestelldaten und WhatsApp-Integration".
+
+## 11. Streitbeilegung
+
+### 11.1 Anwendbares Recht
 Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.
 
-### 10.2 Gerichtsstand
+### 11.2 Gerichtsstand
 Sofern Sie Kaufmann sind, ist Gerichtsstand Dortmund.
 
-### 10.3 Alternative Streitbeilegung
+### 11.3 Alternative Streitbeilegung
 Wir sind nicht zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle verpflichtet und nehmen an einem solchen auch nicht teil.
 
 **Hinweis auf EU-Streitschlichtung:**  
 Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/
 
-## 11. Schlussbestimmungen
+## 12. Schlussbestimmungen
 
-### 11.1 Salvatorische Klausel
+### 12.1 Salvatorische Klausel
 Sollten einzelne Bestimmungen dieser AGB unwirksam oder undurchführbar sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
 
-### 11.2 Änderungen der AGB
+### 12.2 Änderungen der AGB
 Änderungen dieser AGB werden Ihnen rechtzeitig vor ihrem Inkrafttreten mitgeteilt. Die Änderungen gelten als genehmigt, wenn Sie nicht innerhalb von 6 Wochen nach Zugang der Mitteilung widersprechen.
 
-### 11.3 Kontakt
+### 12.3 Kontakt
 Bei Fragen zu diesen AGB wenden Sie sich bitte an:
 
 **Restaurant CAMPUS – Die Pizza-Profis**  
@@ -170,52 +186,38 @@ E-Mail: info@restaurant-campus.de
 
 *Diese AGB sind rechtlich geprüft und entsprechen den aktuellen Anforderungen des deutschen Rechts für Online-Bestellsysteme mit WhatsApp-Integration.*
 
-## 6. Gewährleistung
+## 3. Website-Nutzung und Cookies
 
-### 6.1 Mängel
-- Beanstandungen sind unverzüglich, spätestens bei Lieferung mitzuteilen
-- Wir behalten uns vor, mangelhafte Ware durch Nachlieferung oder Erstattung zu ersetzen
+### 3.1 Verwendung der Website
+Mit der Nutzung unserer Website erklären Sie sich mit den folgenden Bedingungen einverstanden:
 
-### 6.2 Haftungsausschluss
-Eine Haftung für leichte Fahrlässigkeit ist ausgeschlossen, soweit nicht Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit betroffen sind.
+### 3.2 Cookie-Einwilligung nach TTDSG
+Gemäß § 25 TTDSG (Telekommunikation-Telemedien-Datenschutz-Gesetz) holen wir Ihre ausdrückliche Einwilligung für die Verwendung nicht-essentieller Cookies ein:
 
-## 7. Widerrufsrecht
+**Essentielle Cookies:**
+- Sind für die Grundfunktionen der Website erforderlich
+- Werden ohne Ihre Einwilligung gesetzt (Art. 6 Abs. 1 lit. f DSGVO)
+- Umfassen: Warenkorb-Verwaltung, Session-Sicherheit, Spracherkennung
 
-### 7.1 Ausschluss des Widerrufsrechts
-Das Widerrufsrecht ist ausgeschlossen bei:
-- Lieferung von Waren, die schnell verderben können
-- Lieferung von Waren, die nach Kundenspezifikation angefertigt wurden
+**Funktionale Cookies:**
+- Verbessern Ihre Benutzererfahrung
+- Erfordern Ihre ausdrückliche Einwilligung (§ 25 TTDSG)
+- Umfassen: Bestellhistorie, erweiterte Warenkorb-Funktionen, Benutzerpräferenzen
 
-### 7.2 Stornierung
-Eine Stornierung der Bestellung ist nur vor Beginn der Zubereitung möglich.
+### 3.3 Ihre Rechte bezüglich Cookies
+- **Einwilligung:** Sie können allen, keinen oder nur bestimmten Cookies zustimmen
+- **Widerruf:** Sie können Ihre Einwilligung jederzeit über die Cookie-Einstellungen widerrufen
+- **Kontrolle:** Sie haben vollständige Kontrolle über Ihre gespeicherten Daten
 
-## 8. Datenschutz
+### 3.4 Technische Anforderungen
+Für die optimale Nutzung unserer Website benötigen Sie:
+- Einen modernen Webbrowser mit aktiviertem JavaScript
+- Internetverbindung
+- Akzeptanz der essentiellen Cookies für Bestellfunktionen
 
-Die Erhebung und Verwendung Ihrer personenbezogenen Daten erfolgt entsprechend unserer Datenschutzerklärung.
-
-## 9. Streitbeilegung
-
-### 9.1 Anwendbares Recht
-Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.
-
-### 9.2 Gerichtsstand
-Gerichtsstand ist Dortmund, sofern der Kunde Kaufmann ist.
-
-### 9.3 Alternative Streitbeilegung
-Wir sind nicht zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle verpflichtet.
-
-## 10. Schlussbestimmungen
-
-### 10.1 Salvatorische Klausel
-Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
-
-### 10.2 Änderungen
-Änderungen dieser AGB werden Ihnen per E-Mail oder auf unserer Website mitgeteilt.
-
----
-
-**Campus Pizza Express GmbH**  
-Campus Straße 123  
-44227 Dortmund  
-Telefon: +49 (0) 231 123 456  
-E-Mail: info@campuspizza.de
+### 3.5 Nutzungseinschränkungen
+Es ist untersagt:
+- Die Website für unrechtmäßige Zwecke zu nutzen
+- Schädliche Software oder Viren zu übertragen
+- Daten oder Inhalte ohne Berechtigung zu kopieren
+- Die Website-Funktionalität zu beeinträchtigen
