@@ -65,7 +65,7 @@ function Modal({ isOpen, onClose, children, title, size = 'md' }: ModalProps) {
           )}
           
           {/* Content */}
-          <div className="overflow-y-auto max-h-[calc(90vh-100px)]">
+          <div className="p-4 overflow-y-auto max-h-[calc(90vh-100px)]">
             {children}
           </div>
         </div>

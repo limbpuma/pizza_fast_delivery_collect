@@ -4,10 +4,43 @@
     "orderNumber": "Order Number",
     "customerInfo": "Customer Information",
     "orderInfo": "Order Information"
-  },
-  "header": {
+  },  "header": {
     "title": "Campus Pizza Dortmund"
-  },  "navigation": {
+  },
+  "cookies": {
+    "banner": {
+      "title": "🍪 This website stores data locally",
+      "message": "We use local storage for shopping cart and settings. Essential storage is required for basic functions, functional storage improves your experience.",
+      "acceptAll": "Accept All",
+      "acceptEssential": "Essential Only",
+      "customize": "Customize Settings",
+      "policyLink": "More in our Privacy Policy"
+    },
+    "preferences": {
+      "title": "Cookie Settings",
+      "description": "Choose which categories of cookies you want to allow:",
+      "essential": {
+        "title": "Essential Cookies",
+        "description": "Required for basic functions like shopping cart, session management, and language settings. These cannot be disabled.",
+        "items": "Shopping cart status, session security, language detection"
+      },
+      "functional": {
+        "title": "Functional Cookies",
+        "description": "Improve your user experience by storing order history and user preferences (7-30 days).",
+        "items": "Order history, cart persistence, delivery preferences"
+      },
+      "save": "Save Settings",
+      "cancel": "Cancel"
+    },
+    "button": {
+      "openSettings": "Cookie Settings"
+    }
+  },
+  "common": {
+    "required": "Required",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },"navigation": {
     "myOrders": "My Orders",
     "menu": "Menu"
   },  "home": {
