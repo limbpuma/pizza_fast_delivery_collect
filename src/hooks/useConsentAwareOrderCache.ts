@@ -15,10 +15,10 @@ export function useConsentAwareOrderCache() {
 
   /**
    * Save order to cache with consent check
-   */
-  const saveOrder = useCallback((order: SavedOrder) => {
+   */  const saveOrder = useCallback((order: SavedOrder) => {
     if (canStoreOrders) {
-      return orderCache.saveOrder(order);
+      orderCache.saveOrder(order);
+      return true;
     } else {
       console.info('Order not saved: functional cookies not consented');
       return false;
@@ -49,10 +49,16 @@ export function useConsentAwareOrderCache() {
 
   /**
    * Clear all orders with consent check
-   */
-  const clearOrders = useCallback(() => {
+   */  const clearOrders = useCallback(() => {
     if (canStoreOrders) {
-      return orderCache.clearOrders();
+      // Clear all orders by setting empty array
+      try {
+        localStorage.setItem('campusPizzaOrders', JSON.stringify([]));
+        return true;
+      } catch (error) {
+        console.error('Failed to clear orders:', error);
+        return false;
+      }
     } else {
       // If consent withdrawn, clear orders anyway for privacy
       try {
@@ -83,10 +89,10 @@ export function useConsentAwareOrderCache() {
 
   /**
    * Clean up expired orders
-   */
-  const cleanupExpiredOrders = useCallback(() => {
+   */  const cleanupExpiredOrders = useCallback(() => {
     if (canStoreOrders) {
-      return orderCache.cleanupExpiredOrders();
+      orderCache.clearOldOrders();
+      return true;
     } else {
       // If consent withdrawn, clear all orders
       try {

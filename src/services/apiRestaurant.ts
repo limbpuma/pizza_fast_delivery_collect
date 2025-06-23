@@ -30,7 +30,7 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder) {
+export async function createOrder(newOrder: any) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -48,7 +48,7 @@ export async function createOrder(newOrder) {
   }
 }
 
-export async function updateOrder(id, updateObj) {
+export async function updateOrder(id: any, updateObj: any) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",

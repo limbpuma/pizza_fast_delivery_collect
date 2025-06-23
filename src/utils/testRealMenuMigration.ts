@@ -22,7 +22,7 @@ interface TestResult {
  */
 export async function testRealMenuMigration(): Promise<TestResult> {
   console.log('🧪 Starting Real Menu Migration Test...');
-  console.log('=' .repeat(50));
+  console.log('='.repeat(50));
   
   try {
     // Load real menu data
@@ -103,14 +103,14 @@ export async function testRealMenuMigration(): Promise<TestResult> {
       console.log(`  - ${suggestion.name} (${suggestion.category}) - €${suggestion.price.toFixed(2)} ${suggestion.emoji}`);
     });
     
-    console.log('\n' + '=' .repeat(50));
+    console.log('\n' + '='.repeat(50));
     console.log('✅ Real Menu Migration Test Completed Successfully!');
     
     return {
       totalItems: menuItems.length,
       quickAddItems: quickAddCount,
       multiSizeItems: multiSizeCount,
-      categoriesFound: categories,
+      categoriesFound: categories.filter((cat): cat is string => cat !== undefined),
       sampleQuickAdd: quickAddSamples,
       sampleMultiSize: multiSizeSamples,
       suggestionsGenerated: suggestions.length

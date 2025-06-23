@@ -1,4 +1,4 @@
-import { SavedOrder, getRecentOrders as getRecentOrdersOriginal, saveOrder as saveOrderOriginal, clearOrderHistory as clearOrderHistoryOriginal } from '../utils/orderCache';
+import { SavedOrder, getRecentOrders as getRecentOrdersOriginal, saveOrder as saveOrderOriginal } from '../utils/orderCache';
 import cookieConsentService from '../services/cookieConsent';
 
 /**
@@ -21,7 +21,8 @@ export const getRecentOrders = (): SavedOrder[] => {
  */
 export const saveOrder = (order: SavedOrder): boolean => {
   if (cookieConsentService.isCategoryAllowed('functional')) {
-    return saveOrderOriginal(order);
+    saveOrderOriginal(order);
+    return true;
   }
   return false; // Indicate save was not performed due to consent
 };
@@ -30,7 +31,12 @@ export const saveOrder = (order: SavedOrder): boolean => {
  * Clear order history - always allowed (user action)
  */
 export const clearOrderHistory = (): void => {
-  clearOrderHistoryOriginal();
+  try {
+    localStorage.setItem('campusPizzaOrders', JSON.stringify([]));
+    console.log('Order history cleared by user');
+  } catch (error) {
+    console.warn('Failed to clear order history:', error);
+  }
 };
 
 /**
