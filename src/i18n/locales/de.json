@@ -57,7 +57,7 @@
   },
   "home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
-    "subtitle": "Frische Pizzen in 15-30 Minuten • Automatische PLZ-Preisberechnung für 6 Dortmunder Zonen",
+    "subtitle": "Frische Pizzen in 15-30 Minuten • Automatische PLZ-Preisberechnung für ganz Dortmund",
     "cta": "🍕 Jetzt bestellen",    "socialProof": {
       "ordering": "{{count}} Leute bestellen gerade",
       "reviews": "{{rating}}★ ({{count}}+ Bewertungen)",
@@ -70,7 +70,7 @@
       "title": "So funktioniert's",
       "step1": {
         "title": "PLZ eingeben",
-        "description": "Name und Postleitzahl eingeben - Wir berechnen automatisch deine Lieferkosten basierend auf deiner PLZ"
+        "description": "Name und Postleitzahl eingeben - Automatische Preisberechnung für deine Zone"
       },
       "step2": {
         "title": "Pizza auswählen",
@@ -92,8 +92,8 @@
         "a": "Nachdem du deine Lieblingspizzas zum Warenkorb hinzugefügt hast, erhältst du im Checkout einen speziellen WhatsApp-Link. Klicke darauf, um deine vorformatierte Bestellung direkt an unser Restaurant zu senden. Wir bestätigen dann umgehend deine Lieferzeit oder Abholzeit sowie die Zahlungsmethode."
       },
       "question2": {
-        "q": "Wie funktioniert die automatische PLZ-Preisberechnung bei Campus Pizza Dortmund?",
-        "a": "Unser smartes System berechnet automatisch die Lieferkosten basierend auf deiner Postleitzahl. Wir liefern in 6 Zonen: 44149, 44147, 44227, 44225, 44137 und 44135. Die Liefergebühr variiert je nach Zone zwischen 0,99€ und 2,49€. Ab einem Bestellwert von 12-15€ (je nach Zone) ist die Lieferung kostenfrei."
+        "q": "Wie funktioniert das PLZ-basierte Liefersystem von Campus Pizza Dortmund?",
+        "a": "Unser intelligentes System berechnet automatisch Lieferkosten basierend auf deiner Postleitzahl. Wir liefern in 3 Hauptzonen mit insgesamt 18+ PLZ-Gebieten: Zone 1 (kostenlose Lieferung ab 12€), Zone 2 (1,50€ Lieferung, kostenlos ab 40€) und Zone 3 (2€ Lieferung, kostenlos ab 50€). Auch Abholung möglich."
       },
       "question3": {
         "q": "Wie schnell ist die Pizza-Lieferung von Campus Pizza in Dortmund?",
@@ -126,14 +126,27 @@
         "fresh": "Frische-Garantie"
       }
     },
-    "plzSystem": {
-      "title": "🎯 Intelligente PLZ-Preisberechnung",
-      "description": "Gib einfach deine Postleitzahl ein und erhalte sofort die exakten Lieferkosten für deine Zone",
-      "benefits": {
-        "automatic": "Automatische Preisberechnung",
-        "transparent": "100% transparente Kosten",
-        "zones": "6 optimierte Lieferzonen",
-        "fast": "Sofortige PLZ-Validierung"
+    "deliveryZones": {
+      "title": "🎯 Smart PLZ-Liefersystem",
+      "description": "Automatische Preisberechnung für ganz Dortmund",
+      "zone1": {
+        "title": "Zone 1 - Campus Bereich",
+        "plz": "44149, 44147, 44137",
+        "delivery": "Kostenlose Lieferung ab 12€"
+      },
+      "zone2": {
+        "title": "Zone 2 - Stadtgebiet",
+        "plz": "44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379",
+        "delivery": "1,50€ Lieferung, kostenlos ab 40€"
+      },
+      "zone3": {
+        "title": "Zone 3 - Außenbereiche",
+        "plz": "44357, 44359, 44265, 44263",
+        "delivery": "2,00€ Lieferung, kostenlos ab 50€"
+      },
+      "pickup": {
+        "title": "Abholung",
+        "description": "Kostenlos bei uns abholen"
       }
     }
   },  "features": {
@@ -463,9 +476,7 @@
     "privacy": "Datenschutz",
     "terms": "AGB",
     "imprint": "Impressum",
-    "allRights": "Alle Rechte vorbehalten.",
-    "optional": "optional",
-    "processing": "Verarbeitung..."
+    "allRights": "Alle Rechte vorbehalten."
   },  "buttons": {
     "delete": "Löschen",
     "update": "Aktualisieren",
