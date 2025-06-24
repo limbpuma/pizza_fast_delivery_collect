@@ -54,7 +54,7 @@ function Home() {
               <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">⭐</div>
               <span className="font-medium">Quality</span>
             </div>
-          </div>
+          </div>  
 
           {/* User Input/CTA Section - Glass morphism effect */}
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">

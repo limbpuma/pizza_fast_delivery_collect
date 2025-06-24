@@ -10,7 +10,7 @@ export function DynamicFeatures({ features, className = "" }: DynamicFeaturesPro
   const { t } = useTranslation();
 
   return (
-    <div className={`flex justify-center gap-6 text-sm sm:text-base ${className}`}>
+    <div className={`flex flex-wrap sm:flex-nowrap justify-center gap-4 text-sm sm:text-base ${className}`}>
       {features.map((feature, index) => (
         <div key={index} className={`flex items-center gap-2 ${feature.color} transition-all duration-300`}>
           <span className="text-lg">{feature.icon}</span>
