@@ -74,10 +74,10 @@ function CheckoutForm() {
   let deliveryFee = 0;
   
   if (deliveryMode === 'delivery') {
-    if (deliveryCalculation?.finalFee !== undefined) {
+    if (deliveryCalculation?.finalFee !== undefined && deliveryCalculation.finalFee !== null && typeof deliveryCalculation.finalFee === 'number') {
       deliveryFee = deliveryCalculation.finalFee;
-    } else if (currentTariff) {
-      deliveryFee = currentTariff.baseFee;
+    } else if (currentTariff && typeof currentTariff.lieferkosten === 'number') {
+      deliveryFee = currentTariff.lieferkosten;
     } else {
       deliveryFee = 0.99; // Ultimate fallback
     }

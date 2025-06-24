@@ -54,12 +54,12 @@ function CartSummary({ deliveryMode, onCheckout }: CartSummaryProps) {
   let freeDeliveryThreshold = 12; // Default fallback
   
   if (deliveryMode === 'delivery') {
-    if (deliveryCalculation?.finalFee !== undefined) {
+    if (deliveryCalculation?.finalFee !== undefined && deliveryCalculation.finalFee !== null && typeof deliveryCalculation.finalFee === 'number') {
       deliveryFee = deliveryCalculation.finalFee;
       freeDeliveryThreshold = deliveryCalculation.freeDeliveryThreshold || 12;
-    } else if (currentTariff) {
-      deliveryFee = currentTariff.baseFee;
-      freeDeliveryThreshold = currentTariff.freeDeliveryThreshold;
+    } else if (currentTariff && typeof currentTariff.lieferkosten === 'number') {
+      deliveryFee = currentTariff.lieferkosten;
+      freeDeliveryThreshold = currentTariff.lieferkosten_entfallen_ab;
     } else {
       deliveryFee = 0.99; // Ultimate fallback
     }
