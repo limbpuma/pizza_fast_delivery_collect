@@ -39,14 +39,24 @@
   "common": {
     "required": "Required",
     "enabled": "Enabled",
-    "disabled": "Disabled"
+    "disabled": "Disabled",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "pizza": "pizza",
+    "pizzas": "pizzas",
+    "minutes": "{{count}} minute",
+    "minutes_plural": "{{count}} minutes",
+    "cancel": "Cancel",
+    "backToMenu": "Back to Menu",
+    "optional": "optional",
+    "processing": "Processing..."
   },
   "navigation": {
     "myOrders": "My Orders",
     "menu": "Menu"
   },  "home": {
     "title": "🍕 Fastest pizza delivery to your door!",
-    "subtitle": "Fresh pizzas in 15-30 minutes • Delivery to 6 zones in Dortmund",
+    "subtitle": "Fresh pizzas in 15-30 minutes • Automatic postal code pricing for 6 Dortmund zones",
     "cta": "🍕 Order Now",    "socialProof": {
       "ordering": "{{count}} people ordering right now",
       "reviews": "{{rating}}★ ({{count}}+ reviews)",
@@ -58,8 +68,8 @@
     "howItWorks": {
       "title": "How it works",
       "step1": {
-        "title": "Enter Details",
-        "description": "Name and postal code to check delivery zone"
+        "title": "Enter Postal Code",
+        "description": "Enter name and postal code - We automatically calculate your delivery costs based on your location"
       },
       "step2": {
         "title": "Choose Pizza",
@@ -81,8 +91,8 @@
         "a": "Once you've added your favorite pizzas to the cart, you'll receive a special WhatsApp link at checkout. Click it to send your pre-formatted order directly to our restaurant. We will then promptly confirm your delivery or collection time and payment method."
       },
       "question2": {
-        "q": "Which postal code areas in Dortmund does Campus Pizza deliver to?",
-        "a": "We currently deliver our fresh pizzas to the following 6 zones in Dortmund: 44149, 44147, 44227, 44225, 44137, and 44135. Enjoy free delivery for orders over 12€."
+        "q": "How does the automatic postal code pricing work at Campus Pizza Dortmund?",
+        "a": "Our smart system automatically calculates delivery costs based on your postal code. We deliver to 6 zones: 44149, 44147, 44227, 44225, 44137, and 44135. Delivery fees vary by zone from €0.99 to €2.49. Orders over €12-15 (depending on zone) qualify for free delivery."
       },
       "question3": {
         "q": "How fast is pizza delivery from Campus Pizza in Dortmund?",
@@ -113,6 +123,16 @@
         "customers": "{{count}}+ Happy Customers",
         "secure": "Secure Ordering",
         "fresh": "Fresh Guarantee"
+      }
+    },
+    "plzSystem": {
+      "title": "🎯 Smart Postal Code Pricing",
+      "description": "Simply enter your postal code and get instant exact delivery costs for your zone",
+      "benefits": {
+        "automatic": "Automatic price calculation",
+        "transparent": "100% transparent costs",
+        "zones": "6 optimized delivery zones",
+        "fast": "Instant postal code validation"
       }
     }
   },  "features": {
@@ -441,18 +461,6 @@
     "terms": "Terms & Conditions", 
     "imprint": "Imprint",
     "allRights": "All rights reserved."
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Something went wrong",
-    "pizza": "pizza",
-    "pizzas": "pizzas",
-    "minutes": "{{count}} minute",
-    "minutes_plural": "{{count}} minutes",
-    "cancel": "Cancel",
-    "backToMenu": "Back to Menu",
-    "optional": "optional",
-    "processing": "Processing..."
   },  "buttons": {
     "delete": "Delete",
     "update": "Update",

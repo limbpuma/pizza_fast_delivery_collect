@@ -117,7 +117,39 @@ function Home() {
               </div>
             )}          </div>
         </div>
-      </div>      {/* How It Works Section */}
+      </div>
+
+      {/* PLZ System Section */}
+      <div className="bg-gradient-to-r from-orange-50 to-yellow-50 py-8">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            {t('home.plzSystem.title')}
+          </h2>
+          <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+            {t('home.plzSystem.description')}
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white/80 rounded-lg p-4 shadow-sm">
+              <div className="text-2xl mb-2">⚡</div>
+              <p className="text-sm font-medium text-gray-800">{t('home.plzSystem.benefits.automatic')}</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4 shadow-sm">
+              <div className="text-2xl mb-2">💯</div>
+              <p className="text-sm font-medium text-gray-800">{t('home.plzSystem.benefits.transparent')}</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4 shadow-sm">
+              <div className="text-2xl mb-2">📍</div>
+              <p className="text-sm font-medium text-gray-800">{t('home.plzSystem.benefits.zones')}</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4 shadow-sm">
+              <div className="text-2xl mb-2">🚀</div>
+              <p className="text-sm font-medium text-gray-800">{t('home.plzSystem.benefits.fast')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
       <div className="bg-white py-12">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
