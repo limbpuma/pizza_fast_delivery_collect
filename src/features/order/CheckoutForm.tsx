@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,14 @@ import PhoneInput from "../../ui/PhoneInput";
 import { useOrderSubmission } from "./hooks/useOrderSubmission";
 import { useSocialProof } from "../../hooks/useSocialProof";
 import RestaurantStatusBanner from "../../ui/RestaurantStatusBanner";
+import { 
+  selectUser, 
+  selectCurrentTariff
+} from '../user/userSlice';
+import { 
+  selectCurrentCalculation,
+  calculateDeliveryWithCache
+} from '../delivery/deliverySlice';
 
 interface FormData {
   customer: string;
@@ -42,13 +50,39 @@ function CheckoutForm() {
   
   const cart = useSelector(getCart);
   const cartTotalPrice = useSelector(getTotalCartPrice);
+  const user = useSelector(selectUser);
+  const currentTariff = useSelector(selectCurrentTariff);
+  const deliveryCalculation = useSelector(selectCurrentCalculation);
 
   // Social proof hook for dynamic content
   const { socialProof, isLoading } = useSocialProof();
 
-  // Calculate fees
+  // Trigger delivery calculation when cart price changes and we're in delivery mode
+  useEffect(() => {
+    if (deliveryMode === 'delivery' && user.plz && cartTotalPrice > 0) {
+      dispatch(calculateDeliveryWithCache({
+        plz: user.plz,
+        orderValue: cartTotalPrice
+      }) as any);
+    }
+  }, [dispatch, deliveryMode, user.plz, cartTotalPrice]);
+
+  // Calculate fees with dynamic delivery pricing
   const subtotal = cartTotalPrice;
-  const deliveryFee = deliveryMode === 'delivery' ? 0.99 : 0;
+  
+  // Use dynamic delivery fee from calculation, fallback to tariff, then hardcoded
+  let deliveryFee = 0;
+  
+  if (deliveryMode === 'delivery') {
+    if (deliveryCalculation?.finalFee !== undefined) {
+      deliveryFee = deliveryCalculation.finalFee;
+    } else if (currentTariff) {
+      deliveryFee = currentTariff.baseFee;
+    } else {
+      deliveryFee = 0.99; // Ultimate fallback
+    }
+  }
+  
   const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
   const maxServiceFee = 0.99;
   const finalServiceFee = Math.min(serviceFee, maxServiceFee);

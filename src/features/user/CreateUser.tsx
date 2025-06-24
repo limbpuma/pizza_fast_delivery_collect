@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
-import { updateName, updatePostalCode } from "./userSlice";
+import { updateName, updatePLZWithSession } from "./userSlice";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { isValidDeliveryZone } from "../../utils/deliveryZones";
+import { validatePLZ } from "../../utils/deliveryZones";
 
 function CreateUser() {
   const { t } = useTranslation();
@@ -21,18 +21,23 @@ function CreateUser() {
     
     if (!postalCode) return;
 
-    // Validate delivery zone
-    if (!isValidDeliveryZone(postalCode)) {
-      setDeliveryError(t('user.deliveryError'));
+    // Validate PLZ using the enhanced validation
+    const validation = validatePLZ(postalCode);
+    
+    if (!validation.isValid) {
+      setDeliveryError(validation.error || t('user.deliveryError'));
       return;
     }
 
     // Clear any previous error
     setDeliveryError("");
     
-    // Save user data and navigate
+    // Save user data using enhanced PLZ action and navigate
     dispatch(updateName(finalUsername));
-    dispatch(updatePostalCode(postalCode));
+    dispatch(updatePLZWithSession({ 
+      plz: postalCode, 
+      source: 'user_input' 
+    }) as any);
     navigate("/menu");
   }
 

@@ -1,15 +1,40 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { getMenu } from "../../services/apiRestaurant";
 import MenuItemCompact from "./MenuItemCompact";
 import MenuFilters from "./MenuFilters";
 import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
+import { 
+  selectCurrentTariff
+} from '../user/userSlice';
+import { 
+  selectCurrentCalculation
+} from '../delivery/deliverySlice';
 
 function Menu() {
   const { t } = useTranslation();
   // Using real menu data with category field (processed from kategorie)
   const menu = useLoaderData() as any[];
+  
+  // Get delivery information for dynamic header
+  const currentTariff = useSelector(selectCurrentTariff);
+  const deliveryCalculation = useSelector(selectCurrentCalculation);
+  
+  // Calculate dynamic delivery fee and minimum order for header
+  let headerDeliveryFee = "0,99"; // Default fallback
+  let headerMinOrderAmount = 12.00; // Default fallback
+  
+  if (currentTariff) {
+    headerDeliveryFee = currentTariff.baseFee.toFixed(2).replace('.', ',');
+    headerMinOrderAmount = currentTariff.freeDeliveryThreshold;
+  }
+  
+  // If we have a specific calculation (based on order value), use that instead
+  if (deliveryCalculation?.finalFee !== undefined) {
+    headerDeliveryFee = deliveryCalculation.finalFee.toFixed(2).replace('.', ',');
+  }
   
   const [filters, setFilters] = useState({
     category: 'all',
@@ -60,7 +85,10 @@ function Menu() {
   return (
     <div>
       {/* Restaurant Header with hero image and info */}
-      <RestaurantHeader />
+      <RestaurantHeader 
+        deliveryFee={headerDeliveryFee}
+        minOrderAmount={headerMinOrderAmount}
+      />
       {/* Sistema de Filtros */}
         <MenuFilters onFilterChange={handleFilterChange}/>
         <div className="max-w-6xl mx-auto px-4 py-6">
