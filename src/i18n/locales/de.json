@@ -195,18 +195,21 @@
     "bottomCta": "Werde einer von 340+ zufriedenen Kunden in Dortmund"
   },
   "user": {
-    "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
-    "subtitle": "Gib deine PLZ ein, um leckere Pizza zu bestellen! 🍕",
+    "welcome": "🍕 Leckere Pizza für ganz Dortmund!",
+    "subtitle": "Gib deine Postleitzahl ein und entdecke automatische Preisberechnung für deine Zone",
     "nameLabel": "Name (optional)",
     "namePlaceholder": "Dein Name oder 'Gast'",
     "postalCodeLabel": "Postleitzahl *",
     "postalCodePlaceholder": "z.B. 44149",
-    "deliveryAreas": "Wir liefern nach: 44149, 44147, 44227, 44225, 44137, 44135",
-    "startOrdering": "🍕 Bestellung starten",
+    "deliveryAreas": "🎯 Wir liefern in 3 Zonen mit 18+ PLZ in ganz Dortmund",
+    "zoneInfo": "Zone 1: Kostenlos ab 12€ • Zone 2: 1,50€, frei ab 40€ • Zone 3: 2€, frei ab 50€",
+    "startOrdering": "🚀 Jetzt bestellen & PLZ-Preise entdecken",
     "continueButton": "Weiter",
-    "greeting": "Willkommen zurück, {{name}}!",
+    "greeting": "Willkommen zurück, {{name}}! 👋",
     "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
-    "deliveryZoneInfo": "Aktuelle Liefergebiete: 44149, 44147, 44227, 44225, 44137, 44135"
+    "deliveryZoneInfo": "Aktuelle Lieferzonen: 3 Hauptzonen mit 18+ Postleitzahlen in Dortmund",
+    "instantPricing": "💡 Sofortige PLZ-Preisberechnung",
+    "allDortmund": "📍 Ganz Dortmund abgedeckt"
   },
   "menu": {
     "title": "Unsere Speisekarte",

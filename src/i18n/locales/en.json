@@ -194,18 +194,21 @@
     "bottomCta": "Join 340+ satisfied customers in Dortmund"
   },
   "user": {
-    "welcome": "👋 Welcome! Please start by telling us your name:",
-    "subtitle": "Enter your postal code to start ordering delicious pizza! 🍕",
+    "welcome": "🍕 Delicious pizza for all Dortmund!",
+    "subtitle": "Enter your postal code and discover automatic price calculation for your zone",
     "nameLabel": "Name (optional)",
     "namePlaceholder": "Your name or 'Guest'",
     "postalCodeLabel": "Postal Code *",
     "postalCodePlaceholder": "e.g. 44149",
-    "deliveryAreas": "We deliver to: 44149, 44147, 44227, 44225, 44137, 44135",
-    "startOrdering": "🍕 Start Ordering",
+    "deliveryAreas": "🎯 We deliver to 3 zones with 18+ postal codes throughout Dortmund",
+    "zoneInfo": "Zone 1: Free from €12 • Zone 2: €1.50, free from €40 • Zone 3: €2, free from €50",
+    "startOrdering": "🚀 Order now & discover postal code pricing",
     "continueButton": "Continue",
-    "greeting": "Welcome back, {{name}}!",
+    "greeting": "Welcome back, {{name}}! 👋",
     "deliveryError": "⚠️ Sorry, we don't deliver to your area yet. We're working to expand our delivery zone!",
-    "deliveryZoneInfo": "Current delivery areas: 44149, 44147, 44227, 44225, 44137, 44135"
+    "deliveryZoneInfo": "Current delivery zones: 3 main zones with 18+ postal codes in Dortmund",
+    "instantPricing": "💡 Instant postal code pricing",
+    "allDortmund": "📍 All Dortmund covered"
   },  "menu": {
     "title": "Our Menu",
     "soldOut": "Sold out",
