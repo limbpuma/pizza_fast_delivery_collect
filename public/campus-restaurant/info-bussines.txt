@@ -1,0 +1,106 @@
+
+﻿=== RESTAURANT CAMPUS - GESCHÄFTSINFORMATIONEN ===
+
+■ IMPRESSUM (gemäß § 5 TMG)
+
+Restaurant CAMPUS – Die Pizza-Profis
+Knappenstraße 46
+44149 Dortmund, Deutschland
+
+Geschäftsführer: Adel Mohammed
+Rechtsform: Einzelunternehmen
+
+■ KONTAKTDATEN
+
+Telefon: 0231 - 72 56 668
+WhatsApp Business: 0231 - 72 56 668
+E-Mail: info@restaurant-campus.de
+Website: www.restaurant-campus.de
+
+■ ÖFFNUNGSZEITEN
+
+Täglich: 11:00 - 21:30 Uhr
+(Auch an Sonn- und Feiertagen)
+
+■ STEUERLICHE ANGABEN
+
+Umsatzsteuer-Identifikationsnummer (USt-IdNr.):
+DE [wird bei Gewerbeanmeldung ergänzt]
+
+Registergericht: Amtsgericht Dortmund
+Gewerbeanmeldung: Stadt Dortmund
+
+■ ONLINE-BESTELLSYSTEM
+
+Bestellungen über:
+- Website: www.restaurant-campus.de
+- WhatsApp Business: 0231 - 72 56 668
+- Lieferando: Restaurant Campus Dortmund
+
+■ LIEFERGEBIET
+
+44149 Dortmund (Hauptbereich)
+44147, 44227, 44225, 44137, 44135
+Mindestbestellwert: 15,00 EUR
+Lieferkosten: 2,50 EUR
+
+■ ZAHLUNGSMÖGLICHKEITEN
+
+- Barzahlung bei Lieferung/Abholung
+- EC-Karte bei Lieferung/Abholung
+- Kontaktlose Zahlung verfügbar
+
+■ RECHTLICHE HINWEISE
+
+EU-Streitschlichtung:
+Die Europäische Kommission stellt eine Plattform zur 
+Online-Streitbeilegung (OS) bereit:
+https://ec.europa.eu/consumers/odr/
+
+Verbraucherstreitbeilegung:
+Wir sind nicht bereit oder verpflichtet, an 
+Streitbeilegungsverfahren vor einer 
+Verbraucherschlichtungsstelle teilzunehmen.
+
+■ TECHNISCHE REALISIERUNG
+
+Website gehostet auf: Vercel (EU-Server)
+Datenschutz-konforme Datenverarbeitung in der EU
+WhatsApp Business API für Bestellabwicklung
+
+■ QUALITÄTSSTANDARDS
+
+- Frische Zutaten täglich geliefert
+- Halal-zertifizierte Fleischprodukte
+- Vegetarische und vegane Optionen
+- Allergen-Kennzeichnung nach EU-Verordnung
+
+Stand: Juni 2025
+
+ 
+ZUSATZSTOFFKENNZEICHNUNG:
+  
+  "zusatzstoffe_legende": {
+  "1": "mit Farbstoff",
+  "2": "mit Konservierungsstoff",
+  "3": "mit Antioxidationsmittel",
+  "4": "mit Geschmacksverstärker",
+  "5": "geschwärzt",
+  "6": "teilweise mit Phosphat, Benzoesäure & Sorbinsäure",
+  "7": "mit Süßungsmittel",
+  "8": "koffeinhaltig"
+},
+"allergene_legende": {
+  "C": "Soja",
+  "D": "Milch/Lactose",
+  "E": "Ei in jeglicher Form",
+  "F": "glutenhaltiges Getreide (Weizen / Hartweizengrieß)",
+  "G": "Sesamsamen",
+  "H": "alle Arten von Fisch",
+  "K": "Krebstiere",
+  "J": "geschwefelt",
+  "W": "Weichtiere",
+  "Er": "Erdnüsse",
+  "Sf": "Schalenfrüchte",
+  "Se": "Sellerie",  "Sn": "Senf"
+}

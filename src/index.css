@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply rounded-lg border border-gray-300 px-4 py-3 text-sm transition-all 
+    duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500;
+  }
+  
+  /* Modern input variant for checkout */
+  .input-modern {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors;
+  }
+  
+  /* Hide scrollbar for category filters */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Smooth scroll behavior for category navigation */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  /* Hide scrollbar for category filters */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Smooth scroll behavior for category navigation */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  /* Modal Animations */
+  .modal-overlay {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  /* Compact Pizza Cards */
+  .pizza-card-compact {
+    @apply transition-all duration-200;
+  }
+  
+  .pizza-card-compact:hover {
+    @apply shadow-md border-orange-200;
+  }
+  
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
+  .loader {
+    width: 45px;
+    aspect-ratio: 0.75;
+    --c: no-repeat linear-gradient(theme(colors.stone.800) 0 0);
+    background:
+      var(--c) 0% 50%,
+      var(--c) 50% 50%,
+      var(--c) 100% 50%;
+    background-size: 20% 50%;
+    animation: loading 1s infinite linear;
+  }
+
+  @keyframes loading {
+    20% {
+      background-position:
+        0% 0%,
+        50% 50%,
+        100% 50%;
+    }
+    40% {
+      background-position:
+        0% 100%,
+        50% 0%,
+        100% 50%;
+    }
+    60% {
+      background-position:
+        0% 50%,
+        50% 100%,
+        100% 0%;
+    }
+    80% {
+      background-position:
+        0% 50%,
+        50% 50%,
+        100% 100%;
+    }
+  }
+  
+  /* Modal animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes modalSlide {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .animate-modalSlide {
+    animation: modalSlide 0.3s ease-out;
+  }
+  
+  /* Quick Add animations */
+  @keyframes quickAddSuccess {
+    0% {
+      transform: scale(1);
+      background-color: #3b82f6; /* blue-500 */
+    }
+    50% {
+      transform: scale(1.2);
+      background-color: #10b981; /* green-500 */
+    }
+    100% {
+      transform: scale(1.1);
+      background-color: #10b981; /* green-500 */
+    }
+  }
+  
+  .animate-quickAddSuccess {
+    animation: quickAddSuccess 0.5s ease-out;
+  }
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  .animate-pulse-ring {
+    animation: pulse-ring 0.6s ease-out;
+  }
+}
