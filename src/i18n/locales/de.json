@@ -39,7 +39,17 @@
   "common": {
     "required": "Erforderlich",
     "enabled": "Aktiviert",
-    "disabled": "Deaktiviert"
+    "disabled": "Deaktiviert",
+    "loading": "Lädt...",
+    "error": "Etwas ist schiefgegangen",
+    "pizza": "Pizza",
+    "pizzas": "Pizzas",
+    "minutes": "{{count}} Minute",
+    "minutes_plural": "{{count}} Minuten",
+    "cancel": "Abbrechen",
+    "backToMenu": "Zurück zur Speisekarte",
+    "optional": "optional",
+    "processing": "Verarbeitung..."
   },
   "navigation": {
     "myOrders": "Meine Bestellungen",
@@ -47,7 +57,7 @@
   },
   "home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
-    "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
+    "subtitle": "Frische Pizzen in 15-30 Minuten • Automatische PLZ-Preisberechnung für ganz Dortmund",
     "cta": "🍕 Jetzt bestellen",    "socialProof": {
       "ordering": "{{count}} Leute bestellen gerade",
       "reviews": "{{rating}}★ ({{count}}+ Bewertungen)",
@@ -59,8 +69,8 @@
     "howItWorks": {
       "title": "So funktioniert's",
       "step1": {
-        "title": "Details eingeben",
-        "description": "Name und PLZ zur Überprüfung der Lieferzone"
+        "title": "PLZ eingeben",
+        "description": "Name und Postleitzahl eingeben - Automatische Preisberechnung für deine Zone"
       },
       "step2": {
         "title": "Pizza auswählen",
@@ -82,8 +92,8 @@
         "a": "Nachdem du deine Lieblingspizzas zum Warenkorb hinzugefügt hast, erhältst du im Checkout einen speziellen WhatsApp-Link. Klicke darauf, um deine vorformatierte Bestellung direkt an unser Restaurant zu senden. Wir bestätigen dann umgehend deine Lieferzeit oder Abholzeit sowie die Zahlungsmethode."
       },
       "question2": {
-        "q": "In welche Postleitzahlengebiete in Dortmund liefert Campus Pizza?",
-        "a": "Wir liefern unsere frischen Pizzen aktuell in folgende 6 Zonen in Dortmund: 44149, 44147, 44227, 44225, 44137 und 44135. Profitiere von kostenloser Lieferung für Bestellungen ab 12€."
+        "q": "Wie funktioniert das PLZ-basierte Liefersystem von Campus Pizza Dortmund?",
+        "a": "Unser intelligentes System berechnet automatisch Lieferkosten basierend auf deiner Postleitzahl. Wir liefern in 3 Hauptzonen mit insgesamt 18+ PLZ-Gebieten: Zone 1 (kostenlose Lieferung ab 12€), Zone 2 (1,50€ Lieferung, kostenlos ab 40€) und Zone 3 (2€ Lieferung, kostenlos ab 50€). Auch Abholung möglich."
       },
       "question3": {
         "q": "Wie schnell ist die Pizza-Lieferung von Campus Pizza in Dortmund?",
@@ -114,6 +124,29 @@
         "customers": "{{count}}+ Zufriedene Kunden",
         "secure": "Sichere Bestellung",
         "fresh": "Frische-Garantie"
+      }
+    },
+    "deliveryZones": {
+      "title": "🎯 Smart PLZ-Liefersystem",
+      "description": "Automatische Preisberechnung für ganz Dortmund",
+      "zone1": {
+        "title": "Zone 1 - Campus Bereich",
+        "plz": "44149, 44147, 44137",
+        "delivery": "Kostenlose Lieferung ab 12€"
+      },
+      "zone2": {
+        "title": "Zone 2 - Stadtgebiet",
+        "plz": "44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379",
+        "delivery": "1,50€ Lieferung, kostenlos ab 40€"
+      },
+      "zone3": {
+        "title": "Zone 3 - Außenbereiche",
+        "plz": "44357, 44359, 44265, 44263",
+        "delivery": "2,00€ Lieferung, kostenlos ab 50€"
+      },
+      "pickup": {
+        "title": "Abholung",
+        "description": "Kostenlos bei uns abholen"
       }
     }
   },  "features": {
@@ -444,17 +477,6 @@
     "terms": "AGB",
     "imprint": "Impressum",
     "allRights": "Alle Rechte vorbehalten."
-  },  "common": {
-    "loading": "Lädt...",
-    "error": "Etwas ist schiefgegangen",
-    "pizza": "Pizza",
-    "pizzas": "Pizzas",
-    "minutes": "{{count}} Minute",
-    "minutes_plural": "{{count}} Minuten",
-    "cancel": "Abbrechen",
-    "backToMenu": "Zurück zur Speisekarte",
-    "optional": "optional",
-    "processing": "Verarbeitung..."
   },  "buttons": {
     "delete": "Löschen",
     "update": "Aktualisieren",
