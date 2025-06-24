@@ -215,7 +215,7 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
                         isQuickAdding 
                           ? 'bg-green-500 scale-110' 
                           : productType.quickAddEnabled 
-                            ? 'bg-blue-500 hover:bg-blue-600' 
+                            ? 'bg-orange-500 hover:bg-orange-600' 
                             : 'bg-orange-500 hover:bg-orange-600'
                       } text-white`}
                       aria-label={
