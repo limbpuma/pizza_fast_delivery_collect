@@ -43,7 +43,8 @@ function Home() {
               {t('home.subtitle')}
             </span>
           </p>          {/* Fast Features - Dynamic Icons + Text */}
-          <DynamicFeatures features={features} className="mb-8" />{/* Social Proof Banner - Dynamic */}
+          <DynamicFeatures features={features} className="mb-8" />
+          {/* Social Proof Banner - Dynamic */}
           <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm relative">
             {/* Loading indicator */}
             {isLoading && (
@@ -200,8 +201,9 @@ function Home() {
               <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer3.text')}"</p>
               <p className="text-xs text-gray-500">- {t('home.testimonials.customer3.name')}</p>
             </div>
-          </div>            {/* Trust Badges - Dynamic */}
-          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600">
+          </div>           
+           {/* Trust Badges - Dynamic */}
+          <div className="mt-8 flex flex-wrap sm:flex-nowrap items-center justify-center gap-8 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="text-green-500">✅</span>
               <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
