@@ -40,7 +40,8 @@
     "required": "Required",
     "enabled": "Enabled",
     "disabled": "Disabled"
-  },"navigation": {
+  },
+  "navigation": {
     "myOrders": "My Orders",
     "menu": "Menu"
   },  "home": {
@@ -76,20 +77,20 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "question1": {
-        "q": "How does WhatsApp ordering work?",
-        "a": "After adding items to cart, you'll get a WhatsApp link with your order summary. Send it to us and we'll confirm delivery time and payment method."
+        "q": "How do I order pizza via WhatsApp from Campus Pizza Dortmund?",
+        "a": "Once you've added your favorite pizzas to the cart, you'll receive a special WhatsApp link at checkout. Click it to send your pre-formatted order directly to our restaurant. We will then promptly confirm your delivery or collection time and payment method."
       },
       "question2": {
-        "q": "What are the delivery areas?",
-        "a": "We deliver to 6 zones in Dortmund: 44149, 44147, 44227, 44225, 44137, 44135. Free delivery on orders 12€+"
+        "q": "Which postal code areas in Dortmund does Campus Pizza deliver to?",
+        "a": "We currently deliver our fresh pizzas to the following 6 zones in Dortmund: 44149, 44147, 44227, 44225, 44137, and 44135. Enjoy free delivery for orders over 12€."
       },
       "question3": {
-        "q": "How long does delivery take?",
-        "a": "15-30 minutes depending on your location and order size. We'll give you an exact time when you place your order."
+        "q": "How fast is pizza delivery from Campus Pizza in Dortmund?",
+        "a": "Our pizza delivery in Dortmund usually takes 15-30 minutes. The exact delivery time depends on your location and order size, and will be confirmed directly when you place your order."
       },
       "question4": {
-        "q": "What payment methods do you accept?",
-        "a": "Cash on delivery or card payment. You can choose your preferred method when placing the order."
+        "q": "What payment methods are available for pizza delivery and collection?",
+        "a": "You can conveniently pay by cash or card, whether for delivery or collection. Simply select your preferred payment method during the ordering process."
       }
     },
     "testimonials": {
@@ -149,7 +150,8 @@
     },
     "recentOrder": "Last order: {{time}}",
     "increasedDemand": "High demand"
-  },"stats": {
+  },
+  "stats": {
     "minutes": "min delivery",
     "zones": "delivery zones", 
     "service": "service",
@@ -157,7 +159,8 @@
     "coverage": "Dortmund coverage",
     "available": "Always available",
     "bottomCta": "Join 340+ satisfied customers in Dortmund"
-  },"user": {
+  },
+  "user": {
     "welcome": "👋 Welcome! Please start by telling us your name:",
     "subtitle": "Enter your postal code to start ordering delicious pizza! 🍕",
     "nameLabel": "Name (optional)",
@@ -261,7 +264,8 @@
     "clearButton": "Clear cart",
     "overview": "{{quantity}} pizzas {{total}}",
     "openCart": "Open cart →"
-  },"checkout": {
+  },
+  "checkout": {
     "titleDelivery": "Checkout - Delivery",
     "titleCollection": "Checkout - Collection",
     "deliverySubtitle": "Complete your delivery details",
@@ -401,7 +405,8 @@
       "weekendDeal": "🎉 Weekend Special: {{offer}}",
       "lunchSpecial": "🥗 Lunch Special: {{offer}}",
       "dinnerRush": "🔥 Dinner Rush: {{offer}}"
-    },"aboutTitle": "About Restaurant CAMPUS",
+    },
+    "aboutTitle": "About Restaurant CAMPUS",
     "aboutDescription": "Welcome to Restaurant CAMPUS – The Pizza Professionals! For years, we have been delighting our guests with authentic Italian pizzas, prepared with fresh ingredients and traditional recipes. Our team of experienced pizza professionals ensures that every pizza is perfectly baked. Visit us at Knappenstraße 46 in Dortmund or order conveniently to your home!",
     "deliveryTimes": "Delivery times",
     "monday": "Monday",
@@ -422,7 +427,8 @@
     "printable": "Printable version",
     "orderOnLieferando": "Order on Lieferando",
     "getDirections": "Get Directions"
-  },"footer": {
+  },
+  "footer": {
     "description": "Restaurant CAMPUS – The Pizza Professionals. Authentic Italian pizza delivered fresh to your door. Made with the finest ingredients and traditional recipes.",
     "contact": "Contact",
     "phone": "Phone: 0231 - 72 56 668",
@@ -435,7 +441,8 @@
     "terms": "Terms & Conditions", 
     "imprint": "Imprint",
     "allRights": "All rights reserved."
-  },"common": {
+  },
+  "common": {
     "loading": "Loading...",
     "error": "Something went wrong",
     "pizza": "pizza",
