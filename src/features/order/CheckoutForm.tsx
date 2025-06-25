@@ -154,12 +154,17 @@ function CheckoutForm() {
       ? `\n📝 ${t('checkout.whatsappMessage.specialInstructions', { instructions: formData.specialInstructions })}`
       : '';
 
+    // Add delivery zone info for delivery orders
+    const deliveryZoneInfo = deliveryMode === 'delivery' && currentTariff 
+      ? `\n🗺️ *Delivery Zone:* ${currentTariff.name} (PLZ: ${userPLZ})`
+      : '';
+
     return `🍕 *${t('checkout.whatsappMessage.title')}*
 
 📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
 📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
 
-👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}
+👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}${deliveryZoneInfo}
 
 🛒 *${t('checkout.whatsappMessage.products')}*
 ${orderItems}
@@ -585,7 +590,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
           {/* Minimum Order Validation */}
           {!meetsMinimum && currentTariff && (
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg mb-6">
+            <div className="p-4 mb-6 border border-red-200 rounded-lg bg-red-50">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium text-red-800">
                   ⚠️ Mindestbestellwert nicht erreicht
