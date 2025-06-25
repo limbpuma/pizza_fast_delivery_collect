@@ -9,39 +9,39 @@ function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-orange-500 to-red-500 shadow-lg border-b border-orange-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="border-b border-orange-600 shadow-lg bg-gradient-to-r from-orange-500 to-red-500">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo/Brand */}
             <Link 
               to="/" 
-              className="flex items-center space-x-2 text-white hover:text-orange-100 transition-colors duration-200"
+              className="flex items-center space-x-2 text-white transition-colors duration-200 hover:text-orange-100"
             >
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <span className="text-orange-500 text-lg font-bold">🍕</span>
+              <div className="flex items-center justify-center w-8 h-8 bg-white rounded-full">
+                <span className="text-lg font-bold text-orange-500">🍕</span>
               </div>
-              <span className="font-bold text-xl tracking-wide font-pizza uppercase">
+              <span className="text-xl font-bold tracking-wide uppercase font-pizza">
                 {t('header.title')}
               </span>
             </Link>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="items-center hidden space-x-8 md:flex">
               <Link 
                 to="/" 
-                className="text-white hover:text-orange-100 transition-colors duration-200 font-medium"
+                className="font-medium text-white transition-colors duration-200 hover:text-orange-100"
               >
                 {t('navigation.menu', { default: 'Menu' })}
               </Link>
               <Link 
                 to="/my-orders" 
-                className="text-white hover:text-orange-100 transition-colors duration-200 font-medium"
+                className="font-medium text-white transition-colors duration-200 hover:text-orange-100"
               >
                 {t('navigation.myOrders')}
               </Link>
               <Link 
                 to="/modal-test" 
-                className="text-white hover:text-orange-100 transition-colors duration-200 font-medium text-sm bg-green-600 px-2 py-1 rounded"
+                className="px-2 py-1 text-sm font-medium text-white transition-colors duration-200 bg-green-600 rounded hover:text-orange-100"
                 title="Test Advanced Pizza Modal (Phase 3)"
               >
                 🧪 Modal Test
@@ -57,17 +57,17 @@ function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className="md:hidden border-t border-orange-600 bg-orange-600">
+        <div className="bg-orange-600 border-t border-orange-600 md:hidden">
           <div className="px-4 py-2 space-x-6">
             <Link 
               to="/" 
-              className="text-white hover:text-orange-100 transition-colors duration-200 text-sm font-medium"
+              className="text-sm font-medium text-white transition-colors duration-200 hover:text-orange-100"
             >
               {t('navigation.menu', { default: 'Menu' })}
             </Link>
             <Link 
               to="/my-orders" 
-              className="text-white hover:text-orange-100 transition-colors duration-200 text-sm font-medium"
+              className="text-sm font-medium text-white transition-colors duration-200 hover:text-orange-100"
             >
               {t('navigation.myOrders')}
             </Link>
