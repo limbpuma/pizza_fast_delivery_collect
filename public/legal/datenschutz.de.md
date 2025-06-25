@@ -71,6 +71,24 @@ Ihre Bestellungen werden über WhatsApp Business an unser Restaurant übermittel
 **Datenschutz bei WhatsApp:** 
 Weitere Informationen zum Datenschutz bei WhatsApp finden Sie unter: https://www.whatsapp.com/legal/privacy-policy
 
+### 4.3 PLZ-basierte Liefertarif-Berechnung
+Ihre Postleitzahl wird zur automatischen Berechnung der Lieferkosten verwendet.
+
+**Verarbeitung der PLZ:**
+- Automatische Zuordnung zu einer der drei Lieferzonen
+- Berechnung der entsprechenden Lieferkosten
+- Bestimmung des Mindestbestellwerts
+- Anzeige der korrekten Preise bereits vor der Bestellung
+
+**Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)  
+**Zweck:** Transparente Preisberechnung und faire Kostenverteilung  
+**Speicherdauer:** Nur während der Browsersitzung, keine dauerhafte Speicherung
+
+**Zonen-System:**
+- Zone 1 (Campus): PLZ 44149, 44147, 44137
+- Zone 2 (Stadt): PLZ 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379
+- Zone 3 (Außen): PLZ 44357, 44359, 44265, 44263
+
 ## 5. Cookies und lokale Speicherung
 
 ### 5.1 Cookies

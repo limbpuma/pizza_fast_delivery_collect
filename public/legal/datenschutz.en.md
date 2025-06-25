@@ -71,6 +71,24 @@ Your orders are transmitted to our restaurant via WhatsApp Business.
 **WhatsApp Privacy:**  
 For more information on WhatsApp privacy, please visit: https://www.whatsapp.com/legal/privacy-policy
 
+### 4.3 Postal Code-Based Delivery Tariff Calculation
+Your postal code is used for automatic calculation of delivery costs.
+
+**Postal Code Processing:**
+- Automatic assignment to one of three delivery zones
+- Calculation of corresponding delivery costs
+- Determination of minimum order value
+- Display of correct prices before placing the order
+
+**Legal basis:** Art. 6 para. 1 lit. b GDPR (contract performance)  
+**Purpose:** Transparent pricing and fair cost distribution  
+**Storage duration:** Only during browser session, no permanent storage
+
+**Zone System:**
+- Zone 1 (Campus): Postal codes 44149, 44147, 44137
+- Zone 2 (City): Postal codes 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379
+- Zone 3 (Outer): Postal codes 44357, 44359, 44265, 44263
+
 ## 5. Cookies and Local Storage
 
 ### 5.1 Cookies
