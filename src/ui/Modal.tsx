@@ -6,10 +6,22 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'pizza' | 'multiStep';
+  scrollable?: boolean;
+  compact?: boolean;
+  heightClass?: 'auto' | 'compact' | 'scroll';
 }
 
-function Modal({ isOpen, onClose, children, title, size = 'md' }: ModalProps) {
+function Modal({ 
+  isOpen, 
+  onClose, 
+  children, 
+  title, 
+  size = 'md',
+  scrollable = false,
+  compact = false,
+  heightClass = 'auto'
+}: ModalProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -33,19 +45,33 @@ function Modal({ isOpen, onClose, children, title, size = 'md' }: ModalProps) {
   const sizeClasses = {
     sm: 'max-w-md',
     md: 'max-w-lg',
-    lg: 'max-w-2xl'
+    lg: 'max-w-2xl',
+    pizza: 'max-w-sm sm:max-w-md lg:max-w-lg',
+    multiStep: 'max-w-md sm:max-w-lg'
+  };
+
+  const heightClasses = {
+    auto: 'max-h-[90vh]',
+    compact: 'max-h-[70vh]',
+    scroll: 'max-h-[80vh]'
   };
 
   return createPortal(
     <div className="modal-overlay">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fadeIn"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 animate-fadeIn"
         onClick={onClose}
       >
         {/* Modal Content */}
         <div 
-          className={`bg-white rounded-lg shadow-xl transform transition-all duration-300 ease-out animate-modalSlide w-full ${sizeClasses[size]} max-h-[90vh] overflow-hidden`}
+          className={`
+            bg-white rounded-lg shadow-xl transform transition-all duration-300 ease-out 
+            animate-modalSlide w-full ${sizeClasses[size]} ${heightClasses[heightClass]} 
+            overflow-hidden
+            ${compact ? 'mx-2 sm:mx-4' : ''}
+            ${scrollable ? 'overflow-y-auto' : ''}
+          `}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
@@ -54,7 +80,7 @@ function Modal({ isOpen, onClose, children, title, size = 'md' }: ModalProps) {
               <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
               <button
                 onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 transition-colors hover:text-gray-600"
                 aria-label="Close modal"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +91,13 @@ function Modal({ isOpen, onClose, children, title, size = 'md' }: ModalProps) {
           )}
           
           {/* Content */}
-          <div className="p-4 overflow-y-auto max-h-[calc(90vh-100px)]">
+          <div className={`
+            ${scrollable ? 'overflow-y-auto' : ''} 
+            ${compact ? 'p-3 sm:p-4' : 'p-4'}
+            ${heightClass === 'scroll' ? 'max-h-[calc(80vh-100px)]' : 
+              heightClass === 'compact' ? 'max-h-[calc(70vh-100px)]' : 
+              'max-h-[calc(90vh-100px)]'}
+          `}>
             {children}
           </div>
         </div>

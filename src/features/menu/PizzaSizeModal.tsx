@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import Modal from '../../ui/Modal';
@@ -24,6 +24,14 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState<PizzaSize | null>(null);
   const [isAdding, setIsAdding] = useState(false);
+
+  // Reset state when modal opens/closes
+  useEffect(() => {
+    if (!isOpen) {
+      setSelectedSize(null);
+      setIsAdding(false);
+    }
+  }, [isOpen]);
 
   if (!pizza) return null;
 
@@ -82,49 +90,75 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
     const areaMultiplier = Math.pow(currentDiameter / baseDiameter, 2);
     return Math.round(baseWeight * areaMultiplier);
   };
+  // Handle keyboard navigation
+  const handleKeyDown = (event: React.KeyboardEvent, size: PizzaSize) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setSelectedSize(size);
+    }
+  };
+
   const handleAddToCart = async () => {
     if (!selectedSize) return;
     
     setIsAdding(true);
     
-    const finalPrice = selectedSize.price;
-    const sizeName = `${name} (${selectedSize.label})`;
-    
-    const newItem = {
-      pizzaId: id,
-      name: sizeName,
-      quantity: 1,
-      unitPrice: finalPrice,
-      totalPrice: finalPrice,
-      size: selectedSize.size,
-      diameter: selectedSize.diameter,
-    };
+    try {
+      const finalPrice = selectedSize.price;
+      const sizeName = `${name} (${selectedSize.label})`;
+      
+      const newItem = {
+        pizzaId: id,
+        name: sizeName,
+        quantity: 1,
+        unitPrice: finalPrice,
+        totalPrice: finalPrice,
+        size: selectedSize.size,
+        diameter: selectedSize.diameter,
+      };
 
-    dispatch(addItem(newItem));
+      dispatch(addItem(newItem));
 
-    // Simulate brief loading for UX
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    setIsAdding(false);
-    onClose();
+      // Optimized loading feedback - shorter but noticeable
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      onClose();
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    } finally {
+      setIsAdding(false);
+    }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={t('menu.selectSize')} size="md">
-      <div className="p-6">        {/* Pizza Preview */}
-        <div className="flex items-center gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-          <div className="w-16 h-16 rounded-lg bg-orange-100 flex items-center justify-center">
-            <span className="text-2xl">🍕</span>
+    <Modal 
+      isOpen={isOpen} 
+      onClose={onClose} 
+      title={t('menu.selectSize')} 
+      size="pizza"
+      scrollable={true}
+      compact={true}
+      heightClass="compact"
+    >
+      <div className="p-4 sm:p-6">        {/* Pizza Preview - Optimized */}
+        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+            <span className="text-xl sm:text-2xl">🍕</span>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900">{name}</h3>
-            <p className="text-sm text-gray-600 line-clamp-2">
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{name}</h3>
+            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
               {Array.isArray(ingredients) ? ingredients.join(', ') : ''}
             </p>
           </div>
-        </div>        {/* Size Options */}
-        <div className="space-y-3 mb-6">
-          <h4 className="font-semibold text-gray-900 mb-3">{t('menu.availableSizes')}</h4>
+        </div>
+
+        {/* Size Options - Mobile Optimized */}
+        <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+          <h4 className="font-semibold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">{t('menu.availableSizes')}</h4>
+          
+          <div role="radiogroup" aria-labelledby="size-selection-label" className="space-y-2 sm:space-y-3">
+            <div id="size-selection-label" className="sr-only">{t('menu.availableSizes')}</div>
           
           {availableSizes.map((size: PizzaSize) => {
             const price = size.price;
@@ -135,15 +169,20 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
               <button
                 key={size.size}
                 onClick={() => setSelectedSize(size)}
-                className={`w-full p-4 rounded-lg border-2 transition-all duration-200 text-left ${
+                onKeyDown={(e) => handleKeyDown(e, size)}
+                className={`w-full p-3 sm:p-4 rounded-lg border-2 transition-all duration-200 text-left ${
                   isSelected
-                    ? 'border-orange-500 bg-orange-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-orange-500 bg-orange-50 ring-2 ring-orange-200'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50 focus:border-orange-300 focus:ring-2 focus:ring-orange-200'
                 }`}
+                role="radio"
+                aria-checked={isSelected}
+                aria-describedby={`size-${size.size}-description`}
+                tabIndex={0}
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                       isSelected ? 'border-orange-500' : 'border-gray-300'
                     }`}>
                       {isSelected && (
@@ -151,18 +190,21 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
                       )}
                     </div>
                     
-                    <div>
-                      <div className="font-medium text-gray-900">{size.label}</div>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900 text-sm sm:text-base">{size.label}</div>
                       {weight && (
-                        <div className="text-sm text-gray-500">
+                        <div 
+                          id={`size-${size.size}-description`}
+                          className="text-xs sm:text-sm text-gray-500"
+                        >
                           ca. {weight}g
                         </div>
                       )}
                     </div>
                   </div>
                   
-                  <div className="text-right">
-                    <div className="font-semibold text-gray-900">
+                  <div className="text-right flex-shrink-0">
+                    <div className="font-semibold text-gray-900 text-sm sm:text-base">
                       {formatCurrency(price)}
                     </div>
                     {germanInfo && (
@@ -175,50 +217,51 @@ function PizzaSizeModal({ isOpen, onClose, pizza }: PizzaSizeModalProps) {
               </button>
             );
           })}
-        </div>        {/* Selected Size Summary */}
+          </div>
+        </div>        {/* Selected Size Summary - Mobile Optimized */}
         {selectedSize && (
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
             <div className="flex items-center justify-between">
-              <div>
-                <div className="font-medium text-gray-900">
+              <div className="min-w-0 flex-1">
+                <div className="font-medium text-gray-900 text-sm sm:text-base truncate">
                   {name} ({selectedSize.label})
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-xs sm:text-sm text-gray-600">
                   {calculateWeight(selectedSize)}g • ⌀{selectedSize.diameter}
                 </div>
               </div>
-              <div className="text-xl font-bold text-gray-900">
+              <div className="text-lg sm:text-xl font-bold text-gray-900 flex-shrink-0 ml-3">
                 {formatCurrency(selectedSize.price)}
               </div>
             </div>
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-3">
+        {/* Action Buttons - Mobile Optimized */}
+        <div className="flex gap-2 sm:gap-3 pt-2">
           <button
             onClick={onClose}
-            className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex-1 px-4 sm:px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
           >
             {t('common.cancel')}
           </button>
           
           <button
             onClick={handleAddToCart}
-            disabled={isAdding}
-            className="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+            disabled={isAdding || !selectedSize}
+            className="flex-1 px-4 sm:px-6 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             {isAdding ? (
               <>
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                {t('menu.adding')}
+                <span className="hidden sm:inline">{t('menu.adding')}</span>
               </>
             ) : (
               <>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                {t('menu.addToBasket')}
+                <span>{t('menu.addToBasket')}</span>
               </>
             )}
           </button>
