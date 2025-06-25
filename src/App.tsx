@@ -71,7 +71,17 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  // React Router v7 Future Flags - Fix deployment warnings
+  future: {
+    // Enable future form method normalization
+    v7_normalizeFormMethod: true,
+    // Enable future relative path resolution
+    v7_relativeSplatPath: true,
+    // Enable future partial hydration
+    v7_partialHydration: true,
+  },
+});
 
 function App() {
   return <RouterProvider router={router} />;
