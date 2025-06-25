@@ -8,6 +8,7 @@ import { getGermanPizzaInfo, getCategoryInGerman } from '../../data/germanPizzaI
 import { getProductType, createQuickAddItem } from '../../utils/productDetection';
 import PizzaDetailsModal from './PizzaDetailsModal';
 import PizzaSizeModal from './PizzaSizeModal';
+import AdvancedPizzaModal from './AdvancedPizzaModal';
 
 interface MenuItemCompactProps {
   pizza: any;
@@ -17,7 +18,9 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, sizes } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
-  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));  const [showDetailsModal, setShowDetailsModal] = useState(false);  const [showSizeModal, setShowSizeModal] = useState(false);
+  const totalPizzaQuantity = useSelector(getTotalQuantityByPizzaId(id));  const [showDetailsModal, setShowDetailsModal] = useState(false);  
+  const [showSizeModal, setShowSizeModal] = useState(false);
+  const [useAdvancedModal, setUseAdvancedModal] = useState(true); // Toggle for modal type
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   
   // Only get German pizza info for actual pizzas (not baguettes, snacks, etc.)
@@ -155,12 +158,29 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
 
             {/* Bottom Row: Item Info, Price, Add Button */}
             <div className="flex items-center justify-between">
-              <button
-                onClick={handleDetailsClick}
-                className="text-sm text-orange-600 hover:text-orange-700 font-medium underline decoration-dotted underline-offset-2 transition-colors"
-              >
-                {t('menu.itemInfo')}
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleDetailsClick}
+                  className="text-sm text-orange-600 hover:text-orange-700 font-medium underline decoration-dotted underline-offset-2 transition-colors"
+                >
+                  {t('menu.itemInfo')}
+                </button>
+                
+                {/* Modal Type Toggle for Testing */}
+                {isPizza && (
+                  <button
+                    onClick={() => setUseAdvancedModal(!useAdvancedModal)}
+                    className={`text-xs px-2 py-1 rounded transition-colors ${
+                      useAdvancedModal 
+                        ? 'bg-green-100 text-green-700 border border-green-300' 
+                        : 'bg-gray-100 text-gray-600 border border-gray-300'
+                    }`}
+                    title={useAdvancedModal ? 'Using Advanced Modal (with Zutaten)' : 'Using Basic Modal'}
+                  >
+                    {useAdvancedModal ? '🧪 Adv' : '🔧 Basic'}
+                  </button>
+                )}
+              </div>
 
               <div className="flex items-center gap-3">
                 {/* Price */}                <div className="text-right">
@@ -270,11 +290,20 @@ function MenuItemCompact({ pizza }: MenuItemCompactProps) {  const { t } = useTr
         onAddToCart={handleAddClick}
       />
 
-      <PizzaSizeModal
-        isOpen={showSizeModal}
-        onClose={() => setShowSizeModal(false)}
-        pizza={pizza}
-      />
+      {/* Choose between old PizzaSizeModal and new AdvancedPizzaModal */}
+      {useAdvancedModal ? (
+        <AdvancedPizzaModal
+          isOpen={showSizeModal}
+          onClose={() => setShowSizeModal(false)}
+          pizza={pizza}
+        />
+      ) : (
+        <PizzaSizeModal
+          isOpen={showSizeModal}
+          onClose={() => setShowSizeModal(false)}
+          pizza={pizza}
+        />
+      )}
     </>
   );
 }

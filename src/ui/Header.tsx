@@ -39,6 +39,13 @@ function Header() {
               >
                 {t('navigation.myOrders')}
               </Link>
+              <Link 
+                to="/modal-test" 
+                className="text-white hover:text-orange-100 transition-colors duration-200 font-medium text-sm bg-green-600 px-2 py-1 rounded"
+                title="Test Advanced Pizza Modal (Phase 3)"
+              >
+                🧪 Modal Test
+              </Link>
             </nav>
 
             {/* Right Section */}
