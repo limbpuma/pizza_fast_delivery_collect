@@ -501,7 +501,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                       <p className="mb-1 font-medium text-orange-800">
                         {t('checkout.deliveryZones', { default: 'Delivery Zones:' })}
                       </p>
-                      <p className="text-sm text-orange-700">44149, 44147, 44227, 44225, 44137, 44135</p>
+                      <p className="text-sm text-orange-700">44149, 44147, 44137, 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379, 44357, 44359, 44265, 44263</p>
                     </div>
                   </div>
                 </div>

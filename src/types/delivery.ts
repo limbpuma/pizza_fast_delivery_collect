@@ -229,8 +229,8 @@ export interface DeliverySession {
   readonly tariff: DeliveryTariff;
   /** Whether the session is locked (prevents PLZ changes) */
   readonly isLocked: boolean;
-  /** Timestamp when session was locked */
-  readonly lockedAt: Date;
+  /** Timestamp when session was locked (Unix timestamp in milliseconds) */
+  readonly lockedAt: number;
   /** Current delivery fee for the session */
   readonly deliveryFee: number;
   /** Whether current order qualifies for free delivery */
@@ -254,10 +254,10 @@ export interface DeliverySessionMetadata {
   readonly plzChangeCount: number;
   /** History of PLZ selections */
   readonly plzHistory: readonly string[];
-  /** Session creation timestamp */
-  readonly createdAt: Date;
-  /** Last update timestamp */
-  readonly updatedAt: Date;
+  /** Session creation timestamp (Unix timestamp in milliseconds) */
+  readonly createdAt: number;
+  /** Last update timestamp (Unix timestamp in milliseconds) */
+  readonly updatedAt: number;
   /** User agent information */
   readonly userAgent?: string;
   /** Geographic location (if available) */
@@ -478,8 +478,8 @@ export interface DeliveryError {
   readonly message: string;
   /** Additional error context */
   readonly context?: DeliveryErrorContext;
-  /** Timestamp when error occurred */
-  readonly timestamp: Date;
+  /** Timestamp when error occurred (Unix timestamp in milliseconds) */
+  readonly timestamp: number;
   /** Whether error is recoverable */
   readonly recoverable: boolean;
 }

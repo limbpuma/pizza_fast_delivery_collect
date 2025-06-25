@@ -39,7 +39,7 @@ export const updatePLZWithSession = createAsyncThunk(
         return rejectWithValue({
           code: "INVALID_FORMAT" as const,
           message: validationResult.error || "Invalid postal code",
-          timestamp: new Date(),
+          timestamp: Date.now(),
           recoverable: true,
         });
       }
@@ -51,7 +51,7 @@ export const updatePLZWithSession = createAsyncThunk(
         return rejectWithValue({
           code: "NOT_IN_DELIVERY_AREA" as const,
           message: "Delivery not available for this postal code",
-          timestamp: new Date(),
+          timestamp: Date.now(),
           recoverable: true,
         });
       }
@@ -67,7 +67,7 @@ export const updatePLZWithSession = createAsyncThunk(
       return rejectWithValue({
         code: "SYSTEM_ERROR" as const,
         message: "Failed to validate postal code",
-        timestamp: new Date(),
+        timestamp: Date.now(),
         recoverable: true,
       });
     }
@@ -77,7 +77,7 @@ export const updatePLZWithSession = createAsyncThunk(
 // Simple session lock interface
 interface SessionLock {
   isLocked: boolean;
-  lockedAt: Date;
+  lockedAt: number; // Unix timestamp in milliseconds
   lockedBy: string;
   reason: string;
   canOverride: boolean;
@@ -149,20 +149,21 @@ const userSlice = createSlice({
     // New delivery session reducers
     createDeliverySession(state, action) {
       const { plz, tariff, source = "user_input" } = action.payload;
+      const now = Date.now();
       
       state.deliverySession = {
         plz,
         tariff,
         isLocked: false,
-        lockedAt: new Date(),
+        lockedAt: now,
         deliveryFee: tariff.lieferkosten,
         isFreeDelivery: false,
         deliveryPreference: "not_selected" as const,
         metadata: {
           plzChangeCount: 0,
           plzHistory: [plz],
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          createdAt: now,
+          updatedAt: now,
         },
       };
       
@@ -189,7 +190,7 @@ const userSlice = createSlice({
         
         state.sessionLock = {
           isLocked: true,
-          lockedAt: new Date(),
+          lockedAt: Date.now(),
           lockedBy,
           reason,
           canOverride: false,
@@ -232,7 +233,7 @@ const userSlice = createSlice({
     validateSessionSecurity(state) {
       if (state.deliverySession) {
         const now = Date.now();
-        const sessionAge = now - state.deliverySession.metadata.createdAt.getTime();
+        const sessionAge = now - state.deliverySession.metadata.createdAt;
         const maxAge = 30 * 60 * 1000; // 30 minutes
         
         if (sessionAge > maxAge) {
@@ -240,7 +241,7 @@ const userSlice = createSlice({
           state.deliveryError = {
             code: "SYSTEM_ERROR" as const,
             message: "Your delivery session has expired. Please select your postal code again.",
-            timestamp: new Date(),
+            timestamp: now,
             recoverable: true,
           };
           state.deliverySession = null;
@@ -282,15 +283,15 @@ const userSlice = createSlice({
           plz,
           tariff,
           isLocked: false,
-          lockedAt: new Date(),
+          lockedAt: timestamp,
           deliveryFee: tariff.lieferkosten,
           isFreeDelivery: false,
           deliveryPreference: "not_selected" as const,
           metadata: {
             plzChangeCount: 0,
             plzHistory: [plz],
-            createdAt: new Date(timestamp),
-            updatedAt: new Date(timestamp),
+            createdAt: timestamp,
+            updatedAt: timestamp,
           },
         };
         
