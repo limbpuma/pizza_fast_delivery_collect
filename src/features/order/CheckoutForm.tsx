@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,6 @@ import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
 import { isValidInternationalPhone, isValidGermanPostalCode } from "../../utils/germanHelpers";
 import { isValidDeliveryZone } from "../../utils/deliveryZones";
-import { getTariffByPLZ } from "../../utils/deliveryTariffs";
 import { saveOrder } from "../../utils/orderCache";
 import LinkButton from "../../ui/LinkButton";
 import PhoneInput from "../../ui/PhoneInput";
@@ -15,8 +14,13 @@ import { useOrderSubmission } from "./hooks/useOrderSubmission";
 import { useSocialProof } from "../../hooks/useSocialProof";
 import RestaurantStatusBanner from "../../ui/RestaurantStatusBanner";
 import { 
-  selectUser
+  selectUser, 
+  selectCurrentTariff
 } from '../user/userSlice';
+import { 
+  selectCurrentCalculation,
+  calculateDeliveryWithCache
+} from '../delivery/deliverySlice';
 
 interface FormData {
   customer: string;
@@ -47,35 +51,42 @@ function CheckoutForm() {
   const cart = useSelector(getCart);
   const cartTotalPrice = useSelector(getTotalCartPrice);
   const user = useSelector(selectUser);
+  const currentTariff = useSelector(selectCurrentTariff);
+  const deliveryCalculation = useSelector(selectCurrentCalculation);
 
   // Social proof hook for dynamic content
   const { socialProof, isLoading } = useSocialProof();
 
-  // No need for delivery calculation as all delivery is now free
+  // Trigger delivery calculation when cart price changes and we're in delivery mode
+  useEffect(() => {
+    if (deliveryMode === 'delivery' && user.plz && cartTotalPrice > 0) {
+      dispatch(calculateDeliveryWithCache({
+        plz: user.plz,
+        orderValue: cartTotalPrice
+      }) as any);
+    }
+  }, [dispatch, deliveryMode, user.plz, cartTotalPrice]);
 
   // Calculate fees with dynamic delivery pricing
   const subtotal = cartTotalPrice;
   
-  // All fees eliminated - delivery and service now free
-  const total = subtotal;
-
-  // Check mindestbestellwert validation
-  const currentTariff = useMemo(() => {
-    if (deliveryMode === 'delivery' && user.plz) {
-      return getTariffByPLZ(user.plz);
+  // Use dynamic delivery fee from calculation, fallback to tariff, then hardcoded
+  let deliveryFee = 0;
+  
+  if (deliveryMode === 'delivery') {
+    if (deliveryCalculation?.finalFee !== undefined && deliveryCalculation.finalFee !== null && typeof deliveryCalculation.finalFee === 'number') {
+      deliveryFee = deliveryCalculation.finalFee;
+    } else if (currentTariff && typeof currentTariff.lieferkosten === 'number') {
+      deliveryFee = currentTariff.lieferkosten;
+    } else {
+      deliveryFee = 0.99; // Ultimate fallback
     }
-    return getTariffByPLZ('abholung'); // pickup
-  }, [deliveryMode, user.plz]);
-
-  const meetsMinimum = useMemo(() => {
-    if (!currentTariff) return true;
-    return subtotal >= currentTariff.mindestbestellwert;
-  }, [subtotal, currentTariff]);
-
-  const missingAmount = useMemo(() => {
-    if (!currentTariff || meetsMinimum) return 0;
-    return currentTariff.mindestbestellwert - subtotal;
-  }, [currentTariff, meetsMinimum, subtotal]);
+  }
+  
+  const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
+  const maxServiceFee = 0.99;
+  const finalServiceFee = Math.min(serviceFee, maxServiceFee);
+  const total = subtotal + deliveryFee + finalServiceFee;
 
   // Order submission protection
   const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
@@ -130,13 +141,6 @@ function CheckoutForm() {
     }
 
     setErrors(newErrors);
-    
-    // Check minimum order value
-    if (!meetsMinimum && currentTariff) {
-      alert(`Mindestbestellwert nicht erreicht. Benötigt: €${currentTariff.mindestbestellwert.toFixed(2)}, Aktuell: €${subtotal.toFixed(2)}`);
-      return false;
-    }
-    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -181,7 +185,7 @@ ${orderItems}
 
 💰 *${t('checkout.whatsappMessage.summary')}*
 ${t('checkout.whatsappMessage.subtotal', { amount: formatCurrency(subtotal) })}
-${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: 'Kostenlos' })}\n` : ''}${t('checkout.whatsappMessage.service', { amount: 'Kostenlos' })}
+${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}${t('checkout.whatsappMessage.service', { amount: formatCurrency(finalServiceFee) })}
 *${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
 
 🚀 *${t('checkout.whatsappMessage.type', { type: deliveryTypeText })}*
@@ -222,8 +226,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         cart: cart,
         pricing: {
           subtotal,
-          deliveryFee: 0,
-          serviceFee: 0,
+          deliveryFee,
+          serviceFee: finalServiceFee,
           total
         }
       };
@@ -277,22 +281,6 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         <div className="mb-6">
           <LinkButton to="/menu">&larr; {t('common.backToMenu', { default: 'Back to Menu' })}</LinkButton>
         </div>
-
-        {/* Minimum Order Validation Alert */}
-        {!meetsMinimum && currentTariff && (
-          <div className="p-4 mb-6 border border-red-200 rounded-lg bg-red-50">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-medium text-red-800">
-                ⚠️ Mindestbestellwert nicht erreicht
-              </span>
-            </div>
-            <p className="text-sm text-red-600">
-              Mindestbestellwert: €{currentTariff.mindestbestellwert.toFixed(2)} 
-              • Aktuell: €{subtotal.toFixed(2)}
-              • Noch €{missingAmount.toFixed(2)} erforderlich
-            </p>
-          </div>
-        )}
 
         <div className="mb-8">
           <h1 className="mb-2 text-2xl font-bold text-gray-900">
@@ -396,11 +384,14 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
               {deliveryMode === 'delivery' && (
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">{t('checkout.deliveryFee', { default: 'Delivery fee' })}</span>
-                  <span className="font-medium text-green-600">Kostenlos</span>
+                  <span className="font-medium">{formatCurrency(deliveryFee)}</span>
                 </div>
               )}
               
-              {/* Service fee eliminated */}
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">{t('checkout.serviceFee', { default: 'Service fee' })} (2.5%)</span>
+                <span className="font-medium">{formatCurrency(finalServiceFee)}</span>
+              </div>
               
               <div className="pt-2 border-t border-gray-200">
                 <div className="flex justify-between text-lg font-bold">
