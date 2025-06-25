@@ -43,7 +43,8 @@ function Home() {
               {t('home.subtitle')}
             </span>
           </p>          {/* Fast Features - Dynamic Icons + Text */}
-          <DynamicFeatures features={features} className="mb-8" />{/* Social Proof Banner - Dynamic */}
+          <DynamicFeatures features={features} className="mb-8" />
+          {/* Social Proof Banner - Dynamic */}
           <div className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-sm relative">
             {/* Loading indicator */}
             {isLoading && (
@@ -116,7 +117,91 @@ function Home() {
               </div>
             )}          </div>
         </div>
-      </div>      {/* How It Works Section */}
+      </div>
+
+      {/* Delivery Zones Section - Real Business Data */}
+      <div className="bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              {t('home.deliveryZones.title')}
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              {t('home.deliveryZones.description')}
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Zone 1 - Campus */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-green-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-green-100 rounded-bl-full"></div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🎓</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{t('home.deliveryZones.zone1.title')}</h3>
+                <p className="text-sm text-gray-600 mb-3 font-mono">{t('home.deliveryZones.zone1.plz')}</p>
+                <div className="bg-green-50 rounded-lg p-3">
+                  <p className="text-sm font-semibold text-green-800">{t('home.deliveryZones.zone1.delivery')}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Zone 2 - City */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-bl-full"></div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🏢</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{t('home.deliveryZones.zone2.title')}</h3>
+                <p className="text-xs text-gray-600 mb-3 font-mono leading-relaxed">{t('home.deliveryZones.zone2.plz')}</p>
+                <div className="bg-blue-50 rounded-lg p-3">
+                  <p className="text-sm font-semibold text-blue-800">{t('home.deliveryZones.zone2.delivery')}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Zone 3 - Outer */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-purple-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-purple-100 rounded-bl-full"></div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🌍</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{t('home.deliveryZones.zone3.title')}</h3>
+                <p className="text-sm text-gray-600 mb-3 font-mono">{t('home.deliveryZones.zone3.plz')}</p>
+                <div className="bg-purple-50 rounded-lg p-3">
+                  <p className="text-sm font-semibold text-purple-800">{t('home.deliveryZones.zone3.delivery')}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Pickup Option */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-orange-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-orange-100 rounded-bl-full"></div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🏪</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{t('home.deliveryZones.pickup.title')}</h3>
+                <p className="text-sm text-gray-600 mb-3">{t('home.deliveryZones.pickup.description')}</p>
+                <div className="bg-orange-50 rounded-lg p-3">
+                  <p className="text-sm font-semibold text-orange-800">€0,00 Kosten</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-600">
+              📍 Insgesamt <strong>18+ Postleitzahlen</strong> in ganz Dortmund abgedeckt
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
       <div className="bg-white py-12">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
@@ -200,8 +285,9 @@ function Home() {
               <p className="text-sm text-gray-700 italic mb-2">"{t('home.testimonials.customer3.text')}"</p>
               <p className="text-xs text-gray-500">- {t('home.testimonials.customer3.name')}</p>
             </div>
-          </div>            {/* Trust Badges - Dynamic */}
-          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-600">
+          </div>           
+           {/* Trust Badges - Dynamic */}
+          <div className="mt-8 flex flex-wrap sm:flex-nowrap items-center justify-center gap-8 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="text-green-500">✅</span>
               <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>

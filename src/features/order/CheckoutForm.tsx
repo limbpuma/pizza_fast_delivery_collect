@@ -13,6 +13,10 @@ import PhoneInput from "../../ui/PhoneInput";
 import { useOrderSubmission } from "./hooks/useOrderSubmission";
 import { useSocialProof } from "../../hooks/useSocialProof";
 import RestaurantStatusBanner from "../../ui/RestaurantStatusBanner";
+import { calculateDeliveryFee } from "../../utils/deliveryTariffs";
+import { 
+  selectUser
+} from '../user/userSlice';
 
 interface FormData {
   customer: string;
@@ -42,17 +46,28 @@ function CheckoutForm() {
   
   const cart = useSelector(getCart);
   const cartTotalPrice = useSelector(getTotalCartPrice);
+  const user = useSelector(selectUser);
 
   // Social proof hook for dynamic content
   const { socialProof, isLoading } = useSocialProof();
 
-  // Calculate fees
+  // Calculate delivery fees using the tariff system
+  const userPLZ = user.postalCode || user.plz;
+  const deliveryCalculation = deliveryMode === 'delivery' && userPLZ 
+    ? calculateDeliveryFee(userPLZ, cartTotalPrice)
+    : calculateDeliveryFee('abholung', cartTotalPrice);
+
+  // Calculate fees with dynamic delivery pricing
   const subtotal = cartTotalPrice;
-  const deliveryFee = deliveryMode === 'delivery' ? 0.99 : 0;
-  const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
-  const maxServiceFee = 0.99;
-  const finalServiceFee = Math.min(serviceFee, maxServiceFee);
-  const total = subtotal + deliveryFee + finalServiceFee;
+  const deliveryFee = deliveryCalculation.fee;
+  
+  // No service fee for better customer experience
+  const total = subtotal + deliveryFee;
+
+  // Minimum order validation
+  const meetsMinimum = deliveryCalculation.meetsMinimum;
+  const missingAmount = deliveryCalculation.missingAmount;
+  const currentTariff = deliveryCalculation.tariff;
 
   // Order submission protection
   const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
@@ -139,20 +154,24 @@ function CheckoutForm() {
       ? `\n📝 ${t('checkout.whatsappMessage.specialInstructions', { instructions: formData.specialInstructions })}`
       : '';
 
+    // Add delivery zone info for delivery orders
+    const deliveryZoneInfo = deliveryMode === 'delivery' && currentTariff 
+      ? `\n🗺️ *Delivery Zone:* ${currentTariff.name} (PLZ: ${userPLZ})`
+      : '';
+
     return `🍕 *${t('checkout.whatsappMessage.title')}*
 
 📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
 📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
 
-👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}
+👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}${deliveryZoneInfo}
 
 🛒 *${t('checkout.whatsappMessage.products')}*
 ${orderItems}
 
 💰 *${t('checkout.whatsappMessage.summary')}*
 ${t('checkout.whatsappMessage.subtotal', { amount: formatCurrency(subtotal) })}
-${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}${t('checkout.whatsappMessage.service', { amount: formatCurrency(finalServiceFee) })}
-*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
+${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
 
 🚀 *${t('checkout.whatsappMessage.type', { type: deliveryTypeText })}*
 💳 *${t('checkout.whatsappMessage.payment', { method: paymentMethodText })}*${specialInstructionsText}
@@ -193,7 +212,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         pricing: {
           subtotal,
           deliveryFee,
-          serviceFee: finalServiceFee,
+          serviceFee: 0, // No service fee
           total
         }
       };
@@ -242,12 +261,14 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="px-4 py-6 max-w-2xl mx-auto">
+      <div className="max-w-2xl px-4 py-6 mx-auto">
         {/* Header */}
         <div className="mb-6">
           <LinkButton to="/menu">&larr; {t('common.backToMenu', { default: 'Back to Menu' })}</LinkButton>
-        </div>        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        </div>
+
+        <div className="mb-8">
+          <h1 className="mb-2 text-2xl font-bold text-gray-900">
             {deliveryMode === 'delivery' 
               ? t('checkout.titleDelivery', { default: 'Checkout - Delivery' })
               : t('checkout.titleCollection', { default: 'Checkout - Collection' })
@@ -263,7 +284,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         <RestaurantStatusBanner />
         
         {/* Additional Social Proof Banner */}
-        <div className="mb-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-4 shadow-sm">          <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
+        <div className="p-4 mb-6 border border-gray-200 shadow-sm bg-white/90 backdrop-blur-sm rounded-xl">          <div className="flex items-center justify-center gap-4 text-sm text-gray-700">
             <div className="flex items-center gap-2">
               <span className="text-green-500">👥</span>
               <span className={`transition-all duration-300 ${isLoading ? 'opacity-50' : 'opacity-100'}`}>
@@ -294,7 +315,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           {/* Urgency message */}
           {socialProof.urgencyMessage && (
             <div className="mt-2 text-center">
-              <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
+              <span className="px-2 py-1 text-xs text-orange-600 rounded-full bg-orange-50">
                 🔥 {socialProof.urgencyMessage.count 
                   ? t(socialProof.urgencyMessage.key, { count: socialProof.urgencyMessage.count })
                   : t(socialProof.urgencyMessage.key)
@@ -305,8 +326,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         </div>
 
         {/* Order Summary */}
-        <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="p-6 mb-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900">
             <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
@@ -314,10 +335,10 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           </h3>
           
           <div className="space-y-3">            {cart.map((item: any) => (
-              <div key={`${item.pizzaId}-${item.size || 'default'}`} className="flex justify-between items-center py-2">
+              <div key={`${item.pizzaId}-${item.size || 'default'}`} className="flex items-center justify-between py-2">
                 <div className="flex-1">                  <div className="flex items-center justify-between">
                     <div className="font-medium text-gray-900">
-                      <span className="text-sm text-gray-500 mr-1">
+                      <span className="mr-1 text-sm text-gray-500">
                         {t('menu.productNumber', { number: item.pizzaId })}
                       </span>
                       {item.quantity}× {item.name}
@@ -338,7 +359,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             ))}
           </div>
 
-          <div className="border-t border-gray-200 mt-4 pt-4">
+          <div className="pt-4 mt-4 border-t border-gray-200">
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">{t('checkout.subtotal', { default: 'Subtotal' })}</span>
@@ -352,13 +373,9 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </div>
               )}
               
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{t('checkout.serviceFee', { default: 'Service fee' })} (2.5%)</span>
-                <span className="font-medium">{formatCurrency(finalServiceFee)}</span>
-              </div>
               
-              <div className="border-t border-gray-200 pt-2">
-                <div className="flex justify-between font-bold text-lg">
+              <div className="pt-2 border-t border-gray-200">
+                <div className="flex justify-between text-lg font-bold">
                   <span className="text-gray-900">{t('checkout.total', { default: 'Total' })}</span>
                   <span className="text-orange-600">{formatCurrency(total)}</span>
                 </div>
@@ -369,8 +386,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
         {/* Customer Information Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900">
               <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -380,7 +397,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             <div className="space-y-4">
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
                   {t('checkout.name', { default: 'Full Name' })} *
                 </label>
                 <input
@@ -397,7 +414,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 )}
               </div>              {/* Phone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
                   {t('checkout.phone', { default: 'Phone Number' })} *
                 </label>                <PhoneInput
                   value={formData.phone}
@@ -411,8 +428,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
           {/* Delivery Address (only for delivery) */}
           {deliveryMode === 'delivery' && (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+              <h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900">
                 <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -422,7 +439,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 <div className="space-y-4">
                 {/* Address */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
                     {t('checkout.address', { default: 'Address' })} *
                   </label>
                   <input
@@ -440,9 +457,9 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </div>
 
                 {/* Postal Code and City */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       {t('checkout.postalCode', { default: 'Postal Code' })} *
                     </label>
                     <input
@@ -461,7 +478,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
                       {t('checkout.city', { default: 'City' })}
                     </label>
                     <input
@@ -475,16 +492,16 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </div>
 
                 {/* Delivery zones info */}
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                <div className="p-4 border border-orange-200 rounded-lg bg-orange-50">
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
-                      <p className="font-medium text-orange-800 mb-1">
+                      <p className="mb-1 font-medium text-orange-800">
                         {t('checkout.deliveryZones', { default: 'Delivery Zones:' })}
                       </p>
-                      <p className="text-sm text-orange-700">44149, 44147, 44227, 44225, 44137, 44135</p>
+                      <p className="text-sm text-orange-700">44149, 44147, 44137, 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379, 44357, 44359, 44265, 44263</p>
                     </div>
                   </div>
                 </div>
@@ -493,8 +510,8 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           )}
 
           {/* Payment Method */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900">
               <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
@@ -502,7 +519,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             </h3>
             
             <div className="space-y-3">
-              <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+              <label className="flex items-center p-4 transition-colors border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                 <input
                   type="radio"
                   value="cash"
@@ -523,7 +540,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </div>
               </label>
               
-              <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+              <label className="flex items-center p-4 transition-colors border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                 <input
                   type="radio"
                   value="card"
@@ -547,19 +564,19 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
           </div>
 
           {/* Special Instructions */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900">
               <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
               </svg>
               {t('checkout.specialInstructions', { default: 'Special Instructions' })} 
-              <span className="text-gray-500 font-normal text-sm">({t('common.optional', { default: 'optional' })})</span>
+              <span className="text-sm font-normal text-gray-500">({t('common.optional', { default: 'optional' })})</span>
             </h3>
             
             <textarea
               value={formData.specialInstructions}
               onChange={(e) => handleInputChange('specialInstructions', e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors resize-none"
+              className="w-full px-4 py-3 transition-colors border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
               rows={3}
               placeholder={t('checkout.specialInstructionsPlaceholder', { 
                 default: 'Ring doorbell, leave at door, etc.' 
@@ -571,10 +588,30 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             </p>
           </div>
 
+          {/* Minimum Order Validation */}
+          {!meetsMinimum && currentTariff && (
+            <div className="p-4 mb-6 border border-red-200 rounded-lg bg-red-50">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-medium text-red-800">
+                  ⚠️ Mindestbestellwert nicht erreicht
+                </span>
+              </div>
+              <p className="text-xs text-red-600">
+                Mindestbestellwert: €{currentTariff.mindestbestellwert.toFixed(2)} 
+                • Noch €{missingAmount.toFixed(2)} erforderlich
+              </p>
+              <div className="mt-2">
+                <LinkButton to="/menu">
+                  → Weitere Artikel hinzufügen
+                </LinkButton>
+              </div>
+            </div>
+          )}
+
           {/* Submit Button */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
             <div className="mb-6">
-              <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-orange-50">
                 <span className="font-semibold text-orange-900">
                   {t('checkout.finalTotal', { default: 'Final Total' })}
                 </span>
@@ -582,22 +619,37 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
               </div>
             </div>            <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-full transition-all duration-200 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:cursor-not-allowed"
+              disabled={isSubmitting || !meetsMinimum}
+              className={`w-full font-semibold py-4 px-6 rounded-full transition-all duration-200 transform ${
+                meetsMinimum && !isSubmitting
+                  ? 'bg-orange-500 hover:bg-orange-600 text-white hover:scale-[1.02]'
+                  : 'bg-gray-400 text-white cursor-not-allowed'
+              } disabled:hover:scale-100 disabled:cursor-not-allowed`}
               onClick={(e) => {
-                // Additional protection against double clicks
-                if (isSubmitting) {
+                // Additional protection against double clicks and minimum order validation
+                if (isSubmitting || !meetsMinimum) {
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log('⚠️ Button click ignored - submission in progress');
+                  if (isSubmitting) {
+                    console.log('⚠️ Button click ignored - submission in progress');
+                  } else {
+                    console.log('⚠️ Button click ignored - minimum order not met');
+                  }
                   return;
                 }
               }}
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center gap-2">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-white rounded-full border-t-transparent animate-spin"></div>
                   {t('common.processing', { default: 'Processing...' })}
+                </div>
+              ) : !meetsMinimum ? (
+                <div className="flex items-center justify-center gap-2">
+                  <span>❌</span>
+                  <span>
+                    Mindestbestellwert: €{currentTariff?.mindestbestellwert.toFixed(2) || '0.00'}
+                  </span>
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-2">

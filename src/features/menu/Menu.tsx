@@ -1,15 +1,40 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { getMenu } from "../../services/apiRestaurant";
 import MenuItemCompact from "./MenuItemCompact";
 import MenuFilters from "./MenuFilters";
 import RestaurantHeader from "./RestaurantHeader";
 import { useTranslation } from 'react-i18next';
+import { 
+  selectCurrentTariff
+} from '../user/userSlice';
+import { 
+  selectCurrentCalculation
+} from '../delivery/deliverySlice';
 
 function Menu() {
   const { t } = useTranslation();
   // Using real menu data with category field (processed from kategorie)
   const menu = useLoaderData() as any[];
+  
+  // Get delivery information for dynamic header
+  const currentTariff = useSelector(selectCurrentTariff);
+  const deliveryCalculation = useSelector(selectCurrentCalculation);
+  
+  // Calculate dynamic delivery fee and minimum order for header
+  let headerDeliveryFee = "0,99"; // Default fallback
+  let headerMinOrderAmount = 12.00; // Default fallback
+  
+  if (currentTariff && typeof currentTariff.lieferkosten === 'number') {
+    headerDeliveryFee = currentTariff.lieferkosten.toFixed(2).replace('.', ',');
+    headerMinOrderAmount = currentTariff.lieferkosten_entfallen_ab;
+  }
+  
+  // If we have a specific calculation (based on order value), use that instead
+  if (deliveryCalculation?.finalFee !== undefined && deliveryCalculation.finalFee !== null && typeof deliveryCalculation.finalFee === 'number') {
+    headerDeliveryFee = deliveryCalculation.finalFee.toFixed(2).replace('.', ',');
+  }
   
   const [filters, setFilters] = useState({
     category: 'all',
@@ -60,10 +85,13 @@ function Menu() {
   return (
     <div>
       {/* Restaurant Header with hero image and info */}
-      <RestaurantHeader />
+      <RestaurantHeader 
+        deliveryFee={headerDeliveryFee}
+        minOrderAmount={headerMinOrderAmount}
+      />
       {/* Sistema de Filtros */}
         <MenuFilters onFilterChange={handleFilterChange}/>
-        <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-6xl px-4 py-6 mx-auto">
         
         
         {/* Contador de resultados */}
@@ -78,9 +106,9 @@ function Menu() {
         </div>
           {/* Mensaje si no hay resultados */}
         {filteredMenu.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🍕</div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+          <div className="py-12 text-center">
+            <div className="mb-4 text-6xl">🍕</div>
+            <h3 className="mb-2 text-xl font-semibold text-gray-700">
               {t('menu.filters.noResults')}
             </h3>            <p className="text-gray-500">
               {t('menu.filters.adjustFilters')}

@@ -54,9 +54,3 @@ export interface OrderItemProps {
   isLoadingIngredients: boolean;
   ingredients: string[];
 }
-
-// JSON module declarations for translation files
-declare module "*.json" {
-  const value: any;
-  export default value;
-}

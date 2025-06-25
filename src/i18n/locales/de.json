@@ -5,7 +5,7 @@
     "customerInfo": "Kundeninformationen",
     "orderInfo": "Bestellinformationen"
   },  "header": {
-    "title": "Campus Pizza Dortmund"
+    "title": "Restaurant Campus Dortmund"
   },
   "cookies": {
     "banner": {
@@ -39,13 +39,25 @@
   "common": {
     "required": "Erforderlich",
     "enabled": "Aktiviert",
-    "disabled": "Deaktiviert"
-  },"navigation": {
+    "disabled": "Deaktiviert",
+    "loading": "Lädt...",
+    "error": "Etwas ist schiefgegangen",
+    "pizza": "Pizza",
+    "pizzas": "Pizzas",
+    "minutes": "{{count}} Minute",
+    "minutes_plural": "{{count}} Minuten",
+    "cancel": "Abbrechen",
+    "backToMenu": "Zurück zur Speisekarte",
+    "optional": "optional",
+    "processing": "Verarbeitung..."
+  },
+  "navigation": {
     "myOrders": "Meine Bestellungen",
     "menu": "Menü"
-  },"home": {
+  },
+  "home": {
     "title": "🍕 Schnellste Pizza-Lieferung vor deine Tür!",
-    "subtitle": "Frische Pizzen in 15-30 Minuten • Lieferung in 6 Zonen in Dortmund",
+    "subtitle": "Frische Pizzen in 15-30 Minuten • Automatische PLZ-Preisberechnung für ganz Dortmund",
     "cta": "🍕 Jetzt bestellen",    "socialProof": {
       "ordering": "{{count}} Leute bestellen gerade",
       "reviews": "{{rating}}★ ({{count}}+ Bewertungen)",
@@ -57,8 +69,8 @@
     "howItWorks": {
       "title": "So funktioniert's",
       "step1": {
-        "title": "Details eingeben",
-        "description": "Name und PLZ zur Überprüfung der Lieferzone"
+        "title": "PLZ eingeben",
+        "description": "Name und Postleitzahl eingeben - Automatische Preisberechnung für deine Zone"
       },
       "step2": {
         "title": "Pizza auswählen",
@@ -76,20 +88,20 @@
     "faq": {
       "title": "Häufig gestellte Fragen",
       "question1": {
-        "q": "Wie funktioniert die WhatsApp-Bestellung?",
-        "a": "Nach dem Hinzufügen von Artikeln zum Warenkorb erhältst du einen WhatsApp-Link mit deiner Bestellübersicht. Sende ihn an uns und wir bestätigen Lieferzeit und Zahlungsmethode."
+        "q": "Wie funktioniert die Pizza-Bestellung über WhatsApp bei Restaurant Campus Dortmund?",
+        "a": "Nachdem du deine Lieblingspizzas zum Warenkorb hinzugefügt hast, erhältst du im Checkout einen speziellen WhatsApp-Link. Klicke darauf, um deine vorformatierte Bestellung direkt an unser Restaurant zu senden. Wir bestätigen dann umgehend deine Lieferzeit oder Abholzeit sowie die Zahlungsmethode."
       },
       "question2": {
-        "q": "Was sind die Liefergebiete?",
-        "a": "Wir liefern in 6 Zonen in Dortmund: 44149, 44147, 44227, 44225, 44137, 44135. Kostenlose Lieferung ab 12€"
+        "q": "Wie funktioniert das PLZ-basierte Liefersystem von Restaurant Campus Dortmund?",
+        "a": "Unser intelligentes System berechnet automatisch Lieferkosten basierend auf deiner Postleitzahl. Wir liefern in 3 Hauptzonen mit insgesamt 18+ PLZ-Gebieten: Zone 1 (kostenlose Lieferung ab 12€), Zone 2 (1,50€ Lieferung, kostenlos ab 40€) und Zone 3 (2€ Lieferung, kostenlos ab 50€). Auch Abholung möglich."
       },
       "question3": {
-        "q": "Wie lange dauert die Lieferung?",
-        "a": "15-30 Minuten je nach Standort und Bestellgröße. Wir geben dir eine genaue Zeit bei der Bestellung."
+        "q": "Wie schnell ist die Pizza-Lieferung von Campus Pizza in Dortmund?",
+        "a": "Unsere Pizza-Lieferung in Dortmund dauert in der Regel 15-30 Minuten. Die genaue Lieferzeit hängt von deiner Adresse und dem Umfang der Bestellung ab und wird dir direkt bei der Bestellbestätigung mitgeteilt."
       },
       "question4": {
-        "q": "Welche Zahlungsmethoden akzeptiert ihr?",
-        "a": "Barzahlung bei Lieferung oder Kartenzahlung. Du kannst deine bevorzugte Methode bei der Bestellung wählen."
+        "q": "Welche Zahlungsmethoden stehen für Pizza-Lieferung und Abholung zur Verfügung?",
+        "a": "Du kannst bei uns bequem bar oder mit Karte bezahlen, sowohl bei Lieferung als auch bei Abholung. Deine bevorzugte Zahlungsart wählst du einfach während des Bestellprozesses aus."
       }
     },
     "testimonials": {
@@ -112,6 +124,29 @@
         "customers": "{{count}}+ Zufriedene Kunden",
         "secure": "Sichere Bestellung",
         "fresh": "Frische-Garantie"
+      }
+    },
+    "deliveryZones": {
+      "title": "🎯 Smart PLZ-Liefersystem",
+      "description": "Automatische Preisberechnung für ganz Dortmund",
+      "zone1": {
+        "title": "Zone 1 - Campus Bereich",
+        "plz": "44149, 44147, 44137",
+        "delivery": "Kostenlose Lieferung ab 12€"
+      },
+      "zone2": {
+        "title": "Zone 2 - Stadtgebiet",
+        "plz": "44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379",
+        "delivery": "1,50€ Lieferung, kostenlos ab 40€"
+      },
+      "zone3": {
+        "title": "Zone 3 - Außenbereiche",
+        "plz": "44357, 44359, 44265, 44263",
+        "delivery": "2,00€ Lieferung, kostenlos ab 50€"
+      },
+      "pickup": {
+        "title": "Abholung",
+        "description": "Kostenlos bei uns abholen"
       }
     }
   },  "features": {
@@ -149,7 +184,8 @@
     },
     "recentOrder": "Letzte Bestellung: {{time}}",
     "increasedDemand": "Erhöhtes Aufkommen"
-  },"stats": {
+  },
+  "stats": {
     "minutes": "Min Lieferung",
     "zones": "Lieferzonen",
     "service": "Service",
@@ -159,18 +195,21 @@
     "bottomCta": "Werde einer von 340+ zufriedenen Kunden in Dortmund"
   },
   "user": {
-    "welcome": "👋 Willkommen! Bitte teile uns zuerst deinen Namen mit:",
-    "subtitle": "Gib deine PLZ ein, um leckere Pizza zu bestellen! 🍕",
+    "welcome": "🍕 Leckere Pizza für ganz Dortmund!",
+    "subtitle": "Gib deine Postleitzahl ein und entdecke automatische Preisberechnung für deine Zone",
     "nameLabel": "Name (optional)",
     "namePlaceholder": "Dein Name oder 'Gast'",
     "postalCodeLabel": "Postleitzahl *",
     "postalCodePlaceholder": "z.B. 44149",
-    "deliveryAreas": "Wir liefern nach: 44149, 44147, 44227, 44225, 44137, 44135",
-    "startOrdering": "🍕 Bestellung starten",
+    "deliveryAreas": "🎯 Wir liefern in 3 Zonen mit 18+ PLZ in ganz Dortmund",
+    "zoneInfo": "Zone 1: Kostenlos ab 12€ • Zone 2: 1,50€, frei ab 40€ • Zone 3: 2€, frei ab 50€",
+    "startOrdering": "🚀 Jetzt bestellen & PLZ-Preise entdecken",
     "continueButton": "Weiter",
-    "greeting": "Willkommen zurück, {{name}}!",
+    "greeting": "Willkommen zurück, {{name}}! 👋",
     "deliveryError": "⚠️ Leider liefern wir noch nicht in dein Gebiet. Wir arbeiten daran, unser Liefergebiet zu erweitern!",
-    "deliveryZoneInfo": "Aktuelle Liefergebiete: 44149, 44147, 44227, 44225, 44137, 44135"
+    "deliveryZoneInfo": "Aktuelle Lieferzonen: 3 Hauptzonen mit 18+ Postleitzahlen in Dortmund",
+    "instantPricing": "💡 Sofortige PLZ-Preisberechnung",
+    "allDortmund": "📍 Ganz Dortmund abgedeckt"
   },
   "menu": {
     "title": "Unsere Speisekarte",
@@ -405,7 +444,8 @@
       "weekendDeal": "🎉 Wochenend-Special: {{offer}}",
       "lunchSpecial": "🥗 Mittagsangebot: {{offer}}",
       "dinnerRush": "🔥 Abendspecial: {{offer}}"
-    },"aboutTitle": "Über Restaurant CAMPUS",
+    },
+    "aboutTitle": "Über Restaurant CAMPUS",
     "aboutDescription": "Willkommen bei Restaurant CAMPUS – Die Pizza-Profis! Seit Jahren verwöhnen wir unsere Gäste mit authentischen italienischen Pizzen, die mit frischen Zutaten und traditionellen Rezepten zubereitet werden. Unser Team aus erfahrenen Pizza-Profis sorgt dafür, dass jede Pizza perfekt gebacken wird. Besuchen Sie uns in der Knappenstraße 46 in Dortmund oder bestellen Sie bequem zu sich nach Hause!",
     "deliveryTimes": "Lieferzeiten",
     "monday": "Montag",
@@ -426,7 +466,8 @@
     "printable": "Druckbare Version",
     "orderOnLieferando": "Bei Lieferando bestellen",
     "getDirections": "Route planen"
-  },"footer": {
+  },
+  "footer": {
     "description": "Restaurant CAMPUS – Die Pizza-Profis. Authentische italienische Pizza frisch vor deine Tür geliefert. Hergestellt mit den besten Zutaten und traditionellen Rezepten.",
     "contact": "Kontakt",
     "phone": "Telefon: 0231 - 72 56 668",
@@ -439,17 +480,6 @@
     "terms": "AGB",
     "imprint": "Impressum",
     "allRights": "Alle Rechte vorbehalten."
-  },  "common": {
-    "loading": "Lädt...",
-    "error": "Etwas ist schiefgegangen",
-    "pizza": "Pizza",
-    "pizzas": "Pizzas",
-    "minutes": "{{count}} Minute",
-    "minutes_plural": "{{count}} Minuten",
-    "cancel": "Abbrechen",
-    "backToMenu": "Zurück zur Speisekarte",
-    "optional": "optional",
-    "processing": "Verarbeitung..."
   },  "buttons": {
     "delete": "Löschen",
     "update": "Aktualisieren",

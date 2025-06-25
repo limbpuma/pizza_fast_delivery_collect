@@ -5,6 +5,7 @@ export default {
   theme: {
     fontFamily: {
       sans: "Roboto Mono, monospace",
+      serif: ["'EB Garamond'", "serif"],
     },
     extend: {
       height: {

@@ -22,8 +22,12 @@ We reserve the right to reject orders, particularly in case of:
 ## 3. Prices and Payment Terms
 
 ### 3.1 Prices
-- All prices include statutory VAT
-- Delivery costs apply additionally (see price list)
+- All prices include statutory VAT (19% or 7%)
+- **Delivery costs are automatically calculated based on your postal code:**
+  - **Zone 1 (Campus Area):** Postal codes 44149, 44147, 44137 - Free delivery from EUR 12.00
+  - **Zone 2 (City Area):** Postal codes 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379 - EUR 1.50 delivery fee, free from EUR 40.00
+  - **Zone 3 (Outer Areas):** Postal codes 44357, 44359, 44265, 44263 - EUR 2.00 delivery fee, free from EUR 50.00
+- Pickup orders are free of delivery charges
 - Price changes are reserved
 
 ### 3.2 Payment
@@ -34,16 +38,32 @@ We reserve the right to reject orders, particularly in case of:
 ## 4. Delivery
 
 ### 4.1 Delivery Area
-We deliver to the following postal code areas:
-- 44149, 44147, 44227, 44225, 44137, 44135
+**We deliver to three main zones covering 18+ postal code areas in Dortmund:**
+
+**Zone 1 - Campus Area:**
+- Postal codes: 44149, 44147, 44137
+- Free delivery from EUR 12.00
+- Minimum order value: EUR 12.00
+
+**Zone 2 - City Area:**
+- Postal codes: 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379
+- Delivery cost: EUR 1.50 (free from EUR 40.00)
+- Minimum order value: EUR 15.00
+
+**Zone 3 - Outer Areas:**
+- Postal codes: 44357, 44359, 44265, 44263
+- Delivery cost: EUR 2.00 (free from EUR 50.00)
+- Minimum order value: EUR 20.00
+
+**Important Note:** Delivery costs are automatically calculated when you enter your postal code. Our system ensures transparent and fair pricing based on distance.
 
 ### 4.2 Delivery Times
 - Standard delivery time: 25-35 minutes
 - The stated times are guidelines
 - Times may extend during high order volume
 
-### 4.3 Minimum Order Value
-The minimum order value for deliveries is EUR 15.00.
+### 4.3 Minimum Order Values
+Minimum order values vary by delivery zone as specified above. For pickup orders, the minimum order value is EUR 10.00.
 
 ## 5. Retention of Title
 
