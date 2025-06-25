@@ -13,6 +13,8 @@ import Error from "./ui/Error";
 import ImpressumPage from "./pages/legal/ImpressumPage";
 import DatenschutzPage from "./pages/legal/DatenschutzPage";
 import AGBPage from "./pages/legal/AGBPage";
+// Test Pages
+import TariffTestPage from "./pages/TariffTestPage";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/terms",
         element: <AGBPage />,
+      },
+      {
+        path: "/tariff-test",
+        element: <TariffTestPage />,
       },
       {
         path: "/order/:orderId",
