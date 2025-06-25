@@ -5,7 +5,7 @@
     "customerInfo": "Kundeninformationen",
     "orderInfo": "Bestellinformationen"
   },  "header": {
-    "title": "Campus Pizza Dortmund"
+    "title": "Restaurant Campus Dortmund"
   },
   "cookies": {
     "banner": {
@@ -88,11 +88,11 @@
     "faq": {
       "title": "Häufig gestellte Fragen",
       "question1": {
-        "q": "Wie funktioniert die Pizza-Bestellung über WhatsApp bei Campus Pizza Dortmund?",
+        "q": "Wie funktioniert die Pizza-Bestellung über WhatsApp bei Restaurant Campus Dortmund?",
         "a": "Nachdem du deine Lieblingspizzas zum Warenkorb hinzugefügt hast, erhältst du im Checkout einen speziellen WhatsApp-Link. Klicke darauf, um deine vorformatierte Bestellung direkt an unser Restaurant zu senden. Wir bestätigen dann umgehend deine Lieferzeit oder Abholzeit sowie die Zahlungsmethode."
       },
       "question2": {
-        "q": "Wie funktioniert das PLZ-basierte Liefersystem von Campus Pizza Dortmund?",
+        "q": "Wie funktioniert das PLZ-basierte Liefersystem von Restaurant Campus Dortmund?",
         "a": "Unser intelligentes System berechnet automatisch Lieferkosten basierend auf deiner Postleitzahl. Wir liefern in 3 Hauptzonen mit insgesamt 18+ PLZ-Gebieten: Zone 1 (kostenlose Lieferung ab 12€), Zone 2 (1,50€ Lieferung, kostenlos ab 40€) und Zone 3 (2€ Lieferung, kostenlos ab 50€). Auch Abholung möglich."
       },
       "question3": {

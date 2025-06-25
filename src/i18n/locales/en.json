@@ -5,7 +5,7 @@
     "customerInfo": "Customer Information",
     "orderInfo": "Order Information"
   },  "header": {
-    "title": "Campus Pizza Dortmund"
+    "title": "Restaurant Campus Dortmund"
   },
   "cookies": {
     "banner": {
@@ -87,11 +87,11 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "question1": {
-        "q": "How do I order pizza via WhatsApp from Campus Pizza Dortmund?",
+        "q": "How do I order pizza via WhatsApp from Restaurant Campus Dortmund?",
         "a": "Once you've added your favorite pizzas to the cart, you'll receive a special WhatsApp link at checkout. Click it to send your pre-formatted order directly to our restaurant. We will then promptly confirm your delivery or collection time and payment method."
       },
       "question2": {
-        "q": "How does Campus Pizza Dortmund's postal code-based delivery system work?",
+        "q": "How does Restaurant Campus Dortmund's postal code-based delivery system work?",
         "a": "Our intelligent system automatically calculates delivery costs based on your postal code. We deliver to 3 main zones covering 18+ postal code areas: Zone 1 (free delivery from €12), Zone 2 (€1.50 delivery, free from €40), and Zone 3 (€2 delivery, free from €50). Pickup is also available."
       },
       "question3": {
