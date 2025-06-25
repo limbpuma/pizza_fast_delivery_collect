@@ -57,8 +57,8 @@ export const DELIVERY_TARIFFS: readonly DeliveryTariff[] = [
     name: 'Zone 2 - City Area',
     plz: ['44135', '44139', '44388', '44145', '44143', '44141', '44229', '44225', '44227', '44369', '44379'],
     mindestbestellwert: 15.00,
-    lieferkosten: 1.50,
-    lieferkosten_entfallen_ab: 40.00,
+    lieferkosten: 0.00,
+    lieferkosten_entfallen_ab: 15.00,
     isActive: true,
     priority: 80
   },
@@ -67,8 +67,8 @@ export const DELIVERY_TARIFFS: readonly DeliveryTariff[] = [
     name: 'Zone 3 - Outer Areas',
     plz: ['44357', '44359', '44265', '44263'],
     mindestbestellwert: 20.00,
-    lieferkosten: 2.00,
-    lieferkosten_entfallen_ab: 50.00,
+    lieferkosten: 0.00,
+    lieferkosten_entfallen_ab: 20.00,
     isActive: true,
     priority: 70
   },
