@@ -55,12 +55,18 @@ Wir können Bestellungen ablehnen bei:
 
 ### 3.1 Preise
 - Alle Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer (19% bzw. 7%)
-- Zusätzlich fallen Lieferkosten in Höhe von 2,50 EUR an
-- Bei Abholung entfallen die Lieferkosten
+- **Lieferkosten werden automatisch basierend auf Ihrer Postleitzahl berechnet:**
+  - **Zone 1 (Campus-Bereich):** PLZ 44149, 44147, 44137 - Kostenlose Lieferung ab 12,00 EUR
+  - **Zone 2 (Stadtgebiet):** PLZ 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379 - 1,50 EUR Lieferkosten, kostenlos ab 40,00 EUR
+  - **Zone 3 (Außenbereiche):** PLZ 44357, 44359, 44265, 44263 - 2,00 EUR Lieferkosten, kostenlos ab 50,00 EUR
+- Bei Abholung entfallen die Lieferkosten vollständig
 - Preisänderungen behalten wir uns vor
 
 ### 3.2 Mindestbestellwert
-Der Mindestbestellwert für Lieferungen beträgt 15,00 EUR (ohne Lieferkosten).
+- **Zone 1:** 12,00 EUR (ohne Lieferkosten)
+- **Zone 2:** 15,00 EUR (ohne Lieferkosten) 
+- **Zone 3:** 20,00 EUR (ohne Lieferkosten)
+- **Abholung:** 10,00 EUR
 
 ### 3.3 Zahlungsmöglichkeiten
 - Barzahlung bei Lieferung oder Abholung
@@ -71,9 +77,24 @@ Der Mindestbestellwert für Lieferungen beträgt 15,00 EUR (ohne Lieferkosten).
 ## 4. Lieferung und Leistungserbringung
 
 ### 4.1 Liefergebiet
-Wir liefern in folgende Postleitzahlenbereiche:
-- 44149 Dortmund (Hauptliefergebiet)
-- 44147, 44227, 44225, 44137, 44135
+**Wir liefern in drei Hauptzonen mit insgesamt 18+ Postleitzahlenbereichen in Dortmund:**
+
+**Zone 1 - Campus-Bereich:**
+- PLZ: 44149, 44147, 44137
+- Kostenlose Lieferung ab 12,00 EUR
+- Mindestbestellwert: 12,00 EUR
+
+**Zone 2 - Stadtgebiet:**
+- PLZ: 44135, 44139, 44388, 44145, 44143, 44141, 44229, 44225, 44227, 44369, 44379
+- Lieferkosten: 1,50 EUR (kostenlos ab 40,00 EUR)
+- Mindestbestellwert: 15,00 EUR
+
+**Zone 3 - Außenbereiche:**
+- PLZ: 44357, 44359, 44265, 44263
+- Lieferkosten: 2,00 EUR (kostenlos ab 50,00 EUR)
+- Mindestbestellwert: 20,00 EUR
+
+**Wichtiger Hinweis:** Die Lieferkosten werden automatisch bei der Eingabe Ihrer Postleitzahl berechnet und angezeigt. Das System gewährleistet transparente und faire Preisgestaltung basierend auf der Entfernung.
 
 ### 4.2 Lieferzeiten
 - Standard-Lieferzeit: 25-35 Minuten
