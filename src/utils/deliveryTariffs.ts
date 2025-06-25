@@ -38,37 +38,67 @@ export interface DeliveryTariff {
 
 /**
  * Main delivery tariff configuration
- * Based on Campus Pizza's real delivery zones and pricing
+ * TEST CONFIGURATION - New tariff structure for calculation verification
  * ⚠️ CRITICAL: Values must match legal documents (AGB/T&C)
  */
 export const DELIVERY_TARIFFS: readonly DeliveryTariff[] = [
   {
     id: 'zone-1-campus',
-    name: 'Zone 1 - Campus Area',
-    plz: ['44149', '44147', '44137'],
+    name: 'Zone 1 - Campus Area (FREE)',
+    plz: ['44149'],
     mindestbestellwert: 12.00,
     lieferkosten: 0.00,
-    lieferkosten_entfallen_ab: 12.00,
+    lieferkosten_entfallen_ab: 0.00,
     isActive: true,
     priority: 100
   },
   {
-    id: 'zone-2-city',
-    name: 'Zone 2 - City Area',
-    plz: ['44135', '44139', '44388', '44145', '44143', '44141', '44229', '44225', '44227', '44369', '44379'],
+    id: 'zone-2a-close',
+    name: 'Zone 2A - Close Areas',
+    plz: ['44225', '44227'],
+    mindestbestellwert: 12.00,
+    lieferkosten: 1.00,
+    lieferkosten_entfallen_ab: 50.00,
+    isActive: true,
+    priority: 90
+  },
+  {
+    id: 'zone-2b-mid',
+    name: 'Zone 2B - Mid Areas',
+    plz: ['44369', '44379'],
     mindestbestellwert: 15.00,
-    lieferkosten: 0.00,
-    lieferkosten_entfallen_ab: 15.00,
+    lieferkosten: 1.00,
+    lieferkosten_entfallen_ab: 50.00,
+    isActive: true,
+    priority: 85
+  },
+  {
+    id: 'zone-3a-extended',
+    name: 'Zone 3A - Extended Areas',
+    plz: ['44135', '44139', '44388', '44147', '44137'],
+    mindestbestellwert: 19.99,
+    lieferkosten: 1.50,
+    lieferkosten_entfallen_ab: 50.00,
     isActive: true,
     priority: 80
   },
   {
-    id: 'zone-3-outer',
-    name: 'Zone 3 - Outer Areas',
-    plz: ['44357', '44359', '44265', '44263'],
-    mindestbestellwert: 20.00,
-    lieferkosten: 0.00,
-    lieferkosten_entfallen_ab: 20.00,
+    id: 'zone-3b-far',
+    name: 'Zone 3B - Far Areas',
+    plz: ['44143', '44141', '44145', '44229'],
+    mindestbestellwert: 30.00,
+    lieferkosten: 2.00,
+    lieferkosten_entfallen_ab: 60.00,
+    isActive: true,
+    priority: 75
+  },
+  {
+    id: 'zone-4-outer',
+    name: 'Zone 4 - Outer Areas',
+    plz: ['44359', '44357', '44265', '44263'],
+    mindestbestellwert: 30.00,
+    lieferkosten: 2.00,
+    lieferkosten_entfallen_ab: 60.00,
     isActive: true,
     priority: 70
   },
@@ -76,7 +106,7 @@ export const DELIVERY_TARIFFS: readonly DeliveryTariff[] = [
     id: 'pickup',
     name: 'Pickup - Restaurant Collection',
     plz: ['abholung'],
-    mindestbestellwert: 10.00,
+    mindestbestellwert: 0.00,
     lieferkosten: 0.00,
     lieferkosten_entfallen_ab: 0.00,
     isActive: true,
@@ -291,7 +321,7 @@ export function validateTariffConfiguration(): {
 // EXPORTS
 // ===============================
 
-export default {
+const deliveryTariffUtils = {
   DELIVERY_TARIFFS,
   getTariffByPLZ,
   calculateDeliveryFee,
@@ -301,3 +331,5 @@ export default {
   getDeliveryDisplayInfo,
   validateTariffConfiguration
 };
+
+export default deliveryTariffUtils;
