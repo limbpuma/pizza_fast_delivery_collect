@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,10 @@ import PhoneInput from "../../ui/PhoneInput";
 import { useOrderSubmission } from "./hooks/useOrderSubmission";
 import { useSocialProof } from "../../hooks/useSocialProof";
 import RestaurantStatusBanner from "../../ui/RestaurantStatusBanner";
+import { calculateDeliveryFee } from "../../utils/deliveryTariffs";
 import { 
-  selectUser, 
-  selectCurrentTariff
+  selectUser
 } from '../user/userSlice';
-import { 
-  selectCurrentCalculation,
-  calculateDeliveryWithCache
-} from '../delivery/deliverySlice';
 
 interface FormData {
   customer: string;
@@ -51,42 +47,27 @@ function CheckoutForm() {
   const cart = useSelector(getCart);
   const cartTotalPrice = useSelector(getTotalCartPrice);
   const user = useSelector(selectUser);
-  const currentTariff = useSelector(selectCurrentTariff);
-  const deliveryCalculation = useSelector(selectCurrentCalculation);
 
   // Social proof hook for dynamic content
   const { socialProof, isLoading } = useSocialProof();
 
-  // Trigger delivery calculation when cart price changes and we're in delivery mode
-  useEffect(() => {
-    if (deliveryMode === 'delivery' && user.plz && cartTotalPrice > 0) {
-      dispatch(calculateDeliveryWithCache({
-        plz: user.plz,
-        orderValue: cartTotalPrice
-      }) as any);
-    }
-  }, [dispatch, deliveryMode, user.plz, cartTotalPrice]);
+  // Calculate delivery fees using the tariff system
+  const userPLZ = user.postalCode || user.plz;
+  const deliveryCalculation = deliveryMode === 'delivery' && userPLZ 
+    ? calculateDeliveryFee(userPLZ, cartTotalPrice)
+    : calculateDeliveryFee('abholung', cartTotalPrice);
 
   // Calculate fees with dynamic delivery pricing
   const subtotal = cartTotalPrice;
+  const deliveryFee = deliveryCalculation.fee;
   
-  // Use dynamic delivery fee from calculation, fallback to tariff, then hardcoded
-  let deliveryFee = 0;
-  
-  if (deliveryMode === 'delivery') {
-    if (deliveryCalculation?.finalFee !== undefined && deliveryCalculation.finalFee !== null && typeof deliveryCalculation.finalFee === 'number') {
-      deliveryFee = deliveryCalculation.finalFee;
-    } else if (currentTariff && typeof currentTariff.lieferkosten === 'number') {
-      deliveryFee = currentTariff.lieferkosten;
-    } else {
-      deliveryFee = 0.99; // Ultimate fallback
-    }
-  }
-  
-  const serviceFee = Math.round(subtotal * 0.025 * 100) / 100; // 2.5% service fee
-  const maxServiceFee = 0.99;
-  const finalServiceFee = Math.min(serviceFee, maxServiceFee);
-  const total = subtotal + deliveryFee + finalServiceFee;
+  // No service fee for better customer experience
+  const total = subtotal + deliveryFee;
+
+  // Minimum order validation
+  const meetsMinimum = deliveryCalculation.meetsMinimum;
+  const missingAmount = deliveryCalculation.missingAmount;
+  const currentTariff = deliveryCalculation.tariff;
 
   // Order submission protection
   const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
@@ -185,8 +166,7 @@ ${orderItems}
 
 💰 *${t('checkout.whatsappMessage.summary')}*
 ${t('checkout.whatsappMessage.subtotal', { amount: formatCurrency(subtotal) })}
-${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}${t('checkout.whatsappMessage.service', { amount: formatCurrency(finalServiceFee) })}
-*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
+${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
 
 🚀 *${t('checkout.whatsappMessage.type', { type: deliveryTypeText })}*
 💳 *${t('checkout.whatsappMessage.payment', { method: paymentMethodText })}*${specialInstructionsText}
@@ -227,7 +207,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
         pricing: {
           subtotal,
           deliveryFee,
-          serviceFee: finalServiceFee,
+          serviceFee: 0, // No service fee
           total
         }
       };
@@ -388,10 +368,6 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 </div>
               )}
               
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{t('checkout.serviceFee', { default: 'Service fee' })} (2.5%)</span>
-                <span className="font-medium">{formatCurrency(finalServiceFee)}</span>
-              </div>
               
               <div className="pt-2 border-t border-gray-200">
                 <div className="flex justify-between text-lg font-bold">
@@ -607,6 +583,26 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             </p>
           </div>
 
+          {/* Minimum Order Validation */}
+          {!meetsMinimum && currentTariff && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg mb-6">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-medium text-red-800">
+                  ⚠️ Mindestbestellwert nicht erreicht
+                </span>
+              </div>
+              <p className="text-xs text-red-600">
+                Mindestbestellwert: €{currentTariff.mindestbestellwert.toFixed(2)} 
+                • Noch €{missingAmount.toFixed(2)} erforderlich
+              </p>
+              <div className="mt-2">
+                <LinkButton to="/menu">
+                  → Weitere Artikel hinzufügen
+                </LinkButton>
+              </div>
+            </div>
+          )}
+
           {/* Submit Button */}
           <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
             <div className="mb-6">
@@ -618,14 +614,22 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
               </div>
             </div>            <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white font-semibold py-4 px-6 rounded-full transition-all duration-200 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:cursor-not-allowed"
+              disabled={isSubmitting || !meetsMinimum}
+              className={`w-full font-semibold py-4 px-6 rounded-full transition-all duration-200 transform ${
+                meetsMinimum && !isSubmitting
+                  ? 'bg-orange-500 hover:bg-orange-600 text-white hover:scale-[1.02]'
+                  : 'bg-gray-400 text-white cursor-not-allowed'
+              } disabled:hover:scale-100 disabled:cursor-not-allowed`}
               onClick={(e) => {
-                // Additional protection against double clicks
-                if (isSubmitting) {
+                // Additional protection against double clicks and minimum order validation
+                if (isSubmitting || !meetsMinimum) {
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log('⚠️ Button click ignored - submission in progress');
+                  if (isSubmitting) {
+                    console.log('⚠️ Button click ignored - submission in progress');
+                  } else {
+                    console.log('⚠️ Button click ignored - minimum order not met');
+                  }
                   return;
                 }
               }}
@@ -634,6 +638,13 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-5 h-5 border-2 border-white rounded-full border-t-transparent animate-spin"></div>
                   {t('common.processing', { default: 'Processing...' })}
+                </div>
+              ) : !meetsMinimum ? (
+                <div className="flex items-center justify-center gap-2">
+                  <span>❌</span>
+                  <span>
+                    Mindestbestellwert: €{currentTariff?.mindestbestellwert.toFixed(2) || '0.00'}
+                  </span>
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-2">
