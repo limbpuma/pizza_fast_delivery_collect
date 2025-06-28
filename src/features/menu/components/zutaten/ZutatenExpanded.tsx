@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZutatenExpandedProps } from './types';
-import { categorizeZutaten, categoryLabels } from './mockData';
+import { categorizeZutaten } from './mockData';
 import ZutatenCategory from './ZutatenCategory';
 
 function ZutatenExpanded({ 
@@ -23,9 +23,9 @@ function ZutatenExpanded({
     return availableZutaten.filter(zutat => 
       zutat.name.toLowerCase().includes(term) ||
       zutat.description?.toLowerCase().includes(term) ||
-      categoryLabels[zutat.category]?.toLowerCase().includes(term)
+      t(`menu.ingredientCategories.${zutat.category}`, { default: zutat.category }).toLowerCase().includes(term)
     );
-  }, [availableZutaten, searchTerm]);
+  }, [availableZutaten, searchTerm, t]);
 
   // Categorize filtered ingredients
   const categorizedZutaten = useMemo(() => {
@@ -38,11 +38,11 @@ function ZutatenExpanded({
       .filter(categoryKey => categorized[categoryKey] && categorized[categoryKey].length > 0)
       .map(categoryKey => ({
         category: categoryKey as any,
-        label: categoryLabels[categoryKey] || categoryKey,
+        label: t(`menu.ingredientCategories.${categoryKey}`, { default: categoryKey }),
         items: categorized[categoryKey] || [],
         isExpanded: expandedCategories.has(categoryKey)
       }));
-  }, [filteredZutaten, expandedCategories]);
+  }, [filteredZutaten, expandedCategories, t]);
 
   const selectedCount = Object.values(selectedZutaten).filter(Boolean).length;
   const totalPrice = availableZutaten
@@ -136,7 +136,7 @@ function ZutatenExpanded({
         </div>
         
         <span className="text-gray-500">
-          {categorizedZutaten.length} {t('menu.categories', { default: 'Kategorien' })} • 
+          {categorizedZutaten.length} {t('menu.categoriesCount', { default: 'Kategorien' })} • 
           {filteredZutaten.length} {t('menu.items', { default: 'Artikel' })}
         </span>
       </div>
@@ -154,7 +154,7 @@ function ZutatenExpanded({
               </>
             ) : (
               <>
-                {t('menu.searchResults', { 
+                {t('menu.searchResultsCount', { 
                   count: filteredZutaten.length, 
                   term: searchTerm,
                   default: `${filteredZutaten.length} Ergebnisse für "${searchTerm}"` 
