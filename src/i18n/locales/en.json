@@ -536,6 +536,11 @@
       "favoriteProduct": "Most Ordered: {{product}}",
       "averageOrder": "Average Order: {{amount}}"
     },
+    "error": {
+      "title": "Error loading orders",
+      "message": "We couldn't load your order history. This might be due to corrupted data.",
+      "retry": "Clear data and retry"
+    },
     "time": {
       "minutesAgo": "{{count}}m ago",
       "hoursAgo": "{{count}}h ago",

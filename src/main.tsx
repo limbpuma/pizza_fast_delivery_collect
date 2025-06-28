@@ -7,6 +7,9 @@ import store from "./store.js";
 import "./i18n";
 import { initializeOrderCache } from "./utils/orderCache.js";
 
+// Debug: Load order error test functions (temporary)
+import "./debug/test-order-error.js";
+
 // Initialize order cache on app startup
 initializeOrderCache();
 
