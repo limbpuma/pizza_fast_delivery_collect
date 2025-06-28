@@ -218,11 +218,11 @@ function AdvancedPizzaModal({ isOpen, onClose, pizza, saucesOptions, zutatenOpti
       scrollable={true}
       heightClass="scroll"
     >
-      <div className="space-y-4 sm:space-y-6">
-        {/* Pizza Preview */}
-        <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
-            <span className="text-xl sm:text-2xl">🍕</span>
+      <div className="space-y-3 sm:space-y-4">
+        {/* Pizza Preview - More Compact */}
+        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+            <span className="text-lg sm:text-xl">🍕</span>
           </div>
           <div className="min-w-0 flex-1">
             <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{name}</h3>
@@ -269,104 +269,109 @@ function AdvancedPizzaModal({ isOpen, onClose, pizza, saucesOptions, zutatenOpti
           />
         )}
 
-        {/* Quantity Controls */}
-        <div className="flex items-center justify-between">
-          <h4 className="font-semibold text-gray-900 text-sm sm:text-base">
-            {t('menu.quantity', { default: 'Anzahl' })}
-          </h4>
-          <QuantityControls
-            quantity={quantity}
-            onQuantityChange={setQuantity}
-            min={1}
-            max={10}
-            disabled={isAdding}
-          />
-        </div>
-
-        {/* Price Summary */}
-        {selectedSizeData && selectedSauceData && (
-          <div className="bg-orange-50 rounded-lg p-3 sm:p-4 border border-orange-200">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">
-                  {name} ({selectedSizeData.label})
+        {/* Bottom Section: Compact Layout */}
+        <div className="space-y-3 sm:space-y-4">
+          {/* Quantity & Price Summary Combined */}
+          {selectedSizeData && selectedSauceData && (
+            <div className="bg-orange-50 rounded-lg p-3 sm:p-4 border border-orange-200">
+              {/* Quantity Controls Row */}
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-medium text-gray-900 text-sm">
+                  {t('menu.quantity', { default: 'Anzahl' })}
                 </span>
-                <span className="font-medium">
-                  {formatCurrency(selectedSizeData.price)}
-                </span>
+                <QuantityControls
+                  quantity={quantity}
+                  onQuantityChange={setQuantity}
+                  min={1}
+                  max={10}
+                  disabled={isAdding}
+                  compact={true}
+                />
               </div>
-              
-              {selectedSauceData.price > 0 && (
-                <div className="flex justify-between text-sm">
+
+              {/* Price Breakdown */}
+              <div className="space-y-1.5 text-sm">
+                <div className="flex justify-between">
                   <span className="text-gray-600">
-                    {selectedSauceData.name}
+                    {name} ({selectedSizeData.label})
                   </span>
                   <span className="font-medium">
-                    + {formatCurrency(selectedSauceData.price)}
+                    {formatCurrency(selectedSizeData.price)}
                   </span>
                 </div>
-              )}
-              
-              {selectedZutatenCount > 0 && (
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">
-                    {selectedZutatenCount} {t('menu.extraIngredients', { default: 'Extra Zutaten' })}
+                
+                {selectedSauceData.price > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">
+                      {selectedSauceData.name}
+                    </span>
+                    <span className="font-medium">
+                      + {formatCurrency(selectedSauceData.price)}
+                    </span>
+                  </div>
+                )}
+                
+                {selectedZutatenCount > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">
+                      {selectedZutatenCount} {t('menu.extraIngredients', { default: 'Extra Zutaten' })}
+                    </span>
+                    <span className="font-medium">
+                      + {formatCurrency(zutatenPrice)}
+                    </span>
+                  </div>
+                )}
+                
+                {quantity > 1 && (
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">
+                      {t('menu.quantity', { default: 'Anzahl' })}: {quantity}x
+                    </span>
+                    <span></span>
+                  </div>
+                )}
+                
+                <div className="border-t border-orange-200 pt-2 mt-2 flex justify-between">
+                  <span className="font-bold text-gray-900">
+                    {t('menu.total', { default: 'Gesamt' })}
                   </span>
-                  <span className="font-medium">
-                    + {formatCurrency(zutatenPrice)}
+                  <span className="font-bold text-orange-600 text-lg">
+                    {formatCurrency(totalPrice)}
                   </span>
                 </div>
-              )}
-              
-              {quantity > 1 && (
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">
-                    {t('menu.quantity', { default: 'Anzahl' })}: {quantity}x
-                  </span>
-                  <span></span>
-                </div>
-              )}
-              
-              <div className="border-t border-orange-200 pt-2 flex justify-between">
-                <span className="font-semibold text-gray-900">
-                  {t('menu.total', { default: 'Gesamt' })}
-                </span>
-                <span className="font-bold text-orange-600 text-lg">
-                  {formatCurrency(totalPrice)}
-                </span>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-2 sm:gap-3 pt-2">
-          <button
-            onClick={onClose}
-            className="flex-1 px-4 sm:px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
-          >
-            {t('common.cancel')}
-          </button>
-          
-          <button
-            onClick={handleAddToCart}
-            disabled={isAdding || !canAddToCart}
-            className="flex-1 px-4 sm:px-6 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm sm:text-base"
-          >
-            {isAdding ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span className="hidden sm:inline">{t('menu.adding')}</span>
-              </>
-            ) : (
-              <>
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                <span>{t('menu.addToBasket')} ({formatCurrency(totalPrice)})</span>
-              </>
-            )}
-          </button>
+          {/* Action Buttons - More Compact */}
+          <div className="flex gap-2 sm:gap-3">
+            <button
+              onClick={onClose}
+              className="flex-[0.8] px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
+            >
+              {t('common.cancel')}
+            </button>
+            
+            <button
+              onClick={handleAddToCart}
+              disabled={isAdding || !canAddToCart}
+              className="flex-[1.2] px-3 sm:px-4 py-2.5 sm:py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-1.5 text-sm sm:text-base"
+            >
+              {isAdding ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span className="hidden sm:inline">{t('menu.adding')}</span>
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span className="truncate">{t('menu.addToBasket')} ({formatCurrency(totalPrice)})</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </Modal>
