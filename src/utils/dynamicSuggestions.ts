@@ -4,7 +4,41 @@
  */
 
 import { getGermanPizzaInfo } from '../data/germanPizzaInfo';
-import { mockNonPizzaItems } from '../data/mockNonPizzaItems';
+
+// Basic non-pizza items for dynamic suggestions
+// TODO: Replace with real menu data when available
+const basicNonPizzaItems = [
+  {
+    id: 101,
+    name: "Coca-Cola",
+    unitPrice: 3.50,
+    category: 'beverage'
+  },
+  {
+    id: 102,
+    name: "Tiramisu", 
+    unitPrice: 6.90,
+    category: 'dessert'
+  },
+  {
+    id: 103,
+    name: "Garlic Bread",
+    unitPrice: 4.50,
+    category: 'appetizer'
+  },
+  {
+    id: 104,
+    name: "Caesar Salad",
+    unitPrice: 8.90,
+    category: 'appetizer'
+  },
+  {
+    id: 105,
+    name: "Sparkling Water",
+    unitPrice: 2.50,
+    category: 'beverage'
+  }
+];
 
 export interface DynamicSuggestionProduct {
   id: string;
@@ -30,7 +64,7 @@ export interface DynamicSuggestionProduct {
 export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
   const suggestions: DynamicSuggestionProduct[] = [];
 
-  // 1. Add beverages from mockNonPizzaItems + dynamic additions
+  // 1. Add beverages from basic items + dynamic additions
   const beverageItems = [
     // From mock data
     { mockId: 101, emoji: '🥤', name: 'Coca-Cola' },
@@ -38,7 +72,7 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
   ];
 
   beverageItems.forEach(({ mockId, emoji, name }) => {
-    const item = mockNonPizzaItems.find(item => item.id === mockId);
+    const item = basicNonPizzaItems.find(item => item.id === mockId);
     if (item) {
       suggestions.push({
         id: `mock-${item.id}`,
@@ -83,14 +117,14 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
     }
   );
 
-  // 2. Add appetizers from mockNonPizzaItems + dynamic additions
+  // 2. Add appetizers from basic items + dynamic additions
   const appetizerItems = [
     { mockId: 103, emoji: '🥖', name: 'Garlic Bread' },
     { mockId: 104, emoji: '🥗', name: 'Caesar Salad' }
   ];
 
   appetizerItems.forEach(({ mockId, emoji, name }) => {
-    const item = mockNonPizzaItems.find(item => item.id === mockId);
+    const item = basicNonPizzaItems.find(item => item.id === mockId);
     if (item) {
       suggestions.push({
         id: `mock-${item.id}`,
@@ -145,13 +179,13 @@ export function generateDynamicSuggestions(): DynamicSuggestionProduct[] {
     }
   );
 
-  // 3. Add desserts from mockNonPizzaItems + dynamic additions
+  // 3. Add desserts from basic items + dynamic additions
   const dessertItems = [
     { mockId: 102, emoji: '🍰', name: 'Tiramisu' }
   ];
 
   dessertItems.forEach(({ mockId, emoji, name }) => {
-    const item = mockNonPizzaItems.find(item => item.id === mockId);
+    const item = basicNonPizzaItems.find(item => item.id === mockId);
     if (item) {
       suggestions.push({
         id: `mock-${item.id}`,
@@ -398,9 +432,9 @@ export function convertDynamicSuggestionToProduct(suggestion: DynamicSuggestionP
   }
   // For non-pizza items
   if (suggestion.source === 'mock-item') {
-    // Use original mock item data
+    // Use original basic item data
     const mockId = parseInt(suggestion.id.replace('mock-', ''));
-    const mockItem = mockNonPizzaItems.find(item => item.id === mockId);
+    const mockItem = basicNonPizzaItems.find(item => item.id === mockId);
     
     if (mockItem) {
       return {

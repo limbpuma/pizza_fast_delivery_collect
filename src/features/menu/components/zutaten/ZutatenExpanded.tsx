@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZutatenExpandedProps } from './types';
-import { categorizeZutaten } from './mockData';
+import { categorizeZutaten } from './realData';
 import ZutatenCategory from './ZutatenCategory';
 
 function ZutatenExpanded({ 

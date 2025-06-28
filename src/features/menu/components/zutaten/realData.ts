@@ -425,4 +425,15 @@ export const getCategorizedZutaten = () => {
   return categories;
 };
 
+// Helper function to categorize ingredients
+export const categorizeZutaten = (zutaten: ZutatOption[]): Record<string, ZutatOption[]> => {
+  return zutaten.reduce((acc, zutat) => {
+    if (!acc[zutat.category]) {
+      acc[zutat.category] = [];
+    }
+    acc[zutat.category].push(zutat);
+    return acc;
+  }, {} as Record<string, ZutatOption[]>);
+};
+
 export default realZutatenData;
