@@ -714,3 +714,4 @@ Este modal multiproduct optimizado transformará la experiencia de personalizaci
 **📅 Última actualización:** 25 de Junio, 2025  
 **👨‍💻 Responsable:** lim1712  
 **🌿 Rama:** `lim1712/fix-cards-responsive-optimization`
+
