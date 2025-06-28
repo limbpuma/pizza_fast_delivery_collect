@@ -15,7 +15,7 @@ import {
   type SauceOption,
   type ZutatenSelection
 } from './components';
-import { mockZutatenData } from './components/zutaten';
+import { realZutatenData, realSaucenData } from './components/zutaten';
 
 interface AdvancedPizzaModalProps {
   isOpen: boolean;
@@ -74,32 +74,18 @@ function AdvancedPizzaModal({ isOpen, onClose, pizza, saucesOptions, zutatenOpti
   const { id, name, unitPrice, ingredients, sizes } = pizza;
   const germanInfo = getGermanPizzaInfo(id);
 
-  // Default sauce options if not provided
-  const defaultSauces: SauceOption[] = [
-    {
-      id: 'tomato',
-      name: 'Tomatensauce',
-      price: 0,
-      isDefault: true,
-      description: 'Klassische Tomatensauce'
-    },
-    {
-      id: 'bbq',
-      name: 'BBQ Sauce',
-      price: 1.50,
-      isPremium: true,
-      description: 'Rauchige BBQ-Sauce'
-    },
-    {
-      id: 'garlic',
-      name: 'Knoblauchsauce',
-      price: 1.00,
-      description: 'Cremige Knoblauchsauce'
-    }
-  ];
+  // Convert real sauce data to SauceOption format
+  const defaultSauces: SauceOption[] = realSaucenData.map(sauce => ({
+    id: sauce.id,
+    name: sauce.name,
+    price: sauce.price,
+    isDefault: sauce.isDefault,
+    description: sauce.description,
+    isPremium: sauce.price > 0
+  }));
 
   const availableSauces = saucesOptions || defaultSauces;
-  const availableZutaten = zutatenOptions || mockZutatenData;
+  const availableZutaten = zutatenOptions || realZutatenData;
 
   // Create size options from pizza data
   const createSizeOptions = (): PizzaSize[] => {
