@@ -14,14 +14,6 @@ export type {
   ZutatenCategoryProps
 } from './types';
 
-// Mock Data (for backward compatibility)
-export { 
-  mockZutatenData, 
-  getPopularZutaten as getPopularZutatenMock, 
-  categorizeZutaten, 
-  categoryLabels 
-} from './mockData';
-
 // Real Data - Production Ready
 export { 
   realZutatenData, 

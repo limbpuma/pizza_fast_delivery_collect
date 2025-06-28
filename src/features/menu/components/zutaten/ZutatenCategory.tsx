@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency } from '../../../../utils/helpers';
 import { ZutatenCategoryProps } from './types';
-import { categoryLabels } from './mockData';
 
 function ZutatenCategory({ 
   category, 
@@ -19,7 +18,7 @@ function ZutatenCategory({
   };
 
   const selectedInCategory = category.items.filter(zutat => selectedZutaten[zutat.id]).length;
-  const categoryLabel = categoryLabels[category.category] || category.label;
+  const categoryLabel = category.label; // Ya viene traducido desde ZutatenExpanded
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden">
