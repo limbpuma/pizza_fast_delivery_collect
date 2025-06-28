@@ -49,7 +49,11 @@
     "cancel": "Cancel",
     "backToMenu": "Back to Menu",
     "optional": "optional",
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "edit": "Edit",
+    "sending": "Sending...",
+    "retry": "Retry",
+    "close": "Close"
   },
   "navigation": {
     "myOrders": "My Orders",
@@ -398,7 +402,35 @@
       "postalCodeInvalid": "Please enter a valid 5-digit postal code",
       "postalCodeNotInZone": "Sorry, we don't deliver to this postal code",
       "submitError": "An error occurred. Please try again."
-    },    "whatsappMessage": {      "title": "Restaurant CAMPUS - New Order",
+    },
+    "whatsapp": {
+      "confirmOrder": "Confirm WhatsApp Order",
+      "showPreview": "Show message preview",
+      "hidePreview": "Hide preview",
+      "messagePreview": "Message to be sent:",
+      "importantNote": "Important:",
+      "note1": "WhatsApp will open automatically",
+      "note2": "Send the message as shown",
+      "note3": "The restaurant will confirm your order",
+      "sendOrder": "Send via WhatsApp",
+      "success": {
+        "title": "Successfully sent!",
+        "description": "Your order has been sent via WhatsApp. The restaurant will contact you soon.",
+        "method": "Sent via {{method}}"
+      },
+      "error": {
+        "title": "Error sending",
+        "description": "Could not send order via WhatsApp. Try the alternative options."
+      },
+      "fallback": {
+        "title": "WhatsApp not available",
+        "description": "Use one of these alternative options to send your order:"
+      },
+      "alternatives": {
+        "title": "Alternative options:"
+      }
+    },
+    "whatsappMessage": {      "title": "Restaurant CAMPUS - New Order",
       "orderNumber": "Order #{{orderNumber}}",
       "phone": "Phone: {{phone}}",
       "customer": "Customer:",
