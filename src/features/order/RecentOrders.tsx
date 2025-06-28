@@ -16,6 +16,7 @@ function RecentOrders() {
   
   const [orders, setOrders] = useState<SavedOrder[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedOrder, setSelectedOrder] = useState<SavedOrder | null>(null);
   const [showReorderConfirm, setShowReorderConfirm] = useState<SavedOrder | null>(null);
 
@@ -23,6 +24,7 @@ function RecentOrders() {
   useEffect(() => {
     const loadOrders = async () => {
       try {
+        setError(null);
         // Initialize cache (clean old orders, migrate data)
         initializeOrderCache();
         
@@ -31,6 +33,7 @@ function RecentOrders() {
         setOrders(recentOrders);
       } catch (error) {
         console.error('Error loading orders:', error);
+        setError(error instanceof Error ? error.message : 'Failed to load orders');
         setOrders([]);
       } finally {
         setLoading(false);
@@ -82,7 +85,7 @@ function RecentOrders() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <div className="px-4 py-6 max-w-4xl mx-auto">
+        <div className="max-w-4xl px-4 py-6 mx-auto">
           {/* Header */}
           <div className="mb-6">
             <LinkButton to="/menu">&larr; {t('common.backToMenu')}</LinkButton>
@@ -90,15 +93,15 @@ function RecentOrders() {
 
           {/* Loading skeleton */}
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-64 mb-6"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="w-64 h-8 mb-6 bg-gray-200 rounded"></div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="bg-white rounded-lg p-6 border border-gray-200">
-                  <div className="h-4 bg-gray-200 rounded w-32 mb-3"></div>
-                  <div className="h-6 bg-gray-200 rounded w-48 mb-4"></div>
+                <div key={i} className="p-6 bg-white border border-gray-200 rounded-lg">
+                  <div className="w-32 h-4 mb-3 bg-gray-200 rounded"></div>
+                  <div className="w-48 h-6 mb-4 bg-gray-200 rounded"></div>
                   <div className="space-y-2">
-                    <div className="h-3 bg-gray-200 rounded w-full"></div>
-                    <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                    <div className="w-full h-3 bg-gray-200 rounded"></div>
+                    <div className="w-3/4 h-3 bg-gray-200 rounded"></div>
                   </div>
                 </div>
               ))}
@@ -109,9 +112,57 @@ function RecentOrders() {
     );
   }
 
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl px-4 py-6 mx-auto">
+          {/* Header */}
+          <div className="mb-6">
+            <LinkButton to="/menu">&larr; {t('common.backToMenu')}</LinkButton>
+          </div>
+
+          {/* Error message */}
+          <div className="p-6 text-center border border-red-200 rounded-lg bg-red-50">
+            <div className="mb-2 text-lg font-semibold text-red-600">
+              {t('orders.error.title', 'Error loading orders')}
+            </div>
+            <div className="mb-4 text-red-700">
+              {t('orders.error.message', 'We couldn\'t load your order history. This might be due to corrupted data.')}
+            </div>
+            <button
+              onClick={() => {
+                setError(null);
+                setLoading(true);
+                // Clear potentially corrupted data and retry
+                localStorage.removeItem('campusPizzaOrders');
+                const loadOrders = async () => {
+                  try {
+                    initializeOrderCache();
+                    const recentOrders = getRecentOrders();
+                    setOrders(recentOrders);
+                  } catch (error) {
+                    console.error('Error loading orders after reset:', error);
+                    setError('Still unable to load orders. Please try again later.');
+                  } finally {
+                    setLoading(false);
+                  }
+                };
+                loadOrders();
+              }}
+              className="px-4 py-2 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700"
+            >
+              {t('orders.error.retry', 'Clear data and retry')}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="px-4 py-6 max-w-4xl mx-auto">
+      <div className="max-w-4xl px-4 py-6 mx-auto">
         {/* Header */}
         <div className="mb-6">
           <LinkButton to="/menu">&larr; {t('common.backToMenu')}</LinkButton>
@@ -119,14 +170,14 @@ function RecentOrders() {
 
         {/* Page Title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="mb-2 text-2xl font-bold text-gray-900">
             {t('orders.title')}
           </h1>
           
           {/* Statistics */}
           {orders.length > 0 && (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div className="p-4 mb-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+              <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
                 <div>
                   <div className="text-2xl font-bold text-orange-600">
                     {formatCurrency(stats.totalSpent)}
@@ -161,28 +212,28 @@ function RecentOrders() {
         {/* Orders List */}
         {orders.length === 0 ? (
           // Empty State
-          <div className="text-center py-12">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+          <div className="py-12 text-center">
+            <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full">
               <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <h3 className="mb-2 text-lg font-medium text-gray-900">
               {t('orders.empty.title')}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="mb-6 text-gray-600">
               {t('orders.empty.description')}
             </p>
             <button
               onClick={() => navigate('/menu')}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              className="px-6 py-3 font-medium text-white transition-colors bg-orange-500 rounded-lg hover:bg-orange-600"
             >
               {t('orders.empty.action')}
             </button>
           </div>
         ) : (
           // Orders Grid
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {orders.map((order) => (
               <OrderHistoryItem
                 key={order.orderNumber}
@@ -205,24 +256,24 @@ function RecentOrders() {
 
         {/* Reorder Confirmation Modal */}
         {showReorderConfirm && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-md w-full p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+            <div className="w-full max-w-md p-6 bg-white rounded-lg">
+              <h3 className="mb-4 text-lg font-semibold text-gray-900">
                 {t('orders.reorder.confirmTitle')}
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="mb-6 text-gray-600">
                 {t('orders.reorder.confirmMessage', { orderNumber: showReorderConfirm.orderNumber })}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowReorderConfirm(null)}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2 text-gray-700 transition-colors border border-gray-300 rounded-lg hover:bg-gray-50"
                 >
                   {t('orders.reorder.cancel')}
                 </button>
                 <button
                   onClick={confirmReorder}
-                  className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2 text-white transition-colors bg-orange-500 rounded-lg hover:bg-orange-600"
                 >
                   {t('orders.reorder.confirm')}
                 </button>

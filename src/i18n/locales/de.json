@@ -545,6 +545,11 @@
       "favoriteProduct": "Meist bestellt: {{product}}",
       "averageOrder": "Durchschnittliche Bestellung: {{amount}}"
     },
+    "error": {
+      "title": "Fehler beim Laden der Bestellungen",
+      "message": "Ihre Bestellhistorie konnte nicht geladen werden. Dies könnte auf beschädigte Daten zurückzuführen sein.",
+      "retry": "Daten löschen und erneut versuchen"
+    },
     "time": {
       "minutesAgo": "vor {{count}}m",
       "hoursAgo": "vor {{count}}h",

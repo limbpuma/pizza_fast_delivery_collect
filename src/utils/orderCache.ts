@@ -36,15 +36,53 @@ export const getRecentOrders = (): SavedOrder[] => {
     const ordersJson = localStorage.getItem(ORDERS_STORAGE_KEY);
     if (!ordersJson) return [];
     
-    const orders: SavedOrder[] = JSON.parse(ordersJson);
+    // Additional safety check for empty or whitespace-only strings
+    if (!ordersJson.trim()) {
+      console.warn('Empty orders data found, clearing localStorage entry');
+      localStorage.removeItem(ORDERS_STORAGE_KEY);
+      return [];
+    }
+    
+    let orders: SavedOrder[];
+    
+    try {
+      orders = JSON.parse(ordersJson);
+    } catch (parseError) {
+      console.error('Corrupted orders data found, clearing localStorage:', parseError);
+      localStorage.removeItem(ORDERS_STORAGE_KEY);
+      return [];
+    }
+    
+    // Ensure orders is an array
+    if (!Array.isArray(orders)) {
+      console.error('Orders data is not an array, clearing localStorage');
+      localStorage.removeItem(ORDERS_STORAGE_KEY);
+      return [];
+    }
     
     // Sort by timestamp (most recent first)
     return orders
-      .filter(order => order && order.orderNumber && order.timestamp)
+      .filter(order => {
+        // More robust validation
+        if (!order || typeof order !== 'object') return false;
+        if (!order.orderNumber || !order.timestamp) return false;
+        
+        // Validate timestamp format
+        const timestamp = new Date(order.timestamp);
+        if (isNaN(timestamp.getTime())) return false;
+        
+        return true;
+      })
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
       .slice(0, MAX_ORDERS);
   } catch (error) {
-    console.error('Error loading orders from cache:', error);
+    console.error('Critical error in getRecentOrders, clearing localStorage:', error);
+    // Clear potentially corrupted data
+    try {
+      localStorage.removeItem(ORDERS_STORAGE_KEY);
+    } catch (clearError) {
+      console.error('Unable to clear localStorage:', clearError);
+    }
     return [];
   }
 };

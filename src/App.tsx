@@ -34,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/my-orders",
         element: <RecentOrders />,
+        errorElement: <Error />,
       },{
         path: "/order-confirmation",
         element: <OrderConfirmation />,
