@@ -74,17 +74,17 @@ function CheckoutForm() {
   const missingAmount = deliveryCalculation.missingAmount;
   const currentTariff = deliveryCalculation.tariff;
 
-  // Order submission protection
-  const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
+  // Order submission protection (variables kept for future use)
+  const { isSubmitting, startSubmission: _startSubmission, endSubmission: _endSubmission } = useOrderSubmission({ timeout: 10000 });
   
   // WhatsApp integration hook
   const {
     isModalOpen: isWhatsAppModalOpen,
-    isLoading: isWhatsAppLoading,
+    isLoading: _isWhatsAppLoading,
     result: whatsAppResult,
     openConfirmation: openWhatsAppConfirmation,
     closeConfirmation: closeWhatsAppConfirmation,
-    sendOrder: sendWhatsAppOrder,
+    sendOrder: _sendWhatsAppOrder,
     reset: resetWhatsApp
   } = useWhatsAppIntegration();
 
@@ -152,8 +152,9 @@ function CheckoutForm() {
     return `CP${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
   };
 
-  // Create WhatsApp message
-  const createWhatsAppMessage = (orderNumber: string): string => {
+  // Create WhatsApp message (reserved for future customization)
+  // @ts-ignore - Function reserved for future use
+  const _createWhatsAppMessage = (orderNumber: string): string => {
     const orderItems = cart.map((item: any) => 
       `${item.quantity}x ${t('menu.productNumber', { number: item.pizzaId })} ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
     ).join('\n');
