@@ -37,16 +37,16 @@ export function WhatsAppResultModal({
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {t('whatsapp.success.title', { default: '¡Enviado con éxito!' })}
+                {t('whatsapp.success.title', { default: 'Successfully sent!' })}
               </h3>
               <p className="text-gray-600 mb-4">
                 {t('whatsapp.success.description', { 
-                  default: 'Tu pedido ha sido enviado por WhatsApp. El restaurante te contactará pronto.' 
+                  default: 'Your order has been sent via WhatsApp. The restaurant will contact you soon.' 
                 })}
               </p>
               <div className="text-sm text-gray-500">
                 {t('whatsapp.success.method', { 
-                  default: `Enviado vía ${result.method}`,
+                  default: `Sent via ${result.method}`,
                   method: result.method 
                 })}
                 {result.platform && ` (${result.platform})`}
@@ -63,11 +63,11 @@ export function WhatsAppResultModal({
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {t('whatsapp.error.title', { default: 'Error al enviar' })}
+                {t('whatsapp.error.title', { default: 'Error sending' })}
               </h3>
               <p className="text-gray-600 mb-4">
                 {t('whatsapp.error.description', { 
-                  default: 'No se pudo enviar el pedido por WhatsApp. Prueba las opciones alternativas.' 
+                  default: 'Could not send order via WhatsApp. Try the alternative options.' 
                 })}
               </p>
               {result.error && (
@@ -87,11 +87,11 @@ export function WhatsAppResultModal({
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {t('whatsapp.fallback.title', { default: 'WhatsApp no disponible' })}
+                {t('whatsapp.fallback.title', { default: 'WhatsApp not available' })}
               </h3>
               <p className="text-gray-600 mb-4">
                 {t('whatsapp.fallback.description', { 
-                  default: 'Usa una de estas opciones alternativas para enviar tu pedido:' 
+                  default: 'Use one of these alternative options to send your order:' 
                 })}
               </p>
             </div>
@@ -101,7 +101,7 @@ export function WhatsAppResultModal({
           {result.alternativeActions && result.alternativeActions.length > 0 && (
             <div className="mt-4 space-y-2">
               <h4 className="text-sm font-medium text-gray-900 mb-2">
-                {t('whatsapp.alternatives.title', { default: 'Opciones alternativas:' })}
+                {t('whatsapp.alternatives.title', { default: 'Alternative options:' })}
               </h4>
               {result.alternativeActions.map((action, index) => (
                 <button
@@ -123,14 +123,14 @@ export function WhatsAppResultModal({
                 onClick={onRetry}
                 className="flex-1 px-4 py-2 text-orange-700 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors"
               >
-                {t('common.retry', { default: 'Reintentar' })}
+                {t('common.retry', { default: 'Retry' })}
               </button>
             )}
             <button
               onClick={onClose}
               className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
             >
-              {t('common.close', { default: 'Cerrar' })}
+              {t('common.close', { default: 'Close' })}
             </button>
           </div>
         </div>

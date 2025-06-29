@@ -391,7 +391,10 @@
     "total": "Total",
     "specialInstructionsPlaceholder": "Ring doorbell, leave at door, etc.",
     "selectCountryCode": "Select country code",
-    "phoneHelper": "Enter your phone number without country code",    "errors": {
+    "phoneHelper": "Enter your phone number without country code",
+    "orderNumber": "Order No.:",
+    "customer": "Customer:",
+    "errors": {
       "nameRequired": "Name is required",
       "phoneRequired": "Phone number is required",
       "phoneInvalid": "Please enter a valid phone number",
