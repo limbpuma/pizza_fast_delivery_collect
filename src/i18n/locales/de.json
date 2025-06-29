@@ -292,7 +292,21 @@
     "items": "Artikel",
     "noSearchResults": "Keine Suchergebnisse für '{{term}}'",
     "searchResultsCount": "{{count}} Ergebnis für '{{term}}'",
-    "searchResultsCount_plural": "{{count}} Ergebnisse für '{{term}}'"
+    "searchResultsCount_plural": "{{count}} Ergebnisse für '{{term}}'",
+    "filters": {
+      "title": "Menü filtern",
+      "category": "Kategorie",
+      "all": "Alle Pizzas",
+      "excludeAllergens": "Allergene ausschließen",
+      "vegetarianOnly": "Nur vegetarisch",
+      "veganOnly": "Nur vegan",
+      "results": "{{count}} Pizzas gefunden",
+      "noResults": "Keine Pizzas gefunden",
+      "adjustFilters": "Versuchen Sie, Ihre Filter anzupassen, um mehr Optionen zu sehen",
+      "moreCategories": "Mehr",
+      "showAllFilters": "Alle Filter anzeigen",
+      "hideFilters": "Filter ausblenden"
+    }
   },
   "cart": {
     "title": "Warenkorb",

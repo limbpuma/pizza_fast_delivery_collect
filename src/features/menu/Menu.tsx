@@ -61,13 +61,18 @@ function Menu() {
       if (hasExcludedAllergen) return false;
     }
 
-    // Quick filters for vegetarian/vegan
-    if (filters.showVegetarian && item.category !== 'Vegetarisch' && item.category !== 'Pizzen Vegetarisch') {
-      return false;
+    // Quick filters for vegetarian/vegan - improved logic
+    if (filters.showVegetarian) {
+      const isVegetarian = item.category === 'Pizzen Vegetarisch' || 
+                          item.category?.toLowerCase().includes('vegetarisch') ||
+                          (item.category === 'Snacks' && !item.allergens?.includes('H')); // No fish allergen for snacks
+      if (!isVegetarian) return false;
     }
     
-    if (filters.showVegan && !item.category?.toLowerCase().includes('vegan')) {
-      return false;
+    if (filters.showVegan) {
+      const isVegan = item.category?.toLowerCase().includes('vegan') ||
+                     (!item.allergens?.includes('D') && !item.allergens?.includes('E')); // No milk or eggs
+      if (!isVegan) return false;
     }
 
     return true;
