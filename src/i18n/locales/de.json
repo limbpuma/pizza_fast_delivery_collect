@@ -357,6 +357,8 @@
     "specialInstructionsPlaceholder": "Klingeln, vor der Tür lassen, etc.",
     "selectCountryCode": "Ländervorwahl auswählen",
     "phoneHelper": "Geben Sie Ihre Telefonnummer ohne Ländervorwahl ein",
+    "orderNumber": "Bestellnummer:",
+    "customer": "Kunde:",
     "errors": {
       "nameRequired": "Name ist erforderlich",
       "phoneRequired": "Telefonnummer ist erforderlich",

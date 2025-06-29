@@ -17,6 +17,11 @@ import { calculateDeliveryFee } from "../../utils/deliveryTariffs";
 import { 
   selectUser
 } from '../user/userSlice';
+// WhatsApp Integration imports
+import { useWhatsAppIntegration } from '../../hooks/useWhatsAppIntegration';
+import { WhatsAppConfirmationModal } from '../../ui/WhatsAppConfirmationModal';
+import { WhatsAppResultModal } from '../../ui/WhatsAppResultModal';
+import { OrderData, WhatsAppResult } from '../../types/whatsapp';
 
 interface FormData {
   customer: string;
@@ -71,6 +76,21 @@ function CheckoutForm() {
 
   // Order submission protection
   const { isSubmitting, startSubmission, endSubmission } = useOrderSubmission({ timeout: 10000 });
+  
+  // WhatsApp integration hook
+  const {
+    isModalOpen: isWhatsAppModalOpen,
+    isLoading: isWhatsAppLoading,
+    result: whatsAppResult,
+    openConfirmation: openWhatsAppConfirmation,
+    closeConfirmation: closeWhatsAppConfirmation,
+    sendOrder: sendWhatsAppOrder,
+    reset: resetWhatsApp
+  } = useWhatsAppIntegration();
+
+  // Estado para modal de resultado
+  const [showWhatsAppResultModal, setShowWhatsAppResultModal] = useState(false);
+  const [currentOrderData, setCurrentOrderData] = useState<OrderData | null>(null);
   const [formData, setFormData] = useState<FormData>({
     customer: '',
     phone: '+49',
@@ -130,7 +150,9 @@ function CheckoutForm() {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 1000);
     return `CP${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
-  };  // Create WhatsApp message
+  };
+
+  // Create WhatsApp message
   const createWhatsAppMessage = (orderNumber: string): string => {
     const orderItems = cart.map((item: any) => 
       `${item.quantity}x ${t('menu.productNumber', { number: item.pizzaId })} ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
@@ -178,82 +200,92 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
 
 ---
 ⏰ ${t('common.processing')}`;
-  };  // Handle form submission
+  };
+
+  // Generate order data helper
+  const createOrderData = (orderNumber: string): OrderData => {
+    return {
+      orderNumber,
+      timestamp: new Date().toISOString(),
+      customer: formData.customer,
+      phone: formData.phone,
+      deliveryMode,
+      address: deliveryMode === 'delivery' ? {
+        street: formData.address || '',
+        houseNumber: '',
+        postalCode: formData.postalCode || '',
+        city: formData.city || 'Dortmund'
+      } : undefined,
+      paymentMethod: formData.paymentMethod,
+      specialInstructions: formData.specialInstructions,
+      cart: cart,
+      pricing: {
+        subtotal,
+        deliveryFee,
+        serviceFee: 0,
+        total
+      }
+    };
+  };
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) return;
 
-    // Use the submission protection hook
-    if (!startSubmission()) {
-      return; // Submission blocked
-    }
+    // Prevent multiple submissions
+    if (isSubmitting) return;
 
-    try {
-      // Generate order number
-      const orderNumber = generateOrderNumber();
+    // Generate order number and create order data
+    const orderNumber = generateOrderNumber();
+    const orderData = createOrderData(orderNumber);
 
-      // Save order to cache first (to prevent duplicates)
-      const orderData = {
-        orderNumber,
-        timestamp: new Date().toISOString(),
-        customer: formData.customer,
-        phone: formData.phone,
-        deliveryMode,
-        address: deliveryMode === 'delivery' ? {
-          street: formData.address || '',
-          houseNumber: '',
-          postalCode: formData.postalCode || '',
-          city: formData.city || 'Dortmund'
-        } : undefined,
-        paymentMethod: formData.paymentMethod,
-        specialInstructions: formData.specialInstructions,
-        cart: cart,
-        pricing: {
-          subtotal,
-          deliveryFee,
-          serviceFee: 0, // No service fee
-          total
-        }
-      };
+    // Save current order data for modal use
+    setCurrentOrderData(orderData);
 
-      // Save to cache using proper utility (has duplicate protection)
-      saveOrder(orderData);
+    // Save to cache first (to prevent duplicates)
+    saveOrder(orderData);
+    
+    // Open WhatsApp confirmation modal
+    openWhatsAppConfirmation();
+  };
 
-      // Create WhatsApp message
-      const whatsappMessage = createWhatsAppMessage(orderNumber);
-      
-      // Restaurant WhatsApp number (replace with actual number)
-      const restaurantPhone = '+4917645754360'; // This should be the real restaurant number
-      
-      // Create WhatsApp URL
-      const whatsappUrl = `https://wa.me/${restaurantPhone.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
-
-      // Clear cart BEFORE opening WhatsApp to prevent re-submission
+  // Handle WhatsApp confirmation
+  const handleWhatsAppConfirm = async (result: WhatsAppResult) => {
+    closeWhatsAppConfirmation();
+    
+    if (result.success) {
+      // Clear cart and navigate to confirmation
       dispatch(clearCart());
-
-      // Add a small delay to ensure state is updated
+      
+      // Small delay to ensure state is updated
       await new Promise(resolve => setTimeout(resolve, 100));
-
-      // Open WhatsApp
-      window.open(whatsappUrl, '_blank');
-
-      // Navigate to confirmation page
+      
       navigate('/order-confirmation', { 
         state: { 
-          orderNumber,
+          orderNumber: 'CP' + Date.now().toString().slice(-6),
           deliveryMode,
           estimatedTime: deliveryMode === 'delivery' ? '30-45 min' : '15-20 min'
         },
-        replace: true // Use replace to prevent back navigation issues
+        replace: true
       });
-
-    } catch (error) {
-      console.error('Error submitting order:', error);
-      alert(t('checkout.errors.submitError', { default: 'An error occurred. Please try again.' }));
-    } finally {
-      endSubmission();
+    } else {
+      // Show result modal with alternatives
+      setShowWhatsAppResultModal(true);
     }
+  };
+
+  // Handle result modal close
+  const handleResultModalClose = () => {
+    setShowWhatsAppResultModal(false);
+    resetWhatsApp();
+  };
+
+  // Handle retry
+  const handleWhatsAppRetry = () => {
+    setShowWhatsAppResultModal(false);
+    openWhatsAppConfirmation();
   };
 
   // Redirect if cart is empty
@@ -668,6 +700,24 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
             </p>
           </div>
         </form>
+
+        {/* WhatsApp Integration Modals */}
+        {currentOrderData && (
+          <WhatsAppConfirmationModal
+            isOpen={isWhatsAppModalOpen}
+            onCancel={closeWhatsAppConfirmation}
+            onEdit={closeWhatsAppConfirmation}
+            onConfirm={handleWhatsAppConfirm}
+            orderData={currentOrderData}
+          />
+        )}
+
+        <WhatsAppResultModal
+          isOpen={showWhatsAppResultModal}
+          onClose={handleResultModalClose}
+          onRetry={handleWhatsAppRetry}
+          result={whatsAppResult}
+        />
       </div>
     </div>
   );
