@@ -28,8 +28,18 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
   const categories = getCategoryOptions(menu, true);
 
   const commonAllergens = [
-    'Gluten', 'Milch', 'Eier', 'Nüsse', 'Soja', 'Weizen'
+    { code: 'D', key: 'D' }, // Milch/Lactose
+    { code: 'F', key: 'F' }, // Gluten
+    { code: 'E', key: 'E' }, // Eier
+    { code: 'Sf', key: 'Sf' }, // Schalenfrüchte (Tree nuts)
+    { code: 'C', key: 'C' }, // Soja
+    { code: 'H', key: 'H' }  // Fisch
   ];
+
+  // Function to get allergen description from translation
+  const getAllergenDescription = (code: string): string => {
+    return t(`allergene_legende.${code}`, { defaultValue: code });
+  };
 
   // Update scroll button visibility based on content overflow
   useEffect(() => {
@@ -69,10 +79,10 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
     updateFilters(category, excludedAllergens, showVegetarian, showVegan);
   };
 
-  const handleAllergenToggle = (allergen: string) => {
-    const newExcluded = excludedAllergens.includes(allergen)
-      ? excludedAllergens.filter(a => a !== allergen)
-      : [...excludedAllergens, allergen];
+  const handleAllergenToggle = (allergenCode: string) => {
+    const newExcluded = excludedAllergens.includes(allergenCode)
+      ? excludedAllergens.filter(a => a !== allergenCode)
+      : [...excludedAllergens, allergenCode];
     
     setExcludedAllergens(newExcluded);
     updateFilters(selectedCategory, newExcluded, showVegetarian, showVegan);
@@ -90,7 +100,7 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
   // Show ALL categories in scroll (like hamburger menu) instead of limiting them
   const visibleCategoriesList = categories; // Changed from categories.slice(0, visibleCategories)
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 mt-2">      {/* Categories section with hamburger menu outside scroll */}
+    <div className="mt-2 bg-white border border-gray-200 rounded-lg shadow-sm">      {/* Categories section with hamburger menu outside scroll */}
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Mobile-first horizontal category scroll - Responsive container */}
         <div className="relative flex-1 min-w-0 overflow-hidden">          {/* Left scroll button - Enhanced design */}
@@ -110,10 +120,7 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
           )}{/* Category buttons container - Enhanced responsive design */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-3 overflow-x-auto scrollbar-hide py-4 scroll-smooth
-                       px-3 sm:px-4 
-                       w-full
-                       snap-x snap-mandatory"
+            className="flex w-full gap-3 px-3 py-4 overflow-x-auto scrollbar-hide scroll-smooth sm:px-4 snap-x snap-mandatory"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none'
@@ -167,12 +174,12 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
 
           {/* Enhanced Modal for ALL categories */}
           {showHamburgerMenu && (
-            <div className="absolute top-full right-0 mt-3 bg-white border border-gray-200 rounded-xl shadow-2xl z-30 min-w-72 max-h-96 overflow-hidden">
+            <div className="absolute right-0 z-30 mt-3 overflow-hidden bg-white border border-gray-200 shadow-2xl top-full rounded-xl min-w-72 max-h-96">
               <div className="p-1">
-                <div className="sticky top-0 bg-gradient-to-r from-orange-50 to-red-50 text-orange-800 font-semibold text-sm px-4 py-3 border-b border-orange-100">
+                <div className="sticky top-0 px-4 py-3 text-sm font-semibold text-orange-800 border-b border-orange-100 bg-gradient-to-r from-orange-50 to-red-50">
                   📂 Alle Kategorien
                 </div>
-                <div className="max-h-80 overflow-y-auto scrollbar-hide">
+                <div className="overflow-y-auto max-h-80 scrollbar-hide">
                   {categories.map(category => (
                     <button
                       key={category.value}
@@ -202,7 +209,7 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
       <div className="px-4 pb-4">
         <button
           onClick={() => setShowAllFilters(!showAllFilters)}
-          className="text-sm text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-2"
+          className="flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-800"
         >
           <span>{showAllFilters ? t('menu.filters.hideFilters') : t('menu.filters.showAllFilters')}</span>
           <svg 
@@ -218,31 +225,31 @@ function MenuFilters({ onFilterChange }: MenuFiltersProps) {
 
       {/* Additional filters (collapsible) */}
       {showAllFilters && (
-        <div className="px-4 pb-4 border-t border-gray-100 pt-4">
+        <div className="px-4 pt-4 pb-4 border-t border-gray-100">
           {/* Allergen Exclusion */}
           <div className="mb-4">
-            <h4 className="text-sm font-medium text-gray-700 mb-3">
+            <h4 className="mb-3 text-sm font-medium text-gray-700">
               {t('menu.filters.excludeAllergens')}
             </h4>
             <div className="flex flex-wrap gap-2">
               {commonAllergens.map(allergen => (
                 <button
-                  key={allergen}
-                  onClick={() => handleAllergenToggle(allergen)}
+                  key={allergen.code}
+                  onClick={() => handleAllergenToggle(allergen.code)}
                   className={`px-3 py-2 rounded-full text-sm font-medium transition-colors ${
-                    excludedAllergens.includes(allergen)
+                    excludedAllergens.includes(allergen.code)
                       ? 'bg-red-100 text-red-700 border border-red-300'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  {excludedAllergens.includes(allergen) ? '✗' : '+'} {allergen}
+                  {excludedAllergens.includes(allergen.code) ? '✗' : '+'} {getAllergenDescription(allergen.code)}
                 </button>
               ))}
             </div>
           </div>
 
           {/* Quick Filters */}
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex flex-wrap gap-4">
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
