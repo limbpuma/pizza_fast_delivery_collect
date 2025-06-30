@@ -74,17 +74,15 @@ function CheckoutForm() {
   const missingAmount = deliveryCalculation.missingAmount;
   const currentTariff = deliveryCalculation.tariff;
 
-  // Order submission protection (variables kept for future use)
-  const { isSubmitting, startSubmission: _startSubmission, endSubmission: _endSubmission } = useOrderSubmission({ timeout: 10000 });
+  // Order submission protection
+  const { isSubmitting } = useOrderSubmission({ timeout: 10000 });
   
   // WhatsApp integration hook
   const {
     isModalOpen: isWhatsAppModalOpen,
-    isLoading: _isWhatsAppLoading,
     result: whatsAppResult,
     openConfirmation: openWhatsAppConfirmation,
     closeConfirmation: closeWhatsAppConfirmation,
-    sendOrder: _sendWhatsAppOrder,
     reset: resetWhatsApp
   } = useWhatsAppIntegration();
 
@@ -150,57 +148,6 @@ function CheckoutForm() {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 1000);
     return `CP${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
-  };
-
-  // Create WhatsApp message (reserved for future customization)
-  // @ts-ignore - Function reserved for future use
-  const _createWhatsAppMessage = (orderNumber: string): string => {
-    const orderItems = cart.map((item: any) => 
-      `${item.quantity}x ${t('menu.productNumber', { number: item.pizzaId })} ${item.name}${item.size && item.size !== 'standard' ? ` (${item.size})` : ''} - ${formatCurrency(item.totalPrice)}`
-    ).join('\n');
-
-    const deliveryTypeText = deliveryMode === 'delivery' 
-      ? t('checkout.whatsappMessage.deliveryType')
-      : t('checkout.whatsappMessage.collectionType');
-    
-    const paymentMethodText = formData.paymentMethod === 'cash' 
-      ? t('checkout.whatsappMessage.paymentCash')
-      : t('checkout.whatsappMessage.paymentCard');    let addressInfo = '';
-    if (deliveryMode === 'delivery' && formData.address && formData.postalCode) {
-      // Format address for Google Maps - making it clickable
-      const fullAddress = `${formData.address}, ${formData.postalCode} ${formData.city}, Deutschland`;
-      const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(fullAddress)}`;
-      addressInfo = `\n📍 *${t('checkout.whatsappMessage.address')}*\n${fullAddress}\n🗺️ Google Maps: ${googleMapsUrl}`;
-    }
-
-    const specialInstructionsText = formData.specialInstructions?.trim() 
-      ? `\n📝 ${t('checkout.whatsappMessage.specialInstructions', { instructions: formData.specialInstructions })}`
-      : '';
-
-    // Add delivery zone info for delivery orders
-    const deliveryZoneInfo = deliveryMode === 'delivery' && currentTariff 
-      ? `\n🗺️ *Delivery Zone:* ${currentTariff.name} (PLZ: ${userPLZ})`
-      : '';
-
-    return `🍕 *${t('checkout.whatsappMessage.title')}*
-
-📋 *${t('checkout.whatsappMessage.orderNumber', { orderNumber })}*
-📞 *${t('checkout.whatsappMessage.phone', { phone: formData.phone })}*
-
-👤 *${t('checkout.whatsappMessage.customer')}* ${formData.customer}${addressInfo}${deliveryZoneInfo}
-
-🛒 *${t('checkout.whatsappMessage.products')}*
-${orderItems}
-
-💰 *${t('checkout.whatsappMessage.summary')}*
-${t('checkout.whatsappMessage.subtotal', { amount: formatCurrency(subtotal) })}
-${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amount: formatCurrency(deliveryFee) })}\n` : ''}*${t('checkout.whatsappMessage.total', { amount: formatCurrency(total) })}*
-
-🚀 *${t('checkout.whatsappMessage.type', { type: deliveryTypeText })}*
-💳 *${t('checkout.whatsappMessage.payment', { method: paymentMethodText })}*${specialInstructionsText}
-
----
-⏰ ${t('common.processing')}`;
   };
 
   // Generate order data helper
@@ -572,7 +519,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                   </span>
                 </div>
               </label>
-              
+              {/*
               <label className="flex items-center p-4 transition-colors border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                 <input
                   type="radio"
@@ -593,6 +540,7 @@ ${deliveryMode === 'delivery' ? `${t('checkout.whatsappMessage.delivery', { amou
                   </span>
                 </div>
               </label>
+              */}
             </div>
           </div>
 

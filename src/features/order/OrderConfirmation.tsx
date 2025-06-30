@@ -271,7 +271,7 @@ function OrderConfirmation() {
                 {t('orderConfirmation.needHelp', { default: 'Need help with your order?' })}
               </p>
               <button
-                onClick={() => window.open('https://wa.me/4917645754360', '_blank')}
+                onClick={() => window.open('https://wa.me/4915906684411', '_blank')}
                 className="text-green-600 hover:text-green-700 font-medium text-sm flex items-center gap-1"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

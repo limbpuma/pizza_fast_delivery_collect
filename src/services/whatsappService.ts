@@ -2,7 +2,7 @@ import { OrderData, WhatsAppResult, PlatformInfo } from '../types/whatsapp';
 import { formatCurrency } from '../utils/helpers';
 
 export class WhatsAppService {
-  private static readonly RESTAURANT_PHONE = '+4917645754360';
+  private static readonly RESTAURANT_PHONE = '+4915906684411';
   private static readonly MAX_MESSAGE_LENGTH = 4096; // Límite de WhatsApp
   private static readonly WEB_WHATSAPP_URL = 'https://web.whatsapp.com/send';
   private static readonly MOBILE_WHATSAPP_URL = 'https://wa.me';
