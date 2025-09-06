@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { CookieConsent } from '../types/cookies';
 import cookieConsentService from '../services/cookieConsent';
 
-interface UseCookieConsentReturn {
+interface CookieConsentContextValue {
   hasConsent: boolean;
   showBanner: boolean;
   consent: CookieConsent | null;
@@ -12,23 +12,31 @@ interface UseCookieConsentReturn {
   clearConsent: () => void;
   isCategoryAllowed: (category: string) => boolean;
   showBannerManually: () => void;
+  updateCount: number;
 }
 
-/**
- * React hook for cookie consent management
- * Provides reactive access to cookie consent state
- */
-export const useCookieConsent = (): UseCookieConsentReturn => {
+const CookieConsentContext = createContext<CookieConsentContextValue | undefined>(undefined);
+
+interface CookieConsentProviderProps {
+  children: ReactNode;
+}
+
+export const CookieConsentProvider: React.FC<CookieConsentProviderProps> = ({ children }) => {
   const [hasConsent, setHasConsent] = useState(cookieConsentService.hasConsent());
   const [showBanner, setShowBanner] = useState(!cookieConsentService.hasConsent() || cookieConsentService.needsRenewal());
   const [consent, setConsent] = useState(cookieConsentService.getConsent());
+  const [updateCount, setUpdateCount] = useState(0);
 
   useEffect(() => {
     // Subscribe to consent changes
     const unsubscribe = cookieConsentService.subscribe((newConsent) => {
       setConsent(newConsent);
       setHasConsent(newConsent !== null);
-      setShowBanner(newConsent === null || cookieConsentService.needsRenewal());
+      // Auto-hide banner only when consent is actually given
+      if (newConsent !== null && !cookieConsentService.needsRenewal()) {
+        setShowBanner(false);
+        setUpdateCount(prev => prev + 1);
+      }
     });
 
     // Initial state check
@@ -69,9 +77,10 @@ export const useCookieConsent = (): UseCookieConsentReturn => {
 
   const showBannerManually = () => {
     setShowBanner(true);
+    setUpdateCount(prev => prev + 1);
   };
 
-  return {
+  const value: CookieConsentContextValue = {
     hasConsent,
     showBanner,
     consent,
@@ -80,6 +89,21 @@ export const useCookieConsent = (): UseCookieConsentReturn => {
     setPreferences,
     clearConsent,
     isCategoryAllowed,
-    showBannerManually
+    showBannerManually,
+    updateCount
   };
+
+  return (
+    <CookieConsentContext.Provider value={value}>
+      {children}
+    </CookieConsentContext.Provider>
+  );
+};
+
+export const useCookieConsent = (): CookieConsentContextValue => {
+  const context = useContext(CookieConsentContext);
+  if (context === undefined) {
+    throw new Error('useCookieConsent must be used within a CookieConsentProvider');
+  }
+  return context;
 };

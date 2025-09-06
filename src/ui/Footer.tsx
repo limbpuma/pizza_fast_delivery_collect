@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useCookieConsent } from '../hooks/useCookieConsent';
+import { useCookieConsent } from '../contexts/CookieConsentContext';
 
 function Footer() {
   const { t, i18n } = useTranslation();

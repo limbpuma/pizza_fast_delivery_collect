@@ -7,7 +7,17 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:report": "playwright show-report",
+    "test:delivery": "playwright test delivery.spec.ts",
+    "test:pickup": "playwright test pickup.spec.ts",
+    "test:comparison": "playwright test comparison.spec.ts",
+    "test:gdpr": "playwright test gdpr.spec.ts",
+    "test:basic": "playwright test basic.spec.ts",
+    "test:all": "playwright test --reporter=html"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -22,6 +32,8 @@
     "react-router-dom": "^7.6.3-pre.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@typescript-eslint/parser": "^5.62.0",

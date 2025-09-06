@@ -6,10 +6,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import CookieBanner from "./CookieBanner";
+import { CookieConsentProvider, useCookieConsent } from "../contexts/CookieConsentContext";
 
-function AppLayout() {
+function AppLayoutInner() {
   const navigation = useNavigation();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { updateCount } = useCookieConsent();
 
   const isLoading = navigation.state === "loading";
 
@@ -34,8 +36,16 @@ function AppLayout() {
       <Footer />
       
       {/* TTDSG § 25 Compliant Cookie Banner */}
-      <CookieBanner />
+      <CookieBanner key={`cookie-banner-${updateCount}`} />
     </div>
+  );
+}
+
+function AppLayout() {
+  return (
+    <CookieConsentProvider>
+      <AppLayoutInner />
+    </CookieConsentProvider>
   );
 }
 

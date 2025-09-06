@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCookieConsent } from '../hooks/useCookieConsent';
+import { useCookieConsent } from '../contexts/CookieConsentContext';
 import Button from './Button';
 import Modal from './Modal';
 
@@ -24,7 +24,9 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ className = '' }) => {
   const [showPreferences, setShowPreferences] = useState(false);
   const [functionalEnabled, setFunctionalEnabled] = useState(true);
 
-  if (!showBanner) return null;
+  if (!showBanner) {
+    return null;
+  }
 
   const handleCustomize = () => {
     setShowPreferences(true);
