@@ -31,13 +31,13 @@ export function useOrderSubmission(options: UseOrderSubmissionOptions = {}) {
     
     // Set a timeout to automatically reset submission state
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+      window.clearTimeout(timeoutRef.current);
     }
     
-    timeoutRef.current = setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       console.log('⏰ Order submission timeout - resetting state');
       setIsSubmitting(false);
-    }, timeout);
+    }, timeout) as number;
     
     console.log('🚀 Order submission started');
     return true;
@@ -64,7 +64,7 @@ export function useOrderSubmission(options: UseOrderSubmissionOptions = {}) {
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+        window.clearTimeout(timeoutRef.current);
       }
     };
   }, []);

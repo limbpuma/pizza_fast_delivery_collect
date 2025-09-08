@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useCookieConsent } from '../hooks/useCookieConsent';
+import { useCookieConsent } from '../contexts/CookieConsentContext';
 import * as orderCache from '../utils/orderCache';
 import type { SavedOrder } from '../utils/orderCache';
 

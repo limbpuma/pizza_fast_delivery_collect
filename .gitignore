@@ -23,4 +23,53 @@ dist-ssr
 *.sln
 *.sw?
 
+# Deployment
 .vercel
+
+# Testing
+test-results/
+playwright-report/
+/coverage/
+*.lcov
+
+# E2E Debug Files
+e2e/*-debug.spec.ts
+e2e/simple-click-test.spec.ts
+e2e/console-debug.spec.ts
+e2e/hook-debug.spec.ts
+e2e/storage-debug.spec.ts
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+build/
+out/
+
+# Docker (optional - uncomment if not needed in repo)
+# Dockerfile
+# docker-compose.yml
+# .dockerignore
+# nginx.conf
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Debug images
+*-debug.png
+*-click.png
+before-*.png
+after-*.png
+
+# Temporary hook files
+src/hooks/useCookieConsent.ts

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCookieConsent } from '../hooks/useCookieConsent';
+import { useCookieConsent } from '../contexts/CookieConsentContext';
 
 interface CookieSettingsButtonProps {
   className?: string;

@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { useCartPersistence } from '../features/cart/hooks/useCartPersistence';
-import { useCookieConsent } from './useCookieConsent';
+import { useCookieConsent } from '../contexts/CookieConsentContext';
 
 /**
  * TTDSG § 25 compliant cart persistence hook

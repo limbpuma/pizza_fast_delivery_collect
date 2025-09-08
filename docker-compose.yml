@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  campus-pizza:
+    build: .
+    container_name: campus_pizza_frontend
+    restart: unless-stopped
+    networks:
+      - docker_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pizza.rule=Host(`pizza-test.limbermartinez.com`)"
+      - "traefik.http.routers.pizza.entrypoints=websecure"
+      - "traefik.http.routers.pizza.tls.certresolver=letsencrypt"
+      - "traefik.http.services.pizza.loadbalancer.server.port=80"
+
+networks:
+  docker_network:
+    external: true
