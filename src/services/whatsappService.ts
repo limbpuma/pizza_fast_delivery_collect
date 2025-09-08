@@ -6,6 +6,7 @@ export class WhatsAppService {
   private static readonly MAX_MESSAGE_LENGTH = 4096; // Límite de WhatsApp
   private static readonly WEB_WHATSAPP_URL = 'https://web.whatsapp.com/send';
   private static readonly MOBILE_WHATSAPP_URL = 'https://wa.me';
+  private static readonly ANDROID_INTENT_URL = 'intent://send?phone={phone}&text={text}#Intent;scheme=whatsapp;package=com.whatsapp;end';
 
   /**
    * Detecta la plataforma y capacidades del dispositivo
@@ -15,6 +16,8 @@ export class WhatsAppService {
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent);
     const isIOS = /iphone|ipad|ipod/.test(userAgent);
     const isAndroid = /android/.test(userAgent);
+    const isSafari = /safari/.test(userAgent) && !/chrome/.test(userAgent);
+    const isChrome = /chrome/.test(userAgent);
     
     return {
       isMobile,
@@ -22,7 +25,9 @@ export class WhatsAppService {
       isAndroid,
       isDesktop: !isMobile,
       supportsDeepLink: isMobile,
-      preferredMethod: isMobile ? 'native' : 'web'
+      preferredMethod: isMobile ? 'native' : 'web',
+      isSafari,
+      isChrome
     };
   }
 
@@ -111,8 +116,16 @@ export class WhatsAppService {
     const phoneNumber = this.RESTAURANT_PHONE.replace('+', '');
 
     if (platform.isMobile && platform.supportsDeepLink) {
-      // URL para apps nativas móviles
-      return `${this.MOBILE_WHATSAPP_URL}/${phoneNumber}?text=${encodedMessage}`;
+      if (platform.isIOS) {
+        // iOS prefiere el esquema whatsapp:// para mejor compatibilidad
+        return `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}`;
+      } else if (platform.isAndroid) {
+        // Android: intentar primero con wa.me, el intent como fallback se manejará en sendOrder
+        return `${this.MOBILE_WHATSAPP_URL}/${phoneNumber}?text=${encodedMessage}`;
+      } else {
+        // Otros móviles
+        return `${this.MOBILE_WHATSAPP_URL}/${phoneNumber}?text=${encodedMessage}`;
+      }
     } else {
       // URL para WhatsApp Web (desktop o fallback)
       return `${this.WEB_WHATSAPP_URL}?phone=${phoneNumber}&text=${encodedMessage}`;
@@ -120,7 +133,18 @@ export class WhatsAppService {
   }
 
   /**
-   * Intenta abrir WhatsApp con protocolo nativo
+   * Genera URL de Android Intent como fallback adicional
+   */
+  private static generateAndroidIntentUrl(message: string): string {
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = this.RESTAURANT_PHONE.replace('+', '');
+    return this.ANDROID_INTENT_URL
+      .replace('{phone}', phoneNumber)
+      .replace('{text}', encodedMessage);
+  }
+
+  /**
+   * Intenta abrir WhatsApp con protocolo nativo (mejorado para mobile)
    */
   private static async tryNativeApp(url: string): Promise<boolean> {
     return new Promise((resolve) => {
@@ -131,40 +155,100 @@ export class WhatsAppService {
         return;
       }
 
-      // Crear iframe invisible para intentar deep link
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = url;
-      
-      let resolved = false;
-      const timeout = setTimeout(() => {
-        if (!resolved) {
-          resolved = true;
-          document.body.removeChild(iframe);
+      // Para mobile, usar window.location.href es más confiable que iframe
+      if (platform.isMobile) {
+        try {
+          // Detectar si la página pierde foco (indica que la app se abrió)
+          let hasBlurred = false;
+          
+          const blurHandler = () => {
+            hasBlurred = true;
+            document.removeEventListener('visibilitychange', visibilityHandler);
+            window.removeEventListener('blur', blurHandler);
+            resolve(true);
+          };
+          
+          const visibilityHandler = () => {
+            if (document.hidden) {
+              hasBlurred = true;
+              document.removeEventListener('visibilitychange', visibilityHandler);
+              window.removeEventListener('blur', blurHandler);
+              resolve(true);
+            }
+          };
+          
+          // Escuchar eventos de cambio de foco
+          window.addEventListener('blur', blurHandler);
+          document.addEventListener('visibilitychange', visibilityHandler);
+          
+          // Timeout más largo para mobile
+          setTimeout(() => {
+            window.removeEventListener('blur', blurHandler);
+            document.removeEventListener('visibilitychange', visibilityHandler);
+            resolve(hasBlurred);
+          }, 3000);
+          
+          // Intentar abrir la app directamente
+          window.location.href = url;
+          
+        } catch (error) {
+          console.log('Error opening native app:', error);
           resolve(false);
         }
-      }, 2000);
+      } else {
+        // Fallback al método iframe para desktop (aunque no se usará mucho)
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = url;
+        
+        let resolved = false;
+        const timeout = setTimeout(() => {
+          if (!resolved) {
+            resolved = true;
+            document.body.removeChild(iframe);
+            resolve(false);
+          }
+        }, 2000);
 
-      iframe.onload = () => {
-        if (!resolved) {
-          resolved = true;
-          clearTimeout(timeout);
-          document.body.removeChild(iframe);
-          resolve(true);
-        }
-      };
+        iframe.onload = () => {
+          if (!resolved) {
+            resolved = true;
+            clearTimeout(timeout);
+            document.body.removeChild(iframe);
+            resolve(true);
+          }
+        };
 
-      document.body.appendChild(iframe);
+        document.body.appendChild(iframe);
+      }
     });
   }
 
   /**
-   * Abre WhatsApp Web como fallback
+   * Abre WhatsApp Web como fallback (mejorado)
    */
   private static async tryWebVersion(url: string): Promise<boolean> {
     try {
-      const newWindow = window.open(url, '_blank');
-      return !!newWindow;
+      console.log('🌐 Opening WhatsApp Web/wa.me:', url);
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      
+      if (newWindow) {
+        // Para mobile, cerrar la ventana original después de un delay
+        // para evitar que se quede abierta
+        const platform = this.detectPlatform();
+        if (platform.isMobile) {
+          setTimeout(() => {
+            try {
+              newWindow.close();
+            } catch (e) {
+              // Ignorar errores de cierre
+            }
+          }, 1000);
+        }
+        return true;
+      }
+      
+      return false;
     } catch (error) {
       console.error('Error opening WhatsApp Web:', error);
       return false;
@@ -221,38 +305,77 @@ export class WhatsAppService {
   }
 
   /**
-   * Método principal para enviar pedido
+   * Método principal para enviar pedido (mejorado para mobile)
    */
   static async sendOrder(orderData: OrderData): Promise<WhatsAppResult> {
     try {
       const platform = this.detectPlatform();
       const message = this.formatOrderMessage(orderData);
-      const url = this.generateWhatsAppUrl(message, platform);
-
-      // Estrategia de envío por prioridad
+      console.log('🔍 Platform detected:', platform);
+      
+      // Para móviles, intentar app nativa primero
       if (platform.preferredMethod === 'native') {
-        if (await this.tryNativeApp(url)) {
+        const nativeUrl = this.generateWhatsAppUrl(message, platform);
+        console.log('📱 Trying native app with URL:', nativeUrl);
+        
+        if (await this.tryNativeApp(nativeUrl)) {
+          console.log('✅ Native app opened successfully');
           return { 
             success: true, 
             method: 'native',
             platform: platform.isIOS ? 'ios' : 'android'
           };
         }
-      }
-
-      // Fallback a web
-      if (await this.tryWebVersion(url)) {
-        return { 
-          success: true, 
-          method: 'web',
-          platform: 'web'
-        };
+        
+        console.log('❌ Native app failed, trying web fallback');
+        
+        // Si falla la app nativa, intentar wa.me en nueva ventana
+        const webUrl = `${this.MOBILE_WHATSAPP_URL}/${this.RESTAURANT_PHONE.replace('+', '')}?text=${encodeURIComponent(message)}`;
+        console.log('🌐 Trying web fallback with URL:', webUrl);
+        
+        if (await this.tryWebVersion(webUrl)) {
+          console.log('✅ Web version opened successfully');
+          return { 
+            success: true, 
+            method: 'web',
+            platform: 'web'
+          };
+        }
+        
+        // Para Android, intentar con Intent URL como último recurso nativo
+        if (platform.isAndroid) {
+          console.log('🤖 Trying Android Intent URL');
+          const intentUrl = this.generateAndroidIntentUrl(message);
+          if (await this.tryWebVersion(intentUrl)) {
+            console.log('✅ Android Intent opened successfully');
+            return { 
+              success: true, 
+              method: 'native',
+              platform: 'android-intent'
+            };
+          }
+        }
+      } else {
+        // Para desktop, usar WhatsApp Web directamente
+        const url = this.generateWhatsAppUrl(message, platform);
+        console.log('💻 Trying desktop WhatsApp Web:', url);
+        
+        if (await this.tryWebVersion(url)) {
+          console.log('✅ WhatsApp Web opened successfully');
+          return { 
+            success: true, 
+            method: 'web',
+            platform: 'web'
+          };
+        }
       }
 
       // Último recurso: fallback manual
+      console.log('🆘 All methods failed, using fallback');
       return this.handleFallback(orderData);
 
     } catch (error) {
+      console.error('💥 WhatsApp Service Error:', error);
       return this.handleError(error, orderData);
     }
   }

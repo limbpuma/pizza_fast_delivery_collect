@@ -33,7 +33,7 @@ export interface CartItem {
 export interface WhatsAppResult {
   success: boolean;
   method: 'native' | 'web' | 'fallback' | 'error';
-  platform?: 'ios' | 'android' | 'web';
+  platform?: 'ios' | 'android' | 'android-intent' | 'web';
   error?: string;
   message?: string;
   alternativeActions?: AlternativeAction[];
@@ -53,6 +53,8 @@ export interface PlatformInfo {
   isDesktop: boolean;
   supportsDeepLink: boolean;
   preferredMethod: 'native' | 'web';
+  isSafari?: boolean;
+  isChrome?: boolean;
 }
 
 export interface MessageTemplate {
